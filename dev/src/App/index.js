@@ -196,7 +196,7 @@ export default class App extends PureComponent {
         id: _.uniqueId(),
         start: "16:00",
         end: "17:00",
-        rest: "Lighting Talk (地點: 正大會議廳)"
+        rest: "Lightning Talk (地點: 正大會議廳)"
       }
     ],
     day_2: [
@@ -757,7 +757,7 @@ export default class App extends PureComponent {
                 target="_blank"
               >
                 https://iosdc.jp/2017/
-              </a>），看到⽇本當地開發社群的蓬勃活力，兼具深度、廣度的諸多講題及趣味的舉辦⽅式，其中有許多台灣社群可以學習之處。
+              </a>），看到⽇本當地開發社群的蓬勃活力，兼具深度、廣度的諸多講題及趣味的舉辦⽅式，其中有許多台灣社群可以學習之處。
             </p>
             <p>
               我們意識到開發社群有強烈的需求，決定在台北辦⼀場 iOS
