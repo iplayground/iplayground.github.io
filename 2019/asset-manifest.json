@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.892a6767.css",
   "main.css.map": "static/css/main.892a6767.css.map",
-  "main.js": "static/js/main.454391e8.js",
-  "main.js.map": "static/js/main.454391e8.js.map",
+  "main.js": "static/js/main.f57aa998.js",
+  "main.js.map": "static/js/main.f57aa998.js.map",
   "static/media/BigRoot.jpeg": "static/media/BigRoot.a2a7eea2.jpeg",
   "static/media/CJLin.jpg": "static/media/CJLin.835d6d96.jpg",
   "static/media/Chou_Mike.jpeg": "static/media/Chou_Mike.a75df77d.jpeg",
@@ -35,5 +35,6 @@
   "static/media/logo_twdc.png": "static/media/logo_twdc.2fc9fe32.png",
   "static/media/lynn.jpg": "static/media/lynn.84535022.jpg",
   "static/media/pofat_avatar.jpg": "static/media/pofat_avatar.5caf69e4.jpg",
-  "static/media/superbil.png": "static/media/superbil.3ddef241.png"
+  "static/media/superbil.png": "static/media/superbil.3ddef241.png",
+  "static/media/zonble.jpg": "static/media/zonble.0bdeff22.jpg"
 }
