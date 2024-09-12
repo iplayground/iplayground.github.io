@@ -24,7 +24,6 @@ html {
 
 .logo-container-fullscreen {
   width: 100%;
-  background: linear-gradient(350.91deg, #3b559a 28.55%, #9eb0d6 89.13%);
   min-height: 120vmin; }
   .logo-container-fullscreen .logo-container {
     max-width: 90vmin;
@@ -301,10 +300,10 @@ html {
     text-align: center;
     padding: 16px 0; }
   .app__container .social_icon {
-    width: 64px;
-    line-height: 64px;
+    width: 40px;
+    line-height: 40px;
     vertical-align: middle;
-    font-size: 32pt; }
+    font-size: 16pt; }
   .app__container .content_small_title {
     font-size: 1.2em;
     color: #333333; }
@@ -341,6 +340,9 @@ html {
   @media screen and (min-width: 992px) {
     .app__container .app__container {
       max-width: 960px; } }
+  .app_section_footer {
+    background-color: #000;
+  }
 
 @media (prefers-color-scheme: dark) {
   body {

@@ -286,11 +286,11 @@ export default class App extends PureComponent {
         <div className="logo-container-fullscreen">
           <NavgationBar />
           <div className="logo-container">
-            <img
+            {/* <img
               className="logo"
               src="./logo_image.png"
               alt="iPlayground"
-            />
+            /> */}
             <br />
             <p className="logo-info" style={{ fontSize: "5vmin" }}>
             </p>
@@ -313,12 +313,6 @@ export default class App extends PureComponent {
               {/* <ActionButton title={<Trans>underAboutUs.button.hackMD</Trans>} link="https://hackmd.io/@iPlayground/2020/" /> */}
             </div>
 
-            <div className="section_action_container" style={{ marginTop: "1em" }}>
-              <a href="https://twitter.com/theiPlayground" target="_blank"><i className="fab fa-twitter social_icon twitter_icon"></i></a>
-              <a href="https://t.me/iPlayground" target="_blank"><i className="fab fa-telegram social_icon telegram_icon"></i></a>
-              <a href="https://t.me/iPlaygroundAnnouncement" target="_blank"><i className="fas fa-bullhorn social_icon telegram_icon" style={{ fontSize: "24pt" }}></i></a>
-              <a href="https://www.facebook.com/theiPlayground/" target="_blank"><i className="fab fa-facebook social_icon facebook_icon"></i></a>
-            </div>
             {/* <div className="section_action_container">
               <a href="https://apps.apple.com/tw/app/iplayground-19/id1367423535?mt=8" style={{ display: "inline-block", overflow: "hidden", background: "url(https://linkmaker.itunes.apple.com/zh-tw/badge-lrg.svg?releaseDate=2018-10-03&kind=iossoftware&bubble=ios_apps) no-repeat", width: "135px", height: "40px", verticalAlign: "middle" }}></a>
               <a href='https://play.google.com/store/apps/details?id=net.zonble.iplayground19&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Google Play立即下載' src='https://play.google.com/intl/en_us/badges/images/generic/zh-tw_badge_web_generic.png' style={{ height: "60px", verticalAlign: "middle" }} /></a>
@@ -327,7 +321,7 @@ export default class App extends PureComponent {
 
           {/* Speakers講者 */}
           <div className="app__section main_section" id="speakers-section">
-            <img className="main_section_logo" src={require("../images/iplayground_logo_ball.png")} />
+            {/* <img className="main_section_logo" src={require("../images/iplayground_logo_ball.png")} /> */}
             <div className="main_section_container">
               <div className="app__title"><span className="app__title_eng">{<Trans>speakers.title</Trans>}</span><span>{<Trans>speakers.title2</Trans>}</span></div>
               <div className="app__speaker-container">
@@ -457,12 +451,19 @@ export default class App extends PureComponent {
               <div className="app__title"><span className="app__title_eng">{<Trans>staff.title</Trans>}</span><span>{<Trans>staff.title2</Trans>}</span></div>
               {this.renderStaff()}
             </div>
-
-            <p style={{ textAlign: "center" }}>
-              {<Trans>allRightsReserved</Trans>}
-            </p>
-
           </div> */}
+
+          <div className="app_section_footer">
+            <div className="section_action_container" style={{ marginTop: "1em" }}>
+                <a href="https://twitter.com/theiPlayground" target="_blank"><i className="fab fa-twitter social_icon twitter_icon"></i></a>
+                <a href="https://t.me/iPlayground" target="_blank"><i className="fab fa-telegram social_icon telegram_icon"></i></a>
+                {/* <a href="https://t.me/iPlaygroundAnnouncement" target="_blank"><i className="fas fa-bullhorn social_icon telegram_icon" style={{ fontSize: "24pt" }}></i></a> */}
+                <a href="https://www.facebook.com/theiPlayground/" target="_blank"><i className="fa fa-facebook social_icon facebook_icon"></i></a>
+            </div>
+            <p style={{ textAlign: "center", color: "#ffffff" }}>
+                {<Trans>allRightsReserved</Trans>}
+            </p>
+          </div>
 
         </div>
         <Modal visible={showModal} onCloseRequest={this.onCloseRequest}>
