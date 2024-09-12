@@ -12,11 +12,12 @@ nav {
       margin-block-end: 0;
       margin-block-start: 0.5em;
       margin-left: 1em;
+      margin-top: 1.5em;
       display: inline-block; }
   nav .logo-small-container {
     position: absolute;
     display: inline-block;
-    right: 2em;
+    left: 2em;
     height: 100%; }
   nav .logo-small-subcontainer {
     display: block;
@@ -37,7 +38,9 @@ nav {
     height: 100%;
     vertical-align: middle; }
   nav .nav-link-container {
-    display: none; }
+    display: inline-block;
+    position: absolute;
+    right: 2.0em; }
   nav .nav-menu {
     display: inline-block;
     color: #fff;
@@ -87,7 +90,7 @@ nav {
     nav .nav-menu {
       display: none; }
     nav .logo-small-container {
-      right: 4em; }
+      left: 4em; }
     nav .nav-button {
       letter-spacing: 10px;
       padding-inline-start: 20px;
