@@ -23,41 +23,29 @@ export default class App extends PureComponent {
 
   componentDidMount = async () => {
     //const data = await 
-    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/program.json')
+    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2024/v1/speakers.json')
       .then(response => response.json())
       .then(data => {
-        console.log(data.program)
         this.setState({ programs: data.program })
       });
 
     await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/sponsors.json')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.setState({ sponsors: data })
-      });
-
-    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/speakers.json')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        this.setState({ speakers: data })
       });
 
     await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/staffs.json')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.setState({ staffs: data })
       });
 
     await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/schedule.json')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.setState({ schedule: data.schedule })
       });
-
   }
 
   onClickSpeaker = id => {
@@ -319,6 +307,25 @@ export default class App extends PureComponent {
             </div> */}
           </div>
 
+          {/* About關於我們 */}
+          <div className="app__section sub_section" id="about-section">
+            <div className="section_container">
+              <div className="app__title"><span className="app__title_eng">{<Trans>aboutUs.title</Trans>}</span><span>{<Trans>aboutUs.title2</Trans>}</span></div>
+              <p>
+                {<Trans>aboutUs.content.firstSentence.one</Trans>}<a href="https://iosdc.jp/2017/" target="_blank">iOSDC</a> {<Trans>aboutUs.content.firstSentence.second</Trans>}
+              </p>
+              <p>
+                {<Trans>aboutUs.content.secondSentence</Trans>}
+              </p>
+              <p>
+                {<Trans>aboutUs.content.thirdSentence</Trans>}
+              </p>
+              {/* 活動照片 */}
+              {/* <div className="app__title"><span className="app__title_eng">Photos</span><span>活動照片</span></div> */}
+              {this.renderPictures()}
+            </div>
+          </div>
+
           {/* Speakers講者 */}
           <div className="app__section main_section" id="speakers-section">
             {/* <img className="main_section_logo" src={require("../images/iplayground_logo_ball.png")} /> */}
@@ -365,8 +372,16 @@ export default class App extends PureComponent {
             </div>
           </div> */}
 
+          {/* Staffs工作人員 */}
+          <div className="app__section sub_section" id="staffs-section">
+            <div className="section_container">
+              <div className="app__title"><span className="app__title_eng">{<Trans>staff.title</Trans>}</span><span>{<Trans>staff.title2</Trans>}</span></div>
+              {this.renderStaff()}
+            </div>
+          </div>
+
           {/* Venue 場地 */}
-          {/* <div className="app__section sub_section" id="venue-section">
+          <div className="app__section sub_section" id="venue-section">
             <img className="main_section_logo" src={require("../images/iplayground_logo_stairs.png")} />
             <div className="section_container">
               <div className="app__title"><span className="app__title_eng">{<Trans>venue.title</Trans>}</span><span>{<Trans>venue.title2</Trans>}</span></div>
@@ -383,10 +398,10 @@ export default class App extends PureComponent {
                 height="450"
                 frameBorder="0"
                 style={{ border: 0 }}
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.862925961839!2d121.51648511507155!3d25.038725483970115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a975c13ae63d%3A0x99f529730969be7f!2z5by15qau55m85Z-66YeR5pyD!5e0!3m2!1szh-TW!2stw!4v1598889656465!5m2!1szh-TW!2stw"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.654896766674!2d121.54879247633677!3d25.079683377786893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ad2f79889a2f%3A0x243e9294d51c3f3a!2z5bem6YSw5Y-z6IiN5aSa5Yqf6IO95rS75YuV56m66ZaT!5e0!3m2!1szh-TW!2stw!4v1726229640688!5m2!1szh-TW!2stw"
                 allowFullScreen
               />
-              <p>
+              {/* <p>
                 {<Trans>venue.tafficTitle</Trans>}
                 <br /><br />
                 {<Trans>venue.busTitle</Trans>}
@@ -406,26 +421,7 @@ export default class App extends PureComponent {
                 {<Trans>venue.parkingContent.firstSentence</Trans>}
                 <br />
                 {<Trans>venue.parkingContent.secondSentence</Trans>}
-              </p>
-            </div>
-          </div> */}
-
-          {/* About關於我們 */}
-          <div className="app__section sub_section" id="about-section">
-            <div className="section_container">
-              <div className="app__title"><span className="app__title_eng">{<Trans>aboutUs.title</Trans>}</span><span>{<Trans>aboutUs.title2</Trans>}</span></div>
-              <p>
-                {<Trans>aboutUs.content.firstSentence.one</Trans>}<a href="https://iosdc.jp/2017/" target="_blank">iOSDC</a> {<Trans>aboutUs.content.firstSentence.second</Trans>}
-              </p>
-              <p>
-                {<Trans>aboutUs.content.secondSentence</Trans>}
-              </p>
-              <p>
-                {<Trans>aboutUs.content.thirdSentence</Trans>}
-              </p>
-              {/* 活動照片 */}
-              {/* <div className="app__title"><span className="app__title_eng">Photos</span><span>活動照片</span></div> */}
-              {this.renderPictures()}
+              </p> */}
             </div>
           </div>
 
@@ -442,14 +438,6 @@ export default class App extends PureComponent {
             <div className="section_container">
               <div className="app__title"><span className="app__title_eng">{<Trans>CoOrganizers.title</Trans>}</span><span>{<Trans>CoOrganizers.title2</Trans>}</span></div>
               {this.renderCoOrganisers()}
-            </div>
-          </div> */}
-
-          {/* Staffs工作人員 */}
-          {/* <div className="app__section sub_section" id="staffs-section">
-            <div className="section_container">
-              <div className="app__title"><span className="app__title_eng">{<Trans>staff.title</Trans>}</span><span>{<Trans>staff.title2</Trans>}</span></div>
-              {this.renderStaff()}
             </div>
           </div> */}
 
