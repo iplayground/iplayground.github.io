@@ -80,7 +80,7 @@ export default class NavgationBar extends PureComponent {
               <div className="nav-link"><a href="#staffs-section"><p>{<Trans>navTitle.staff</Trans>}</p><p>{<Trans>navTitle.staff2</Trans>}</p></a></div>
               <div className="nav-link"><a href="#venue-section"><p>{<Trans>navTitle.venue</Trans>}</p><p>{<Trans>navTitle.venue2</Trans>}</p></a></div>
               {/* <div className="nav-link nav-button"><ActionButton style={{ fontSize: "30px", lineHeight: "40px" }} title={<Trans>navButtonTitle.sponsor</Trans>} link="https://bit.ly/iplayground-2020-sponsors" /></div> */}
-              <div className="nav-link nav-button"><ActionButton style={{ fontSize: "30px", lineHeight: "40px" }} title={<Trans>navButtonTitle.buyTicket</Trans>} link="https://iplayground.kktix.cc" /></div>
+              <div className="nav-link nav-button"><ActionButton style={{ fontSize: "30px", lineHeight: "40px" }} title={<Trans>navButtonTitle.buyTicket</Trans>} link="https://iplayground.kktix.cc/events/iplayground2024" /></div>
               {/* <div className="nav-link nav-button"><ActionButton style={{fontSize:"30px",lineHeight:"40px"}} title={<Trans>navButtonTitle.becomeASpeaker</Trans>} link="https://cfp.iplayground.io/events/iplayground_2020" /></div> */}
               {/* <div className="nav-link nav-button"><ActionButton style={{ fontSize: "30px", lineHeight: "40px" }} title={<Trans>navButtonTitle.hackMD</Trans>} link="https://hackmd.io/@iPlayground/2020/" /></div> */}
             </div>
