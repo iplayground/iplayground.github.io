@@ -4,6 +4,7 @@ nav {
     z-index: 9999;
     width: 100%;
     height: 64px;
+    background-color: #011432;
     a {
         text-decoration: none;
         color: #ffffff;
@@ -12,13 +13,14 @@ nav {
             margin-block-end: 0;
             margin-block-start: 0.5em;
             margin-left: 1em;
+            margin-top: 1.5em;
             display: inline-block;
         }
     }
     .logo-small-container {
         position: absolute;
         display: inline-block;
-        right: 2em;
+        left: 2em;
         height: 100%;
     }
     .logo-small-subcontainer {
@@ -43,7 +45,9 @@ nav {
         vertical-align: middle;
     }
     .nav-link-container {
-        display: none;
+        display: inline-block;
+        position: absolute;
+        right: 2.0em;
     }
 
     .nav-menu {
@@ -82,10 +86,11 @@ nav {
 }
 
 .is-shrink {
-    background-color: #ffffffef;
+    background-color: #011432;
+    ;
     box-shadow: 0 3px 5px 2px #00000033;
     P {
-        color: #333;
+        color: #fff;
     }
     .nav-menu {
         color: #333;
@@ -116,7 +121,7 @@ nav {
             display: none;
         }
         .logo-small-container {
-            right: 4em;
+            left: 4em;
         }
 
         .nav-button {
@@ -130,7 +135,7 @@ nav {
 
 @media (prefers-color-scheme: dark) {
     .is-shrink {
-        background-color: #333333ef;
+        background-color: #011432;
         box-shadow: 0 3px 5px 2px #00000033;
         P {
             color: #fff;

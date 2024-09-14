@@ -23,14 +23,11 @@ html {
   justify-content: center; }
 
 .logo-container-fullscreen {
-  width: 100%;
-  min-height: 120vmin; }
+  margin-left: 0;
+  margin-right: 0; }
   .logo-container-fullscreen .logo-container {
-    max-width: 90vmin;
-    height: 101vmin;
+    background-color: #011432;
     margin: 0 auto;
-    padding: 0 20px;
-    padding-top: 64px;
     display: flex;
     flex-direction: column; }
   .logo-container-fullscreen .logo-container-fullscreen-mask {
@@ -53,9 +50,6 @@ html {
     .logo-container-fullscreen .logo-container-fullscreen-mask-2-container .logo-container-fullscreen-mask-2-bottom {
       background: #ffffff33;
       height: 5vmin; }
-  .logo-container-fullscreen .logo {
-    width: 100%;
-    height: auto; }
   .logo-container-fullscreen .logo-info {
     margin-right: 7pt;
     margin-block-start: 0px;
@@ -179,8 +173,7 @@ html {
     .app__container .app__speaker .app__speaker-img {
       width: 60%;
       max-width: 275px;
-      margin-top: 2rem;
-      border-radius: 50%; }
+      margin-top: 2rem; }
     .app__container .app__speaker .app__speaker-square-img {
       width: 90%;
       max-width: 800px;
@@ -189,22 +182,15 @@ html {
     .app__container .app__speaker .app__speaker-name {
       font-size: 1.35rem;
       margin-bottom: 0;
-      background-color: rgba(0, 0, 0, 0.3);
-      color: #ffffff;
+      color: #000;
       padding: 0.5rem 0;
       margin: 0 15%;
       border-radius: 8px; }
     .app__container .app__speaker .app__speaker-position {
       margin-top: 0;
       padding-left: 1.2rem;
-      padding-right: 1.2rem; }
-      @media (prefers-color-scheme: dark) {
-        .app__container .app__speaker .app__speaker-position {
-          color: white;
-          text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); } }
-      @media (prefers-color-scheme: light) {
-        .app__container .app__speaker .app__speaker-position {
-          color: black; } }
+      padding-right: 1.2rem;
+      color: #191919CC; }
   .app__container .app__sponsor {
     text-align: center; }
     .app__container .app__sponsor .app__CoOrganisers-logo {
@@ -248,7 +234,7 @@ html {
     padding: 2rem 2rem;
     margin: 30vmin -0px 0px 5vw;
     min-height: 360px;
-    background-color: #ffffff66;
+    background-color: #fff;
     border-radius: 23px 0 0 23px;
     box-shadow: 0 3px 30px 2px rgba(0, 0, 0, 0.2); }
     .app__container .main_section_container .section_tag {
@@ -264,7 +250,7 @@ html {
   .app__container .section_container {
     padding: 2rem 2rem;
     margin: 0 -0px 0px 5vw;
-    background-color: #ffffff66;
+    background-color: #fff;
     border-radius: 23px 0 0 23px;
     box-shadow: 0 3px 30px 2px rgba(0, 0, 0, 0.2); }
   .app__container .section_content_row_container {
@@ -315,11 +301,11 @@ html {
   .app__container a {
     text-decoration: none; }
   .app__container .twitter_icon {
-    color: #1da1f2; }
+    color: #ffffff; }
   .app__container .facebook_icon {
-    color: #1877f2; }
+    color: #ffffff; }
   .app__container .telegram_icon {
-    color: #0088cc; }
+    color: #ffffff; }
   @media screen and (min-width: 768px) {
     .app__container .app__submit {
       margin-left: auto;
@@ -336,13 +322,17 @@ html {
     .app__container .app__sponsor .app__sponsor-gold {
       width: 200%; }
     .app__container .app__sponsor-gold-container .app__sponsor-gold {
-      max-width: 50%; } }
+      max-width: 50%; }
+    .app__container .logo-small-subcontainer {
+      margin-top: 2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+    .app__container .app_section_footer {
+      background-color: #000; } }
   @media screen and (min-width: 992px) {
     .app__container .app__container {
       max-width: 960px; } }
-  .app_section_footer {
-    background-color: #000;
-  }
 
 @media (prefers-color-scheme: dark) {
   body {

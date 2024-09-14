@@ -35,7 +35,7 @@ export default class App extends PureComponent {
         this.setState({ sponsors: data })
       });
 
-    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/staffs.json')
+    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2024/v1/staffs.json')
       .then(response => response.json())
       .then(data => {
         this.setState({ staffs: data })
@@ -274,22 +274,12 @@ export default class App extends PureComponent {
         <div className="logo-container-fullscreen">
           <NavgationBar />
           <div className="logo-container">
-            {/* <img
+            <img
               className="logo"
-              src="./logo_image.png"
+              src={require(`./images/logo_2024.png`)}
               alt="iPlayground"
-            /> */}
+            />
             <br />
-            <p className="logo-info" style={{ fontSize: "5vmin" }}>
-            </p>
-          </div>
-          <div className="logo-container-fullscreen-mask-container">
-            <div className="logo-container-fullscreen-mask"></div>
-            <div className="logo-container-fullscreen-mask-2-container">
-              <div className="logo-container-fullscreen-mask-2-top"></div>
-              <div className="logo-container-fullscreen-mask-2-bottom"></div>
-            </div>
-
           </div>
         </div>
         <div className="app__container">
@@ -382,7 +372,6 @@ export default class App extends PureComponent {
 
           {/* Venue 場地 */}
           <div className="app__section sub_section" id="venue-section">
-            <img className="main_section_logo" src={require("../images/iplayground_logo_stairs.png")} />
             <div className="section_container">
               <div className="app__title"><span className="app__title_eng">{<Trans>venue.title</Trans>}</span><span>{<Trans>venue.title2</Trans>}</span></div>
               <p>
@@ -442,6 +431,14 @@ export default class App extends PureComponent {
           </div> */}
 
           <div className="app_section_footer">
+            <div className="logo-small-subcontainer">
+                <div className="logo-small" id="nav-logo-small">
+                  <img
+                    src={require("../images/logo_iplayground_small.png")}
+                    alt="iPlayground"
+                  />
+                </div>
+            </div>
             <div className="section_action_container" style={{ marginTop: "1em" }}>
                 <a href="https://twitter.com/theiPlayground" target="_blank"><i className="fab fa-twitter social_icon twitter_icon"></i></a>
                 <a href="https://t.me/iPlayground" target="_blank"><i className="fab fa-telegram social_icon telegram_icon"></i></a>

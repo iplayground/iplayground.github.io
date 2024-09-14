@@ -28,7 +28,7 @@ export default class NavgationBar extends PureComponent {
     } else {
       if (this.state.toggle == false) {
         document.getElementById("navbar").classList.remove("is-shrink")
-        document.getElementById("nav-logo-small").style.display = "none"
+        document.getElementById("nav-logo-small").style.display = "block"
       }
     }
   }
