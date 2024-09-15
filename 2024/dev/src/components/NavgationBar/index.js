@@ -25,7 +25,7 @@ export default class NavgationBar extends PureComponent {
       document.getElementById("navbar").classList.add("is-shrink")
       document.getElementById("nav-logo-small").style.display = "block"
     } else {
-      if (this.state.toggle == false) {
+      if (this.state.toggle === false) {
         document.getElementById("navbar").classList.remove("is-shrink")
         document.getElementById("nav-logo-small").style.display = "block"
       }
@@ -33,7 +33,7 @@ export default class NavgationBar extends PureComponent {
   }
 
   onOpenMenu = () => {
-    if (this.state.toggle == false) {
+    if (this.state.toggle === false) {
       document.getElementById("navbar").classList.add("is-shrink")
       document.getElementById("nav-link-container").style.display = "block"
       document.getElementById("bar-menu-icon").classList.remove("fa-bars")

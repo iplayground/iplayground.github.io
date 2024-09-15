@@ -5,24 +5,23 @@ import './styles.css';
 
 export default ({ session, onClickCloseBtn, speakers }) => {
   console.log(session)
-
+  debugger;
   return (
     <div className="modal-content-schedule">
-      <a className="modal-content-schedule__close-btn" onClick={onClickCloseBtn} />
+      <a className="modal-content-schedule__close-btn" onClick={onClickCloseBtn} >&nbsp;</a>
       <div className="modal-content-schedule__txt-section">
         <p className="modal-content-schedule__topic"><strong>{session.topic}</strong></p>
 
         <div>
           {
-
             _.map(session.tags, (tag) =>
               <div className="modal_tag">
-                <img className="modal_tag_image" style={{ verticalAlign: "middle" }} src={require("../../images/" + tag + ".png")} />
+                <img className="modal_tag_image" style={{ verticalAlign: "middle" }} src={require("../../images/" + tag + ".png")} alt='{tag}' />
                 <span style={{ lineHeight: "32px" }}>{(() => {
                   switch (tag) {
-                    case "english_talk": return "英語演說"; break;
-                    case "no_record": return "不提供錄影"; break;
-                    case "public_address": return "聯播場次"; break;
+                    case "english_talk": return "英語演說";
+                    case "no_record": return "不提供錄影";
+                    case "public_address": return "聯播場次";
                     default: return null;
                   }
                 }
@@ -40,7 +39,7 @@ export default ({ session, onClickCloseBtn, speakers }) => {
               <div>
                 <p className="modal-content-schedule__presenter">{name}</p>
                 <div className="modal-speaker-detail-container">
-                  <img className="modal-content-speakers__img" src={imgURL} />
+                  <img className="modal-content-speakers__img" src={imgURL} alt="{name}" />
                   <div className="modal-content-schedule__presenter-description">{bio}</div>
                 </div>
               </div>

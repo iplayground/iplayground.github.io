@@ -61,7 +61,7 @@ export default ({ topic, presenter, description, room, tags, isWorkshop, program
       <div>
         {
           _.map(tags, (tag) =>
-            <img className="tag_image" src={require("../../images/" + tag + ".png")} />
+            <img className="tag_image" src={require("../../images/" + tag + ".png")} alt="{tag}" />
           )
         }
       </div>

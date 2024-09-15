@@ -15,11 +15,11 @@ export default ({ start, end, rest, talks, isWorkshop, programs, onClickTopic })
       return element.id === programId;
     }) : null
 
-    var speaker = ""
-    program ? program.speakers.map(({ name, bio }) => {
-      speaker += (name + " ")
+    // var speaker = ""
+    // program ? program.speakers.map(({ name, bio }) => {
+    //   speaker += (name + " ")
 
-    }) : (speaker = null)
+    // }) : (speaker = null)
 
     if (presenter === undefined || presenter === null || presenter === null) {
       return null

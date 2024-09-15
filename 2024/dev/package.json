@@ -20,6 +20,7 @@
     "i18next": "^19.6.3",
     "i18next-browser-languagedetector": "^6.0.1",
     "lodash": "^4.17.20",
+    "nanoid": "^5.0.7",
     "node-sass-chokidar": "^2.0.0",
     "normalize.css": "^8.0.0",
     "react": "^16.4.2",
