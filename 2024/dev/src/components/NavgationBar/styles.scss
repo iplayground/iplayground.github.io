@@ -46,7 +46,7 @@ nav {
     .nav-link-container {
         display: inline-block;
         position: absolute;
-        right: 2.0em;
+        right: 1.5em;
     }
 
     .nav-menu {
@@ -126,7 +126,6 @@ nav {
 @media screen and (min-width: 680px) {
     nav {
         height: 80px;
-        padding-left: 2em;
 
         a {
             p {
@@ -184,13 +183,4 @@ nav {
             background-color: #333333ef;
         }
     }
-  :root, ::after, ::before, ::backdrop {
-      --native-dark-visited-link-color: #fff;
-  }
-  .section_container {
-      background-color: #202020ef !important;
-  }
-  .app_title {
-      color: #fff;
-  }
 }

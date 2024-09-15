@@ -1,5 +1,8 @@
 @import "../styles/variable.scss";
 
+:root, ::after, ::before, ::backdrop {
+  --native-dark-visited-link-color: #fff;
+}
 html {
   font-family: -apple-system, Helvetica, Arial, sans-serif;
 }
@@ -262,7 +265,6 @@ html {
     .app__speaker-name {
       font-size: 1.35rem;
       margin-bottom: 0;
-      color: #000;
       padding: 0.5rem 0;
       margin: 0 15%;
       border-radius: 8px;
@@ -273,7 +275,12 @@ html {
       margin-top: 0;
       padding-left: 1.2rem;
       padding-right: 1.2rem;
-      color: #191919CC;
+      @media (prefers-color-scheme: dark) {
+        color: #dbdbdbef;
+      }
+      @media (prefers-color-scheme: light) {
+        color: #191919CC;
+      }
     }
   }
   .app__speaker-container {
@@ -343,7 +350,13 @@ html {
     padding: 2rem 2rem;
     margin: 0 0 0 5vw;
     min-height: 360px;
-    background-color: #fff;
+    
+    @media (prefers-color-scheme: dark) {
+      background-color: #202020ef;
+    }
+    @media (prefers-color-scheme: light) {
+      background-color: #fff;
+    }
 
     .section_tag {
       color: #ef5fa7;
@@ -364,7 +377,12 @@ html {
     padding: 2rem 2rem;
     margin: 0 0 0 5vw;
     //min-height: 360px;
-    background-color: #fff;
+    @media (prefers-color-scheme: dark) {
+      background-color: #202020ef;
+    }
+    @media (prefers-color-scheme: light) {
+      background-color: #fff;
+    }
   }
   .section_content_row_container {
     display: flex;
@@ -388,7 +406,12 @@ html {
     font-size: 64px;
     line-height: 80px;
     font-weight: bold;
-    color: #333333;
+    @media (prefers-color-scheme: dark) {
+      color: #f0f0f0;
+    }
+    @media (prefers-color-scheme: light) {
+      color: #333333;
+    }
     .app__title_eng {
       margin-right: 1rem;
     }
@@ -493,6 +516,9 @@ html {
   body {
     background: #666;
   }
+  a {
+    color: #9bc2ff;
+  }
   .logo-container-fullscreen {
     .logo-container-fullscreen-mask {
       border-color: transparent transparent #666 transparent;
@@ -507,9 +533,6 @@ html {
     }
   }
   .app__container {
-    .main_section_container {
-      background-color: #ffffffaa;
-    }
     .twitter_icon {
       color: #ffffff;
     }
