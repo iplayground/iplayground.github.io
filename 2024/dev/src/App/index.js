@@ -29,7 +29,7 @@ export default class App extends PureComponent {
         this.setState({ programs: data.program })
       });
 
-    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/sponsors.json')
+    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2024/v1/sponsors.json')
       .then(response => response.json())
       .then(data => {
         this.setState({ sponsors: data })
@@ -41,7 +41,7 @@ export default class App extends PureComponent {
         this.setState({ staffs: data })
       });
 
-    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/schedule.json')
+    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2024/v1/schedule.json')
       .then(response => response.json())
       .then(data => {
         this.setState({ schedule: data.schedule })
@@ -174,7 +174,7 @@ export default class App extends PureComponent {
         <img
           className="app__speaker-img"
           onClick={() => this.onClickSpeaker(id)}
-          src={video_url !== null && video_url !== "" ? video_url : "https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/images/speakers/nopic.png"}
+          src={video_url !== null && video_url !== "" ? video_url : "https://raw.githubusercontent.com/iplayground/SessionData/2024/v1/images/speakers/nopic.png"}
         />
         <p onClick={() => this.onClickSpeaker(id)} className="app__speaker-name">
           <strong>{speakers[0].name}</strong>
@@ -285,10 +285,10 @@ export default class App extends PureComponent {
         <div className="app__container">
           <div className="empty_section">
             <div className="section_action_container">
-              {/* <ActionButton title={<Trans>underAboutUs.button.sponsor</Trans>} link="https://bit.ly/iplayground-2020-sponsors" /> */}
-              {/* <ActionButton title={<Trans>underAboutUs.button.buyTicket</Trans>} link="https://iplayground.kktix.cc/events/iplayground2020" /> */}
-              {/* <ActionButton title={<Trans>underAboutUs.button.becomeASpeaker</Trans>} link="https://cfp.iplayground.io/events/iplayground_2020" /> */}
-              {/* <ActionButton title={<Trans>underAboutUs.button.hackMD</Trans>} link="https://hackmd.io/@iPlayground/2020/" /> */}
+              {/* <ActionButton title={<Trans>underAboutUs.button.sponsor</Trans>} link="https://bit.ly/iplayground-2024-sponsors" /> */}
+              {/* <ActionButton title={<Trans>underAboutUs.button.buyTicket</Trans>} link="https://iplayground.kktix.cc/events/iplayground2024" /> */}
+              {/* <ActionButton title={<Trans>underAboutUs.button.becomeASpeaker</Trans>} link="https://cfp.iplayground.io/events/iplayground_2024" /> */}
+              {/* <ActionButton title={<Trans>underAboutUs.button.hackMD</Trans>} link="https://hackmd.io/@iPlayground/2024/" /> */}
             </div>
 
             {/* <div className="section_action_container">
