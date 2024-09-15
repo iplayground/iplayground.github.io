@@ -97,6 +97,12 @@ nav {
 
 @media screen and (max-width: 680px) {
   nav {
+    .nav-link a {
+      line-height: 1.6em;
+    }
+    .nav-button {
+      margin: 1.2em 0 0.6em 2em;
+    }
     #nav-logo-small {
       margin-left: 1.5em;
     }
@@ -125,6 +131,7 @@ nav {
         a {
             p {
                 display: block;
+                line-height: 0.3em;
             }
         }
         .nav-link:first-child {

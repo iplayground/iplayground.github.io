@@ -15,9 +15,12 @@ export default class NavgationBar extends PureComponent {
   }
 
   componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions.bind(this));
     window.addEventListener('scroll', this.handleScroll.bind(this));
   }
   componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions.bind(this));
     window.removeEventListener('scroll', this.handleScroll.bind(this));
   }
   handleScroll(e) {
@@ -30,6 +33,22 @@ export default class NavgationBar extends PureComponent {
         document.getElementById("nav-logo-small").style.display = "block"
       }
     }
+  }
+
+  updateWindowDimensions() {
+    console.log("innerWidth: " + window.innerWidth + "innerHeight: " + window.innerHeight);
+    if (window.innerWidth < 680) {
+      if (this.state.toggle === false) {
+        document.getElementById("nav-link-container").style.display = "none"
+      } else {
+        document.getElementById("nav-link-container").style.display = "block"
+        document.getElementById("nav").classList.add("menu-opened")
+      }
+    } else {
+      document.getElementById("nav-link-container").style.display = "block"
+      document.getElementById("nav").classList.remove("menu-opened")
+    }
+    // this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   onOpenMenu = () => {

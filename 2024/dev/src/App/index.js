@@ -278,7 +278,6 @@ export default class App extends PureComponent {
               src={require(`./images/logo_2024.png`)}
               alt="iPlayground"
             />
-            <br />
           </div>
         </div>
         <div className="app__container">
