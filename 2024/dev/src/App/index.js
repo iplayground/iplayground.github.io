@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import MailchimpSubscribe from "react-mailchimp-subscribe";
 import _, { random } from "lodash";
 import { SocialIcon } from "react-social-icons";
 
