@@ -2,6 +2,9 @@
  * ======================================================================== */
 /* Media queries
  * ======================================================================== */
+:root, ::after, ::before, ::backdrop {
+  --native-dark-visited-link-color: #fff; }
+
 html {
   font-family: -apple-system, Helvetica, Arial, sans-serif; }
 
@@ -23,6 +26,7 @@ html {
   justify-content: center; }
 
 .logo-container-fullscreen {
+  background-color: #011432;
   margin-left: 0;
   margin-right: 0; }
   .logo-container-fullscreen .logo-container {
@@ -68,6 +72,11 @@ html {
       padding-top: 96px; }
     .logo-container-fullscreen .logo-info {
       text-shadow: 0.5px 0.5px black; } }
+
+@media screen and (max-width: 680px) {
+  .logo-container {
+    margin-top: 64px;
+    padding-bottom: 1em; } }
 
 .app__container {
   display: flex;
@@ -184,15 +193,19 @@ html {
     .app__container .app__speaker .app__speaker-name {
       font-size: 1.35rem;
       margin-bottom: 0;
-      color: #000;
       padding: 0.5rem 0;
       margin: 0 15%;
       border-radius: 8px; }
     .app__container .app__speaker .app__speaker-position {
       margin-top: 0;
       padding-left: 1.2rem;
-      padding-right: 1.2rem;
-      color: #191919CC; }
+      padding-right: 1.2rem; }
+      @media (prefers-color-scheme: dark) {
+        .app__container .app__speaker .app__speaker-position {
+          color: #dbdbdbef; } }
+      @media (prefers-color-scheme: light) {
+        .app__container .app__speaker .app__speaker-position {
+          color: #191919CC; } }
   .app__container .app__sponsor {
     text-align: center; }
     .app__container .app__sponsor .app__CoOrganisers-logo {
@@ -234,11 +247,14 @@ html {
     z-index: -1; }
   .app__container .main_section_container {
     padding: 2rem 2rem;
-    margin: 30vmin -0px 0px 5vw;
-    min-height: 360px;
-    background-color: #fff;
-    border-radius: 23px 0 0 23px;
-    box-shadow: 0 3px 30px 2px rgba(0, 0, 0, 0.2); }
+    margin: 0 0 0 5vw;
+    min-height: 360px; }
+    @media (prefers-color-scheme: dark) {
+      .app__container .main_section_container {
+        background-color: #202020ef; } }
+    @media (prefers-color-scheme: light) {
+      .app__container .main_section_container {
+        background-color: #fff; } }
     .app__container .main_section_container .section_tag {
       color: #ef5fa7;
       background-color: rgba(0, 0, 0, 0.75);
@@ -251,10 +267,13 @@ html {
     margin: 0 -0px 0px 5vw; }
   .app__container .section_container {
     padding: 2rem 2rem;
-    margin: 0 -0px 0px 5vw;
-    background-color: #fff;
-    border-radius: 23px 0 0 23px;
-    box-shadow: 0 3px 30px 2px rgba(0, 0, 0, 0.2); }
+    margin: 0 0 0 5vw; }
+    @media (prefers-color-scheme: dark) {
+      .app__container .section_container {
+        background-color: #202020ef; } }
+    @media (prefers-color-scheme: light) {
+      .app__container .section_container {
+        background-color: #fff; } }
   .app__container .section_content_row_container {
     display: flex;
     justify-content: space-between;
@@ -272,8 +291,13 @@ html {
     padding: 0 0;
     font-size: 64px;
     line-height: 80px;
-    font-weight: bold;
-    color: #333333; }
+    font-weight: bold; }
+    @media (prefers-color-scheme: dark) {
+      .app__container .app__title {
+        color: #f0f0f0; } }
+    @media (prefers-color-scheme: light) {
+      .app__container .app__title {
+        color: #333333; } }
     .app__container .app__title .app__title_eng {
       margin-right: 1rem; }
     .app__container .app__title .app__title_smaller_eng {
@@ -338,14 +362,14 @@ html {
 @media (prefers-color-scheme: dark) {
   body {
     background: #666; }
+  a {
+    color: #9bc2ff; }
   .logo-container-fullscreen .logo-container-fullscreen-mask {
     border-color: transparent transparent #666 transparent; }
   .logo-container-fullscreen .logo-container-fullscreen-mask-2-container .logo-container-fullscreen-mask-2-top {
     border-color: transparent transparent #66666633 transparent; }
   .logo-container-fullscreen .logo-container-fullscreen-mask-2-container .logo-container-fullscreen-mask-2-bottom {
     background: #66666633; }
-  .app__container .main_section_container {
-    background-color: #ffffffaa; }
   .app__container .twitter_icon {
     color: #ffffff; }
   .app__container .facebook_icon {
