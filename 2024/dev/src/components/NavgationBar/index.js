@@ -9,7 +9,6 @@ import { Trans } from 'react-i18next';
 export default class NavgationBar extends PureComponent {
   constructor() {
     super()
-
     this.state = {
       toggle: false
     }
@@ -49,7 +48,6 @@ export default class NavgationBar extends PureComponent {
       document.getElementById("nav").classList.remove("menu-opened")
       if (!(document.body.scrollTop > 96 || document.documentElement.scrollTop > 96)) {
         document.getElementById("navbar").classList.remove("is-shrink")
-        document.getElementById("nav-logo-small").style.display = "none"
       }
     }
 
@@ -60,7 +58,7 @@ export default class NavgationBar extends PureComponent {
       <nav id="navbar">
         <div>
           <div id="nav">
-            <div className="nav-menu" onClick={this.onOpenMenu}><i className="fas fa-bars " id="bar-menu-icon"></i></div>
+            <div className="nav-menu" onClick={this.onOpenMenu.bind(this)}><i className="fas fa-bars" id="bar-menu-icon"></i></div>
             <div className="logo-small-container">
               <div className="logo-small-subcontainer">
                 <div className="logo-small" id="nav-logo-small">

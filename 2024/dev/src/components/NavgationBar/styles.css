@@ -22,8 +22,7 @@ nav {
     height: 100%; }
   nav .logo-small-subcontainer {
     display: block;
-    text-align: center;
-    line-height: 1; }
+    text-align: center; }
   nav .logo-small-subcontainer::after {
     content: "";
     display: inline-block;
@@ -61,11 +60,11 @@ nav {
     background-color: transparent;
     padding-bottom: 0; }
   nav #nav.menu-opened {
-    background-color: #ffffffef;
+    background-color: #011432ef;
     padding-bottom: 2em;
     box-shadow: 0 3px 5px 2px #00000033; }
-  nav #nav-logo-small {
-    display: none; }
+  nav #bar-menu-icon {
+    color: #fff; }
 
 .is-shrink {
   background-color: #011432;
@@ -74,6 +73,19 @@ nav {
     color: #fff; }
   .is-shrink .nav-menu {
     color: #333; }
+
+@media screen and (max-width: 680px) {
+  nav #nav-logo-small {
+    margin-left: 1.5em; }
+  nav .logo-small-subcontainer {
+    line-height: 0.4; }
+  nav #nav-link-container {
+    display: none; }
+  nav .menu-opened #nav-link-container {
+    padding-left: 1.7em; }
+  nav .nav-link-container {
+    display: inline-block;
+    position: static; } }
 
 @media screen and (min-width: 680px) {
   nav {
@@ -96,7 +108,11 @@ nav {
       letter-spacing: 10px;
       padding-inline-start: 20px;
       padding-top: 20px;
-      vertical-align: top; } }
+      vertical-align: top; }
+    nav #nav-logo-small {
+      margin-left: 0em; }
+    nav .logo-small-subcontainer {
+      line-height: 0.7; } }
 
 @media (prefers-color-scheme: dark) {
   .is-shrink {
@@ -107,4 +123,10 @@ nav {
     .is-shrink .nav-menu {
       color: #fff; }
   nav #nav.menu-opened {
-    background-color: #333333ef; } }
+    background-color: #333333ef; }
+  :root, ::after, ::before, ::backdrop {
+    --native-dark-visited-link-color: #fff; }
+  .section_container {
+    background-color: #202020ef !important; }
+  .app_title {
+    color: #fff; } }

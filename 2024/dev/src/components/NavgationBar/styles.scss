@@ -26,7 +26,6 @@ nav {
     .logo-small-subcontainer {
         display: block;
         text-align: center;
-        line-height: 1;
     }
     .logo-small-subcontainer::after {
         content: "";
@@ -75,13 +74,12 @@ nav {
         padding-bottom: 0;
     }
     #nav.menu-opened {
-        background-color: #ffffffef;
+        background-color: #011432ef;
         padding-bottom: 2em;
         box-shadow: 0 3px 5px 2px #00000033;
     }
-
-    #nav-logo-small {
-        display: none;
+    #bar-menu-icon {
+        color: #fff;
     }
 }
 
@@ -95,6 +93,28 @@ nav {
     .nav-menu {
         color: #333;
     }
+}
+
+@media screen and (max-width: 680px) {
+  nav {
+    #nav-logo-small {
+      margin-left: 1.5em;
+    }
+    .logo-small-subcontainer {
+      line-height: 0.4;
+    }
+    #nav-link-container {
+      display: none;
+    }
+    .menu-opened #nav-link-container {
+      padding-left: 1.7em;
+    }
+
+    .nav-link-container {
+      display: inline-block;
+      position: static;
+    }
+  }
 }
 
 @media screen and (min-width: 680px) {
@@ -130,6 +150,14 @@ nav {
             padding-top: 20px;
             vertical-align: top;
         }
+        
+        #nav-logo-small {
+          margin-left: 0em;
+        }
+
+        .logo-small-subcontainer {
+          line-height: 0.7;
+        }
     }
 }
 
@@ -149,4 +177,13 @@ nav {
             background-color: #333333ef;
         }
     }
+  :root, ::after, ::before, ::backdrop {
+      --native-dark-visited-link-color: #fff;
+  }
+  .section_container {
+      background-color: #202020ef !important;
+  }
+  .app_title {
+      color: #fff;
+  }
 }
