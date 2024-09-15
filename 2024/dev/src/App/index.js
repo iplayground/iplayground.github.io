@@ -1,10 +1,14 @@
 import React, { PureComponent } from "react";
-import _ from "lodash";
+import _, { random } from "lodash";
+import { SocialIcon } from "react-social-icons";
 
+import ActionFooter from "../components/ActionFooter";
+import SpeakerFeature from "../components/SpeakerFeature";
 import Modal from "../components/Modal";
 import ModalContentSpeakers from "../components/ModalContentSpeakers";
 import ModalContentSchedule from "../components/ModalContentSchedule";
 import TableRow from "../components/TableRow";
+import ActionButton from "../components/ActionButton";
 
 import "./styles.css";
 import NavgationBar from "../components/NavgationBar";
@@ -12,7 +16,6 @@ import activityPicturesJson from "../App/JsonData/activityPictures.json"
 
 import './i18n'; // 在这里导入 i18n.js
 import { Trans } from 'react-i18next';
-import { nanoid } from 'nanoid';
 
 export default class App extends PureComponent {
   state = { showModal: false, whichDay: "session", programs: [], sponsors: null, speakers: null, staffs: null, schedule: null };
@@ -25,7 +28,7 @@ export default class App extends PureComponent {
         this.setState({ programs: data.program })
       });
 
-    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2024/v1/sponsors.json')
+    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/sponsors.json')
       .then(response => response.json())
       .then(data => {
         this.setState({ sponsors: data })
@@ -37,7 +40,7 @@ export default class App extends PureComponent {
         this.setState({ staffs: data })
       });
 
-    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2024/v1/schedule.json')
+    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/schedule.json')
       .then(response => response.json())
       .then(data => {
         this.setState({ schedule: data.schedule })
@@ -170,8 +173,7 @@ export default class App extends PureComponent {
         <img
           className="app__speaker-img"
           onClick={() => this.onClickSpeaker(id)}
-          src={video_url !== null && video_url !== "" ? video_url : "https://raw.githubusercontent.com/iplayground/SessionData/2024/v1/images/speakers/nopic.png"}
-          alt={speakers[0].name}
+          src={video_url !== null && video_url !== "" ? video_url : "https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/images/speakers/nopic.png"}
         />
         <p onClick={() => this.onClickSpeaker(id)} className="app__speaker-name">
           <strong>{speakers[0].name}</strong>
@@ -199,7 +201,8 @@ export default class App extends PureComponent {
     const staffsList = this.state.staffs ? this.state.staffs.staff : null
 
     return _.map(staffsList, ({ id, imgURL, alt, name, position, SNS }) => (
-      <a key={id || nanoid()} href={SNS} target="_blank">
+
+      <a key={id} href={SNS} target="_blank">
         <div className="app__speaker">
           <img className="app__speaker-img" src={imgURL} alt={alt} />
           <p className="app__speaker-name">
@@ -217,13 +220,13 @@ export default class App extends PureComponent {
     const sponsorsList = this.state.sponsors ? this.state.sponsors.sponsors : null
 
     return _.map(sponsorsList, ({ title, items }) => (
-      <div key={_.uniqueId()} className={title === "黃金級" ? "app__sponsor-gold-container" : "staff_team_container"}>
+      <div key={_.uniqueId()} className={title == "黃金級" ? "app__sponsor-gold-container" : "staff_team_container"}>
         <div className="section_sub_title">{title}</div>
         {
           items.map(({ picture, link, name }) =>
             <div key={_.uniqueId()} className="app__sponsor">
               <a href={link} target="_blank" rel="noopener noreferrer">
-                <img className={title === "黃金級" ? "app__sponsor-gold" : "app__sponsor-logo"} src={picture} alt={name} />
+                <img className={title == "黃金級" ? "app__sponsor-gold" : "app__sponsor-logo"} src={picture} alt={name} />
               </a>
             </div>
           )
@@ -248,9 +251,9 @@ export default class App extends PureComponent {
   renderPictures = () => {
     const activityPicturesList = activityPicturesJson ? activityPicturesJson.activityPictures : null
     return _.map(activityPicturesList, ({ id, imgURL, name, SNS }) => (
-      <a key={id || nanoid()} href={SNS} target="_blank">
+      <a key={id} href={SNS} target="_blank">
         <div className="app__speaker">
-          <img className="app__speaker-square-img" src={require(`./images/${imgURL}`)} alt={name} />
+          <img className="app__speaker-square-img" src={require(`./images/${imgURL}`)} />
           <p className="app__speaker-name">
             <strong>{name}</strong>
           </p>
@@ -262,8 +265,8 @@ export default class App extends PureComponent {
 
   render() {
     const { whichDay, showModal } = this.state;
-    // const mailChimpURL =
-    //   "https://iplayground.us17.list-manage.com/subscribe/post?u=61bc80c5d8118e451c9a5ac80&amp;id=b804a3d8e0";
+    const mailChimpURL =
+      "https://iplayground.us17.list-manage.com/subscribe/post?u=61bc80c5d8118e451c9a5ac80&amp;id=b804a3d8e0";
 
     return (
       <div className="app-fullscreen">
@@ -281,10 +284,10 @@ export default class App extends PureComponent {
         <div className="app__container">
           <div className="empty_section">
             <div className="section_action_container">
-              {/* <ActionButton title={<Trans>underAboutUs.button.sponsor</Trans>} link="https://bit.ly/iplayground-2024-sponsors" /> */}
-              {/* <ActionButton title={<Trans>underAboutUs.button.buyTicket</Trans>} link="https://iplayground.kktix.cc/events/iplayground2024" /> */}
-              {/* <ActionButton title={<Trans>underAboutUs.button.becomeASpeaker</Trans>} link="https://cfp.iplayground.io/events/iplayground_2024" /> */}
-              {/* <ActionButton title={<Trans>underAboutUs.button.hackMD</Trans>} link="https://hackmd.io/@iPlayground/2024/" /> */}
+              {/* <ActionButton title={<Trans>underAboutUs.button.sponsor</Trans>} link="https://bit.ly/iplayground-2020-sponsors" /> */}
+              {/* <ActionButton title={<Trans>underAboutUs.button.buyTicket</Trans>} link="https://iplayground.kktix.cc/events/iplayground2020" /> */}
+              {/* <ActionButton title={<Trans>underAboutUs.button.becomeASpeaker</Trans>} link="https://cfp.iplayground.io/events/iplayground_2020" /> */}
+              {/* <ActionButton title={<Trans>underAboutUs.button.hackMD</Trans>} link="https://hackmd.io/@iPlayground/2020/" /> */}
             </div>
 
             {/* <div className="section_action_container">
@@ -298,7 +301,7 @@ export default class App extends PureComponent {
             <div className="section_container">
               <div className="app__title"><span className="app__title_eng">{<Trans>aboutUs.title</Trans>}</span><span>{<Trans>aboutUs.title2</Trans>}</span></div>
               <p>
-                {<Trans>aboutUs.content.firstSentence.one</Trans>}<a href="https://iosdc.jp/2017/" target="_blank" rel="noopener noreferrer">iOSDC</a> {<Trans>aboutUs.content.firstSentence.second</Trans>}
+                {<Trans>aboutUs.content.firstSentence.one</Trans>}<a href="https://iosdc.jp/2017/" target="_blank">iOSDC</a> {<Trans>aboutUs.content.firstSentence.second</Trans>}
               </p>
               <p>
                 {<Trans>aboutUs.content.secondSentence</Trans>}
@@ -436,10 +439,10 @@ export default class App extends PureComponent {
                 </div>
             </div>
             <div className="section_action_container" style={{ marginTop: "1em" }}>
-                <a href="https://twitter.com/theiPlayground" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter social_icon twitter_icon"></i></a>
-                <a href="https://t.me/iPlayground" target="_blank" rel="noopener noreferrer"><i className="fab fa-telegram social_icon telegram_icon"></i></a>
-                {/* <a href="https://t.me/iPlaygroundAnnouncement" target="_blank" rel="noopener noreferrer"><i className="fas fa-bullhorn social_icon telegram_icon" style={{ fontSize: "24pt" }}></i></a> */}
-                <a href="https://www.facebook.com/theiPlayground/" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook social_icon facebook_icon"></i></a>
+                <a href="https://twitter.com/theiPlayground" target="_blank"><i className="fab fa-twitter social_icon twitter_icon"></i></a>
+                <a href="https://t.me/iPlayground" target="_blank"><i className="fab fa-telegram social_icon telegram_icon"></i></a>
+                {/* <a href="https://t.me/iPlaygroundAnnouncement" target="_blank"><i className="fas fa-bullhorn social_icon telegram_icon" style={{ fontSize: "24pt" }}></i></a> */}
+                <a href="https://www.facebook.com/theiPlayground/" target="_blank"><i className="fa fa-facebook social_icon facebook_icon"></i></a>
             </div>
             <p style={{ textAlign: "center", color: "#ffffff" }}>
                 {<Trans>allRightsReserved</Trans>}
