@@ -11,8 +11,8 @@ export default ({ video_url, alt, speakers, position, title, topic, abstract, on
     <div className="modal-content-speakers__txt-section">
       <p className="modal-content-speakers__name"><strong>{speakers[0].name}</strong></p>
       <p className="modal-content-speakers__position">{position}</p>
-      <p className="modal-content-speakers__topic"><strong>{title}</strong></p>
-      <p className="modal-content-speakers__intro">{speakers[0].bio}</p>
+      <p className="modal-content-speakers__topic"><strong>{speakers[0].bio}</strong></p>
+      <p className="modal-content-speakers__intro">{speakers[0].bioDetail}</p>
     </div>
   </div>
 );
