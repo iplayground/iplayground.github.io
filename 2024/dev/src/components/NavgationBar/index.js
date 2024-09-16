@@ -89,10 +89,10 @@ export default class NavgationBar extends PureComponent {
               </div>
             </div>
             <div className="nav-link-container" id="nav-link-container">
-              <div className="nav-link"><a href="#about-section"><p>{<Trans>navTitle.about</Trans>}</p><p>{<Trans>navTitle.about2</Trans>}</p></a></div>
-              <div className="nav-link"><a href="#speakers-section"><p>{<Trans>navTitle.speakers</Trans>}</p><p>{<Trans>navTitle.speakers2</Trans>}</p></a></div>
-              <div className="nav-link"><a href="#staffs-section"><p>{<Trans>navTitle.staff</Trans>}</p><p>{<Trans>navTitle.staff2</Trans>}</p></a></div>
-              <div className="nav-link"><a href="#venue-section"><p>{<Trans>navTitle.venue</Trans>}</p><p>{<Trans>navTitle.venue2</Trans>}</p></a></div>
+              <div className="nav-link"><a href="#about-section"><p>{<Trans>navTitle.about</Trans>}</p></a></div>
+              <div className="nav-link"><a href="#speakers-section"><p>{<Trans>navTitle.speakers</Trans>}</p></a></div>
+              <div className="nav-link"><a href="#staffs-section"><p>{<Trans>navTitle.staff</Trans>}</p></a></div>
+              <div className="nav-link"><a href="#venue-section"><p>{<Trans>navTitle.venue</Trans>}</p></a></div>
               <div className="nav-link nav-button"><ActionButton style={{ fontSize: "30px", lineHeight: "40px" }} title={<Trans>navButtonTitle.buyTicket</Trans>} link="https://iplayground.kktix.cc/events/iplayground2024" /></div>
             </div>
           </div>

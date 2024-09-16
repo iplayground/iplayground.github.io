@@ -298,7 +298,7 @@ export default class App extends PureComponent {
           {/* About關於我們 */}
           <div className="app__section sub_section" id="about-section">
             <div className="section_container">
-              <div className="app__title"><span className="app__title_eng">{<Trans>aboutUs.title</Trans>}</span><span>{<Trans>aboutUs.title2</Trans>}</span></div>
+              <div className="app__title"><span className="app__title_eng">{<Trans>aboutUs.title</Trans>}</span></div>
               <p>
                 {<Trans>aboutUs.content.firstSentence.one</Trans>}<a href="https://iosdc.jp/2017/" target="_blank">iOSDC</a> {<Trans>aboutUs.content.firstSentence.second</Trans>}
               </p>
@@ -318,7 +318,7 @@ export default class App extends PureComponent {
           <div className="app__section main_section" id="speakers-section">
             {/* <img className="main_section_logo" src={require("../images/iplayground_logo_ball.png")} /> */}
             <div className="main_section_container">
-              <div className="app__title"><span className="app__title_eng">{<Trans>speakers.title</Trans>}</span><span>{<Trans>speakers.title2</Trans>}</span></div>
+              <div className="app__title"><span className="app__title_eng">{<Trans>speakers.title</Trans>}</span></div>
               <div className="app__speaker-container">
                 {this.renderSpeakers()}
               </div>
@@ -363,7 +363,7 @@ export default class App extends PureComponent {
           {/* Staffs工作人員 */}
           <div className="app__section sub_section" id="staffs-section">
             <div className="section_container">
-              <div className="app__title"><span className="app__title_eng">{<Trans>staff.title</Trans>}</span><span>{<Trans>staff.title2</Trans>}</span></div>
+              <div className="app__title"><span className="app__title_eng">{<Trans>staff.title</Trans>}</span></div>
               {this.renderStaff()}
             </div>
           </div>
@@ -371,7 +371,7 @@ export default class App extends PureComponent {
           {/* Venue 場地 */}
           <div className="app__section sub_section" id="venue-section">
             <div className="section_container">
-              <div className="app__title"><span className="app__title_eng">{<Trans>venue.title</Trans>}</span><span>{<Trans>venue.title2</Trans>}</span></div>
+              <div className="app__title"><span className="app__title_eng">{<Trans>venue.title</Trans>}</span></div>
               <p>
                 <i className="fas fa-map-marker-alt"></i>
                 {<Trans>location.name</Trans>}
