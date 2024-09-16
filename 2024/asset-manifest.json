@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/2024/static/css/main.1667502f.css",
-    "main.js": "/2024/static/js/main.ebae02b9.js",
+    "main.css": "/2024/static/css/main.38a219d3.css",
+    "main.js": "/2024/static/js/main.2e47b89b.js",
     "static/media/fan.png": "/2024/static/media/fan.6156c6ca3bc2e21189ed.png",
     "static/media/logo_iplayground.png": "/2024/static/media/logo_iplayground.35830d7067130e2aadff.png",
     "static/media/2020.JPG": "/2024/static/media/2020.a3195db1aa84e4116783.JPG",
@@ -32,11 +32,11 @@
     "static/media/logo_twdc.png": "/2024/static/media/logo_twdc.f143b82d82867fa7c378.png",
     "static/media/logo_swift_girls.png": "/2024/static/media/logo_swift_girls.ecfc7d1f7ff3b85e4a65.png",
     "index.html": "/2024/index.html",
-    "main.1667502f.css.map": "/2024/static/css/main.1667502f.css.map",
-    "main.ebae02b9.js.map": "/2024/static/js/main.ebae02b9.js.map"
+    "main.38a219d3.css.map": "/2024/static/css/main.38a219d3.css.map",
+    "main.2e47b89b.js.map": "/2024/static/js/main.2e47b89b.js.map"
   },
   "entrypoints": [
-    "static/css/main.1667502f.css",
-    "static/js/main.ebae02b9.js"
+    "static/css/main.38a219d3.css",
+    "static/js/main.2e47b89b.js"
   ]
 }

@@ -101,7 +101,8 @@ nav {
       padding-left: 30px; }
     nav .nav-link {
       display: inline-block;
-      padding-right: 30px; }
+      padding-right: 30px;
+      padding-top: 1.1em; }
     nav .nav-link-container {
       display: inline-block; }
     nav .nav-menu {
@@ -111,7 +112,7 @@ nav {
     nav .nav-button {
       letter-spacing: 10px;
       padding-inline-start: 20px;
-      padding-top: 20px;
+      padding-top: 1.8em;
       vertical-align: top; }
     nav #nav-logo-small {
       margin-left: 0em; }

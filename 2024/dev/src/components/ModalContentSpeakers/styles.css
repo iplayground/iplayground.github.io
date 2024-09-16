@@ -7,23 +7,43 @@
   padding: 30px;
   padding-top: 50px;
   text-align: center;
-  background-color: white;
-  border-radius: 16px; }
+  border-radius: 6px; }
+  @media (prefers-color-scheme: dark) {
+    .modal-content-speakers {
+      background-color: #202020ef; } }
+  @media (prefers-color-scheme: light) {
+    .modal-content-speakers {
+      background-color: #fff; } }
   .modal-content-speakers .modal-content-speakers__img {
-    width: 70%;
-    border-radius: 50%; }
+    width: 70%; }
   .modal-content-speakers .modal-content-speakers__name {
     margin: 0;
-    font-size: 2.5rem;
-    color: dodgerblue; }
+    font-size: 2.5rem; }
+    @media (prefers-color-scheme: dark) {
+      .modal-content-speakers .modal-content-speakers__name {
+        color: #dbdbdbef; } }
+    @media (prefers-color-scheme: light) {
+      .modal-content-speakers .modal-content-speakers__name {
+        color: #191919CC; } }
   .modal-content-speakers .modal-content-speakers__topic {
     margin: 0;
-    font-size: 1.25rem;
-    color: #D2438B; }
+    font-size: 1.25rem; }
+    @media (prefers-color-scheme: dark) {
+      .modal-content-speakers .modal-content-speakers__topic {
+        color: #dbdbdbef; } }
+    @media (prefers-color-scheme: light) {
+      .modal-content-speakers .modal-content-speakers__topic {
+        color: #011432; } }
   .modal-content-speakers .modal-content-speakers__position {
     color: gray; }
   .modal-content-speakers .modal-content-speakers__intro {
     text-align: left; }
+    @media (prefers-color-scheme: dark) {
+      .modal-content-speakers .modal-content-speakers__intro {
+        color: #dbdbdbef; } }
+    @media (prefers-color-scheme: light) {
+      .modal-content-speakers .modal-content-speakers__intro {
+        color: #011432; } }
   .modal-content-speakers .modal-content-speakers__close-btn {
     position: absolute;
     right: 16px;
@@ -32,6 +52,12 @@
     height: 32px;
     opacity: 0.3;
     cursor: pointer; }
+    @media (prefers-color-scheme: dark) {
+      .modal-content-speakers .modal-content-speakers__close-btn {
+        color: #fff; } }
+    @media (prefers-color-scheme: light) {
+      .modal-content-speakers .modal-content-speakers__close-btn {
+        color: #011432; } }
     .modal-content-speakers .modal-content-speakers__close-btn:hover {
       opacity: 1; }
     .modal-content-speakers .modal-content-speakers__close-btn::before, .modal-content-speakers .modal-content-speakers__close-btn::after {
@@ -39,8 +65,13 @@
       left: 15px;
       content: ' ';
       height: 33px;
-      width: 2px;
-      background-color: #333; }
+      width: 2px; }
+      @media (prefers-color-scheme: dark) {
+        .modal-content-speakers .modal-content-speakers__close-btn::before, .modal-content-speakers .modal-content-speakers__close-btn::after {
+          background-color: #fff; } }
+      @media (prefers-color-scheme: light) {
+        .modal-content-speakers .modal-content-speakers__close-btn::before, .modal-content-speakers .modal-content-speakers__close-btn::after {
+          background-color: #011432; } }
     .modal-content-speakers .modal-content-speakers__close-btn::before {
       transform: rotate(45deg); }
     .modal-content-speakers .modal-content-speakers__close-btn::after {
