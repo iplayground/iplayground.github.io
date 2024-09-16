@@ -178,7 +178,7 @@ export default class App extends PureComponent {
         <p onClick={() => this.onClickSpeaker(id)} className="app__speaker-name">
           <strong>{speakers[0].name}</strong>
         </p>
-        {/* <p className="app__speaker-position">{position}</p> */}
+        <p className="app__speaker-position">{speakers[0].bio}</p>
       </div>
     ));
   }
