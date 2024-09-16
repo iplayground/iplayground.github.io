@@ -300,7 +300,7 @@ export default class App extends PureComponent {
             <div className="section_container">
               <div className="app__title"><span className="app__title_eng">{<Trans>aboutUs.title</Trans>}</span></div>
               <p>
-                {<Trans>aboutUs.content.firstSentence.one</Trans>}<a href="https://iosdc.jp/2017/" target="_blank">iOSDC</a> {<Trans>aboutUs.content.firstSentence.second</Trans>}
+                {<Trans>aboutUs.content.firstSentence.one</Trans>} <a href="https://iosdc.jp/2017/" target="_blank">iOSDC</a> {<Trans>aboutUs.content.firstSentence.second</Trans>}
               </p>
               <p>
                 {<Trans>aboutUs.content.secondSentence</Trans>}
