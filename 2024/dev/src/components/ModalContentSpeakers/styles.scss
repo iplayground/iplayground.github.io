@@ -5,25 +5,38 @@
   padding: 30px;
   padding-top: 50px;
   text-align: center;
-  background-color: $color--bg;
-  border-radius: 16px;
+  @media (prefers-color-scheme: dark) {
+    background-color: #202020ef;
+  }
+  @media (prefers-color-scheme: light) {
+    background-color: #fff;
+  }
+  border-radius: 6px;
 
   .modal-content-speakers__img {
     width: 70%;
-    border-radius: 50%;
   }
 
   .modal-content-speakers__name {
     margin: 0;
     font-size: 2.5rem;
-    color: $color--secondary;
+    @media (prefers-color-scheme: dark) {
+      color: #dbdbdbef;
+    }
+    @media (prefers-color-scheme: light) {
+      color: #191919CC;
+    }
   }
 
   .modal-content-speakers__topic {
     margin: 0;
     font-size: 1.25rem;
-    color: #D2438B;
-    
+    @media (prefers-color-scheme: dark) {
+      color: #dbdbdbef;
+    }
+    @media (prefers-color-scheme: light) {
+      color: #011432;
+    }
   }
 
   .modal-content-speakers__position {
@@ -32,6 +45,12 @@
 
   .modal-content-speakers__intro {
     text-align: left;
+    @media (prefers-color-scheme: dark) {
+      color: #dbdbdbef;
+    }
+    @media (prefers-color-scheme: light) {
+      color: #011432;
+    }
   }
 
   .modal-content-speakers__close-btn {
@@ -43,6 +62,13 @@
     opacity: 0.3;
     cursor: pointer;
 
+    @media (prefers-color-scheme: dark) {
+      color: #fff;
+    }
+    @media (prefers-color-scheme: light) {
+      color: #011432;
+    }
+
     &:hover {
       opacity: 1;
     }
@@ -53,7 +79,12 @@
       content: ' ';
       height: 33px;
       width: 2px;
-      background-color: #333;
+      @media (prefers-color-scheme: dark) {
+        background-color: #fff;
+      }
+      @media (prefers-color-scheme: light) {
+        background-color: #011432;
+      }
     }
 
     &::before {
