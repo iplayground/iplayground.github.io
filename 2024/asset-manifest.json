@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/2024/static/css/main.38a219d3.css",
+    "main.js": "/2024/static/js/main.2e47b89b.js",
+    "static/media/fan.png": "/2024/static/media/fan.6156c6ca3bc2e21189ed.png",
+    "static/media/logo_iplayground.png": "/2024/static/media/logo_iplayground.35830d7067130e2aadff.png",
+    "static/media/2020.JPG": "/2024/static/media/2020.a3195db1aa84e4116783.JPG",
+    "static/media/2019Day2.JPG": "/2024/static/media/2019Day2.e4f0da8a32070e93908e.JPG",
+    "static/media/2019Day1.JPG": "/2024/static/media/2019Day1.4397e457e4421afd25d6.JPG",
+    "static/media/chiaoteNi.png": "/2024/static/media/chiaoteNi.9aaad32f60c9224d20fc.png",
+    "static/media/meme.png": "/2024/static/media/meme.ef9819086e5e028037be.png",
+    "static/media/superbil.png": "/2024/static/media/superbil.838e7ebb8c1fa5d97b3f.png",
+    "static/media/logo_pic-collage.png": "/2024/static/media/logo_pic-collage.f1dce9a0042038137122.png",
+    "static/media/logo_grindr.png": "/2024/static/media/logo_grindr.660f93109b908438b8c3.png",
+    "static/media/logo_2024.png": "/2024/static/media/logo_2024.72a2a09fedf5abfc6e20.png",
+    "static/media/jeffLin_avatar.png": "/2024/static/media/jeffLin_avatar.51b074ac86a3fa559651.png",
+    "static/media/logo_esun.png": "/2024/static/media/logo_esun.c7733c56bb5b9fc1a4de.png",
+    "static/media/logo_cocoaheads_taipei.png": "/2024/static/media/logo_cocoaheads_taipei.b11b6b924f12f6051466.png",
+    "static/media/logo_keyxentic.png": "/2024/static/media/logo_keyxentic.5454daa9762a2647b448.png",
+    "static/media/logo_KKCO.png": "/2024/static/media/logo_KKCO.21ac09040997f29b7052.png",
+    "static/media/logo_dcard.png": "/2024/static/media/logo_dcard.46883a7a6c324366ab7b.png",
+    "static/media/MarkFly.png": "/2024/static/media/MarkFly.5a32fe095ca2ecceacc1.png",
+    "static/media/logo_catchplay.png": "/2024/static/media/logo_catchplay.87af42732d13448c7fff.png",
+    "static/media/kishikawakatsumi.png": "/2024/static/media/kishikawakatsumi.79bc1d92f867f4e17942.png",
+    "static/media/Li-Heng-Hsu.png": "/2024/static/media/Li-Heng-Hsu.bc4c482eee5d07d87bf4.png",
+    "static/media/iplayground_logo_diamond.png": "/2024/static/media/iplayground_logo_diamond.140ea14a92d2f2e882f1.png",
+    "static/media/iplayground_logo_ball.png": "/2024/static/media/iplayground_logo_ball.741444333198d03a4cad.png",
+    "static/media/logo_coss_system.png": "/2024/static/media/logo_coss_system.d9640ef0fa065583e97d.png",
+    "static/media/iplayground_logo_stairs.png": "/2024/static/media/iplayground_logo_stairs.2a9d01e7f78f7aaaf4d7.png",
+    "static/media/logo_5xruby.tw.png": "/2024/static/media/logo_5xruby.tw.0b0643a1549c53b19bf3.png",
+    "static/media/Mars.png": "/2024/static/media/Mars.27990e4690a21ab945e0.png",
+    "static/media/logo_twdc.png": "/2024/static/media/logo_twdc.f143b82d82867fa7c378.png",
+    "static/media/logo_swift_girls.png": "/2024/static/media/logo_swift_girls.ecfc7d1f7ff3b85e4a65.png",
+    "index.html": "/2024/index.html",
+    "main.38a219d3.css.map": "/2024/static/css/main.38a219d3.css.map",
+    "main.2e47b89b.js.map": "/2024/static/js/main.2e47b89b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.38a219d3.css",
+    "static/js/main.2e47b89b.js"
+  ]
+}
