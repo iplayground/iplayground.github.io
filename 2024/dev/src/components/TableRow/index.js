@@ -9,7 +9,7 @@ export default ({ start, end, rest, talks, isWorkshop, programs, onClickTopic })
 
   //state = { programs: []};
 
-  const renderTalks = _.map(talks, ({ id, topic, presenter, description, room, tags, programId }) => {
+  const renderTalks = _.map(talks, ({ id, topic, presenter, presenter2, description, room, tags, programId }) => {
     // console.log(presenter)
     const program = programs ? programs.find(function (element) {
       return element.id === programId;
@@ -29,6 +29,7 @@ export default ({ start, end, rest, talks, isWorkshop, programs, onClickTopic })
         key={id}
         topic={program ? program.title : topic}
         presenter={presenter}
+        presenter2={presenter2}
         description={program ? program.abstract : description}
         room={room}
         tags={tags}

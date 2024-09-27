@@ -4,8 +4,6 @@ import { Trans } from 'react-i18next';
 import './styles.css';
 
 export default ({ session, onClickCloseBtn, speakers }) => {
-  // console.log(session)
-  debugger;
   return (
     <div className="modal-content-schedule">
       <a className="modal-content-schedule__close-btn" onClick={onClickCloseBtn} >&nbsp;</a>
@@ -32,10 +30,20 @@ export default ({ session, onClickCloseBtn, speakers }) => {
         </div>
         <p dangerouslySetInnerHTML={{ __html: session.description }}></p>
         <div className="modal-content-schedule_subtitle">{<Trans>schedule.speaker.title</Trans>}</div>
-        <div>
+        <div className='modal-speaker-detail-speaker'>
           {
 
-            _.map(session.presenter, ({ name, bio, imgURL }) =>
+            _.map(session.presenter, ({ name, imgURL }) =>
+              <div>
+                <div className="modal-speaker-detail-container">
+                  <img className="modal-content-speakers__img" src={imgURL} alt="{name}" />
+                  <p className="modal-content-schedule__presenter">{name}</p>
+                </div>
+              </div>
+            )
+          }
+          {
+            _.map(session.presenter2, ({ name, imgURL }) =>
               <div>
                 <div className="modal-speaker-detail-container">
                   <img className="modal-content-speakers__img" src={imgURL} alt="{name}" />
