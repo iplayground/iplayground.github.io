@@ -2,6 +2,15 @@
  * ======================================================================== */
 /* Media queries
  * ======================================================================== */
+.modal-speaker-detail-container {
+  display: flex;
+  margin: 20px; }
+
+.modal-content-schedule_details {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px; }
+
 .modal-content-schedule {
   position: relative;
   padding: 30px;
@@ -10,10 +19,14 @@
   border-radius: 16px; }
   .modal-content-schedule .modal-content-schedule__topic {
     margin: 0;
-    font-size: 1.5rem;
-    color: dodgerblue; }
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 44.8px; }
   .modal-content-schedule .modal-content-schedule__presenter {
-    color: #666666; }
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26.74px;
+    margin-left: 20px; }
   .modal-content-schedule .modal-content-schedule__presenter-description {
     color: gray;
     font-size: 0.8em; }
@@ -29,8 +42,9 @@
     width: 64px; }
   .modal-content-schedule .modal-content-schedule_subtitle {
     padding-top: 1em;
-    font-size: 1.2em;
-    color: dodgerblue; }
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px; }
   .modal-content-schedule .modal-content-speakers_sns {
     margin-top: 1em;
     color: dodgerblue; }

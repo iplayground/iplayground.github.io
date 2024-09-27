@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Color
  * ======================================================================== */
 /* Media queries
@@ -10,7 +11,13 @@ html {
 
 .font_801 {
   text-align: left;
-  color: #517cffef; }
+  color: #517cffef;
+  font-weight: bold;
+  background: linear-gradient(90.17deg, #FF0A6C 3.18%, #2D27FF 93.49%);
+  -webkit-background-clip: text;
+  /* 只將背景裁剪到文字部分 */
+  -webkit-text-fill-color: transparent;
+  /* 將文字填充顏色設置為透明，這樣背景才顯示出來 */ }
 
 .font_802 {
   text-align: center;

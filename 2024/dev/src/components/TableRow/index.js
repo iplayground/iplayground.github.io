@@ -44,14 +44,14 @@ export default ({ start, end, rest, talks, isWorkshop, programs, onClickTopic })
     <li className="sechdule_row">
       <TableTime start={start} end={end} />
       {rest ? (
-        <div className="sechdule_talk_container" style={{ display: "flex", width: "100%", textAlign: "center", fontWeight: "bold", alignItems: "center", color: "#000" }}>
+        <div className="schedule_talk_container">
           {rest}
         </div>
       ) : (renderTalks.length !== 1 ?
         <div className="sechdule_talk_container" style={{ display: "grid", width: "100%", gridTemplateColumns: "1fr 1fr 1fr" }}>
           {renderTalks}
         </div> :
-        <div className="sechdule_talk_container" style={{ display: "flex", width: "100%", textAlign: "center", fontWeight: "bold", alignItems: "center", justifyContent: "center", color: "#666666" }}>
+        <div className="schedule_talk_container">
           {renderTalks}
         </div>
         )}
