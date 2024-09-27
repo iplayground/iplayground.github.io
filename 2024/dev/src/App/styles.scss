@@ -8,8 +8,9 @@ html {
 }
 .font_801 {
   text-align: left;
-  color: #517cffef;
-  font-weight: bold;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 44.8px;
   background: linear-gradient(90.17deg, #FF0A6C 3.18%, #2D27FF 93.49%);
   -webkit-background-clip: text; /* 只將背景裁剪到文字部分 */
   -webkit-text-fill-color: transparent; /* 將文字填充顏色設置為透明，這樣背景才顯示出來 */
@@ -151,15 +152,6 @@ html {
   .sechdule_container {
     padding: 1em 0;
     border-radius: 6px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-
-    .sechdule_container_ipgman {
-      display: block;
-      margin-left: auto;
-      transform: translateY(100px);
-    }
 
     ul {
       padding: 0;
@@ -217,6 +209,14 @@ html {
       }
     }
   }
+
+  .sechdule_container_ipgman {
+    position: relative; /* 或者使用 absolute，具體取決於需要 */
+    right: 0; /* 固定在右側 */
+    top: -180px; /* 固定在屏幕的 50% 高度 */
+    float: right;
+  }
+
   .app__table {
     width: 100%;
     border-collapse: collapse;

@@ -67,7 +67,7 @@ export default class App extends PureComponent {
   };
 
   renderTableRow = () => {
-    console.log(this.state.schedule)
+    // console.log(this.state.schedule)
     const tableCellData = this.state.schedule[this.state.whichDay]
     if (Array.isArray(tableCellData)) {
       return tableCellData.map((value, index) => {
@@ -321,8 +321,8 @@ export default class App extends PureComponent {
               <div className="app__title"><span className="app__title_eng">{<Trans>navTitle.schedule</Trans>}</span></div>
               <div className="sechdule_container">
                 {(whichDay === "workshop") ? this.renderTable() : this.renderTable()}
-                <img className="sechdule_container_ipgman" src={require("../images/IPGman.png")} />
               </div>
+              <img className="sechdule_container_ipgman" src={require("../images/IPGman.png")} />
             </div>
           </div>
 

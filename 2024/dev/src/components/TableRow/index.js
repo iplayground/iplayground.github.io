@@ -10,7 +10,7 @@ export default ({ start, end, rest, talks, isWorkshop, programs, onClickTopic })
   //state = { programs: []};
 
   const renderTalks = _.map(talks, ({ id, topic, presenter, description, room, tags, programId }) => {
-    console.log(presenter)
+    // console.log(presenter)
     const program = programs ? programs.find(function (element) {
       return element.id === programId;
     }) : null
@@ -38,13 +38,13 @@ export default ({ start, end, rest, talks, isWorkshop, programs, onClickTopic })
         onClickTopic={onClickTopic}
       />)
   });
-  console.log(Array.isArray(renderTalks))
-  console.log(renderTalks.length)
+  // console.log(Array.isArray(renderTalks))
+  // console.log(renderTalks.length)
   return (
     <li className="sechdule_row">
       <TableTime start={start} end={end} />
       {rest ? (
-        <div className="schedule_talk_container">
+        <div className="schedule_rest_container">
           {rest}
         </div>
       ) : (renderTalks.length !== 1 ?
