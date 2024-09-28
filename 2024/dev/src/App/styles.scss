@@ -28,6 +28,12 @@ html {
     -webkit-background-clip: text; /* 只將背景裁剪到文字部分 */
     -webkit-text-fill-color: transparent; /* 將文字填充顏色設置為透明，這樣背景才顯示出來 */
   } 
+  @media print {
+    color: #000;
+    background: unset;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+  }
 }
 .font_802 {
   text-align: center;
@@ -380,6 +386,9 @@ html {
 
   .main_section_container {
     padding: 2rem 2rem;
+    @media print {
+      padding: 0;
+    }
     // margin: 0 0 0 5vw;
     min-height: 360px;
     
@@ -407,6 +416,9 @@ html {
   }
   .section_container {
     padding: 2rem 2rem;
+    @media print {
+      padding: 0;
+    }
     // margin: 0 0 0 5vw;
     //min-height: 360px;
     @media (prefers-color-scheme: dark) {
@@ -433,6 +445,9 @@ html {
     flex-wrap: wrap;
     font-family: "PingFangTC-Ultralight", "STHeitiTC-Ultralight", "STHeitiTC-Light", "Microsoft JhengHei";
     margin-bottom: 2.5rem;
+    @media print {
+      margin-bottom: 0;
+    }
     text-align: left;
     padding: 0 0;
     font-size: 64px;
@@ -535,6 +550,17 @@ html {
     }
     .app_section_footer {
       background-color: #000;
+    }
+  }
+
+  @media print {
+    .app__speaker,
+    .app__sponsor {
+      width: 25%;
+      display: inline-block;
+    }
+    .app_section_footer {
+      display: none;
     }
   }
 
