@@ -40,7 +40,7 @@ export default class App extends PureComponent {
         this.setState({ staffs: data })
       });
 
-    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/schedule.json')
+    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2024/v1/schedule.json')
       .then(response => response.json())
       .then(data => {
         this.setState({ schedule: data.schedule })
@@ -67,7 +67,7 @@ export default class App extends PureComponent {
   };
 
   renderTableRow = () => {
-    console.log(this.state.schedule)
+    // console.log(this.state.schedule)
     const tableCellData = this.state.schedule[this.state.whichDay]
     if (Array.isArray(tableCellData)) {
       return tableCellData.map((value, index) => {
@@ -92,24 +92,24 @@ export default class App extends PureComponent {
 
   workshop = () => {
     return (
-      <li className="sechdule_row">
-        <div className="sechdule_time_block"></div>
-        <div className="sechdule_room_container" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_101">1005</div></div>
-          <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_102">1006</div></div>
-          <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_103">1007</div></div>
+      <li className="schedule_row">
+        <div className="schedule_time_block"></div>
+        <div className="schedule_room_container" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <div className="schedule_block"><div className="room_lable schedule_room_lable room_101">1005</div></div>
+          <div className="schedule_block"><div className="room_lable schedule_room_lable room_102">1006</div></div>
+          <div className="schedule_block"><div className="room_lable schedule_room_lable room_103">1007</div></div>
         </div>
       </li>
     );
   }
   session = () => {
     return (
-      <li className="sechdule_row">
-        <div className="sechdule_time_block"></div>
-        <div className="sechdule_room_container">
-          <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_101">801</div></div>
-          <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_102">803</div></div>
-          <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_103">1002</div></div>
+      <li className="schedule_row">
+        <div className="schedule_time_block"></div>
+        <div className="schedule_room_container">
+          {/* <div className="schedule_block"><div className="room_lable schedule_room_lable room_101">801</div></div> */}
+          {/* <div className="schedule_block"><div className="room_lable schedule_room_lable room_102">803</div></div> */}
+          {/* <div className="schedule_block"><div className="room_lable schedule_room_lable room_103">1002</div></div> */}
         </div>
       </li>
     );
@@ -121,7 +121,7 @@ export default class App extends PureComponent {
     }
     return (
       (
-        <ul className="sechdule_table">
+        <ul className="schedule_table">
           {this.state.whichDay === "session" ? this.session() : this.workshop()}
           {this.renderTableRow()}
         </ul>
@@ -147,10 +147,10 @@ export default class App extends PureComponent {
   );
 
   renderWorkShop = () => (
-    <ul className="sechdule_table">
-      <li className="sechdule_row"><div className="workshop_day">9/21 day 1</div></li>
+    <ul className="schedule_table">
+      <li className="schedule_row"><div className="workshop_day">9/21 day 1</div></li>
       {this.renderWorkShopRow("session")}
-      <li className="sechdule_row "><div className="workshop_day">9/22 day 2</div></li>
+      <li className="schedule_row "><div className="workshop_day">9/22 day 2</div></li>
       {this.renderWorkShopRow("day_2")}
     </ul>
   );
@@ -314,6 +314,18 @@ export default class App extends PureComponent {
             </div>
           </div>
 
+          {/* Schedule議程 */}
+          <div className="app__section main_section" id="schedule-section">
+            {/* <img className="main_section_logo" src={require("../images/iplayground_logo_diamond.png")} /> */}
+            <div className="main_section_container">
+              <div className="app__title"><span className="app__title_eng">{<Trans>navTitle.schedule</Trans>}</span></div>
+              <div className="schedule_container">
+                {(whichDay === "workshop") ? this.renderTable() : this.renderTable()}
+              </div>
+              <img className="schedule_container_ipgman" src={require("../images/IPGman.png")} />
+            </div>
+          </div>
+
           {/* Speakers講者 */}
           <div className="app__section main_section" id="speakers-section">
             {/* <img className="main_section_logo" src={require("../images/iplayground_logo_ball.png")} /> */}
@@ -324,41 +336,6 @@ export default class App extends PureComponent {
               </div>
             </div>
           </div>
-
-          {/* Schedule議程 */}
-          {/* <div className="app__section main_section" id="sechdule-section">
-            <img className="main_section_logo" src={require("../images/iplayground_logo_diamond.png")} />
-            <div className="main_section_container">
-              <div className="app__title"><span className="app__title_eng">Schedule</span><span>議程</span></div>
-              <div className="app__sechdule-tab">
-                <button
-                  className={
-                    whichDay === "session" ? "app__sechdule-tab__btn app__sechdule-tab__btn--selected" : "app__sechdule-tab__btn"
-                  }
-                  onClick={() => {
-                    this.setState({ whichDay: "session" });
-                  }}
-                  type="button"
-                >
-                  session
-              </button>
-                <button
-                  className={
-                    whichDay === "workshop" ? "app__sechdule-tab__btn app__sechdule-tab__btn--selected" : "app__sechdule-tab__btn"
-                  }
-                  onClick={() => {
-                    this.setState({ whichDay: "workshop" });
-                  }}
-                  type="button"
-                >
-                  unconference
-              </button>
-              </div>
-              <div className="sechdule_container">
-                {(whichDay === "workshop") ? this.renderTable() : this.renderTable()}
-              </div>
-            </div>
-          </div> */}
 
           {/* Staffs工作人員 */}
           <div className="app__section sub_section" id="staffs-section">

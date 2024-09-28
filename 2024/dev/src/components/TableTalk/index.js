@@ -2,16 +2,18 @@ import React from "react";
 import _ from "lodash";
 import "./styles.css";
 
-export default ({ topic, presenter, description, room, tags, isWorkshop, program, onClickTopic, programId }) => {
-  // console.log(presenter)
-  const talk = { topic, presenter, description, room, tags, program };
-
-  console.log(room)
+export default ({ topic, presenter, presenter2, description, room, tags, isWorkshop, program, onClickTopic, programId }) => {
+  const talk = { topic, presenter, presenter2, description, room, tags, program };
   const speaker = presenter.map((value) => {
     return (
       <span className="table-talk__presenter">{value.name}</span>
     );
   })
+  const speaker2 = presenter2 ? presenter2.map((value) => {
+    return (
+      <span style={{marginLeft: "5px"}} className="table-talk__presenter">{`/ ` + value.name}</span>
+    );
+  }) : ""
   function fontcolor(room) {
     switch (room) {
       case "801":
@@ -32,7 +34,7 @@ export default ({ topic, presenter, description, room, tags, isWorkshop, program
   }
   return (
     <div className="table-talk">
-      {(() => {
+      {/* {(() => {
         var style = isWorkshop ? { display: "block" } : {};
         switch (room) {
           case "801": return <div className="room_lable talk_room_lable room_101" style={style}>801</div>;
@@ -44,7 +46,7 @@ export default ({ topic, presenter, description, room, tags, isWorkshop, program
           default: return room ? <div className="room_lable talk_room_lable room_101" style={style}>{room}</div> : null;
         }
       }
-      )()}
+      )()} */}
       <span
         className="table-talk__topic"
         style={
@@ -57,7 +59,7 @@ export default ({ topic, presenter, description, room, tags, isWorkshop, program
           {topic}
         </div>
       </span>
-      {speaker}
+      <div style={{display: "flex"}}>{speaker}{speaker2}</div>
       <div>
         {
           _.map(tags, (tag) =>

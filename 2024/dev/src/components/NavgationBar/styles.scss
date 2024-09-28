@@ -185,3 +185,12 @@ nav {
         }
     }
 }
+
+@media print {
+    nav {
+        display: none;
+    }
+    #venue-section iframe {
+      display: none;
+    }
+}

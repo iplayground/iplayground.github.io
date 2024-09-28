@@ -7,8 +7,33 @@ html {
   font-family: -apple-system, Helvetica, Arial, sans-serif;
 }
 .font_801 {
-  text-align: center;
-  color: #517cffef;
+  text-align: left;
+  
+  font-size: 1.8em;
+  @include screen--md {
+    font-size: calc(1.6em + 1vw);
+  }
+  @include screen--xl {
+    font-size: 2em;
+  }
+  font-weight: 700;
+  line-height: 44.8px;
+  @media (prefers-color-scheme: light) {
+    background: linear-gradient(90.17deg, #FF0A6C 3.18%, #2D27FF 93.49%);
+    -webkit-background-clip: text; /* 只將背景裁剪到文字部分 */
+    -webkit-text-fill-color: transparent; /* 將文字填充顏色設置為透明，這樣背景才顯示出來 */
+  }
+  @media (prefers-color-scheme: dark) {
+    background: linear-gradient(90.17deg, #ffabcd 3.18%, #aaa7ff 93.49%);
+    -webkit-background-clip: text; /* 只將背景裁剪到文字部分 */
+    -webkit-text-fill-color: transparent; /* 將文字填充顏色設置為透明，這樣背景才顯示出來 */
+  } 
+  @media print {
+    color: #000;
+    background: unset;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+  }
 }
 .font_802 {
   text-align: center;
@@ -121,10 +146,10 @@ html {
     background-color: $color--primary;
   }
 
-  .app__sechdule-tab {
+  .app__schedule-tab {
     margin-bottom: 1rem;
 
-    .app__sechdule-tab__btn {
+    .app__schedule-tab__btn {
       font-weight: bold;
       font-size: 18pt;
       margin-right: 0.5rem;
@@ -137,15 +162,14 @@ html {
       background-color: #ffffff66;
     }
 
-    .app__sechdule-tab__btn--selected {
+    .app__schedule-tab__btn--selected {
       color: #ef5fa7;
       background-color: rgba(0, 0, 0, 0.75);
       border: 1px solid rgba(0, 0, 0, 0.75);
     }
   }
 
-  .sechdule_container {
-    background-color: rgba(128, 128, 128, 0.33);
+  .schedule_container {
     padding: 1em 0;
     border-radius: 6px;
 
@@ -156,16 +180,13 @@ html {
       display: flex;
       width: 100%;
     }
-    .sechdule_row {
-      border-bottom: 1px solid #ffffff;
-    }
-    .sechdule_time_block {
-      width: 20%;
-    }
-    .sechdule_block {
+    // .schedule_time_block {
+    //   width: 50%;
+    // }
+    .schedule_block {
       width: 100%;
     }
-    .sechdule_room_container {
+    .schedule_room_container {
       width: 100%;
       display: none;
     }
@@ -176,7 +197,7 @@ html {
       border-radius: 6px;
       font-size: 16px;
     }
-    .sechdule_room_lable {
+    .schedule_room_lable {
       margin: 0.5em 1em;
       font-weight: 300;
     }
@@ -199,15 +220,27 @@ html {
       padding-top: 1em;
     }
     @include screen--md {
-      .sechdule_room_container {
+      .schedule_room_container {
         display: flex;
       }
-      .sechdule_block {
+      .schedule_block {
         width: 33%;
         display: inline-block;
       }
     }
   }
+
+  .schedule_container_ipgman {
+    position: relative; /* 或者使用 absolute，具體取決於需要 */
+    right: 0; /* 固定在右側 */
+    top: -180px; /* 固定在屏幕的 50% 高度 */
+    float: right;
+    display: none;
+    @include screen--md {
+      display: block;
+    }
+  }
+
   .app__table {
     width: 100%;
     border-collapse: collapse;
@@ -309,7 +342,12 @@ html {
     }
 
     .app__sponsor-degree {
-      color: #000;
+      @media (prefers-color-scheme: dark) {
+        color: #dbdbdbef;
+      }
+      @media (prefers-color-scheme: light) {
+        color: #191919CC;
+      }
     }
   }
 
@@ -348,7 +386,10 @@ html {
 
   .main_section_container {
     padding: 2rem 2rem;
-    margin: 0 0 0 5vw;
+    @media print {
+      padding: 0;
+    }
+    // margin: 0 0 0 5vw;
     min-height: 360px;
     
     @media (prefers-color-scheme: dark) {
@@ -375,7 +416,10 @@ html {
   }
   .section_container {
     padding: 2rem 2rem;
-    margin: 0 0 0 5vw;
+    @media print {
+      padding: 0;
+    }
+    // margin: 0 0 0 5vw;
     //min-height: 360px;
     @media (prefers-color-scheme: dark) {
       background-color: #202020ef;
@@ -401,6 +445,9 @@ html {
     flex-wrap: wrap;
     font-family: "PingFangTC-Ultralight", "STHeitiTC-Ultralight", "STHeitiTC-Light", "Microsoft JhengHei";
     margin-bottom: 2.5rem;
+    @media print {
+      margin-bottom: 0;
+    }
     text-align: left;
     padding: 0 0;
     font-size: 64px;
@@ -503,6 +550,17 @@ html {
     }
     .app_section_footer {
       background-color: #000;
+    }
+  }
+
+  @media print {
+    .app__speaker,
+    .app__sponsor {
+      width: 25%;
+      display: inline-block;
+    }
+    .app_section_footer {
+      display: none;
     }
   }
 

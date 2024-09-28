@@ -1,17 +1,15 @@
 import React from 'react';
 import _ from "lodash";
-
+import { Trans } from 'react-i18next';
 import './styles.css';
 
 export default ({ session, onClickCloseBtn, speakers }) => {
-  console.log(session)
-  debugger;
   return (
     <div className="modal-content-schedule">
       <a className="modal-content-schedule__close-btn" onClick={onClickCloseBtn} >&nbsp;</a>
       <div className="modal-content-schedule__txt-section">
-        <p className="modal-content-schedule__topic"><strong>{session.topic}</strong></p>
-
+        <p className="modal-content-schedule__topic">{session.topic}</p>
+        <p className='modal-content-schedule_details'><Trans>schedule.details.title</Trans></p>
         <div>
           {
             _.map(session.tags, (tag) =>
@@ -31,16 +29,25 @@ export default ({ session, onClickCloseBtn, speakers }) => {
           }
         </div>
         <p dangerouslySetInnerHTML={{ __html: session.description }}></p>
-        <div className="modal-content-schedule_subtitle">Speaker 講者</div>
-        <div>
+        <div className="modal-content-schedule_subtitle">{<Trans>schedule.speaker.title</Trans>}</div>
+        <div className='modal-speaker-detail-speaker'>
           {
 
-            _.map(session.presenter, ({ name, bio, imgURL }) =>
+            _.map(session.presenter, ({ name, imgURL }) =>
               <div>
-                <p className="modal-content-schedule__presenter">{name}</p>
                 <div className="modal-speaker-detail-container">
                   <img className="modal-content-speakers__img" src={imgURL} alt="{name}" />
-                  <div className="modal-content-schedule__presenter-description">{bio}</div>
+                  <p className="modal-content-schedule__presenter">{name}</p>
+                </div>
+              </div>
+            )
+          }
+          {
+            _.map(session.presenter2, ({ name, imgURL }) =>
+              <div>
+                <div className="modal-speaker-detail-container">
+                  <img className="modal-content-speakers__img" src={imgURL} alt="{name}" />
+                  <p className="modal-content-schedule__presenter">{name}</p>
                 </div>
               </div>
             )

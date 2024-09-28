@@ -3,22 +3,23 @@
 /* Media queries
  * ======================================================================== */
 .table-talk {
-  padding: 1em 0;
   width: 100%; }
   .table-talk span {
-    display: block;
-    margin: 0 0.5em; }
+    display: block; }
   .table-talk .talk_room_lable {
     margin: 0 0.5em 0.5em 0.5em; }
   .table-talk .table-talk__topic {
-    color: #d2438bef;
     font-weight: bold;
-    cursor: pointer;
-    font-size: 0.95em; }
+    cursor: pointer; }
   .table-talk .table-talk__presenter {
-    color: #444444;
     font-size: 1em;
-    text-align: center; }
+    text-align: left; }
+    @media (prefers-color-scheme: dark) {
+      .table-talk .table-talk__presenter {
+        color: #eeeeeecc; } }
+    @media (prefers-color-scheme: light) {
+      .table-talk .table-talk__presenter {
+        color: #191919CC; } }
   .table-talk .tag_image {
     width: 24px;
     height: 24px;
