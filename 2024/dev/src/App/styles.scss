@@ -146,10 +146,10 @@ html {
     background-color: $color--primary;
   }
 
-  .app__sechdule-tab {
+  .app__schedule-tab {
     margin-bottom: 1rem;
 
-    .app__sechdule-tab__btn {
+    .app__schedule-tab__btn {
       font-weight: bold;
       font-size: 18pt;
       margin-right: 0.5rem;
@@ -162,14 +162,14 @@ html {
       background-color: #ffffff66;
     }
 
-    .app__sechdule-tab__btn--selected {
+    .app__schedule-tab__btn--selected {
       color: #ef5fa7;
       background-color: rgba(0, 0, 0, 0.75);
       border: 1px solid rgba(0, 0, 0, 0.75);
     }
   }
 
-  .sechdule_container {
+  .schedule_container {
     padding: 1em 0;
     border-radius: 6px;
 
@@ -180,13 +180,13 @@ html {
       display: flex;
       width: 100%;
     }
-    // .sechdule_time_block {
+    // .schedule_time_block {
     //   width: 50%;
     // }
-    .sechdule_block {
+    .schedule_block {
       width: 100%;
     }
-    .sechdule_room_container {
+    .schedule_room_container {
       width: 100%;
       display: none;
     }
@@ -197,7 +197,7 @@ html {
       border-radius: 6px;
       font-size: 16px;
     }
-    .sechdule_room_lable {
+    .schedule_room_lable {
       margin: 0.5em 1em;
       font-weight: 300;
     }
@@ -220,17 +220,17 @@ html {
       padding-top: 1em;
     }
     @include screen--md {
-      .sechdule_room_container {
+      .schedule_room_container {
         display: flex;
       }
-      .sechdule_block {
+      .schedule_block {
         width: 33%;
         display: inline-block;
       }
     }
   }
 
-  .sechdule_container_ipgman {
+  .schedule_container_ipgman {
     position: relative; /* 或者使用 absolute，具體取決於需要 */
     right: 0; /* 固定在右側 */
     top: -180px; /* 固定在屏幕的 50% 高度 */

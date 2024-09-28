@@ -92,24 +92,24 @@ export default class App extends PureComponent {
 
   workshop = () => {
     return (
-      <li className="sechdule_row">
-        <div className="sechdule_time_block"></div>
-        <div className="sechdule_room_container" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_101">1005</div></div>
-          <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_102">1006</div></div>
-          <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_103">1007</div></div>
+      <li className="schedule_row">
+        <div className="schedule_time_block"></div>
+        <div className="schedule_room_container" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <div className="schedule_block"><div className="room_lable schedule_room_lable room_101">1005</div></div>
+          <div className="schedule_block"><div className="room_lable schedule_room_lable room_102">1006</div></div>
+          <div className="schedule_block"><div className="room_lable schedule_room_lable room_103">1007</div></div>
         </div>
       </li>
     );
   }
   session = () => {
     return (
-      <li className="sechdule_row">
-        <div className="sechdule_time_block"></div>
-        <div className="sechdule_room_container">
-          {/* <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_101">801</div></div> */}
-          {/* <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_102">803</div></div> */}
-          {/* <div className="sechdule_block"><div className="room_lable sechdule_room_lable room_103">1002</div></div> */}
+      <li className="schedule_row">
+        <div className="schedule_time_block"></div>
+        <div className="schedule_room_container">
+          {/* <div className="schedule_block"><div className="room_lable schedule_room_lable room_101">801</div></div> */}
+          {/* <div className="schedule_block"><div className="room_lable schedule_room_lable room_102">803</div></div> */}
+          {/* <div className="schedule_block"><div className="room_lable schedule_room_lable room_103">1002</div></div> */}
         </div>
       </li>
     );
@@ -121,7 +121,7 @@ export default class App extends PureComponent {
     }
     return (
       (
-        <ul className="sechdule_table">
+        <ul className="schedule_table">
           {this.state.whichDay === "session" ? this.session() : this.workshop()}
           {this.renderTableRow()}
         </ul>
@@ -147,10 +147,10 @@ export default class App extends PureComponent {
   );
 
   renderWorkShop = () => (
-    <ul className="sechdule_table">
-      <li className="sechdule_row"><div className="workshop_day">9/21 day 1</div></li>
+    <ul className="schedule_table">
+      <li className="schedule_row"><div className="workshop_day">9/21 day 1</div></li>
       {this.renderWorkShopRow("session")}
-      <li className="sechdule_row "><div className="workshop_day">9/22 day 2</div></li>
+      <li className="schedule_row "><div className="workshop_day">9/22 day 2</div></li>
       {this.renderWorkShopRow("day_2")}
     </ul>
   );
@@ -315,14 +315,14 @@ export default class App extends PureComponent {
           </div>
 
           {/* Schedule議程 */}
-          <div className="app__section main_section" id="sechdule-section">
+          <div className="app__section main_section" id="schedule-section">
             {/* <img className="main_section_logo" src={require("../images/iplayground_logo_diamond.png")} /> */}
             <div className="main_section_container">
               <div className="app__title"><span className="app__title_eng">{<Trans>navTitle.schedule</Trans>}</span></div>
-              <div className="sechdule_container">
+              <div className="schedule_container">
                 {(whichDay === "workshop") ? this.renderTable() : this.renderTable()}
               </div>
-              <img className="sechdule_container_ipgman" src={require("../images/IPGman.png")} />
+              <img className="schedule_container_ipgman" src={require("../images/IPGman.png")} />
             </div>
           </div>
 
