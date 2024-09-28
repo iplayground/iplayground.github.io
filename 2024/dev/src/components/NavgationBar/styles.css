@@ -129,3 +129,9 @@ nav {
       color: #fff; }
   nav #nav.menu-opened {
     background-color: #333333ef; } }
+
+@media print {
+  nav {
+    display: none; }
+  #venue-section iframe {
+    display: none; } }

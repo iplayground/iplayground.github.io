@@ -11,14 +11,35 @@ html {
 
 .font_801 {
   text-align: left;
-  font-size: 32px;
+  font-size: 1.8em;
   font-weight: 700;
-  line-height: 44.8px;
-  background: linear-gradient(90.17deg, #FF0A6C 3.18%, #2D27FF 93.49%);
-  -webkit-background-clip: text;
-  /* 只將背景裁剪到文字部分 */
-  -webkit-text-fill-color: transparent;
-  /* 將文字填充顏色設置為透明，這樣背景才顯示出來 */ }
+  line-height: 44.8px; }
+  @media screen and (min-width: 768px) {
+    .font_801 {
+      font-size: calc(1.6em + 1vw); } }
+  @media screen and (min-width: 1200px) {
+    .font_801 {
+      font-size: 2em; } }
+  @media (prefers-color-scheme: light) {
+    .font_801 {
+      background: linear-gradient(90.17deg, #FF0A6C 3.18%, #2D27FF 93.49%);
+      -webkit-background-clip: text;
+      /* 只將背景裁剪到文字部分 */
+      -webkit-text-fill-color: transparent;
+      /* 將文字填充顏色設置為透明，這樣背景才顯示出來 */ } }
+  @media (prefers-color-scheme: dark) {
+    .font_801 {
+      background: linear-gradient(90.17deg, #ffabcd 3.18%, #aaa7ff 93.49%);
+      -webkit-background-clip: text;
+      /* 只將背景裁剪到文字部分 */
+      -webkit-text-fill-color: transparent;
+      /* 將文字填充顏色設置為透明，這樣背景才顯示出來 */ } }
+  @media print {
+    .font_801 {
+      color: #000;
+      background: unset;
+      -webkit-background-clip: unset;
+      -webkit-text-fill-color: unset; } }
 
 .font_802 {
   text-align: center;
@@ -100,9 +121,9 @@ html {
     border-radius: 3px;
     color: white;
     background-color: tomato; }
-  .app__container .app__sechdule-tab {
+  .app__container .app__schedule-tab {
     margin-bottom: 1rem; }
-    .app__container .app__sechdule-tab .app__sechdule-tab__btn {
+    .app__container .app__schedule-tab .app__schedule-tab__btn {
       font-weight: bold;
       font-size: 18pt;
       margin-right: 0.5rem;
@@ -113,41 +134,39 @@ html {
       outline: none;
       color: #ef5fa7;
       background-color: #ffffff66; }
-    .app__container .app__sechdule-tab .app__sechdule-tab__btn--selected {
+    .app__container .app__schedule-tab .app__schedule-tab__btn--selected {
       color: #ef5fa7;
       background-color: rgba(0, 0, 0, 0.75);
       border: 1px solid rgba(0, 0, 0, 0.75); }
-  .app__container .sechdule_container {
+  .app__container .schedule_container {
     padding: 1em 0;
     border-radius: 6px; }
-    .app__container .sechdule_container ul {
+    .app__container .schedule_container ul {
       padding: 0; }
-    .app__container .sechdule_container li {
+    .app__container .schedule_container li {
       display: flex;
       width: 100%; }
-    .app__container .sechdule_container .sechdule_time_block {
-      width: 50%; }
-    .app__container .sechdule_container .sechdule_block {
+    .app__container .schedule_container .schedule_block {
       width: 100%; }
-    .app__container .sechdule_container .sechdule_room_container {
+    .app__container .schedule_container .schedule_room_container {
       width: 100%;
       display: none; }
-    .app__container .sechdule_container .room_lable {
+    .app__container .schedule_container .room_lable {
       text-align: center;
       color: #ffffff;
       padding: 0.5em;
       border-radius: 6px;
       font-size: 16px; }
-    .app__container .sechdule_container .sechdule_room_lable {
+    .app__container .schedule_container .schedule_room_lable {
       margin: 0.5em 1em;
       font-weight: 300; }
-    .app__container .sechdule_container .room_101 {
+    .app__container .schedule_container .room_101 {
       background-color: #517cffef; }
-    .app__container .sechdule_container .room_102 {
+    .app__container .schedule_container .room_102 {
       background-color: #ef5fa7ef; }
-    .app__container .sechdule_container .room_103 {
+    .app__container .schedule_container .room_103 {
       background-color: #f8ba00ef; }
-    .app__container .sechdule_container .workshop_day {
+    .app__container .schedule_container .workshop_day {
       text-align: center;
       height: 40px;
       font-size: 1.25em;
@@ -156,19 +175,23 @@ html {
       padding-left: 2em;
       padding-top: 1em; }
     @media screen and (min-width: 768px) {
-      .app__container .sechdule_container .sechdule_room_container {
+      .app__container .schedule_container .schedule_room_container {
         display: flex; }
-      .app__container .sechdule_container .sechdule_block {
+      .app__container .schedule_container .schedule_block {
         width: 33%;
         display: inline-block; } }
-  .app__container .sechdule_container_ipgman {
+  .app__container .schedule_container_ipgman {
     position: relative;
     /* 或者使用 absolute，具體取決於需要 */
     right: 0;
     /* 固定在右側 */
     top: -180px;
     /* 固定在屏幕的 50% 高度 */
-    float: right; }
+    float: right;
+    display: none; }
+    @media screen and (min-width: 768px) {
+      .app__container .schedule_container_ipgman {
+        display: block; } }
   .app__container .app__table {
     width: 100%;
     border-collapse: collapse;
@@ -233,8 +256,12 @@ html {
       width: 200%;
       max-width: 325px;
       margin-top: 2rem; }
-    .app__container .app__sponsor .app__sponsor-degree {
-      color: #000; }
+    @media (prefers-color-scheme: dark) {
+      .app__container .app__sponsor .app__sponsor-degree {
+        color: #dbdbdbef; } }
+    @media (prefers-color-scheme: light) {
+      .app__container .app__sponsor .app__sponsor-degree {
+        color: #191919CC; } }
   .app__container .app__section {
     padding: 2rem 0; }
     .app__container .app__section p {
@@ -260,8 +287,10 @@ html {
     z-index: -1; }
   .app__container .main_section_container {
     padding: 2rem 2rem;
-    margin: 0 0 0 5vw;
     min-height: 360px; }
+    @media print {
+      .app__container .main_section_container {
+        padding: 0; } }
     @media (prefers-color-scheme: dark) {
       .app__container .main_section_container {
         background-color: #202020ef; } }
@@ -279,8 +308,10 @@ html {
   .app__container .empty_section {
     margin: 0 -0px 0px 5vw; }
   .app__container .section_container {
-    padding: 2rem 2rem;
-    margin: 0 0 0 5vw; }
+    padding: 2rem 2rem; }
+    @media print {
+      .app__container .section_container {
+        padding: 0; } }
     @media (prefers-color-scheme: dark) {
       .app__container .section_container {
         background-color: #202020ef; } }
@@ -305,6 +336,9 @@ html {
     font-size: 64px;
     line-height: 80px;
     font-weight: bold; }
+    @media print {
+      .app__container .app__title {
+        margin-bottom: 0; } }
     @media (prefers-color-scheme: dark) {
       .app__container .app__title {
         color: #f0f0f0; } }
@@ -368,6 +402,13 @@ html {
       align-items: center; }
     .app__container .app_section_footer {
       background-color: #000; } }
+  @media print {
+    .app__container .app__speaker,
+    .app__container .app__sponsor {
+      width: 25%;
+      display: inline-block; }
+    .app__container .app_section_footer {
+      display: none; } }
   @media screen and (min-width: 992px) {
     .app__container .app__container {
       max-width: 960px; } }

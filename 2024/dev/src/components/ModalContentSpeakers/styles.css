@@ -7,7 +7,7 @@
   padding: 30px;
   padding-top: 50px;
   text-align: center;
-  border-radius: 6px; }
+  border-radius: 16px; }
   @media (prefers-color-scheme: dark) {
     .modal-content-speakers {
       background-color: #202020ef; } }

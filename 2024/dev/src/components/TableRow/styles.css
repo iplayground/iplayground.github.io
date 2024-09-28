@@ -6,6 +6,12 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 44.8px; }
+  @media (prefers-color-scheme: dark) {
+    .schedule_rest_container {
+      color: #fff; } }
+  @media (prefers-color-scheme: light) {
+    .schedule_rest_container {
+      color: #000; } }
 
 .schedule_talk_container {
   display: flex;

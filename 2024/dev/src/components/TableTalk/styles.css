@@ -12,9 +12,14 @@
     font-weight: bold;
     cursor: pointer; }
   .table-talk .table-talk__presenter {
-    color: #191919CC;
     font-size: 1em;
     text-align: left; }
+    @media (prefers-color-scheme: dark) {
+      .table-talk .table-talk__presenter {
+        color: #eeeeeecc; } }
+    @media (prefers-color-scheme: light) {
+      .table-talk .table-talk__presenter {
+        color: #191919CC; } }
   .table-talk .tag_image {
     width: 24px;
     height: 24px;
