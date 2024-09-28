@@ -16,7 +16,12 @@
   }
 
   .table-talk__presenter {
-    color: #191919CC;
+    @media (prefers-color-scheme: dark) {
+      color: #eeeeeecc;
+    }
+    @media (prefers-color-scheme: light) {
+      color: #191919CC;
+    }  
     font-size: 1em;
     text-align: left;
   }

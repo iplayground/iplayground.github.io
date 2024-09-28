@@ -2,11 +2,27 @@
   border-right: 1px solid #FFFFFF33;
   min-height: 30px;
   max-width: 150px;
-  padding: 0.5em 0;
-  padding-left: 1em;
+  padding-top: 0.5em;
+  padding-right: 0px;
+  padding-bottom: 0.5em;
+  padding-left: 0;
+  @media screen and (min-width: 768px) {
+    min-height: 1em;
+    padding-left: 1em;
+  }
+  @media (prefers-color-scheme: dark) {
+    color: #fff;
+  }
+  @media (prefers-color-scheme: light) {
+    color: #000;
+  }  
   span {
     display: block;
     text-align: left;
+    padding: 0 0.9em;
+    @media screen and (min-width: 768px) {
+      padding: 0 2em;
+    }
   }
 }
 /*@include screen--md {

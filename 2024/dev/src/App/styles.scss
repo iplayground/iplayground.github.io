@@ -8,12 +8,26 @@ html {
 }
 .font_801 {
   text-align: left;
-  font-size: 32px;
+  
+  font-size: 1.8em;
+  @include screen--md {
+    font-size: calc(1.6em + 1vw);
+  }
+  @include screen--xl {
+    font-size: 2em;
+  }
   font-weight: 700;
   line-height: 44.8px;
-  background: linear-gradient(90.17deg, #FF0A6C 3.18%, #2D27FF 93.49%);
-  -webkit-background-clip: text; /* 只將背景裁剪到文字部分 */
-  -webkit-text-fill-color: transparent; /* 將文字填充顏色設置為透明，這樣背景才顯示出來 */
+  @media (prefers-color-scheme: light) {
+    background: linear-gradient(90.17deg, #FF0A6C 3.18%, #2D27FF 93.49%);
+    -webkit-background-clip: text; /* 只將背景裁剪到文字部分 */
+    -webkit-text-fill-color: transparent; /* 將文字填充顏色設置為透明，這樣背景才顯示出來 */
+  }
+  @media (prefers-color-scheme: dark) {
+    background: linear-gradient(90.17deg, #ffabcd 3.18%, #aaa7ff 93.49%);
+    -webkit-background-clip: text; /* 只將背景裁剪到文字部分 */
+    -webkit-text-fill-color: transparent; /* 將文字填充顏色設置為透明，這樣背景才顯示出來 */
+  } 
 }
 .font_802 {
   text-align: center;
@@ -160,9 +174,9 @@ html {
       display: flex;
       width: 100%;
     }
-    .sechdule_time_block {
-      width: 50%;
-    }
+    // .sechdule_time_block {
+    //   width: 50%;
+    // }
     .sechdule_block {
       width: 100%;
     }
@@ -215,6 +229,10 @@ html {
     right: 0; /* 固定在右側 */
     top: -180px; /* 固定在屏幕的 50% 高度 */
     float: right;
+    display: none;
+    @include screen--md {
+      display: block;
+    }
   }
 
   .app__table {
@@ -318,7 +336,12 @@ html {
     }
 
     .app__sponsor-degree {
-      color: #000;
+      @media (prefers-color-scheme: dark) {
+        color: #dbdbdbef;
+      }
+      @media (prefers-color-scheme: light) {
+        color: #191919CC;
+      }
     }
   }
 
@@ -357,7 +380,7 @@ html {
 
   .main_section_container {
     padding: 2rem 2rem;
-    margin: 0 0 0 5vw;
+    // margin: 0 0 0 5vw;
     min-height: 360px;
     
     @media (prefers-color-scheme: dark) {
@@ -384,7 +407,7 @@ html {
   }
   .section_container {
     padding: 2rem 2rem;
-    margin: 0 0 0 5vw;
+    // margin: 0 0 0 5vw;
     //min-height: 360px;
     @media (prefers-color-scheme: dark) {
       background-color: #202020ef;
