@@ -461,7 +461,14 @@ html {
     display: flex;
     flex-wrap: wrap;
     font-family: "PingFangTC-Ultralight", "STHeitiTC-Ultralight", "STHeitiTC-Light", "Microsoft JhengHei";
-    margin-bottom: 2.5rem;
+    margin-left: 0.9rem;
+    margin-bottom: 0;
+
+    @include screen--md {
+      margin-bottom: 0;
+      margin-left: 3rem;
+    }
+
     @media print {
       margin-bottom: 0;
     }
@@ -470,6 +477,7 @@ html {
     font-size: 64px;
     line-height: 80px;
     font-weight: bold;
+
     @media (prefers-color-scheme: dark) {
       color: #f0f0f0;
     }
