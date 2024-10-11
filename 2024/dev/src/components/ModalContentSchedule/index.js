@@ -33,20 +33,22 @@ export default ({ session, onClickCloseBtn, speakers }) => {
         <div className='modal-speaker-detail-speaker'>
           {
 
-            _.map(session.presenter, ({ name, imgURL }) =>
-              <div>
+            _.map(session.presenter, ({ name, imgURL, snsURL }) =>
                 <div className="modal-speaker-detail-container">
-                  <img className="modal-content-speakers__img" src={imgURL} alt="{name}" />
+                  <a href={snsURL} target="_blank" rel="noopener noreferrer">
+                    <img className="modal-content-speakers__img" src={imgURL} alt="{name}" />
+                  </a>
                   <p className="modal-content-schedule__presenter">{name}</p>
                 </div>
-              </div>
             )
           }
           {
-            _.map(session.presenter2, ({ name, imgURL }) =>
+            _.map(session.presenter2, ({ name, imgURL, snsURL }) =>
               <div>
                 <div className="modal-speaker-detail-container">
-                  <img className="modal-content-speakers__img" src={imgURL} alt="{name}" />
+                  <a href={snsURL} target="_blank" rel="noopener noreferrer">
+                    <img className="modal-content-speakers__img" src={imgURL} alt="{name}" />
+                  </a>
                   <p className="modal-content-schedule__presenter">{name}</p>
                 </div>
               </div>

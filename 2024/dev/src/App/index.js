@@ -28,12 +28,6 @@ export default class App extends PureComponent {
         this.setState({ programs: data.program })
       });
 
-    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/sponsors.json')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ sponsors: data })
-      });
-
     await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2024/v1/staffs.json')
       .then(response => response.json())
       .then(data => {
@@ -414,9 +408,12 @@ export default class App extends PureComponent {
                   />
                 </div>
             </div>
-            <div className="section_action_container" style={{ marginTop: "1em" }}>
-                <a href="https://twitter.com/theiPlayground" target="_blank"><i className="fab fa-twitter social_icon twitter_icon"></i></a>
-                <a href="https://www.facebook.com/theiPlayground/" target="_blank"><i className="fa fa-facebook social_icon facebook_icon"></i></a>
+            <div className="section_action_container footer-links" style={{ marginTop: "1em" }}>
+                <a href="mailto:support@iplayground.io" target="_blank"><img src={require("../images/icon-telegram.png")}/></a>
+                <a href="https://www.facebook.com/theiPlayground/" target="_blank"><img src={require("../images/icon-facebook.png")}/></a>
+                <a href="https://discord.gg/xS8yMKbbjB" target="_blank"><img src={require("../images/icon-discord.png")}/></a>
+                <a href="https://twitter.com/theiPlayground" target="_blank"><img src={require("../images/icon-x.png")}/></a>
+                <a href="https://youtube.com/@iplaygroundtaiwan" target="_blank"><img src={require("../images/icon-youtube.png")}/></a>
             </div>
             <p style={{ textAlign: "center", color: "#ffffff" }}>
                 {<Trans>allRightsReserved</Trans>}

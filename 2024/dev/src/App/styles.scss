@@ -6,12 +6,29 @@
 html {
   font-family: -apple-system, Helvetica, Arial, sans-serif;
 }
+
+.schedule_row {
+  margin: 1em 0 1em 0;
+}
+
+.schedule_rest_container {
+  text-align: left;
+  
+  font-size: 1.8em;
+  @include screen--md {
+    font-size: calc(1.4em + 0.6vw);
+  }
+  @include screen--xl {
+    font-size: 2em;
+  }
+}
+
 .font_801 {
   text-align: left;
   
   font-size: 1.8em;
   @include screen--md {
-    font-size: calc(1.6em + 1vw);
+    font-size: calc(1.4em + 0.6vw);
   }
   @include screen--xl {
     font-size: 2em;
@@ -57,6 +74,12 @@ html {
   .logo-container {
     background-color: #011432;
     margin: 0 auto;
+
+    @media screen and (max-width: 680px) {
+      margin-top: 64px;
+      padding-bottom: 1em;
+    }
+
     display: flex;
     flex-direction: column;
   }
@@ -118,13 +141,6 @@ html {
     .logo-info {
       text-shadow: 0.5px 0.5px rgba(0, 0, 0, 1);
     }
-  }
-}
-
-@media screen and (max-width: 680px) {
-  .logo-container {
-    margin-top: 64px;
-    padding-bottom: 1em;
   }
 }
 
@@ -444,7 +460,14 @@ html {
     display: flex;
     flex-wrap: wrap;
     font-family: "PingFangTC-Ultralight", "STHeitiTC-Ultralight", "STHeitiTC-Light", "Microsoft JhengHei";
-    margin-bottom: 2.5rem;
+    margin-left: 0.9rem;
+    margin-bottom: 0;
+
+    @include screen--md {
+      margin-bottom: 0;
+      margin-left: 3rem;
+    }
+
     @media print {
       margin-bottom: 0;
     }
@@ -453,6 +476,7 @@ html {
     font-size: 64px;
     line-height: 80px;
     font-weight: bold;
+
     @media (prefers-color-scheme: dark) {
       color: #f0f0f0;
     }
@@ -601,4 +625,9 @@ html {
       color: #ffffff;
     }
   }
+}
+
+.footer-links a img {
+  width: 18px;
+  padding: 0 0.5rem;
 }
