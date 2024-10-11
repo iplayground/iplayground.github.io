@@ -74,6 +74,12 @@ html {
   .logo-container {
     background-color: #011432;
     margin: 0 auto;
+
+    @media screen and (max-width: 680px) {
+      margin-top: 64px;
+      padding-bottom: 1em;
+    }
+
     display: flex;
     flex-direction: column;
   }
@@ -135,13 +141,6 @@ html {
     .logo-info {
       text-shadow: 0.5px 0.5px rgba(0, 0, 0, 1);
     }
-  }
-}
-
-@media screen and (max-width: 680px) {
-  .logo-container {
-    margin-top: 64px;
-    padding-bottom: 1em;
   }
 }
 
