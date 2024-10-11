@@ -28,12 +28,6 @@ export default class App extends PureComponent {
         this.setState({ programs: data.program })
       });
 
-    await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2020/v1/sponsors.json')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ sponsors: data })
-      });
-
     await fetch('https://raw.githubusercontent.com/iplayground/SessionData/2024/v1/staffs.json')
       .then(response => response.json())
       .then(data => {

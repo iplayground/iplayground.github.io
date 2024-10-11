@@ -6,12 +6,29 @@
 html {
   font-family: -apple-system, Helvetica, Arial, sans-serif;
 }
+
+.schedule_row {
+  margin: 1em 0 1em 0;
+}
+
+.schedule_rest_container {
+  text-align: left;
+  
+  font-size: 1.8em;
+  @include screen--md {
+    font-size: calc(1.4em + 0.6vw);
+  }
+  @include screen--xl {
+    font-size: 2em;
+  }
+}
+
 .font_801 {
   text-align: left;
   
   font-size: 1.8em;
   @include screen--md {
-    font-size: calc(1.6em + 1vw);
+    font-size: calc(1.4em + 0.6vw);
   }
   @include screen--xl {
     font-size: 2em;
