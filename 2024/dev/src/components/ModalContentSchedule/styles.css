@@ -3,7 +3,8 @@
 /* Media queries
  * ======================================================================== */
 .modal-speaker-detail-speaker {
-  display: flex; }
+  display: flex;
+  flex-direction: column; }
 
 .modal-speaker-detail-container {
   display: flex;
