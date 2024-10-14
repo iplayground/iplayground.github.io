@@ -1,14 +1,12 @@
 {
   "files": {
-    "main.css": "/2024/static/css/main.50483345.css",
-    "main.js": "/2024/static/js/main.3e49f26d.js",
-    "static/media/logo_iplayground.png": "/2024/static/media/logo_iplayground.35830d7067130e2aadff.png",
+    "main.css": "/2024/static/css/main.3c1e2485.css",
+    "main.js": "/2024/static/js/main.33e30170.js",
     "static/media/2020.JPG": "/2024/static/media/2020.a3195db1aa84e4116783.JPG",
     "static/media/2019Day2.JPG": "/2024/static/media/2019Day2.e4f0da8a32070e93908e.JPG",
     "static/media/2019Day1.JPG": "/2024/static/media/2019Day1.4397e457e4421afd25d6.JPG",
     "static/media/logo_2024.png": "/2024/static/media/logo_2024.72a2a09fedf5abfc6e20.png",
     "static/media/logo_cocoaheads_taipei.png": "/2024/static/media/logo_cocoaheads_taipei.b11b6b924f12f6051466.png",
-    "static/media/logo_KKCO.png": "/2024/static/media/logo_KKCO.21ac09040997f29b7052.png",
     "static/media/iplayground_logo_diamond.png": "/2024/static/media/iplayground_logo_diamond.140ea14a92d2f2e882f1.png",
     "static/media/iplayground_logo_ball.png": "/2024/static/media/iplayground_logo_ball.741444333198d03a4cad.png",
     "static/media/IPGman.png": "/2024/static/media/IPGman.9d3842613911735f0b7e.png",
@@ -16,11 +14,11 @@
     "static/media/logo_twdc.png": "/2024/static/media/logo_twdc.f143b82d82867fa7c378.png",
     "static/media/logo_swift_girls.png": "/2024/static/media/logo_swift_girls.ecfc7d1f7ff3b85e4a65.png",
     "index.html": "/2024/index.html",
-    "main.50483345.css.map": "/2024/static/css/main.50483345.css.map",
-    "main.3e49f26d.js.map": "/2024/static/js/main.3e49f26d.js.map"
+    "main.3c1e2485.css.map": "/2024/static/css/main.3c1e2485.css.map",
+    "main.33e30170.js.map": "/2024/static/js/main.33e30170.js.map"
   },
   "entrypoints": [
-    "static/css/main.50483345.css",
-    "static/js/main.3e49f26d.js"
+    "static/css/main.3c1e2485.css",
+    "static/js/main.33e30170.js"
   ]
 }

@@ -9,6 +9,19 @@
 html {
   font-family: -apple-system, Helvetica, Arial, sans-serif; }
 
+.schedule_row {
+  margin: 1em 0 1em 0; }
+
+.schedule_rest_container {
+  text-align: left;
+  font-size: 1.8em; }
+  @media screen and (min-width: 768px) {
+    .schedule_rest_container {
+      font-size: calc(1.4em + 0.6vw); } }
+  @media screen and (min-width: 1200px) {
+    .schedule_rest_container {
+      font-size: 2em; } }
+
 .font_801 {
   text-align: left;
   font-size: 1.8em;
@@ -16,7 +29,7 @@ html {
   line-height: 44.8px; }
   @media screen and (min-width: 768px) {
     .font_801 {
-      font-size: calc(1.6em + 1vw); } }
+      font-size: calc(1.4em + 0.6vw); } }
   @media screen and (min-width: 1200px) {
     .font_801 {
       font-size: 2em; } }
@@ -63,6 +76,10 @@ html {
     margin: 0 auto;
     display: flex;
     flex-direction: column; }
+    @media screen and (max-width: 680px) {
+      .logo-container-fullscreen .logo-container {
+        margin-top: 64px;
+        padding-bottom: 1em; } }
   .logo-container-fullscreen .logo-container-fullscreen-mask {
     height: 0;
     border-style: solid;
@@ -101,11 +118,6 @@ html {
       padding-top: 96px; }
     .logo-container-fullscreen .logo-info {
       text-shadow: 0.5px 0.5px black; } }
-
-@media screen and (max-width: 680px) {
-  .logo-container {
-    margin-top: 64px;
-    padding-bottom: 1em; } }
 
 .app__container {
   display: flex;
@@ -330,12 +342,17 @@ html {
     display: flex;
     flex-wrap: wrap;
     font-family: "PingFangTC-Ultralight", "STHeitiTC-Ultralight", "STHeitiTC-Light", "Microsoft JhengHei";
-    margin-bottom: 2.5rem;
+    margin-left: 0.9rem;
+    margin-bottom: 0;
     text-align: left;
     padding: 0 0;
     font-size: 64px;
     line-height: 80px;
     font-weight: bold; }
+    @media screen and (min-width: 768px) {
+      .app__container .app__title {
+        margin-bottom: 0;
+        margin-left: 3rem; } }
     @media print {
       .app__container .app__title {
         margin-bottom: 0; } }
@@ -430,3 +447,7 @@ html {
     color: #ffffff; }
   .app__container .telegram_icon {
     color: #ffffff; } }
+
+.footer-links a img {
+  width: 18px;
+  padding: 0 0.5rem; }
