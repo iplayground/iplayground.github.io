@@ -367,6 +367,18 @@ html {
     .app__container .app__title .app__title_smaller_eng {
       font-size: 55px;
       margin-right: 1rem; }
+  .app__container .app__date {
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 50px;
+    margin-top: 2em;
+    margin-left: 3rem; }
+    @media (prefers-color-scheme: dark) {
+      .app__container .app__date {
+        color: #f0f0f07c; } }
+    @media (prefers-color-scheme: light) {
+      .app__container .app__date {
+        color: #000; } }
   .app__container .section_sub_title {
     text-align: left;
     font-size: 40px;

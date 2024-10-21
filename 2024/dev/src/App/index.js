@@ -313,6 +313,7 @@ export default class App extends PureComponent {
             {/* <img className="main_section_logo" src={require("../images/iplayground_logo_diamond.png")} /> */}
             <div className="main_section_container">
               <div className="app__title"><span className="app__title_eng">{<Trans>navTitle.schedule</Trans>}</span></div>
+              <div className="app__date">2024/11/3</div>
               <div className="schedule_container">
                 {(whichDay === "workshop") ? this.renderTable() : this.renderTable()}
               </div>

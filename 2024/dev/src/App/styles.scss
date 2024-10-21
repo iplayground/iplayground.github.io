@@ -492,6 +492,20 @@ html {
     }
   }
 
+  .app__date {
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 50px;
+    margin-top: 2em;
+    margin-left: 3rem;
+    @media (prefers-color-scheme: dark) {
+      color: #f0f0f07c;
+    }
+    @media (prefers-color-scheme: light) {
+      color: #000;
+    }
+  }
+
   .section_sub_title {
     text-align: left;
     font-size: 40px;
