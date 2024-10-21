@@ -293,15 +293,17 @@ export default class App extends PureComponent {
           <div className="app__section sub_section" id="about-section">
             <div className="section_container">
               <div className="app__title"><span className="app__title_eng">{<Trans>aboutUs.title</Trans>}</span></div>
-              <p>
-                {<Trans>aboutUs.content.firstSentence.one</Trans>} <a href="https://iosdc.jp/2017/" target="_blank">iOSDC</a> {<Trans>aboutUs.content.firstSentence.second</Trans>}
-              </p>
-              <p>
-                {<Trans>aboutUs.content.secondSentence</Trans>}
-              </p>
-              <p>
-                {<Trans>aboutUs.content.thirdSentence</Trans>}
-              </p>
+              <div className="about_content">
+                <p>
+                  {<Trans>aboutUs.content.firstSentence.one</Trans>} <a href="https://iosdc.jp/2017/" target="_blank">iOSDC</a> {<Trans>aboutUs.content.firstSentence.second</Trans>}
+                </p>
+                <p>
+                  {<Trans>aboutUs.content.secondSentence</Trans>}
+                </p>
+                <p>
+                  {<Trans>aboutUs.content.thirdSentence</Trans>}
+                </p>
+              </div>
               {/* 活動照片 */}
               {/* <div className="app__title"><span className="app__title_eng">Photos</span><span>活動照片</span></div> */}
               {this.renderPictures()}
