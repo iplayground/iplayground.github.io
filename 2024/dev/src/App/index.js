@@ -368,27 +368,27 @@ export default class App extends PureComponent {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.654896766674!2d121.54879247633677!3d25.079683377786893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ad2f79889a2f%3A0x243e9294d51c3f3a!2z5bem6YSw5Y-z6IiN5aSa5Yqf6IO95rS75YuV56m66ZaT!5e0!3m2!1szh-TW!2stw!4v1726229640688!5m2!1szh-TW!2stw"
                 allowFullScreen
               />
-              {/* <p>
-                {<Trans>venue.tafficTitle</Trans>}
+              <p>
+                {/* {<Trans>venue.tafficTitle</Trans>}
+                <br /><br /> */}
+                {<Trans>venue.MRTTitle</Trans>}
+                <br />
+                {<Trans>venue.MRTContent.firstSentence</Trans>}
+                {/* <br />
+                {<Trans>venue.MRTContent.secondSentence</Trans>} */}
                 <br /><br />
                 {<Trans>venue.busTitle</Trans>}
                 <br />
                 {<Trans>venue.busContent.firstSentence</Trans>}
-                <br />
-                {<Trans>venue.busContent.secondSentence</Trans>}
-                <br /><br />
-                {<Trans>venue.MRTTitle</Trans>}
-                <br />
-                {<Trans>venue.MRTContent.firstSentence</Trans>}
-                <br />
-                {<Trans>venue.MRTContent.secondSentence</Trans>}
+                {/* <br />
+                {<Trans>venue.busContent.secondSentence</Trans>} */}
                 <br /><br />
                 {<Trans>venue.parkingTitle</Trans>}
                 <br />
                 {<Trans>venue.parkingContent.firstSentence</Trans>}
                 <br />
                 {<Trans>venue.parkingContent.secondSentence</Trans>}
-              </p> */}
+              </p>
             </div>
           </div>
 
