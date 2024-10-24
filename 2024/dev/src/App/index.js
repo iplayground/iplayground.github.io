@@ -303,6 +303,12 @@ export default class App extends PureComponent {
                 <p>
                   {<Trans>aboutUs.content.thirdSentence</Trans>}
                 </p>
+                <p>
+                  {<Trans>aboutUs.content.fourthSentence</Trans>}
+                </p>
+                <p>
+                  {<Trans>aboutUs.content.fifthSentence</Trans>}
+                </p>
               </div>
               {/* 活動照片 */}
               {/* <div className="app__title"><span className="app__title_eng">Photos</span><span>活動照片</span></div> */}
