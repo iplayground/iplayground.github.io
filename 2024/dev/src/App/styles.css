@@ -72,14 +72,38 @@ html {
   margin-left: 0;
   margin-right: 0; }
   .logo-container-fullscreen .logo-container {
-    background-color: #011432;
-    margin: 0 auto;
+    position: relative;
+    text-align: center;
     display: flex;
     flex-direction: column; }
     @media screen and (max-width: 680px) {
       .logo-container-fullscreen .logo-container {
         margin-top: 64px;
         padding-bottom: 1em; } }
+  .logo-container-fullscreen .logo {
+    width: 100%;
+    height: auto; }
+  .logo-container-fullscreen .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center; }
+  .logo-container-fullscreen .main-title {
+    display: inline-flex;
+    font-size: 4vw;
+    font-weight: bold;
+    white-space: nowrap;
+    margin-bottom: 0.5em; }
+  .logo-container-fullscreen .icon-text {
+    display: block;
+    align-items: center;
+    font-size: 2vw;
+    white-space: nowrap;
+    margin-top: 0.5em; }
+  .logo-container-fullscreen .icon-text i {
+    margin-right: 0.5em; }
   .logo-container-fullscreen .logo-container-fullscreen-mask {
     height: 0;
     border-style: solid;

@@ -272,6 +272,17 @@ export default class App extends PureComponent {
               src={require(`./images/logo_2024.png`)}
               alt="iPlayground"
             />
+            <div className="text-overlay">
+              <span className="main-title">iPlayground 2024</span>
+              <span className="icon-text">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {<Trans>location.name</Trans>}
+              </span>
+              <span className="icon-text">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                {<Trans>date</Trans>}
+              </span>
+            </div>
           </div>
         </div>
         <div className="app__container">
