@@ -272,6 +272,17 @@ export default class App extends PureComponent {
               src={require(`./images/logo_2024.png`)}
               alt="iPlayground"
             />
+            <div className="text-overlay">
+              <span className="main-title">iPlayground 2024</span>
+              <span className="icon-text">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {<Trans>location.name</Trans>}
+              </span>
+              <span className="icon-text">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                {<Trans>date</Trans>}
+              </span>
+            </div>
           </div>
         </div>
         <div className="app__container">
@@ -293,15 +304,23 @@ export default class App extends PureComponent {
           <div className="app__section sub_section" id="about-section">
             <div className="section_container">
               <div className="app__title"><span className="app__title_eng">{<Trans>aboutUs.title</Trans>}</span></div>
-              <p>
-                {<Trans>aboutUs.content.firstSentence.one</Trans>} <a href="https://iosdc.jp/2017/" target="_blank">iOSDC</a> {<Trans>aboutUs.content.firstSentence.second</Trans>}
-              </p>
-              <p>
-                {<Trans>aboutUs.content.secondSentence</Trans>}
-              </p>
-              <p>
-                {<Trans>aboutUs.content.thirdSentence</Trans>}
-              </p>
+              <div className="about_content">
+                <p>
+                  {<Trans>aboutUs.content.firstSentence.one</Trans>} <a href="https://iosdc.jp/2017/" target="_blank">iOSDC</a> {<Trans>aboutUs.content.firstSentence.second</Trans>}
+                </p>
+                <p>
+                  {<Trans>aboutUs.content.secondSentence</Trans>}
+                </p>
+                <p>
+                  {<Trans>aboutUs.content.thirdSentence</Trans>}
+                </p>
+                <p>
+                  {<Trans>aboutUs.content.fourthSentence</Trans>}
+                </p>
+                <p>
+                  {<Trans>aboutUs.content.fifthSentence</Trans>}
+                </p>
+              </div>
               {/* 活動照片 */}
               {/* <div className="app__title"><span className="app__title_eng">Photos</span><span>活動照片</span></div> */}
               {this.renderPictures()}
@@ -313,6 +332,7 @@ export default class App extends PureComponent {
             {/* <img className="main_section_logo" src={require("../images/iplayground_logo_diamond.png")} /> */}
             <div className="main_section_container">
               <div className="app__title"><span className="app__title_eng">{<Trans>navTitle.schedule</Trans>}</span></div>
+              <div className="app__date">2024/11/3</div>
               <div className="schedule_container">
                 {(whichDay === "workshop") ? this.renderTable() : this.renderTable()}
               </div>
@@ -359,27 +379,27 @@ export default class App extends PureComponent {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.654896766674!2d121.54879247633677!3d25.079683377786893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ad2f79889a2f%3A0x243e9294d51c3f3a!2z5bem6YSw5Y-z6IiN5aSa5Yqf6IO95rS75YuV56m66ZaT!5e0!3m2!1szh-TW!2stw!4v1726229640688!5m2!1szh-TW!2stw"
                 allowFullScreen
               />
-              {/* <p>
-                {<Trans>venue.tafficTitle</Trans>}
+              <p>
+                {/* {<Trans>venue.tafficTitle</Trans>}
+                <br /><br /> */}
+                {<Trans>venue.MRTTitle</Trans>}
+                <br />
+                {<Trans>venue.MRTContent.firstSentence</Trans>}
+                {/* <br />
+                {<Trans>venue.MRTContent.secondSentence</Trans>} */}
                 <br /><br />
                 {<Trans>venue.busTitle</Trans>}
                 <br />
                 {<Trans>venue.busContent.firstSentence</Trans>}
-                <br />
-                {<Trans>venue.busContent.secondSentence</Trans>}
-                <br /><br />
-                {<Trans>venue.MRTTitle</Trans>}
-                <br />
-                {<Trans>venue.MRTContent.firstSentence</Trans>}
-                <br />
-                {<Trans>venue.MRTContent.secondSentence</Trans>}
+                {/* <br />
+                {<Trans>venue.busContent.secondSentence</Trans>} */}
                 <br /><br />
                 {<Trans>venue.parkingTitle</Trans>}
                 <br />
                 {<Trans>venue.parkingContent.firstSentence</Trans>}
                 <br />
                 {<Trans>venue.parkingContent.secondSentence</Trans>}
-              </p> */}
+              </p>
             </div>
           </div>
 
