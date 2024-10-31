@@ -2,8 +2,8 @@ import React from "react";
 import _ from "lodash";
 import "./styles.css";
 
-export default ({ topic, presenter, presenter2, description, room, tags, isWorkshop, program, onClickTopic, programId }) => {
-  const talk = { topic, presenter, presenter2, description, room, tags, program };
+export default ({ topic, presenter, presenter2, description, room, tags, isWorkshop, program, onClickTopic, programId, vodURL, hackmdURL }) => {
+  const talk = { topic, presenter, presenter2, description, room, tags, program, vodURL, hackmdURL };
   const speaker = presenter.map((value) => {
     return (
       <span className="table-talk__presenter">{value.name}</span>
