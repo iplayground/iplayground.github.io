@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/2024/static/css/main.97662365.css",
-    "main.js": "/2024/static/js/main.2e83d416.js",
+    "main.js": "/2024/static/js/main.947d5d7c.js",
     "static/media/2020.JPG": "/2024/static/media/2020.a3195db1aa84e4116783.JPG",
     "static/media/2019Day2.JPG": "/2024/static/media/2019Day2.e4f0da8a32070e93908e.JPG",
     "static/media/2019Day1.JPG": "/2024/static/media/2019Day1.4397e457e4421afd25d6.JPG",
@@ -15,10 +15,10 @@
     "static/media/logo_swift_girls.png": "/2024/static/media/logo_swift_girls.ecfc7d1f7ff3b85e4a65.png",
     "index.html": "/2024/index.html",
     "main.97662365.css.map": "/2024/static/css/main.97662365.css.map",
-    "main.2e83d416.js.map": "/2024/static/js/main.2e83d416.js.map"
+    "main.947d5d7c.js.map": "/2024/static/js/main.947d5d7c.js.map"
   },
   "entrypoints": [
     "static/css/main.97662365.css",
-    "static/js/main.2e83d416.js"
+    "static/js/main.947d5d7c.js"
   ]
 }

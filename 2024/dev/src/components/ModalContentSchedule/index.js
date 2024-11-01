@@ -59,10 +59,22 @@ export default ({ session, onClickCloseBtn, speakers }) => {
               }
             </div>
           </div>
-        <div className='other_links'>
-            <a href={session.vodURL} target="_blank" className='iconLinks'><i class="fa fa-youtube-play" aria-hidden="true"></i><span style={{ marginLeft: "0.5em" }}>Seminar Video</span></a>
-            <a href={session.hackmdURL} target="_blank" className='iconLinks'><i class="fa fa-file-text" aria-hidden="true"></i><span style={{ marginLeft: "1.4em" }}>HackMD共筆</span></a>
-        </div>
+          {(session.vodURL || session.hackmdURL) && (
+            <div className='other_links'>
+              {session.vodURL && (
+                <a href={session.vodURL} target="_blank" className='iconLinks'>
+                  <i className="fa fa-youtube-play" aria-hidden="true"></i>
+                  <span style={{ marginLeft: "0.5em" }}>Seminar Video</span>
+                </a>
+              )}
+              {session.hackmdURL && (
+                <a href={session.hackmdURL} target="_blank" className='iconLinks'>
+                  <i className="fa fa-file-text" aria-hidden="true"></i>
+                  <span style={{ marginLeft: "1.4em" }}>HackMD共筆</span>
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
