@@ -122,12 +122,30 @@
     flex: 1
   }
 
-  .other_links {
+  .other_links_computer {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     margin-left: auto;
     margin-top: 5em;
+    display: none;
+    @media screen and (min-width: 576px) {
+      display: block;
+    }
+    a {
+      display: block;
+    }
+  }
+
+  .other_links_phone {
+    display: block;
+    a {
+      display: block;
+      text-align: right;
+    }
+    @media screen and (min-width: 576px) {
+      display: none;
+    }
   }
 
   .iconLinks {

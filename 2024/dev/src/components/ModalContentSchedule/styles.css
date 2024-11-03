@@ -94,12 +94,26 @@
       transform: rotate(-45deg); }
   .modal-content-schedule .bottom-content {
     flex: 1; }
-  .modal-content-schedule .other_links {
+  .modal-content-schedule .other_links_computer {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     margin-left: auto;
-    margin-top: 5em; }
+    margin-top: 5em;
+    display: none; }
+    @media screen and (min-width: 576px) {
+      .modal-content-schedule .other_links_computer {
+        display: block; } }
+    .modal-content-schedule .other_links_computer a {
+      display: block; }
+  .modal-content-schedule .other_links_phone {
+    display: block; }
+    .modal-content-schedule .other_links_phone a {
+      display: block;
+      text-align: right; }
+    @media screen and (min-width: 576px) {
+      .modal-content-schedule .other_links_phone {
+        display: none; } }
   .modal-content-schedule .iconLinks {
     color: #000;
     /* 深色模式：白色系 */ }

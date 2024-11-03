@@ -30,6 +30,22 @@ export default ({ session, onClickCloseBtn, speakers }) => {
           }
         </div>
         <p dangerouslySetInnerHTML={{ __html: session.description }}></p>
+        {(session.vodURL || session.hackmdURL) && (
+            <div className='other_links_phone'>
+              {session.vodURL && (
+                <a href={session.vodURL} target="_blank" className='iconLinks'>
+                  <i className="fa fa-youtube-play" aria-hidden="true"></i>
+                  <span style={{ marginLeft: "0.5em" }}>Seminar Video</span>
+                </a>
+              )}
+              {session.hackmdURL && (
+                <a href={session.hackmdURL} target="_blank" className='iconLinks'>
+                  <i className="fa fa-file-text" aria-hidden="true"></i>
+                  <span style={{ marginLeft: "1.4em" }}>HackMD共筆</span>
+                </a>
+              )}
+            </div>
+        )}
         <div style={{ display: 'flex' }}>
           <div className='bottom-content'>
             <div className="modal-content-schedule_subtitle">{<Trans>schedule.speaker.title</Trans>}</div>
@@ -60,7 +76,7 @@ export default ({ session, onClickCloseBtn, speakers }) => {
             </div>
           </div>
           {(session.vodURL || session.hackmdURL) && (
-            <div className='other_links'>
+            <div className='other_links_computer'>
               {session.vodURL && (
                 <a href={session.vodURL} target="_blank" className='iconLinks'>
                   <i className="fa fa-youtube-play" aria-hidden="true"></i>
