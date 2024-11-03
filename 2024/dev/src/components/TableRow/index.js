@@ -9,7 +9,7 @@ export default ({ start, end, rest, talks, isWorkshop, programs, onClickTopic })
 
   //state = { programs: []};
 
-  const renderTalks = _.map(talks, ({ id, topic, presenter, presenter2, description, room, tags, programId }) => {
+  const renderTalks = _.map(talks, ({ id, topic, presenter, presenter2, description, room, tags, programId, vodURL, hackmdURL }) => {
     // console.log(presenter)
     const program = programs ? programs.find(function (element) {
       return element.id === programId;
@@ -37,6 +37,8 @@ export default ({ start, end, rest, talks, isWorkshop, programs, onClickTopic })
         isWorkshop={isWorkshop}
         programId={programId}
         onClickTopic={onClickTopic}
+        vodURL={vodURL}
+        hackmdURL={hackmdURL}
       />)
   });
   // console.log(Array.isArray(renderTalks))

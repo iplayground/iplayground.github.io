@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/2024/static/css/main.68791f0e.css",
-    "main.js": "/2024/static/js/main.51b03fac.js",
+    "main.css": "/2024/static/css/main.810e3cf2.css",
+    "main.js": "/2024/static/js/main.1d26d0e8.js",
     "static/media/2020.JPG": "/2024/static/media/2020.a3195db1aa84e4116783.JPG",
     "static/media/2019Day2.JPG": "/2024/static/media/2019Day2.e4f0da8a32070e93908e.JPG",
     "static/media/2019Day1.JPG": "/2024/static/media/2019Day1.4397e457e4421afd25d6.JPG",
@@ -14,11 +14,11 @@
     "static/media/logo_twdc.png": "/2024/static/media/logo_twdc.f143b82d82867fa7c378.png",
     "static/media/logo_swift_girls.png": "/2024/static/media/logo_swift_girls.ecfc7d1f7ff3b85e4a65.png",
     "index.html": "/2024/index.html",
-    "main.68791f0e.css.map": "/2024/static/css/main.68791f0e.css.map",
-    "main.51b03fac.js.map": "/2024/static/js/main.51b03fac.js.map"
+    "main.810e3cf2.css.map": "/2024/static/css/main.810e3cf2.css.map",
+    "main.1d26d0e8.js.map": "/2024/static/js/main.1d26d0e8.js.map"
   },
   "entrypoints": [
-    "static/css/main.68791f0e.css",
-    "static/js/main.51b03fac.js"
+    "static/css/main.810e3cf2.css",
+    "static/js/main.1d26d0e8.js"
   ]
 }
