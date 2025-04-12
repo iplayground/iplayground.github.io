@@ -35,6 +35,72 @@
   object-fit: cover;  
 }
 
+.lang-toggle-wrapper {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  color: black;
+  border-radius: 30px;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.lang-toggle-wrapper span {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.lang-toggle-wrapper .active-lang {
+  opacity: 1;
+}
+
+.lang-switch {
+  position: relative;
+  width: 40px;
+  height: 20px;
+}
+
+.lang-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.lang-slider {
+  position: absolute;
+  inset: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.lang-slider::before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: black;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.lang-switch input:checked + .lang-slider {
+  background-color: #999;
+}
+
+.lang-switch input:checked + .lang-slider::before {
+  transform: translateX(20px);
+}
+
 .App-small-logo {
   position: absolute;
   top: 20px;
