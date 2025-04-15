@@ -1,7 +1,13 @@
 {
-    "englishLanguageName": "English",
-    "chineseLanguageName": "Traditional Chinese",
-    "mainTitle": "iPlayground 2025 is coming soon",
-    "becomeASonsorLink": "Become a Sponsor",
-    "becomeASpeakerLink": "Become a Speaker"
+    "lang": {
+    "zh": "Traditional Chinese",
+    "en": "English",
+    "ja": "Japanese",
+    "placeholder": "Select language"
+    },
+    "mainTitle": "iPlayground 2025 is coming this summer",
+    "becomeASonsorTitle": "Join us as a Sponsor",
+    "becomeASonsorLink": "https://bit.ly/iPlayground-2025-Sponsorship-Proposal",
+    "becomeASpeakerTitle": "Become a Speaker",
+    "becomeASpeakerLink": "https://forms.gle/s4L4asPupXday4ow9"
 }

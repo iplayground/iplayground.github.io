@@ -1,5 +1,6 @@
 import en from "./language/en-US.json"
 import tw from "./language/zh-TW.json"
+import jp from "./language/ja-JP.json"
 
 const resources = {
   en: {
@@ -7,6 +8,9 @@ const resources = {
   },
   tw: {
     translation: tw,
+  },
+  jp: {
+    translation: jp,
   },
 };
 

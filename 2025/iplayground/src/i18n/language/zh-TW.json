@@ -1,7 +1,13 @@
 {
-    "englishLanguageName": "英文",
-    "chineseLanguageName": "繁體中文",
-    "mainTitle": "iPlayground 2025 即將來到",
-    "becomeASonsorLink": "成為贊助者",
-    "becomeASpeakerLink": "成為講者"
+    "lang": {
+    "zh": "繁體中文",
+    "en": "英文",
+    "ja": "日文",
+    "placeholder": "選擇語言"
+    },
+    "mainTitle": "iPlayground 2025 將在夏季來臨",
+    "becomeASonsorTitle": "成為我們的贊助者",
+    "becomeASonsorLink": "https://bit.ly/iPlayground-2025-%E8%B4%8A%E5%8A%A9%E4%BC%81%E5%8A%83%E6%9B%B8",
+    "becomeASpeakerTitle": "成為講者",
+    "becomeASpeakerLink": "https://forms.gle/YYD7jrEpGzNXXF2P7"
 }
