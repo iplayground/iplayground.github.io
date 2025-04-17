@@ -1,4 +1,5 @@
 import logo_2024 from './assets/logo_2024.png';
+import background_2025 from './assets/background_2025.png';
 import logo_small from './assets/logo_small.png';
 import './App.css';
 import { Trans, useTranslation } from "react-i18next";
@@ -17,15 +18,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo_2024} alt="background" className="App-background" />
+        <img src={background_2025} alt="background" className="App-background" />
+        <div>
+          <LanguageSelector/>
+          <img src={logo_small} alt="logo_small" className="App-small-logo" />
+        </div>
 
-        <LanguageSelector/>
-
-        <img src={logo_small} alt="logo_small" className="App-small-logo" />
-
-        <p>
-          <span className="main-title">{<Trans>mainTitle</Trans>}</span>
-        </p>
+        <h1 className="main-title">
+         {<Trans>mainTitle</Trans>}
+        </h1>
+        
         <a
           className="App-link"
           href={t('becomeASonsorLink')}

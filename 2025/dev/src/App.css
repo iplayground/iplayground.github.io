@@ -28,11 +28,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;        
-  height: auto;       
-  min-height: 100%;   
-  z-index: -1;        
-  object-fit: cover;  
+  width: 100vw;      /* 滿版寬度 */
+  height: 100vh;     /* 滿版高度 */
+  object-fit: contain;  /* 完整顯示圖片，可能會留空白 */
+  z-index: -1;
+  background-color: rgba(8, 14, 38); /* 背景顏色 */
 }
 
 .App-small-logo {
@@ -43,18 +43,34 @@
   height: auto;
 }
 
-.App-link {
-  color: #61dafb;
-  margin: 2rem 0;
-  font-size: 2vw;
-}
-
 .main-title {
-  display: inline-flex;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 4vw;
   font-weight: bold;
   white-space: nowrap;
-  margin-bottom: 0.5em; 
+  z-index: 1;
+}
+
+.App-link {
+  display: inline-block;
+  background-color: #00aaff;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 2vw;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  margin: 2rem 0;
+}
+
+.App-link:hover {
+  background-color: #008ecc;
+  transform: translateY(-2px);
 }
 
 .App-footer {
