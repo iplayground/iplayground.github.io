@@ -7,20 +7,14 @@ import './i18n/i18n';
 import LanguageSelector from './LanguageSelector';
 
 function App() {
-  const { i18n, t } = useTranslation();
-  const isEnglish = i18n.language === 'en';
-
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'tw' : 'en';
-    i18n.changeLanguage(newLang);
-  };
+  const { t } = useTranslation();
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={background_2025} alt="background" className="App-background" />
         <div>
-          <LanguageSelector/>
+          <LanguageSelector />
           <img src={logo_small} alt="logo_small" className="App-small-logo" />
         </div>
 

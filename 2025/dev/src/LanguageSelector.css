@@ -3,18 +3,25 @@
     top: 20px;
     right: 20px;
     z-index: 999;
+    width: 100%;
+    max-width: 240px;
   }
   
   /* 覆蓋 react-flags-select 預設樣式 */
   .custom-flags-select .ReactFlagsSelect-module_selectBtn__19wW7 {
-    background-color: #f0f0f0;     /* 淺灰色背景 */
-    color: #000000;                /* 黑色文字 */
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: #f0f0f0;     
+    color: #000000;                
     border: none;
     border-radius: 6px;
-    padding: 8px 12px;
+    padding: 8px;
     font-weight: 500;
     font-size: 14px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    text-align: left;
   }
   
   /* 下拉選單 */
@@ -28,3 +35,21 @@
   .custom-flags-select .ReactFlagsSelect-module_option__3cGxH:hover {
     background-color: #e8e8e8;
   }
+
+  /* RWD：小於 768px 螢幕時縮小 */
+@media (max-width: 768px) {
+  .language-selector-wrapper {
+    max-width: 100%;
+    width: fit-content;
+  }
+
+  .custom-flags-select .ReactFlagsSelect-module_selectBtn__19wW7 {
+    font-size: 12px;
+    width: fit-content;
+    padding: 2px 3px;
+  }
+
+  .custom-flags-select .ReactFlagsSelect-module_selectOptions__3LNBJ {
+    font-size: 12px;       
+  }
+}

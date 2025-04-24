@@ -32,7 +32,7 @@
   height: 100vh;     /* 滿版高度 */
   object-fit: contain;  /* 完整顯示圖片，可能會留空白 */
   z-index: -1;
-  background-color: rgba(8, 14, 38); /* 背景顏色 */
+  background-color: rgba(8, 14, 38);
 }
 
 .App-small-logo {
