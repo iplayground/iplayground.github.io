@@ -48,9 +48,8 @@
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 4vw;
+  font-size: 3vw;
   font-weight: bold;
-  white-space: nowrap;
   z-index: 1;
 }
 
@@ -71,7 +70,7 @@
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  margin: 2rem 0;
+  margin: 2rem;
 }
 
 @media (max-width: 768px) {
