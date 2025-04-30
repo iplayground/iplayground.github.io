@@ -53,11 +53,32 @@
   z-index: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
   .main-title  {
     font-size: 18px;
   }
 }
+
+.main-title-container {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* ✅ 圖片與文字的間距 */
+  flex-wrap: wrap; 
+  justify-content: center;
+}
+
+.main-title-image {
+  margin-top: 36px;
+  height: auto;
+  max-height: 48px;
+  width: auto;
+}
+
+/* @media (max-width: 480px) {
+  .main-title-image  {
+    max-height: 32px;
+  }
+} */
 
 .App-link {
   display: inline-block;
@@ -73,10 +94,11 @@
   margin: 2rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
   .App-link {
     font-size: 18px;
     padding: 10px 18px;
+    margin: 1rem;
   }
 }
 
