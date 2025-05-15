@@ -28,9 +28,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;      /* 滿版寬度 */
-  height: 100vh;     /* 滿版高度 */
-  object-fit: contain;  /* 完整顯示圖片，可能會留空白 */
+  right: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
   background-color: rgba(8, 14, 38);
 }
@@ -43,68 +43,71 @@
   height: auto;
 }
 
-.main-title {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3vw;
-  font-weight: bold;
-  z-index: 1;
+.App-main {
+  background-color: #010006;
 }
 
-@media (max-width: 720px) {
-  .main-title  {
-    font-size: 18px;
-  }
-}
-
-.main-title-container {
+.navigation-wrapper {
   display: flex;
   align-items: center;
-  gap: 12px; /* ✅ 圖片與文字的間距 */
-  flex-wrap: wrap; 
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 16px;
 }
 
-.main-title-image {
-  margin-top: 36px;
-  height: auto;
-  max-height: 48px;
-  width: auto;
+.navigation-buttons {
+  position: absolute;
+    top: 25px;
+    right: 200px;
+  display: flex;
+  gap: 12px;
 }
 
-/* @media (max-width: 480px) {
-  .main-title-image  {
-    max-height: 32px;
-  }
-} */
-
-.App-link {
-  display: inline-block;
-  background-color: #00aaff;
+.navigation-buttons button {
+  background-color: transparent;
+  border: none;
   color: white;
-  padding: 16px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 36px;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  margin: 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navigation-buttons button:hover {
+  color: rgba(255, 255, 255, 0.2);;
+}
+
+.title {
+  font-size: 110px;
+  font-weight: 700;
+  margin-bottom: 100px;
+  line-height: 1.2;
+}
+
+.location {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center; 
+  gap: 8px;
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.datetime {
+  font-size: 40px;
+  color: #ffffff;
 }
 
 @media (max-width: 720px) {
-  .App-link {
-    font-size: 18px;
-    padding: 10px 18px;
-    margin: 1rem;
+  .title {
+    font-size: 55px;       
+    margin-bottom: 50px;
   }
-}
 
-.App-link:hover {
-  background-color: #008ecc;
-  transform: translateY(-2px);
+  .location,
+  .datetime {
+    font-size: 20px;
+  }
 }
 
 .App-footer {

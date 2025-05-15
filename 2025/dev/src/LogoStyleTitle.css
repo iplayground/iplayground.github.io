@@ -1,0 +1,25 @@
+.decorated-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 40px auto;
+    color: white;
+    flex-wrap: wrap;
+  }
+  
+  .heading-icons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .heading-icons img {
+    width: 62px;
+    height: 20px;
+  }
+  
+  .heading-text {
+    font-size: 36px;
+    font-weight: 700;
+    white-space: nowrap;
+  }

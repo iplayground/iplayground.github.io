@@ -1,27 +1,28 @@
 .language-selector-wrapper {
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 5px;
     z-index: 999;
     width: 100%;
-    max-width: 240px;
+    max-width: 150px;
   }
   
   /* 覆蓋 react-flags-select 預設樣式 */
   .custom-flags-select .ReactFlagsSelect-module_selectBtn__19wW7 {
-    width: 100%;
+    width: fit-content;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     background-color: #f0f0f0;     
     color: #000000;                
-    border: none;
-    border-radius: 6px;
-    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 999px;
+    padding: 6px 16px;
     font-weight: 500;
     font-size: 14px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    text-align: left;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
   }
   
   /* 下拉選單 */
@@ -36,7 +37,12 @@
     background-color: #e8e8e8;
   }
 
-  /* RWD：小於 768px 螢幕時縮小 */
+  /* 取消下拉箭頭 */
+.custom-flags-select .ReactFlagsSelect-module_selectBtn__19wW7::after {
+  display: none !important;
+  content: none;
+}
+
 @media (max-width: 768px) {
   .language-selector-wrapper {
     max-width: 100%;

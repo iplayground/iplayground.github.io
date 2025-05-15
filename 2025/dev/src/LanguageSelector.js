@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactFlagsSelect from 'react-flags-select';
 import { useTranslation } from 'react-i18next';
-import './LanguageSelector.css'; // 新增樣式檔
+import './LanguageSelector.css';
 
 const LanguageSelector = () => {
   const { i18n, t } = useTranslation();
@@ -25,7 +25,7 @@ const LanguageSelector = () => {
         onSelect={handleSelect}
         countries={['TW', 'US', 'JP']}
         customLabels={customLabels}
-        placeholder={`🌐 ${t('lang.placeholder')}`}
+        placeholder={`${t('lang.placeholder')}`}
         className="custom-flags-select"
       />
     </div>

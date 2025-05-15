@@ -1,14 +1,17 @@
 {
     "lang": {
-    "zh": "Traditional Chinese",
-    "en": "English",
-    "ja": "Japanese",
-    "placeholder": "Select language"
+        "zh": "Traditional Chinese",
+        "en": "English",
+        "ja": "Japanese",
+        "placeholder": "Language"
     },
     "appleInviesImage": "appleInvites_enUS.png",
-    "mainTitle": "iPlayground 2025｜August 30-31｜CPBAE, National Chengchi University (NCCU)",
-    "becomeASonsorTitle": "Join us as a Sponsor",
-    "becomeASonsorLink": "https://bit.ly/iPlayground-2025-Sponsorship-Proposal",
-    "becomeASpeakerTitle": "Become a Speaker",
-    "becomeASpeakerLink": "https://forms.gle/s4L4asPupXday4ow9"
+    "mainTitle": "iPlayground",
+    "addressTitle": "CPBAE, National Chengchi University (NCCU)",
+    "about": {
+        "title": "About"
+    },
+    "staff": {
+        "title": "Staff"
+    }
 }

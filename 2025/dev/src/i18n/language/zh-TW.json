@@ -6,9 +6,12 @@
     "placeholder": "選擇語言"
     },
     "appleInviesImage": "appleInvites_zhTW.png",
-    "mainTitle": "iPlayground 2025｜8/30-8/31｜政大公企中心",
-    "becomeASonsorTitle": "成為我們的贊助者",
-    "becomeASonsorLink": "https://bit.ly/iPlayground-2025-%E8%B4%8A%E5%8A%A9%E4%BC%81%E5%8A%83%E6%9B%B8",
-    "becomeASpeakerTitle": "成為講者",
-    "becomeASpeakerLink": "https://forms.gle/YYD7jrEpGzNXXF2P7"
+    "mainTitle": "iPlayground 2025",
+    "addressTitle": "政大公企中心",
+    "about": {
+        "title": "關於活動"
+    },
+    "staff": {
+        "title": "工作人員"
+    }
 }

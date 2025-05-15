@@ -1,0 +1,11 @@
+.section {
+    position: relative;
+    background-image: url('./assets/background_about.png'); /* 使用背景圖片 */
+    background-size: cover; /* 確保圖片覆蓋整個區域 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 防止圖片重複 */
+    height: 100vh;
+    padding: 4rem 2rem; /* 區段內邊距 */
+    text-align: center; /* 文字置中 */
+    color: black; /* 確保文字顏色清晰 */
+}

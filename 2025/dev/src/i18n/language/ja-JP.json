@@ -6,9 +6,12 @@
     "placeholder": "言語を選択"
     },
     "appleInviesImage": "appleInvites_jaJP.png",
-    "mainTitle": "iPlayground 2025｜8月30日〜31日｜国立政治大学 CPBAE にて開催",
-    "becomeASonsorTitle": "スポンサーとして参加する",
-    "becomeASonsorLink": "https://bit.ly/iPlayground-2025-Sponsorship-Proposal",
-    "becomeASpeakerTitle": "スピーカーとして登壇する",
-    "becomeASpeakerLink": "https://forms.gle/s4L4asPupXday4ow9"
+    "mainTitle": "iPlayground 2025",
+    "addressTitle": "国立政治大学 CPBAE",
+    "about": {
+        "title": "About"
+    },
+    "staff": {
+        "title": "Staff"
+    }
 }
