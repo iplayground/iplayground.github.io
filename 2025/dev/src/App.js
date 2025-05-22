@@ -6,6 +6,7 @@ import './i18n/i18n';
 import LanguageSelector from './LanguageSelector';
 import About from "./About";
 import Staff from "./Staff";
+import Location from "./Location";
 
 function App() {
   const { t } = useTranslation();
@@ -38,6 +39,7 @@ function App() {
       <main className='App-main'>
         <About />
         <Staff />
+        <Location />
       </main>
       <footer className="App-footer">
         iPlayground 2025 is organized by Taipei Elite Software Developer Association (77212283). All rights reserved.

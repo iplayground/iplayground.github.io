@@ -9,7 +9,10 @@
     "mainTitle": "iPlayground",
     "addressTitle": "CPBAE, National Chengchi University (NCCU)",
     "about": {
-        "title": "About"
+        "title": "About",
+        "section1": "Starting around 2010, app development really took off, and we started seeing more app-related talks at different conferences — but most of them were pretty basic.<br>As people gained more experience, a group of devs realized those beginner topics just didn’t cut it anymore. They looked overseas and got blown away by how deep and broad those international events were. That’s when the idea hit: Taiwan needed a stage like that too! So in 2018, <strong>iPlayground</strong> kicked off for the first time.",
+        "section2": "Since then, <strong>iPlayground</strong> hasn’t been your average conference. Over the years, we’ve tried all kinds of formats — two-day events, one-day sessions, workshops, company-focused tracks, and even career advice rooms. We’ve had speakers from local stars to international pros, covering everything from development and testing to management, beginner tips, industry insights, and of course, those juicy insider stories and survival hacks. Every year feels like a new adventure.",
+        "section3": "Now in 2025, <strong>iPlayground</strong> is back with seven years of experience packed in, rocking a brand new look! It’s not just a conference anymore — it’s a full-on carnival for tech lovers. You’ll find the same great energy, plus fresh, exciting projects you’ve never seen before."
     },
     "staff": {
         "title": "Staff"

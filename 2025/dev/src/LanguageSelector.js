@@ -5,10 +5,10 @@ import './LanguageSelector.css';
 
 const LanguageSelector = () => {
   const { i18n, t } = useTranslation();
-  const [selected, setSelected] = useState(i18n.language.toUpperCase());
+  const [selected, setSelected] = useState('FIXED');
 
   const handleSelect = (code) => {
-    setSelected(code);
+    setSelected('FIXED');
     i18n.changeLanguage(code.toLowerCase());
   };
 
@@ -25,7 +25,7 @@ const LanguageSelector = () => {
         onSelect={handleSelect}
         countries={['TW', 'US', 'JP']}
         customLabels={customLabels}
-        placeholder={`${t('lang.placeholder')}`}
+        placeholder={t('lang.placeholder')}
         className="custom-flags-select"
       />
     </div>
