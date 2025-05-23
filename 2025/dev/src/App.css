@@ -54,27 +54,6 @@
   gap: 16px;
 }
 
-.navigation-buttons {
-  position: absolute;
-    top: 25px;
-    right: 200px;
-  display: flex;
-  gap: 12px;
-}
-
-.navigation-buttons button {
-  background-color: transparent;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.navigation-buttons button:hover {
-  color: rgba(255, 255, 255, 0.2);;
-}
-
 .title {
   font-size: 110px;
   font-weight: 700;

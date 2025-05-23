@@ -3,10 +3,10 @@ import logo_small from './assets/logo_small.png';
 import './App.css';
 import { Trans, useTranslation } from "react-i18next";
 import './i18n/i18n';
-import LanguageSelector from './LanguageSelector';
 import About from "./About";
 import Staff from "./Staff";
 import Location from "./Location";
+import ResponsiveNavMenu from './ResponsiveNavMenu';
 
 function App() {
   const { t } = useTranslation();
@@ -23,11 +23,7 @@ function App() {
       <header className="App-header">
         <img src={background_2025} alt="background" className="App-background" />
         <div className="navigation-wrapper">
-          <div className="navigation-buttons">
-            <button onClick={() => scrollToSection("about")}>{t("about.title")}</button>
-            <button onClick={() => scrollToSection("staff")}>{t("staff.title")}</button>
-          </div>
-          <LanguageSelector />
+          <ResponsiveNavMenu scrollToSection={scrollToSection} />
         </div>
         <img src={logo_small} alt="logo_small" className="App-small-logo" />
         <h1 className="title">iPlayground<br />2025</h1>
