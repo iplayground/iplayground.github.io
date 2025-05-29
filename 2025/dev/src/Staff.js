@@ -3,13 +3,17 @@ import "./Staff.css";
 import { useTranslation } from "react-i18next";
 import LogoStyleTitle from "./LogoStyleTitle";
 import logo_icon from "./logo.png";
+import logoStyle_title from './assets/logoStyle_title.png';
 
 const StaffCard = ({ name, title, photo, url }) => {
   const photoSrc = photo && photo.trim() !== "" ? photo : logo_icon;
     const CardInner = (
       <div className="staff-card">
         <div className="card-top">
-          <img className="card-photo" src={photoSrc} alt={name} />
+          <div className="card-photo-wrapper">
+            <img className="card-photo" src={photoSrc} alt={name} />
+            <img className="corner-logo" src={logoStyle_title} alt="corner logo" />
+          </div>
         </div>
         <div className="card-info">
           <h4>{name}</h4>
