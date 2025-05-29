@@ -1,14 +1,17 @@
 import LogoStyleTitle from "./LogoStyleTitle";
 import './Location.css';
+import { Trans, useTranslation } from "react-i18next";
 
 const LocationSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="location-section">
-      <LogoStyleTitle className="logo-title" text="活動地點" />
+      <LogoStyleTitle className="logo-title" text={t("location.title")} />
 
       <div className="location-text">
-        <h3>政大公企中心</h3>
-        <p>106 台北市大安區金華街 187 號</p>
+        <h3><Trans>addressTitle</Trans></h3>
+        <p><Trans>location.address</Trans></p>
       </div>
 
       <div className="map-container">
