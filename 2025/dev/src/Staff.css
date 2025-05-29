@@ -1,7 +1,78 @@
 .section-staff {
     position: relative;
     background-color: black;
-    height: 100vh;
+    height: 180vh;
     text-align: center;
     color: black;
 }
+
+.staffs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 20vw); /* 明確指定每欄寬 */
+    gap: 24px;
+    justify-content: center; /* 中間對齊 */
+    padding: 24px 0;
+  }
+  
+  .staff-card {
+    background: #262138;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .card-photo {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 3 / 4;
+  }
+  
+  .card-info {
+    background-color: #262138;
+    color: #fff;
+    padding: 16px;
+    text-align: left;
+    margin-top: -4px;
+  }
+  
+  .card-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  
+  .card-info p {
+    margin: 4px 0 0;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+
+  .card-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s ease;
+  }
+  
+  .card-link-wrapper:hover .staff-card {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 720px) {
+    .section-staff {
+        height: 450vh;
+    }
+
+    .staffs-grid {
+      grid-template-columns: repeat(2, 1fr); /* 兩欄 */
+      padding: 0 16px;
+    }
+
+    .staff-card {
+        width: 90%;
+        max-width: none;
+        margin: 0 auto; /* ✅ 保證置中 */
+      }
+  }
