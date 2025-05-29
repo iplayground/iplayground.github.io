@@ -7,6 +7,8 @@ import About from "./About";
 import Staff from "./Staff";
 import Location from "./Location";
 import ResponsiveNavMenu from './ResponsiveNavMenu';
+import { FaEnvelope, FaFacebook, FaDiscord, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { SlSocialFacebook } from "react-icons/sl";
 
 function App() {
   const { t } = useTranslation();
@@ -47,7 +49,29 @@ function App() {
         ></iframe>
       </div>
       <footer className="App-footer">
+        <img src={logo_small} alt="logo_small" className="footer-logo" />
+
+        <div className="footer-icons">
+          <a href="mailto:support@iplayground.io" target="_blank" rel="noopener noreferrer">
+            <FaEnvelope />
+          </a>
+          <a href="https://www.facebook.com/theiPlayground/" target="_blank" rel="noopener noreferrer">
+            <SlSocialFacebook />
+          </a>
+          <a href="https://discord.gg/xS8yMKbbjB" target="_blank" rel="noopener noreferrer">
+            <FaDiscord />
+          </a>
+          <a href="https://twitter.com/theiPlayground" target="_blank" rel="noopener noreferrer">
+            <FaXTwitter />
+          </a>
+          <a href="https://youtube.com/@iplaygroundtaiwan" target="_blank" rel="noopener noreferrer">
+            <FaYoutube />
+          </a>
+        </div>
+
+        <div className="footer-copy">
         iPlayground 2025 is organized by Taipei Elite Software Developer Association (77212283). All rights reserved.
+        </div>
       </footer>
     </div>
   );

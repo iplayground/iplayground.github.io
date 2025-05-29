@@ -47,7 +47,17 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
                 <button onClick={() => scrollToSection("about")}>{t("about.title")}</button>
                 <button onClick={() => scrollToSection("staff")}>{t("staff.title")}</button>
             </div>
+            <div>
+              <a
+                href="https://iplayground.kktix.cc/events/2025general"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="join-link-button"
+              >
+                {t("join")}
+              </a>
             <LanguageSelector />
+            </div>
         </div>
         <div className="nav-mobile">
         <button
@@ -60,6 +70,12 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
             <div className="mobile-menu-links">
               <button onClick={() => handleClick("about")}>{t("about.title")}</button>
               <button onClick={() => handleClick("staff")}>{t("staff.title")}</button>
+              <a
+                href="https://iplayground.kktix.cc/events/2025general"
+                target="_blank"
+              >
+                {t("join")}
+              </a>
             </div>
             <div className="mobile-language-select">
               <button onClick={() => changeLanguage("tw")}>🇹🇼 {t('lang.zh')}</button>

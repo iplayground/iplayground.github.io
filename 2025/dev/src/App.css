@@ -100,7 +100,45 @@
   padding: 1rem;
   font-size: 0.875rem;
   color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: #191919;
+}
+
+.footer {
+  background-color: #111;
+  color: #ddd;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.footer-logo {
+  width: 160px;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.footer-icons a {
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.footer-icons a:hover {
+  transform: scale(1.15);
+  color: #ccc;
+}
+
+.footer-copy {
+  font-size: 14px;
+  color: #fff;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
 @keyframes App-logo-spin {

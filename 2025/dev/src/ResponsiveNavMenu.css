@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
+
 .nav-container {
   display: flex;
   align-items: center;
@@ -16,7 +18,7 @@
 .navigation-buttons {
     position: absolute;
       top: 25px;
-      right: 200px;
+      right: 300px;
     display: flex;
     gap: 12px;
   }
@@ -33,6 +35,36 @@
   .navigation-buttons button:hover {
     color: rgba(255, 255, 255, 0.2);;
   }
+
+  .join-link-button {
+    position: absolute;
+    top: 20px;
+    right: 180px;
+    width: fit-content;
+    height: 30px;
+    z-index: 999;
+    text-decoration: none;
+    width: fit-content;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: #f0f0f0;     
+    color: #222;                
+    border: 1px solid #ccc;
+    border-radius: 999px;
+    padding: 8px 20px 6px 20px;
+    font-family: 'Poppins', 'Montserrat', 'Segoe UI', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+  }
+
+.join-link-button:hover {
+  background-color: #e5e5e5;
+  transform: scale(1.03);
+}
 
 .mobile-fullscreen-menu {
     position: fixed;
@@ -57,14 +89,15 @@
     align-items: center;
   }
   
-  .mobile-menu-links button {
+  .mobile-menu-links button, a {
     background: none;
     border: none;
     font-size: 18px;
     color: #111;
     font-weight: 500;
     cursor: pointer;
-    padding: 8px 12px;
+    padding: 4px 6px;
+    text-decoration: none;
   }
   
   /* 下半：語言切換 */
