@@ -1,24 +1,22 @@
 {
   "files": {
-    "main.css": "/2025/static/css/main.16d055de.css",
-    "main.js": "/2025/static/js/main.21fbff95.js",
+    "main.css": "/2025/static/css/main.9bb0c779.css",
+    "main.js": "/2025/static/js/main.cce91e4c.js",
     "static/js/453.b8e3504e.chunk.js": "/2025/static/js/453.b8e3504e.chunk.js",
-    "static/media/background_2025.png": "/2025/static/media/background_2025.145afde969f3544cb527.png",
-    "static/media/logo_2024.png": "/2025/static/media/logo_2024.b70402ac4f807a735eed.png",
-    "static/media/appleInvites_enUS.jpg": "/2025/static/media/appleInvites_enUS.73d0c6da88f50810e984.jpg",
+    "static/media/background_about.png": "/2025/static/media/background_about.ad05bc995bb16f63decf.png",
+    "static/media/background_2025.png": "/2025/static/media/background_2025.229c83bcfcde399525cd.png",
+    "static/media/2020.JPG": "/2025/static/media/2020.a3195db1aa84e4116783.JPG",
+    "static/media/2019Day2.JPG": "/2025/static/media/2019Day2.e4f0da8a32070e93908e.JPG",
+    "static/media/2019Day1.JPG": "/2025/static/media/2019Day1.4397e457e4421afd25d6.JPG",
     "static/media/logo_small.png": "/2025/static/media/logo_small.0172a4e978012ad736ee.png",
-    "static/media/appleInvites_jaJP.jpg": "/2025/static/media/appleInvites_jaJP.7ed1edfe6b1a429be3dc.jpg",
-    "static/media/appleInvites_zhTW.jpg": "/2025/static/media/appleInvites_zhTW.141947f4ea498cb9e799.jpg",
-    "static/media/appleInvites_jaJP.png": "/2025/static/media/appleInvites_jaJP.3bd6a01942aede9761f5.png",
-    "static/media/appleInvites_enUS.png": "/2025/static/media/appleInvites_enUS.07e4222ecb6d071bdfad.png",
-    "static/media/appleInvites_zhTW.png": "/2025/static/media/appleInvites_zhTW.7e3d88afa727868f5a8d.png",
+    "static/media/logo.png": "/2025/static/media/logo.0a89d7565ae5eea5d73e.png",
     "index.html": "/2025/index.html",
-    "main.16d055de.css.map": "/2025/static/css/main.16d055de.css.map",
-    "main.21fbff95.js.map": "/2025/static/js/main.21fbff95.js.map",
+    "main.9bb0c779.css.map": "/2025/static/css/main.9bb0c779.css.map",
+    "main.cce91e4c.js.map": "/2025/static/js/main.cce91e4c.js.map",
     "453.b8e3504e.chunk.js.map": "/2025/static/js/453.b8e3504e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.16d055de.css",
-    "static/js/main.21fbff95.js"
+    "static/css/main.9bb0c779.css",
+    "static/js/main.cce91e4c.js"
   ]
 }
