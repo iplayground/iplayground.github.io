@@ -77,6 +77,12 @@
   color: #ffffff;
 }
 
+.substack-embed-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 12px;
+}
+
 @media (max-width: 720px) {
   .title {
     font-size: 55px;       

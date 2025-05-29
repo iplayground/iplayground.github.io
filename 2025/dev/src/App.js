@@ -37,6 +37,15 @@ function App() {
         <Staff />
         <Location />
       </main>
+      <div className="substack-embed-wrapper">
+        <iframe
+          src="https://iplayground.substack.com/embed"
+          width="100%"
+          height="400"
+          style={{ border: "1px solid #ccc", borderRadius: "8px", background: "white" }}
+          title="Substack Subscribe"
+        ></iframe>
+      </div>
       <footer className="App-footer">
         iPlayground 2025 is organized by Taipei Elite Software Developer Association (77212283). All rights reserved.
       </footer>

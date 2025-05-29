@@ -8,7 +8,6 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; 
-    height: 100vh;
     padding: 4rem 2rem; 
     text-align: center; 
     color: black;
@@ -54,10 +53,6 @@
   }
   
   @media (max-width: 720px) {
-    .section {
-        height: 360vh;
-      }
-
     .intro-images {
       flex-direction: column;
     }

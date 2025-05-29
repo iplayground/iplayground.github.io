@@ -1,9 +1,9 @@
 .section-staff {
     position: relative;
     background-color: black;
-    height: 180vh;
     text-align: center;
     color: black;
+    margin-bottom: 15rem;
 }
 
 .staffs-grid {
@@ -62,7 +62,7 @@
 
   @media (max-width: 720px) {
     .section-staff {
-        height: 450vh;
+      margin-bottom: 10rem;
     }
 
     .staffs-grid {
