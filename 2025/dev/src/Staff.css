@@ -4,15 +4,17 @@
     text-align: center;
     color: black;
     margin-bottom: 15rem;
+    padding: 0;
 }
 
 .staffs-grid {
     display: grid;
-    grid-template-columns: repeat(4, 16vw); /* 明確指定每欄寬 */
-    /* max-width: 1200px; */
+    grid-template-columns: repeat(4, 1fr); /* 明確指定每欄寬 */
+    max-width: 1200px;
+    width: 100%;
     gap: 24px;
-    justify-content: center;
     padding: 24px 0;
+    margin: 0 auto; /* 保證置中 */
   }
   
   .staff-card {
@@ -77,21 +79,28 @@
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   }
 
+  @media (max-width: 1280px) {
+    .section-staff {
+      margin-left: 48px;
+      margin-right: 48px;
+    }
+  }
+
   @media (max-width: 720px) {
     .section-staff {
       margin-bottom: 10rem;
+      margin: 20px;
     }
 
     .staffs-grid {
-      grid-template-columns: repeat(2, 1fr); /* 兩欄 */
-      padding: 0 16px;
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .staff-card {
-        width: 90%;
-        max-width: none;
-        margin: 0 auto; /* ✅ 保證置中 */
-      }
+      /* width: 90%; */
+      max-width: none;
+      margin: 0 auto;
+    }
     
     .corner-logo {
       top: 0.5rem;
