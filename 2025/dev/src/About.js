@@ -14,6 +14,7 @@ const About = () => {
       <LogoStyleTitle text={t("about.title")} />
       <section className="intro-wrapper">
         <div className="intro-content">
+          <div className="intro-text">
             <p>
             <Trans>about.section1</Trans>
             </p>
@@ -23,6 +24,7 @@ const About = () => {
             <p>
             <Trans>about.section3</Trans>
             </p>
+          </div>
             <div className="intro-images">
             <img src={img1} alt="現場照片1" />
             <img src={img2} alt="識別證照片" />

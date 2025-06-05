@@ -8,9 +8,10 @@
 
 .staffs-grid {
     display: grid;
-    grid-template-columns: repeat(4, 20vw); /* 明確指定每欄寬 */
+    grid-template-columns: repeat(4, 16vw); /* 明確指定每欄寬 */
+    /* max-width: 1200px; */
     gap: 24px;
-    justify-content: center; /* 中間對齊 */
+    justify-content: center;
     padding: 24px 0;
   }
   
