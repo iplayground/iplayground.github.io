@@ -27,7 +27,7 @@ const StaffCard = ({ name, title, photo, url }) => {
         {CardInner}
       </a>
     ) : (
-      CardInner
+      <a className="card-link-wrapper">{CardInner}</a>
     );
   };
 
