@@ -8,7 +8,6 @@
 
 .nav-desktop {
   display: flex;
-  gap: 16px;
 }
 
 .nav-mobile {
@@ -17,10 +16,10 @@
 
 .navigation-buttons {
     position: absolute;
-      top: 25px;
-      right: 300px;
+    top: 25px;
+    right: 280px;
     display: flex;
-    gap: 12px;
+    gap: 20px;
   }
   
   .navigation-buttons button {
