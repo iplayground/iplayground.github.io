@@ -31,7 +31,7 @@ function App() {
         <h1 className="title">iPlayground<br />2025</h1>
         <div className="location">
           <Trans>addressTitle</Trans>
-          <span className="datetime">2025.08.30-08.31 13:00-18:00</span>
+          <span className="datetime">2025.08.30-08.31</span>
         </div>
       </header>
       <main className='App-main'>
