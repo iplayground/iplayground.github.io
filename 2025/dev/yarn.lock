@@ -5709,6 +5709,7 @@ __metadata:
     react-i18next: "npm:^15.4.1"
     react-icons: "npm:^5.5.0"
     react-scripts: "npm:5.0.1"
+    sass: "npm:^1.89.2"
     web-vitals: "npm:^2.1.4"
   languageName: unknown
   linkType: soft
@@ -13057,6 +13058,23 @@ __metadata:
   bin:
     sass: sass.js
   checksum: 10c0/ba819a0828f732adf7a94cd8ca017bce92bc299ffb878836ed1da80a30612bfbbf56a5e42d6dff3ad80d919c2025afb42948fc7b54a7bc61a9a2d58e1e0c558a
+  languageName: node
+  linkType: hard
+
+"sass@npm:^1.89.2":
+  version: 1.89.2
+  resolution: "sass@npm:1.89.2"
+  dependencies:
+    "@parcel/watcher": "npm:^2.4.1"
+    chokidar: "npm:^4.0.0"
+    immutable: "npm:^5.0.2"
+    source-map-js: "npm:>=0.6.2 <2.0.0"
+  dependenciesMeta:
+    "@parcel/watcher":
+      optional: true
+  bin:
+    sass: sass.js
+  checksum: 10c0/752ccc7581b0c6395f63918116c20924e99943a86d79e94f5c4a0d41b1e981fe1f0ecd1ee82fff21496f81dbc91f68fb35a498166562ec8ec53e7aad7c3dbd9d
   languageName: node
   linkType: hard
 
