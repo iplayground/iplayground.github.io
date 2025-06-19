@@ -28,7 +28,7 @@
     "build-all": "npm-run-all build-css build-js",
     "clean-build": "rm -rf ../static ../asset-manifest.json ../favicon.ico ../index.html ../manifest.json ../og_image.png ../service-worker.js",
     "move-build": "mv ./build/* ../",
-    "build": "yarn build-all && yarn clean-build && yarn move-build",
+    "build": "yarn build-all",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
