@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
-
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap");
 .lang-selector {
   position: static;
   margin-top: 0.5rem;
@@ -53,46 +53,46 @@
 }
 
 .language-selector-wrapper {
-    position: absolute;
-    top: 20px;
-    right: 5px;
-    z-index: 999;
-    width: 100%;
-    max-width: 150px;
-  }
-  
-  /* 覆蓋 react-flags-select 預設樣式 */
-  .custom-flags-select .ReactFlagsSelect-module_selectBtn__19wW7 {
-    width: fit-content;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    background-color: #f0f0f0;     
-    color: #222;                
-    border: 1px solid #ccc;
-    border-radius: 999px;
-    padding: 6px 16px;
-    font-family: 'Poppins', 'Montserrat', 'Segoe UI', sans-serif;
-    font-weight: 800;
-    font-size: 16px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: background 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  /* 下拉選單 */
-  .custom-flags-select .ReactFlagsSelect-module_selectOptions__3LNBJ {
-    background-color: #fdfdfd;
-    color: #000000;
-    border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  .custom-flags-select .ReactFlagsSelect-module_option__3cGxH:hover {
-    background-color: #e8e8e8;
-  }
+  position: absolute;
+  top: 20px;
+  right: 5px;
+  z-index: 999;
+  width: 100%;
+  max-width: 150px;
+}
 
-  /* 取消下拉箭頭 */
+/* 覆蓋 react-flags-select 預設樣式 */
+.custom-flags-select .ReactFlagsSelect-module_selectBtn__19wW7 {
+  width: fit-content;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #f0f0f0;
+  color: #222;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-family: "Poppins", "Montserrat", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 下拉選單 */
+.custom-flags-select .ReactFlagsSelect-module_selectOptions__3LNBJ {
+  background-color: #fdfdfd;
+  color: #000000;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.custom-flags-select .ReactFlagsSelect-module_option__3cGxH:hover {
+  background-color: #e8e8e8;
+}
+
+/* 取消下拉箭頭 */
 .custom-flags-select .ReactFlagsSelect-module_selectBtn__19wW7::after {
   display: none !important;
   content: none;
@@ -103,14 +103,14 @@
     max-width: 100%;
     width: fit-content;
   }
-
   .custom-flags-select .ReactFlagsSelect-module_selectBtn__19wW7 {
     font-size: 12px;
     width: fit-content;
     padding: 2px 3px;
   }
-
   .custom-flags-select .ReactFlagsSelect-module_selectOptions__3LNBJ {
-    font-size: 12px;       
+    font-size: 12px;
   }
 }
+
+/*# sourceMappingURL=LanguageSelector.css.map */
