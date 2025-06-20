@@ -1,0 +1,68 @@
+.heading-text {
+  color: white;
+}
+
+.section {
+  position: relative;
+  background-image: url("./assets/background_about.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: black;
+}
+
+.intro-wrapper {
+  background-color: rgba(255, 195, 252, 0.19);
+  border-radius: 20px;
+  padding: 40px 24px;
+  margin: 48px auto;
+  max-width: 1200px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+.intro-content {
+  color: #f2f2f2;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: left;
+}
+
+.intro-content p {
+  margin-bottom: 24px;
+}
+
+.intro-content strong {
+  font-weight: 700;
+  color: white;
+}
+
+.intro-images {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.intro-images img {
+  flex: 1 1 calc(33.333% - 16px);
+  border-radius: 12px;
+  max-width: 30%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 720px) {
+  .intro-images {
+    flex-direction: column;
+  }
+  .intro-images img {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/*# sourceMappingURL=About.css.map */
