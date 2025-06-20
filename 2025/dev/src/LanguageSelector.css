@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
 
 .lang-selector {
-  position: static;
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
+  position: absolute;
+  top: 25px;
+  right: 25px;
   z-index: 999;
   width: 100%;
-  max-width: 15vw;
+  max-width: 150px;
 }
 
 .lang-button {

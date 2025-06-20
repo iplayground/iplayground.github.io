@@ -1,6 +1,4 @@
 import background_2025 from './assets/background_2025.png';
-import background_2025_medium from './assets/background_2025_medium.png';
-import background_2025_small from './assets/background_2025_small.png';
 import logo_small from './assets/logo_small.png';
 import './App.css';
 import { Trans, useTranslation } from "react-i18next";
@@ -9,7 +7,7 @@ import About from "./About";
 import Staff from "./Staff";
 import Location from "./Location";
 import ResponsiveNavMenu from './ResponsiveNavMenu';
-import { FaEnvelope, FaDiscord, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { FaEnvelope, FaFacebook, FaDiscord, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { SlSocialFacebook } from "react-icons/sl";
 
 function App() {
@@ -25,11 +23,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <picture>
-          <source media="(max-width: 760px)" srcSet={background_2025_small} />
-          <source media="(max-width: 1279px)" srcSet={background_2025_medium} />
-          <img src={background_2025} alt="background" className="App-background" />
-        </picture>
+        <img src={background_2025} alt="background" className="App-background" />
         <div className="navigation-wrapper">
           <ResponsiveNavMenu scrollToSection={scrollToSection} />
         </div>
