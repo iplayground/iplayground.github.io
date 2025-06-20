@@ -47,7 +47,7 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
                 <button onClick={() => scrollToSection("about")}>{t("about.title")}</button>
                 <button onClick={() => scrollToSection("staff")}>{t("staff.title")}</button>
             </div>
-            <div>
+            <div className="link-button">
               <a
                 href="https://iplayground.kktix.cc/events/2025general"
                 target="_blank"
@@ -56,8 +56,16 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
               >
                 {t("join")}
               </a>
-            <LanguageSelector />
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfVBC-aK-8TbnN49471DwQJZAds_Yi95HWraOi8aXj1gbqXyQ/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="join-link-button"
+              >
+                {t("becomeASpeakerTitle")}
+              </a>
             </div>
+            <LanguageSelector/>
         </div>
         <div className="nav-mobile">
         <button
@@ -75,6 +83,12 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
                 target="_blank"
               >
                 {t("join")}
+              </a>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfVBC-aK-8TbnN49471DwQJZAds_Yi95HWraOi8aXj1gbqXyQ/viewform"
+                target="_blank"
+              >
+                {t("becomeASpeakerTitle")}
               </a>
             </div>
             <div className="mobile-language-select">
