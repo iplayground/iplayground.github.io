@@ -26,6 +26,22 @@ const LocationSection = () => {
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
+
+      <div className="transport-info">
+        <h2><Trans>location.transportationTitle</Trans></h2>
+
+        <h3><Trans>location.byBusTitle</Trans></h3>
+        <p><Trans>location.byBusContent</Trans></p>
+
+        <h3><Trans>location.byMRTTitle</Trans></h3>
+        <p><Trans>location.byMRTContent</Trans></p>
+
+        <h3><Trans>location.contactNumberTitle</Trans></h3>
+        <p><a href="tel:0223419151"><Trans>location.contactNumberContent</Trans></a></p>
+
+        <h3><Trans>location.relatedLinksTitle</Trans></h3>
+        <p><a href="https://cpbae.nccu.edu.tw/cpbae/traffic?random=1751004674691" className="transport-link" target="_blank" rel="noreferrer"><Trans>location.relatedLinksContent</Trans></a></p>
+      </div>
     </section>
   );
 };
