@@ -19,7 +19,16 @@
     },
     "location": {
         "title": "活動地點",
-        "address": "106 台北市大安區金華街 187 號"
+        "address": "106 台北市大安區金華街 187 號",
+        "transportationTitle": "交通方式",
+        "byBusTitle": "搭乘公車",
+        "byBusContent": "0南、214、214直、237、253、606、670、671",
+        "byMRTTitle": "搭乘捷運",
+        "byMRTContent": "淡水線(紅線) / 蘆洲線(橘線) → 東門站 3 號出口：步行約 6-8 分鐘<br/>新店線(綠線) / 蘆洲線(橘線) → 古亭站 4 號出口：至和平東路轉搭 214、606 公車至公企中心站。",
+        "contactNumberTitle": "聯絡電話",
+        "contactNumberContent": "02-23419151",
+        "relatedLinksTitle": "相關網址",
+        "relatedLinksContent": "其他資訊連結"
     },
     "join": "加入活動",
     "becomeASpeakerTitle": "成為講者"

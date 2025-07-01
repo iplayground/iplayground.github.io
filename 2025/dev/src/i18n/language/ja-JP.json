@@ -19,7 +19,16 @@
     },
     "location": {
         "title": "場所",
-        "address": "No. 187, Jinhua St., Da'an Dist., Taipei City 106304, Taiwan (R.O.C.)"
+        "address": "No. 187, Jinhua St., Da'an Dist., Taipei City 106304, Taiwan (R.O.C.)",
+        "transportationTitle": "アクセス方法",
+        "byBusTitle": "バスをご利用の場合",
+        "byBusContent": "0南、214、214直、237、253、606、670、671",
+        "byMRTTitle": "MRT（地下鉄）をご利用の場合",
+        "byMRTContent": "淡水線（レッドライン） / 蘆洲線（オレンジライン） → 東門駅 3番出口：徒歩約6～8分<br/>新店線（グリーンライン） / 蘆洲線（オレンジライン） → 古亭駅 4番出口：和平東路でバス214または606に乗り、「公企中心」停留所で下車",
+        "contactNumberTitle": "お問い合わせ電話番号",
+        "contactNumberContent": "+886-2-2341-9151",
+        "relatedLinksTitle": "関連リンク",
+        "relatedLinksContent": "その他の情報リンク"
     },
     "join": "参加する",
     "becomeASpeakerTitle": "スピーカーとして登壇する"

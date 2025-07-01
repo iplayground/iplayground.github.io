@@ -19,7 +19,16 @@
     },
     "location": {
         "title": "Location",
-        "address": "No. 187, Jinhua St., Da'an Dist., Taipei City 106304, Taiwan (R.O.C.)"
+        "address": "No. 187, Jinhua St., Da'an Dist., Taipei City 106304, Taiwan (R.O.C.)",
+        "transportationTitle": "Transportation",
+        "byBusTitle": "By Bus",
+        "byBusContent": "0N, 214, 214 Express, 237, 253, 606, 670, 671",
+        "byMRTTitle": "By MRT",
+        "byMRTContent": "Tamsui-Xinyi Line (Red) / Luzhou Line (Orange) → Dongmen Station, Exit 3: about 6–8 minutes on foot<br/>Xindian Line (Green) / Luzhou Line (Orange) → Guting Station, Exit 4: transfer to Bus 214 or 606 on Heping East Road, get off at “Public Enterprise Center” stop.",
+        "contactNumberTitle": "Contact Number",
+        "contactNumberContent": "+886-2-2341-9151",
+        "relatedLinksTitle": "Related Links",
+        "relatedLinksContent": "Other information links"
     },
     "join": "Join",
     "becomeASpeakerTitle": "Become a Speaker"
