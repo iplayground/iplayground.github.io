@@ -56,14 +56,6 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
               >
                 {t("join")}
               </a>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfVBC-aK-8TbnN49471DwQJZAds_Yi95HWraOi8aXj1gbqXyQ/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="join-link-button"
-              >
-                {t("becomeASpeakerTitle")}
-              </a>
             </div>
             <LanguageSelector/>
         </div>
@@ -83,12 +75,6 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
                 target="_blank"
               >
                 {t("join")}
-              </a>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfVBC-aK-8TbnN49471DwQJZAds_Yi95HWraOi8aXj1gbqXyQ/viewform"
-                target="_blank"
-              >
-                {t("becomeASpeakerTitle")}
               </a>
             </div>
             <div className="mobile-language-select">
