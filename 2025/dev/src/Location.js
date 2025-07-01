@@ -22,8 +22,7 @@ const LocationSection = () => {
           width="100%"
           height="400"
           style={{ border: 0 }}
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade"
+          loading="lazy"
         ></iframe>
       </div>
 
