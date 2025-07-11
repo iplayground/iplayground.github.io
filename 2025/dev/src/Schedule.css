@@ -67,7 +67,7 @@
   font-weight: bold;
   white-space: normal;
   text-overflow: ellipsis;
-  text-align: justify;
+  text-align: left;
   word-break: break-word;
   max-width: 36rem;
 }
