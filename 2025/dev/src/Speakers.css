@@ -1,0 +1,33 @@
+.section-speakers {
+    position: relative;
+    background-image: url('./assets/background_speakers.png'); 
+    background-position: justify;
+    background-repeat: no-repeat; 
+    padding: 4rem 2rem; 
+    text-align: center; 
+    color: black;
+}
+
+.section-speakers .card-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #FF6B3E;
+}
+
+.section-speakers .corner-logo {
+    position: absolute;
+    padding: 0.5rem;
+    top: 0.5rem;
+    left: auto;
+    right: 0.5rem;
+    height: 1rem;
+    width: 1rem;
+    z-index: 2;
+    color: #FFD874;
+    background-color: rgba(17, 17, 17, 0.5);
+}
+
+@media (max-width: 1279px) {
+}
+
+@media (max-width: 768px) {}

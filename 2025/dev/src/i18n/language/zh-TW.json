@@ -30,6 +30,9 @@
         "relatedLinksTitle": "相關網址",
         "relatedLinksContent": "其他資訊連結"
     },
+    "speakers": {
+        "title": "講者群"
+    },
     "join": "加入活動",
     "becomeASpeakerTitle": "成為講者"
 }

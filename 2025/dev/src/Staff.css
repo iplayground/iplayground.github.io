@@ -53,9 +53,10 @@
     height: 6vh;
   }
   
-  .card-info h4 {
+  .section-staff .card-info h4 {
     margin: 0;
     font-size: 1.1rem;
+    color: white;
   }
   
   .card-info p {

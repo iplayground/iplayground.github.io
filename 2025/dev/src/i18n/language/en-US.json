@@ -30,6 +30,10 @@
         "relatedLinksTitle": "Related Links",
         "relatedLinksContent": "Other information links"
     },
+    "speakers": {
+        "title": "Speakers",
+        "modalTitle": "Speaker"
+    },
     "join": "Join",
     "becomeASpeakerTitle": "Become a Speaker"
 }
