@@ -6,6 +6,7 @@ import './App.css';
 import { Trans, useTranslation } from "react-i18next";
 import './i18n/i18n';
 import About from "./About";
+import Schedule from "./Schedule";
 import Staff from "./Staff";
 import Location from "./Location";
 import Speakers from "./Speakers";
@@ -43,6 +44,7 @@ function App() {
       </header>
       <main className='App-main'>
         <About />
+        <Schedule />
         <Speakers />
         <Staff />
         <Location />

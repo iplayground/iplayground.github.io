@@ -30,6 +30,9 @@
         "relatedLinksTitle": "Related Links",
         "relatedLinksContent": "Other information links"
     },
+    "schedule": {
+        "title": "Schedule"
+    },
     "speakers": {
         "title": "Speakers",
         "modalTitle": "Speaker"
