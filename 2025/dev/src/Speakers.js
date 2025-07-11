@@ -41,7 +41,7 @@ const Speakers = () => {
   return (
     <section id="speakers" className="section-speakers">
       <LogoStyleTitle text={t("speakers.title")} />
-      <div className="staffs-grid">
+      <div className="speakers-grid">
         {speakers.map((speaker, index) => (
           <SpeakerCard
             key={index}

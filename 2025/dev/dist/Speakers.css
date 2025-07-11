@@ -1,11 +1,19 @@
 .section-speakers {
   position: relative;
   background-image: url("./assets/background_speakers.png");
-  background-position: justify;
+  background-position: cover;
   background-repeat: no-repeat;
-  padding: 4rem 2rem;
-  text-align: center;
-  color: black;
+  margin-bottom: 15rem;
+  padding: 0;
+}
+
+.speakers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1200px;
+  gap: 24px;
+  padding: 24px 0;
+  margin: 0 auto;
 }
 
 .section-speakers .card-info h4 {
@@ -25,6 +33,29 @@
   z-index: 2;
   color: #FFD874;
   background-color: rgba(17, 17, 17, 0.5);
+}
+
+@media (max-width: 1279px) {
+  .section-speakers {
+    /* margin-left: 8rem; */
+    /* margin-right: 8rem; */
+  }
+  .speakers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 9rem;
+    margin-right: 9rem;
+  }
+}
+@media (max-width: 768px) {
+  .section-speakers {
+    margin-bottom: 10rem;
+    margin: 20px;
+  }
+  .speakers-grid {
+    grid-template-columns: repeat(1, 1fr);
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
 }
 
 /*# sourceMappingURL=Speakers.css.map */
