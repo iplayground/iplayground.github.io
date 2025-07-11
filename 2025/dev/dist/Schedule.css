@@ -12,7 +12,7 @@
   text-align: center;
 }
 
-.event-list {
+.schedule-list {
   padding: 2rem 1rem;
   font-family: "Helvetica", sans-serif;
   display: flex;
@@ -24,7 +24,7 @@
   box-sizing: border-box;
 }
 
-.event-card {
+.schedule-card {
   background-color: #5f2da8;
   border-radius: 16px;
   padding: 1rem 1.5rem;
@@ -38,14 +38,14 @@
   margin-right: auto;
 }
 
-.event-header {
+.schedule-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
 }
 
-.event-time-container {
+.schedule-time-container {
   display: flex;
   gap: 0.75rem;
   color: #AAB1FF;
@@ -53,7 +53,7 @@
   align-items: baseline;
 }
 
-.event-time {
+.schedule-time {
   font-size: 1.2rem;
   color: #AAB1FF;
   margin-bottom: 0.25rem;
@@ -62,7 +62,7 @@
   gap: 0.5rem;
 }
 
-.event-title {
+.schedule-title {
   font-size: 1.2rem;
   font-weight: bold;
   white-space: normal;
@@ -72,14 +72,14 @@
   max-width: 36rem;
 }
 
-.event-tags {
+.schedule-tags {
   margin-top: 0.5rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.event-tag {
+.schedule-tag {
   font-size: 0.9rem;
   padding: 0.2rem 0.6rem;
   white-space: nowrap;
@@ -100,7 +100,7 @@
   transform: rotate(90deg);
 }
 
-.event-description {
+.schedule-description {
   margin-top: 1rem;
   line-height: 1.5;
   font-size: 0.9rem;
@@ -143,6 +143,21 @@
 
 .link-buttons i {
   margin-right: 6px;
+}
+
+@media (max-width: 1279px) {
+  .schedule-list {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .schedule-card {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .schedule-title {
+    max-width: auto;
+    margin-right: 1rem;
+  }
 }
 
 /*# sourceMappingURL=Schedule.css.map */

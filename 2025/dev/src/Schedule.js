@@ -18,26 +18,26 @@ const Schedule = () => {
   const EventCard = ({ event }) => {
     const [expanded, setExpanded] = useState(false);
     return (
-      <div className="event-card">
-        <div className="event-header" onClick={() => setExpanded(!expanded)}>
+      <div className="schedule-card">
+        <div className="schedule-header" onClick={() => setExpanded(!expanded)}>
           <div>
-            <div className="event-time-container">
+            <div className="schedule-time-container">
               <FaRegClock />
-              <div className="event-time">{event.time}</div>
+              <div className="schedule-time">{event.time}</div>
             </div>
-            <div className="event-title">{event.title}</div>
+            <div className="schedule-title">{event.title}</div>
           </div>
           <div className="expand-icon">{expanded ? '▼' : '▶'}</div>
         </div>
-        <div className="event-tags">
+        <div className="schedule-tags">
           {event.tags && event.tags.map((tag, i) => (
-            <span key={i} className="event-tag">{tag}</span>
+            <span key={i} className="schedule-tag">{tag}</span>
           ))}
         </div>
         {expanded && (
-          <div className="event-body">
+          <div className="schedule-body">
             <div className="speaker-info">{event.speaker}</div>
-            {event.description && <div className="event-description">{event.description}</div>}
+            {event.description && <div className="schedule-description">{event.description}</div>}
           </div>
         )}
       </div>
@@ -48,13 +48,13 @@ const Schedule = () => {
     <section id="schedule" className="schedule-section">
       <LogoStyleTitle text={t("schedule.title")} />
       <h1 className="day-title">Day 1</h1>
-      <div className="event-list">
+      <div className="schedule-list">
         {events.day1.map((event, index) => (
           <EventCard key={index} event={event} />
         ))}
       </div>
       <h1 className="day-title">Day 2</h1>
-      <div className="event-list">
+      <div className="schedule-list">
         {events.day2.map((event, index) => (
           <EventCard key={index} event={event} />
         ))}
