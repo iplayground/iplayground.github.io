@@ -6,8 +6,10 @@ import './App.css';
 import { Trans, useTranslation } from "react-i18next";
 import './i18n/i18n';
 import About from "./About";
+import Schedule from "./Schedule";
 import Staff from "./Staff";
 import Location from "./Location";
+import Speakers from "./Speakers";
 import ResponsiveNavMenu from './ResponsiveNavMenu';
 import { FaEnvelope, FaDiscord, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { SlSocialFacebook } from "react-icons/sl";
@@ -42,6 +44,8 @@ function App() {
       </header>
       <main className='App-main'>
         <About />
+        <Schedule />
+        <Speakers />
         <Staff />
         <Location />
       </main>

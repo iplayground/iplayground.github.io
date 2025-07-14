@@ -1,0 +1,93 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.7); /* 半透明黑色背景 */
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-title {
+    font-size: 2rem;
+    text-align: left;
+    color: #350B75;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  min-width: 30vw;
+  max-width: 60vw;
+  max-height: 80vh;
+  width: auto;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  position: relative;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modal-speaker-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.modal-speaker-photo {
+  width: 12rem;
+  height: 12rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+
+.modal-speaker-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.modal-speaker-name {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  text-align: justify;
+  color: #AAB1FF;
+}
+
+.modal-speaker-title {
+  margin: 1rem 0 1rem 0;
+  color: #666;
+  text-align: justify;
+}
+
+.modal-speaker-sns {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.sns-icon {
+    background-color: white;
+    color: #7782FF;
+}
+
+@media (max-width: 1279px) {
+    .modal-speaker-row {
+        display: block;
+    }
+}

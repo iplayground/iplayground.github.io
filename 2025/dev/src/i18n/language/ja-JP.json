@@ -30,6 +30,12 @@
         "relatedLinksTitle": "関連リンク",
         "relatedLinksContent": "その他の情報リンク"
     },
+    "schedule": {
+        "title": "スケジュール"
+    },
+    "speakers": {
+        "title": "スピーカー"
+    },
     "join": "参加する",
     "becomeASpeakerTitle": "スピーカーとして登壇する"
 }
