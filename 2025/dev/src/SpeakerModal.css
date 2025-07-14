@@ -11,6 +11,7 @@
 }
 
 .modal-title {
+    font-size: 2rem;
     text-align: left;
     color: #350B75;
 }
@@ -48,10 +49,11 @@
 }
 
 .modal-speaker-photo {
-  width: 120px;
-  height: 120px;
+  width: 12rem;
+  height: 12rem;
   object-fit: cover;
   flex-shrink: 0;
+  margin-bottom: 1rem;
 }
 
 .modal-speaker-info {
@@ -82,4 +84,10 @@
 .sns-icon {
     background-color: white;
     color: #7782FF;
+}
+
+@media (max-width: 1279px) {
+    .modal-speaker-row {
+        display: block;
+    }
 }
