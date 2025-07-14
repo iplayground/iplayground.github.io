@@ -37,7 +37,12 @@ const Schedule = () => {
         {expanded && (
           <div className="schedule-body">
             <div className="speaker-info">{event.speaker}</div>
-            {event.description && <div className="schedule-description">{event.description}</div>}
+            {event.description && event.description.split('\n').map((line, idx) => (
+              <span key={idx}>
+                {line}
+                <br />
+              </span>
+            ))}
           </div>
         )}
       </div>

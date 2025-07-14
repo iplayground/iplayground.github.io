@@ -24,7 +24,16 @@ const SpeakerModal = ({ open, onClose, speaker }) => {
           <div className="modal-speaker-info">
             <h2 className="modal-speaker-name">{speaker.name}</h2>
             <p className="modal-speaker-title">{speaker.title}</p>
-            <p className="modal-speaker-intro">{speaker.intro}</p>
+            <p className="modal-speaker-intro">
+              {speaker.intro &&
+                speaker.intro.split('\n').map((line, idx) => (
+                  <span key={idx}>
+                    {line}
+                    <br />
+                  </span>
+                ))
+              }
+            </p>
           </div>
         </div>
         <div className="modal-speaker-sns">

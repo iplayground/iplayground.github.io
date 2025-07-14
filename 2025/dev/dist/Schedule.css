@@ -118,6 +118,10 @@
   color: #ffcb05;
 }
 
+.schedule-body {
+  text-align: left;
+}
+
 .link-buttons {
   display: flex;
   gap: 12px;
