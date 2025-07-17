@@ -14,12 +14,6 @@
   justify-content: center;
 }
 
-.modal-title {
-  font-size: 2rem;
-  text-align: left;
-  color: #350B75;
-}
-
 .modal-content {
   background: #fff;
   border-radius: 16px;
@@ -35,10 +29,22 @@
   margin-right: 5rem;
 }
 
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.modal-title {
+  font-size: 2rem;
+  text-align: left;
+  color: #350B75;
+  margin: 0;
+}
+
 .modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  position: static;
   background: none;
   border: none;
   font-size: 2rem;
