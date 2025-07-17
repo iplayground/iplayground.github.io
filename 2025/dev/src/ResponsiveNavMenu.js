@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "./ResponsiveNavMenu.css";
 import LanguageSelector from "./LanguageSelector";
+import logo_small from './assets/logo_small.png';
 
 const ResponsiveNavMenu = ({ scrollToSection }) => {
   const { t, i18n } = useTranslation();
@@ -43,6 +44,7 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
 
   return (
     <div className="nav-container">
+      <img src={logo_small} alt="logo_small" className="app-small-logo" />
         <div className="nav-desktop">
             <div className="navigation-buttons">
                 <button onClick={() => handleClick("about")}>{t("about.title")}</button>

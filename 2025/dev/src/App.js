@@ -48,7 +48,6 @@ function App() {
         <div className="navigation-wrapper">
           <ResponsiveNavMenu scrollToSection={scrollToSection} />
         </div>
-        <img src={logo_small} alt="logo_small" className="App-small-logo" />
         <h1 className="title">iPlayground<br />2025</h1>
         <div className="location">
           <Trans>addressTitle</Trans>
