@@ -13,6 +13,7 @@ import Speakers from "./Speakers";
 import ResponsiveNavMenu from './ResponsiveNavMenu';
 import { FaEnvelope, FaDiscord, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { SlSocialFacebook } from "react-icons/sl";
+import { useEffect } from 'react';
 
 function App() {
   const { t } = useTranslation();
@@ -23,6 +24,18 @@ function App() {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   }
+
+  useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.replace("#", "");
+      const section = document.getElementById(id);
+      if (section) {
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -43,11 +56,11 @@ function App() {
         </div>
       </header>
       <main className='App-main'>
-        <About />
-        <Schedule />
-        <Speakers />
-        <Staff />
-        <Location />
+        <About id="about" />
+        <Schedule id="schedule" />
+        <Speakers id="speakers" />
+        <Staff id="staff" />
+        <Location id="venue" />
       </main>
       <div className="substack-embed-wrapper">
         <iframe
