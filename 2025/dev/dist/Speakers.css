@@ -19,6 +19,7 @@
 .section-speakers .card-info h4 {
   margin: 0;
   font-size: 1.1rem;
+  height: 2.2rem;
   color: #FF6B3E;
 }
 
@@ -36,10 +37,6 @@
 }
 
 @media (max-width: 1279px) {
-  .section-speakers {
-    /* margin-left: 8rem; */
-    /* margin-right: 8rem; */
-  }
   .speakers-grid {
     grid-template-columns: repeat(2, 1fr);
     margin-left: 9rem;
