@@ -16,11 +16,35 @@
   margin: 0 auto;
 }
 
+.section-speakers .card-photo-wrapper {
+  position: relative;
+  aspect-ratio: 249/190;
+  width: 100%;
+  overflow: hidden;
+}
+
+.section-speakers .card-info {
+  margin-top: 0.2rem;
+  height: 198px;
+}
+
 .section-speakers .card-info h4 {
   margin: 0;
-  font-size: 1.1rem;
-  height: 2.2rem;
+  font-size: 18pt;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 40pt;
   color: #FF6B3E;
+}
+
+.section-speakers .card-info p {
+  font-size: 15pt;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
 }
 
 .section-speakers .corner-logo {
