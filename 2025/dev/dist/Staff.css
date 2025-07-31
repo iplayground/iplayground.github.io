@@ -51,19 +51,19 @@
   padding: 16px;
   text-align: left;
   margin-top: -4px;
-  height: 13.8vh;
+  height: 12vh;
 }
 
 .section-staff .card-info h4 {
   margin: 10px 0 0 0;
-  font-size: 2rem;
+  font-size: 20pt;
   line-height: auto;
   color: white;
 }
 
 .card-info p {
   margin: 18px 0 0;
-  font-size: 1.5rem;
+  font-size: 15pt;
   line-height: auto;
   color: #ccc;
   display: -webkit-box;
