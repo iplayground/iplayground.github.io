@@ -17,9 +17,15 @@ const Schedule = () => {
 
   const EventCard = ({ event }) => {
     const [expanded, setExpanded] = useState(false);
+    const canExpand = !!event.description || !!event.speaker;
+
     return (
       <div className="schedule-card">
-        <div className="schedule-header" onClick={() => setExpanded(!expanded)}>
+        <div
+          className="schedule-header"
+          onClick={canExpand ? () => setExpanded(!expanded) : undefined}
+          style={{ cursor: canExpand ? "pointer" : "default" }}
+        >
           <div>
             <div className="schedule-time-container">
               <FaRegClock />
@@ -27,16 +33,18 @@ const Schedule = () => {
             </div>
             <div className="schedule-title">{event.title}</div>
           </div>
-          <div className="expand-icon">{expanded ? '▼' : '▶'}</div>
+          {canExpand && (
+            <div className="expand-icon">{expanded ? '▼' : '▶'}</div>
+          )}
         </div>
         <div className="schedule-tags">
           {event.tags && event.tags.map((tag, i) => (
             <span key={i} className="schedule-tag">{tag}</span>
           ))}
         </div>
-        {expanded && (
+        {canExpand && expanded && (
           <div className="schedule-body">
-            <div className="speaker-info">{event.speaker}</div>
+            {event.speaker && <div className="speaker-info">{event.speaker}</div>}
             {event.description && event.description.split('\n').map((line, idx) => (
               <span key={idx}>
                 {line}

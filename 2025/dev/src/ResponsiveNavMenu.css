@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
 
+.app-small-logo {
+  display: flex;
+  position: fixed;
+  top: 20px;
+  left: 40px;
+  width: 7.5rem;
+  height: auto;
+}
+
 .nav-container {
   display: flex;
   position: absolute;

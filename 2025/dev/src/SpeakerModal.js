@@ -13,8 +13,10 @@ const SpeakerModal = ({ open, onClose, speaker }) => {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>×</button>
-        <h1 className="modal-title">{t("speakers.modalTitle")}</h1>
+        <div className="modal-header">
+            <h1 className="modal-title">{t("speakers.modalTitle")}</h1>
+            <button className="modal-close" onClick={onClose}>×</button>
+        </div>
         <div className="modal-speaker-row">
           <img
             className="modal-speaker-photo"

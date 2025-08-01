@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './LanguageSelector.css';
 import { IoLanguage } from "react-icons/io5";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const LanguageSelector = () => {
   const { i18n, t } = useTranslation();
@@ -10,11 +11,17 @@ const LanguageSelector = () => {
   const [selectLang, setSelectLang] = useState("Language");
 
   const toggleMenu = () => setOpen((prev) => !prev);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (lang) => {
-    i18n.changeLanguage(lang.toLowerCase());
+    const langLower = lang.toLowerCase();
+    i18n.changeLanguage(langLower);
     setSelectLang(lang);
     setOpen(false);
+
+    const currentPath = location.pathname.split('/').slice(2).join('/');
+    navigate(`/${langLower}/${currentPath}`);
   };
 
   useEffect(() => {
@@ -35,7 +42,7 @@ const LanguageSelector = () => {
       {open && (
         <div className='lang-dropdown'>
           <button onClick={() => handleChange('TW')}>繁體中文</button>
-          <button onClick={() => handleChange('US')}>English</button>
+          <button onClick={() => handleChange('EN')}>English</button>
           <button onClick={() => handleChange('JP')}>日本語</button>
         </div>
       )}

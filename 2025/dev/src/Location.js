@@ -6,7 +6,7 @@ const LocationSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="location-section">
+    <section id="venue" className="location-section">
       <LogoStyleTitle className="logo-title" text={t("location.title")} />
 
       <div className="location-text">

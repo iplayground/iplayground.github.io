@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "./ResponsiveNavMenu.css";
 import LanguageSelector from "./LanguageSelector";
+import logo_small from './assets/logo_small.png';
 
 const ResponsiveNavMenu = ({ scrollToSection }) => {
   const { t, i18n } = useTranslation();
@@ -11,6 +12,7 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
   const buttonRef = useRef(null);
 
   const handleClick = (id) => {
+    window.location.hash = `#${id}`;
     scrollToSection(id);
     setOpen(false);
   };
@@ -42,12 +44,13 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
 
   return (
     <div className="nav-container">
+      <img src={logo_small} alt="logo_small" className="app-small-logo" />
         <div className="nav-desktop">
             <div className="navigation-buttons">
-                <button onClick={() => scrollToSection("about")}>{t("about.title")}</button>
-                <button onClick={() => scrollToSection("schedule")}>{t("schedule.title")}</button>
-                <button onClick={() => scrollToSection("speakers")}>{t("speakers.title")}</button>
-                <button onClick={() => scrollToSection("staff")}>{t("staff.title")}</button>
+                <button onClick={() => handleClick("about")}>{t("about.title")}</button>
+                <button onClick={() => handleClick("schedule")}>{t("schedule.title")}</button>
+                <button onClick={() => handleClick("speakers")}>{t("speakers.title")}</button>
+                <button onClick={() => handleClick("staff")}>{t("staff.title")}</button>
             </div>
             <div className="link-button">
               <a
@@ -83,7 +86,7 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
             </div>
             <div className="mobile-language-select">
               <button onClick={() => changeLanguage("tw")}>🇹🇼 {t('lang.zh')}</button>
-              <button onClick={() => changeLanguage("us")}>🇺🇸 {t('lang.en')}</button>
+              <button onClick={() => changeLanguage("en")}>🇺🇸 {t('lang.en')}</button>
               <button onClick={() => changeLanguage("jp")}>🇯🇵 {t('lang.ja')}</button>
             </div>
           </div>

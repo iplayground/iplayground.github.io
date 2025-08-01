@@ -20,11 +20,13 @@
   background: #262138;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 0.5px solid #fff;
 }
 
 .card-photo-wrapper {
   position: relative;
-  aspect-ratio: 3/4;
+  aspect-ratio: 124/103;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -49,18 +51,20 @@
   padding: 16px;
   text-align: left;
   margin-top: -4px;
-  height: 6vh;
+  height: 140px;
 }
 
 .section-staff .card-info h4 {
-  margin: 0;
-  font-size: 1.1rem;
+  margin: 10px 0 0 0;
+  font-size: 2rem;
+  line-height: auto;
   color: white;
 }
 
 .card-info p {
-  margin: 4px 0 0;
-  font-size: 0.9rem;
+  margin: 18px 0 0;
+  font-size: 1.5rem;
+  line-height: auto;
   color: #ccc;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -104,7 +108,7 @@
     grid-template-columns: repeat(1, 1fr);
   }
   .card-info {
-    height: 11.5vh;
+    /* height: 11.5vh; */
   }
 }
 

@@ -1,17 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import LanguageRouter from './LanguageRouter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const isLocalhost = window.location.hostname === 'localhost';
+const basename = isLocalhost ? '/' : '/2025';
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter basename={basename}>
+      <Routes>
+        <Route path="/" element={<Navigate to="/en" replace />} />
+        <Route path="/:lang/*" element={<LanguageRouter />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
