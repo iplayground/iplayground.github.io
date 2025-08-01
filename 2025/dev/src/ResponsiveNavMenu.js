@@ -86,7 +86,7 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
             </div>
             <div className="mobile-language-select">
               <button onClick={() => changeLanguage("tw")}>🇹🇼 {t('lang.zh')}</button>
-              <button onClick={() => changeLanguage("us")}>🇺🇸 {t('lang.en')}</button>
+              <button onClick={() => changeLanguage("en")}>🇺🇸 {t('lang.en')}</button>
               <button onClick={() => changeLanguage("jp")}>🇯🇵 {t('lang.ja')}</button>
             </div>
           </div>

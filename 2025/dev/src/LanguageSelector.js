@@ -42,7 +42,7 @@ const LanguageSelector = () => {
       {open && (
         <div className='lang-dropdown'>
           <button onClick={() => handleChange('TW')}>繁體中文</button>
-          <button onClick={() => handleChange('US')}>English</button>
+          <button onClick={() => handleChange('EN')}>English</button>
           <button onClick={() => handleChange('JP')}>日本語</button>
         </div>
       )}
