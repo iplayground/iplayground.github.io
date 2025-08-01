@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import './LogoStyleTitle.css';
 import logoStyle_title from './assets/logoStyle_title.png';
 
-const LogoStyleTitle = ({ text }) => {
+const LogoStyleTitle = ({ text, className = "" }) => {
   return (
-    <div className="decorated-heading">
+    <div className={`decorated-heading ${className}`}>
       <div className="heading-icons">
         <img src={logoStyle_title} alt="" />
       </div>
@@ -21,6 +21,7 @@ const LogoStyleTitle = ({ text }) => {
 
 LogoStyleTitle.propTypes = {
   text: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default LogoStyleTitle;
