@@ -4,19 +4,20 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import LanguageRouter from './LanguageRouter';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { HashRouter } from 'react-router-dom';
+import App from './App';
 
 const isLocalhost = window.location.hostname === 'localhost';
 const basename = isLocalhost ? '/' : '/2025';
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename={basename}>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/en" replace />} />
         <Route path="/:lang/*" element={<LanguageRouter />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
 
