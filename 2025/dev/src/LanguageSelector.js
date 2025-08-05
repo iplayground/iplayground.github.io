@@ -21,7 +21,7 @@ const LanguageSelector = () => {
     setOpen(false);
 
     const currentPath = location.pathname.split('/').slice(2).join('/');
-    navigate(`/${langLower}/${currentPath}`);
+    navigate(`#/${langLower}/${currentPath}`);
   };
 
   useEffect(() => {
