@@ -25,16 +25,38 @@
 
 .level-section {
   position: relative;
-  margin-right: 190px;
+  margin-right: 850px;
   margin-top: 30px;
   margin-bottom: 20px;
+}
+
+.center-section .logo-grid-item {
+  border: 1px solid transparent;
+}
+
+.diamond .logo-grid-item {
+  width: 960px;
+  height: 154px;
+  object-fit: contain;
+}
+
+.sliver .logo-grid-item {
+  width: 475px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.copper .logo-grid-item {
+  width: 232.5px;
+  height: 130px;
+  object-fit: contain;
 }
 
 .copper-level-section {
   position: relative;
   margin-top: 30px;
   margin-bottom: 20px;
-  margin-right: 550px;
+  margin-right: 840px;
 }
 
 .individual-section {
@@ -45,9 +67,36 @@
   background-color: #323232;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
   .center-section {
     height: 1400px;
+    margin-top: 50px;
+  }
+  .level-section {
+    margin-right: 850px;
+    margin-top: 50px;
+  }
+  .copper-level-section {
+    margin-right: 850px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+  }
+  .diamond .logo-grid-item {
+    width: 663px;
+    height: 190px;
+  }
+  .sliver .logo-grid-item {
+    width: 315px;
+    height: 182px;
+  }
+  .copper .logo-grid-item {
+    width: 315px;
+    height: 100px;
+  }
+}
+@media (max-width: 768px) {
+  .center-section {
+    height: 2200px;
   }
   .level-section {
     text-align: left;
@@ -56,6 +105,18 @@
   .copper-level-section {
     text-align: left;
     margin-left: 20px;
+  }
+  .diamond .logo-grid-item {
+    width: 516px;
+    height: 316px;
+  }
+  .sliver .logo-grid-item {
+    width: 516px;
+    height: 250px;
+  }
+  .copper .logo-grid-item {
+    width: 500px;
+    height: 250px;
   }
 }
 

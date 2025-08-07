@@ -112,8 +112,4 @@
     .staffs-grid {
       grid-template-columns: repeat(1, 1fr);
     }
-
-    .card-info {
-      /* height: 11.5vh; */
-  }
   }

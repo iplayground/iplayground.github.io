@@ -1,8 +1,8 @@
 import './LogoGrid.css';
 
-const LogoGrid = ({ data = [], columns = 3 }) => {
+const LogoGrid = ({ data = [], columns = 3, className = "" }) => {
   return (
-    <div className={`logo-grid columns-${columns}`}>
+    <div className={`logo-grid columns-${columns} ${className}`}>
       {data.map((item, idx) => (
         <a
           key={idx}
@@ -14,10 +14,7 @@ const LogoGrid = ({ data = [], columns = 3 }) => {
           <img
             src={item.picture || item.icon}
             alt={item.name}
-            width="300"
-            height="150"
             className='logo-grid-item'
-            style={{ objectFit: 'contain', border: 'none' }}
           />
         </a>
       ))}

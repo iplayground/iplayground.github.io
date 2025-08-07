@@ -44,10 +44,10 @@ const Sponsors = () => {
                 <SponsorsLevelIcon iconSrc={copper} label={t("sponsors.bronze")}/>
             </div>
             <LogoGrid className="copper" data={copperItems} columns={2} />
-            <div className='level-section'>
+            <div className='copper-level-section'>
                 <span className="icon-label-container">{t("sponsors.special")}</span>
             </div>
-            <LogoGrid  data={specialItems} columns={1} />
+            <LogoGrid className="copper" data={specialItems} columns={2} />
         </div>
       {/* <div className="individual-section">
         <LogoStyleTitle text={t("sponsors.individualSponsorsTitle")} />
