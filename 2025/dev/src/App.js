@@ -14,6 +14,7 @@ import ResponsiveNavMenu from './ResponsiveNavMenu';
 import { FaEnvelope, FaDiscord, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { SlSocialFacebook } from "react-icons/sl";
 import { useEffect } from 'react';
+import Sponsors from './Sponsors';
 
 function App() {
   const { t } = useTranslation();
@@ -59,6 +60,7 @@ function App() {
         <Schedule id="schedule" />
         <Speakers id="speakers" />
         <Staff id="staff" />
+        <Sponsors id="sponsors" />
         <Location id="venue" />
       </main>
       <div className="substack-embed-wrapper">

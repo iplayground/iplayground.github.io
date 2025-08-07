@@ -1,0 +1,73 @@
+@charset "UTF-8";
+.logo-grid-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.logo-grid {
+  display: grid;
+  gap: 30px;
+  justify-items: center;
+}
+
+.logo-grid-item {
+  display: flex;
+  width: 300px;
+  height: 150px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-grid-item:hover {
+  transform: scale(1.02);
+}
+
+.logo-grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo-grid {
+  display: grid;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* 預設根據 props.columns 決定欄位數 */
+.logo-grid.columns-1 {
+  grid-template-columns: repeat(1, 300px);
+}
+
+.logo-grid.columns-2 {
+  grid-template-columns: repeat(2, 300px);
+}
+
+.logo-grid.columns-3 {
+  grid-template-columns: repeat(3, 300px);
+}
+
+.logo-grid.columns-4 {
+  grid-template-columns: repeat(4, 300px);
+}
+
+/* 螢幕 <= 1279px 時最多顯示 2 欄 */
+@media (max-width: 1279px) {
+  .logo-grid.columns-3,
+  .logo-grid.columns-4 {
+    grid-template-columns: repeat(2, 300px);
+  }
+}
+/* 螢幕 <= 768px 時最多顯示 1 欄 */
+@media (max-width: 768px) {
+  .logo-grid {
+    grid-template-columns: repeat(1, 300px) !important;
+  }
+}
+
+/*# sourceMappingURL=LogoGrid.css.map */

@@ -36,6 +36,15 @@
     "speakers": {
         "title": "講者群"
     },
+    "sponsors": {
+        "specialThankstitle": "特別感謝",
+        "sponsorsTitle": "贊助廠商",
+        "individualSponsorsTitle": "個人贊助",
+        "diamond": "鑽石",
+        "silver": "白銀",
+        "bronze": "青銅",
+        "special": "特別贊助"
+    },
     "join": "加入活動",
     "becomeASpeakerTitle": "成為講者"
 }

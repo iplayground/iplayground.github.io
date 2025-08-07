@@ -36,6 +36,15 @@
     "speakers": {
         "title": "スピーカー"
     },
+    "sponsors": {
+        "specialThankstitle": "特別協力",
+        "sponsorsTitle": "協賛",
+        "individualSponsorsTitle": "個人協賛",
+        "diamond": "ダイヤモンド",
+        "silver": "シルバー",
+        "bronze": "ブロンズ",
+        "special": "特別協賛"
+    },
     "join": "参加する",
     "becomeASpeakerTitle": "スピーカーとして登壇する"
 }
