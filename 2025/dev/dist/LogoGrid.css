@@ -15,13 +15,11 @@
   display: flex;
   width: 300px;
   height: 150px;
-  border: 1px solid #666;
-  border-radius: 1px;
   overflow: hidden;
   transition: transform 0.2s ease;
   justify-content: center;
   align-items: center;
-  object-fit: fill;
+  object-fit: contain;
 }
 
 .logo-grid-item:hover {

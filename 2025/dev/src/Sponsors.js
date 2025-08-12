@@ -27,11 +27,11 @@ const Sponsors = () => {
   return (
     <section id="sponsors" className="sponsors-section">
         <div className="special-thanks-section">
-            <LogoStyleTitle className="special-thanks-title" text={t("sponsors.specialThankstitle")} />
+            <LogoStyleTitle className="sponsors-title" text={t("sponsors.specialThankstitle")} />
             <LogoGrid data={sponsors.partner} columns={3} />
         </div>
         <div className="center-section">
-            <LogoStyleTitle text={t("sponsors.sponsorsTitle")} />
+            <LogoStyleTitle className="sponsors-title" text={t("sponsors.sponsorsTitle")} />
             <div className='level-section'>
                 <SponsorsLevelIcon iconSrc={diamond} label={t("sponsors.diamond")}/>
             </div>

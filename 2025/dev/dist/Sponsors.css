@@ -7,10 +7,9 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: white;
 }
 
-.special-thanks-title .heading-text {
+.sponsors-title .heading-text {
   color: rgba(50, 50, 50, 1);
 }
 
@@ -19,7 +18,6 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #350B75;
   height: 1200px;
 }
 
@@ -28,10 +26,6 @@
   margin-right: 850px;
   margin-top: 30px;
   margin-bottom: 20px;
-}
-
-.center-section .logo-grid-item {
-  border: 1px solid transparent;
 }
 
 .diamond .logo-grid-item {
