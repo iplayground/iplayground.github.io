@@ -37,6 +37,15 @@
         "title": "Speakers",
         "modalTitle": "Speaker"
     },
+    "sponsors": {
+        "specialThankstitle": "Special Thanks",
+        "sponsorsTitle": "Sponsors",
+        "individualSponsorsTitle": "Individual Sponsors",
+        "diamond": "Diamond",
+        "silver": "Silver",
+        "bronze": "Bronze",
+        "special": "Special Sponsors"
+    },
     "join": "Join",
     "becomeASpeakerTitle": "Become a Speaker"
 }

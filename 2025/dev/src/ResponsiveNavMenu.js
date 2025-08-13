@@ -51,6 +51,7 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
                 <button onClick={() => handleClick("schedule")}>{t("schedule.title")}</button>
                 <button onClick={() => handleClick("speakers")}>{t("speakers.title")}</button>
                 <button onClick={() => handleClick("staff")}>{t("staff.title")}</button>
+                <button onClick={() => handleClick("sponsors")}>{t("sponsors.sponsorsTitle")}</button>
             </div>
             <div className="link-button">
               <a
@@ -77,6 +78,7 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
               <button onClick={() => handleClick("schedule")}>{t("schedule.title")}</button>
               <button onClick={() => handleClick("speakers")}>{t("speakers.title")}</button>
               <button onClick={() => handleClick("staff")}>{t("staff.title")}</button>
+              <button onClick={() => handleClick("sponsors")}>{t("sponsors.sponsorsTitle")}</button>
               <a
                 href="https://iplayground.kktix.cc/events/2025general"
                 target="_blank"

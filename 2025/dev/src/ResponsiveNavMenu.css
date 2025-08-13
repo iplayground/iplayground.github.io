@@ -128,7 +128,7 @@
   }
 
 /* 小螢幕下隱藏 desktop，顯示 mobile */
-@media (max-width: 1024px) {
+@media (max-width: 1080px) {
   .nav-container {
     top: 0px;
     right: 0px;
