@@ -33,21 +33,21 @@ const Sponsors = () => {
         <div className="center-section">
             <LogoStyleTitle className="sponsors-title" text={t("sponsors.sponsorsTitle")} />
             <div className='level-section'>
-                <SponsorsLevelIcon iconSrc={diamond} label={t("sponsors.diamond")}/>
+              <SponsorsLevelIcon iconSrc={diamond} label={t("sponsors.diamond")}/>
             </div>
             <LogoGrid className="diamond" data={diamondItems} columns={1} />
             <div className='level-section'>
-                <SponsorsLevelIcon iconSrc={sliver} label={t("sponsors.silver")}/>
+              <SponsorsLevelIcon iconSrc={sliver} label={t("sponsors.silver")}/>
             </div>
             <LogoGrid className="sliver" data={sliverItems} columns={1} />
             <div className='copper-level-section'>
-                <SponsorsLevelIcon iconSrc={copper} label={t("sponsors.bronze")}/>
+              <SponsorsLevelIcon iconSrc={copper} label={t("sponsors.bronze")}/>
             </div>
             <LogoGrid className="copper" data={copperItems} columns={2} />
             <div className='copper-level-section'>
-                <span className="icon-label-container">{t("sponsors.special")}</span>
+              <SponsorsLevelIcon label={t("sponsors.special")}/>
             </div>
-            <LogoGrid className="copper" data={specialItems} columns={2} />
+            <LogoGrid className="sliver" data={specialItems} columns={1} />
         </div>
       {/* <div className="individual-section">
         <LogoStyleTitle text={t("sponsors.individualSponsorsTitle")} />

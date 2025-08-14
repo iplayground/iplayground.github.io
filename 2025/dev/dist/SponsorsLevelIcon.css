@@ -1,16 +1,47 @@
-.icon-label-container {
+@charset "UTF-8";
+.line-cover {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.sponsors-level-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px; /* 左右線條與中間內容的間距 */
+  width: 100%;
+}
+
+.sponsors-level-line {
+  flex: 1;
+  height: 1px;
+  background-color: #9999ff; /* 可自行調整顏色 */
+  opacity: 0.5;
+}
+
+.sponsors-level-content {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 1.1rem;
+  color: #7777ff; /* 文字顏色可自訂 */
   font-weight: bold;
-  color: black;
+  font-size: 1.2rem;
 }
 
-.icon-label-image {
+.sponsors-level-image {
   display: block;
   border: none;
   object-fit: contain;
+}
+
+.sponsors-level-text {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .line-cover {
+    max-width: 380px;
+  }
 }
 
 /*# sourceMappingURL=SponsorsLevelIcon.css.map */
