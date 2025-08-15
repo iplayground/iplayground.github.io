@@ -1,8 +1,9 @@
 .sponsors-section {
-  background-color: white;
+  background-color: #323232;
 }
 
 .special-thanks-section {
+  background-color: white;
   position: relative;
   background-size: cover;
   background-position: center;
@@ -14,16 +15,16 @@
 }
 
 .center-section {
+  background-color: white;
   position: relative;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 1200px;
+  height: 1500px;
 }
 
 .level-section {
   position: relative;
-  margin-right: 850px;
   margin-top: 30px;
   margin-bottom: 20px;
 }
@@ -31,26 +32,32 @@
 .diamond .logo-grid-item {
   width: 960px;
   height: 154px;
-  object-fit: contain;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .sliver .logo-grid-item {
-  width: 475px;
-  height: 150px;
-  object-fit: contain;
+  width: 960px;
+  height: 154px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .copper .logo-grid-item {
-  width: 232.5px;
-  height: 130px;
-  object-fit: contain;
+  width: 450px;
+  height: 120px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .copper-level-section {
   position: relative;
   margin-top: 30px;
-  margin-bottom: 20px;
-  margin-right: 840px;
+  margin-bottom: 50px;
+}
+
+.individual-background {
+  background-color: #323232;
 }
 
 .individual-section {
@@ -59,58 +66,77 @@
   background-position: center;
   background-repeat: no-repeat;
   background-color: #323232;
+  height: 600px;
+}
+
+.individual-corner-logo {
+  position: absolute;
+  padding: 0.5rem;
+  top: 0.5rem;
+  left: auto;
+  right: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+  z-index: 2;
+  border-radius: 50%;
+  color: #FFD874;
+  background-color: black;
+}
+
+.individual-card-info {
+  background-color: rgba(81, 78, 88, 1);
+  color: #fff;
+  padding: 16px;
+  text-align: left;
+  height: 70px;
 }
 
 @media (max-width: 1279px) {
   .center-section {
-    height: 1400px;
-    margin-top: 50px;
-  }
-  .level-section {
-    margin-right: 850px;
-    margin-top: 50px;
-  }
-  .copper-level-section {
-    margin-right: 850px;
-    margin-top: 50px;
-    margin-bottom: 40px;
+    height: 1750px;
   }
   .diamond .logo-grid-item {
-    width: 663px;
-    height: 190px;
+    width: 600px;
+    height: 250px;
   }
   .sliver .logo-grid-item {
-    width: 315px;
-    height: 182px;
+    width: 600px;
+    height: 250px;
   }
   .copper .logo-grid-item {
-    width: 315px;
+    width: 300px;
     height: 100px;
+  }
+  .individual-section {
+    height: 1200px;
+    margin-left: 8rem;
+    margin-right: 8rem;
   }
 }
 @media (max-width: 768px) {
   .center-section {
-    height: 2200px;
-  }
-  .level-section {
-    text-align: left;
-    margin-left: 20px;
+    height: 1300px;
   }
   .copper-level-section {
     text-align: left;
     margin-left: 20px;
   }
   .diamond .logo-grid-item {
-    width: 516px;
-    height: 316px;
+    width: 278px;
+    height: 116px;
   }
   .sliver .logo-grid-item {
-    width: 516px;
-    height: 250px;
+    width: 278px;
+    height: 116px;
   }
   .copper .logo-grid-item {
-    width: 500px;
-    height: 250px;
+    width: 120px;
+    height: 40px;
+  }
+  .individual-section {
+    height: 2400px;
+    margin-bottom: 10rem;
+    margin: 20px;
   }
 }
 

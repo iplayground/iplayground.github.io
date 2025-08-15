@@ -12,9 +12,11 @@
 
 .logo-grid-item {
   display: flex;
-  width: 300px;
-  height: 150px;
+  width: 250px;
+  height: 125px;
   overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 12.75px;
   transition: transform 0.2s ease;
   justify-content: center;
   align-items: center;
@@ -35,7 +37,7 @@
   grid-template-columns: repeat(1, 960px);
 }
 .logo-grid.columns-2 {
-  grid-template-columns: repeat(2, 232.5px);
+  grid-template-columns: repeat(2, 450px);
 }
 .logo-grid.columns-3 {
   grid-template-columns: repeat(3, 300px);
@@ -47,29 +49,28 @@
 /* 螢幕 <= 1279px 時最多顯示 2 欄 */
 @media (max-width: 1279px) {
   .logo-grid.columns-1 {
-    grid-template-columns: repeat(1, 663px);
+    grid-template-columns: repeat(1, 600px);
   }
 
   .logo-grid.columns-2,
   .logo-grid.columns-3,
   .logo-grid.columns-4 {
-    grid-template-columns: repeat(2, 315px);
+    grid-template-columns: repeat(2, 300px);
   }
 
-  .logo-grid-item {
+  /* .logo-grid-item {
     width: 300px;
     height: 150px;
-  }
+  } */
 }
 
 /* 螢幕 <= 768px 時最多顯示 1 欄 */
 @media (max-width: 768px) {
   .logo-grid {
-    grid-template-columns: repeat(1, 500px) !important;
+    grid-template-columns: repeat(1, 250px) !important;
   }
 
-  .logo-grid-item {
-    width: 500px;
-    height: 250px;
+  .logo-grid.columns-2 {
+    grid-template-columns: repeat(2, 120px) !important;
   }
 }

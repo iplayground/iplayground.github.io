@@ -5,15 +5,15 @@ import LogoStyleTitle from "./LogoStyleTitle";
 import { FaRegClock } from "react-icons/fa6";
 
 const Schedule = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [events, setEvents] = useState({ day1: [], day2: [] });
 
   useEffect(() => {
-    fetch("https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule.json")
+    fetch(t("schedule.apiUrl"))
       .then(res => res.json())
       .then(data => setEvents(data))
       .catch(err => console.error("Failed to load schedule.json:", err));
-  }, []);
+  }, [i18n.language]);
 
   const EventCard = ({ event }) => {
     const [expanded, setExpanded] = useState(false);

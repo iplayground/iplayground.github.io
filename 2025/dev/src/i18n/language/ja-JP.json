@@ -31,7 +31,8 @@
         "relatedLinksContent": "その他の情報リンク"
     },
     "schedule": {
-        "title": "スケジュール"
+        "title": "スケジュール",
+        "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule_jp.json"
     },
     "speakers": {
         "title": "スピーカー"
