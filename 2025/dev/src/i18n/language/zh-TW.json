@@ -31,7 +31,8 @@
         "relatedLinksContent": "其他資訊連結"
     },
     "schedule": {
-        "title": "行程表"
+        "title": "行程表",
+        "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule.json"
     },
     "speakers": {
         "title": "講者群"
