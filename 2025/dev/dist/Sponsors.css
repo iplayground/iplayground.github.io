@@ -56,6 +56,10 @@
   margin-bottom: 50px;
 }
 
+.individual-background {
+  background-color: #323232;
+}
+
 .individual-section {
   position: relative;
   background-size: cover;

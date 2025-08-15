@@ -1,26 +1,17 @@
 .sponsors-section {
-    background-color: #323232;
+    background-color: white;
+    padding: 0;
 }
 
-.special-thanks-section {
+.special-thanks-section,
+.center-section {
     background-color: white;
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 500px;
 }
 
 .sponsors-title .heading-text{
   color: rgba(50, 50, 50, 1);
-}
-
-.center-section {
-    background-color: white;
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 1500px;
 }
 
 .level-section {
@@ -54,6 +45,10 @@
     position: relative;
     margin-top: 30px;
     margin-bottom: 50px;
+}
+
+.individual-background {
+    background-color: #323232;
 }
 
 .individual-section {

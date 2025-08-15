@@ -77,21 +77,23 @@ const Sponsors = () => {
             <SponsorsLevelIcon label={t("sponsors.special")}/>
           </div>
           <LogoGrid className="sliver" data={specialItems} columns={1} />
-        </div>
+      </div>
+      <div className='individual-background'>
         <div className="individual-section">
-          <LogoStyleTitle text={t("sponsors.individualSponsorsTitle")} />
-          <div className="staffs-grid">
-            {(sponsors.personal ?? []).map((person, index) => (
-              <IndividualCard
-                key={index}
-                name={person.name}
-                title={person.title}
-                photo={person.icon}
-                url={person.link}
-              />
-            ))}
-          </div>
+        <LogoStyleTitle text={t("sponsors.individualSponsorsTitle")} />
+        <div className="staffs-grid">
+          {(sponsors.personal ?? []).map((person, index) => (
+            <IndividualCard
+              key={index}
+              name={person.name}
+              title={person.title}
+              photo={person.icon}
+              url={person.link}
+            />
+          ))}
         </div>
+      </div>
+      </div>
     </section>
     
   );
