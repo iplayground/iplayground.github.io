@@ -14,10 +14,8 @@
   background: #fff;
   border-radius: 16px;
   padding: 2rem;
-  min-width: 30vw;
-  max-width: 60vw;
-  max-height: 80vh;
-  width: auto;
+  width: 702px;
+  height: 652px;
   overflow-y: auto;
   box-shadow: 0 8px 32px rgba(0,0,0,0.2);
   position: relative;
@@ -29,7 +27,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .modal-title {
@@ -52,11 +50,13 @@
   align-items: flex-start;
   gap: 2rem;
   margin-top: 1rem;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .modal-speaker-photo {
-  width: 12rem;
-  height: 12rem;
+  width: 216px;
+  height: 216px;
   object-fit: cover;
   flex-shrink: 0;
   margin-bottom: 1rem;
@@ -66,19 +66,35 @@
   display: flex;
   flex-direction: column;
   text-align: left;
+  width: 400px;
 }
 
 .modal-speaker-name {
   margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
   text-align: justify;
-  color: #AAB1FF;
+  color: #7782FF;
 }
 
 .modal-speaker-title {
   margin: 1rem 0 1rem 0;
   color: #666;
   text-align: justify;
+  margin-top: 30px;
+}
+
+.modal-speaker-intro {
+  font-size: 18px;
+  height: 250px;
+  margin-top: 20px;
+}
+
+.modal-speaker-content {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #7782FF;
+  margin-top: 20px;
 }
 
 .modal-speaker-sns {
@@ -88,12 +104,65 @@
 }
 
 .sns-icon {
-    background-color: white;
-    color: #7782FF;
+    background-color: #7782FF;
+    color: white;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
 }
 
 @media (max-width: 1279px) {
-    .modal-speaker-row {
-        display: block;
-    }
+  .modal-content {
+    height: 602px;
+  }
+
+  .modal-speaker-info {
+    width: 356px;
+    height: 408px;
+  }
+
+  .modal-speaker-intro {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  }
+
+  .modal-speaker-sns {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-speaker-row {
+    display: block;
+  }
+
+  .modal-content {
+    width: 328px;
+    height: 727px;
+  }
+
+  .modal-speaker-info {
+    width: 290px;
+    margin-bottom: -50px;
+  }
+
+  .modal-speaker-intro {
+    height: 85px;
+    -webkit-line-clamp: 4;
+  }
+
+  .modal-speaker-content {
+    margin-top: 15px;
+  }
+
+  .modal-speaker-sns {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    justify-content: center;
+  }
 }
