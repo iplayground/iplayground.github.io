@@ -37,7 +37,7 @@ const SpeakerModal = ({ open, onClose, speaker }) => {
                 ))
               }
             </p>
-            {<div className="modal-speaker-content" onClick={() => window.open(speaker.hackMD, "_blank")}>
+            {speaker.hackMD && <div className="modal-speaker-content" onClick={() => window.open(speaker.hackMD, "_blank")}>
               <img src={hackMD_blue_icon} alt="HackMD" />
               <span className="link-text">{t("schedule.HackMDtitle")}</span>
             </div>}
