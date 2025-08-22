@@ -55,12 +55,12 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
             </div>
             <div className="link-button">
               <a
-                href="https://iplayground.kktix.cc/events/2025general"
+                href="https://hackmd.io/@iPlayground/2025"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="join-link-button"
               >
-                {t("join")}
+                {t("hackMD")}
               </a>
             </div>
             <LanguageSelector/>
@@ -83,7 +83,7 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
                 href="https://iplayground.kktix.cc/events/2025general"
                 target="_blank"
               >
-                {t("join")}
+                {t("hackMD")}
               </a>
             </div>
             <div className="mobile-language-select">
