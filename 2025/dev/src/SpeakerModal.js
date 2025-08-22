@@ -74,7 +74,7 @@ const SpeakerModal = ({ open, onClose, speaker }) => {
                   <FaGlobe />
                 </a>
               )}
-            </div>
+          </div>
       </div>
     </div>
   );

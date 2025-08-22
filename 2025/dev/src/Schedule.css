@@ -108,14 +108,38 @@
   text-align: justify;
 }
 
+.speaker-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #ffcb05;
+}
+
+.speaker-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
 .speaker-info {
   display: flex;
   align-items: center;
-  margin: 1rem 0 0.5rem;
+  margin: 1rem 0rem 0.75rem;
   font-weight: bold;
   gap: 0.5rem;
   font-size: 0.9rem;
+}
+
+.link-row {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: auto;
   color: #ffcb05;
+}
+
+.link-text {
+  text-decoration: underline;
 }
 
 .schedule-body {
@@ -147,6 +171,12 @@
 
 .link-buttons i {
   margin-right: 6px;
+}
+
+.speaker-sns {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 @media (max-width: 1279px) {
