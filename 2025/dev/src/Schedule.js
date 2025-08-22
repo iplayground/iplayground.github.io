@@ -73,7 +73,7 @@ const Schedule = () => {
               <img src={hackMD_icon} alt="HackMD" />
               <span className="link-text">{t("schedule.HackMDtitle")}</span>
             </div>}
-            <div className="speaker-sns">
+            {speakerData && <div className="speaker-sns">
                           {speakerData.fb && (
                             <a className="sns-icon" href={speakerData.fb} target="_blank" rel="noopener noreferrer">
                               <SlSocialFacebook />
@@ -104,7 +104,7 @@ const Schedule = () => {
                               <FaGlobe />
                             </a>
                           )}
-              </div>
+            </div>}
           </div>
         )}
       </div>
