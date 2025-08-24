@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { SlSocialFacebook } from "react-icons/sl";
 import { FaXTwitter, FaSquareThreads, FaGlobe } from "react-icons/fa6";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
+import hackMD_blue_icon from './assets/hackMD_blue_icon.png';
 
 const SpeakerModal = ({ open, onClose, speaker }) => {
   const { t } = useTranslation();
@@ -36,6 +37,10 @@ const SpeakerModal = ({ open, onClose, speaker }) => {
                 ))
               }
             </p>
+            {speaker.hackMD && <div className="modal-speaker-content" onClick={() => window.open(speaker.hackMD, "_blank")}>
+              <img src={hackMD_blue_icon} alt="HackMD" />
+              <span className="link-text">{t("schedule.HackMDtitle")}</span>
+            </div>}
           </div>
         </div>
         <div className="modal-speaker-sns">
@@ -69,7 +74,7 @@ const SpeakerModal = ({ open, onClose, speaker }) => {
                   <FaGlobe />
                 </a>
               )}
-            </div>
+          </div>
       </div>
     </div>
   );

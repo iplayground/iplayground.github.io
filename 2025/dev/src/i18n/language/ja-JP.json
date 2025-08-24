@@ -32,10 +32,13 @@
     },
     "schedule": {
         "title": "スケジュール",
-        "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule_jp.json"
+        "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule_jp.json",
+        "HackMDtitle": "HackMD 共同ノート"
     },
     "speakers": {
-        "title": "スピーカー"
+        "title": "講演者",
+        "modalTitle": "スピーカー",
+        "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/speakers_jp.json"
     },
     "sponsors": {
         "specialThankstitle": "特別協力",
@@ -47,5 +50,6 @@
         "special": "特別協賛"
     },
     "join": "参加する",
+    "hackMD": "HackMD 共同ノート",
     "becomeASpeakerTitle": "スピーカーとして登壇する"
 }

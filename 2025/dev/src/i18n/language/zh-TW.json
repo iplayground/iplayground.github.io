@@ -32,10 +32,13 @@
     },
     "schedule": {
         "title": "行程表",
-        "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule.json"
+        "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule.json",
+        "HackMDtitle": "HackMD共筆"
     },
     "speakers": {
-        "title": "講者群"
+        "title": "講者群",
+        "modalTitle": "講者",
+        "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/speakers.json"
     },
     "sponsors": {
         "specialThankstitle": "特別感謝",
@@ -47,5 +50,6 @@
         "special": "特別贊助"
     },
     "join": "加入活動",
+    "hackMD": "HackMD 共筆",
     "becomeASpeakerTitle": "成為講者"
 }

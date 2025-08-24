@@ -32,11 +32,13 @@
     },
     "schedule": {
         "title": "Schedule",
-        "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule_en.json"
+        "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule_en.json",
+        "HackMDtitle": "HackMD Collaborative Notes"
     },
     "speakers": {
         "title": "Speakers",
-        "modalTitle": "Speaker"
+        "modalTitle": "Speaker",
+        "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/speakers_en.json"
     },
     "sponsors": {
         "specialThankstitle": "Special Thanks",
@@ -48,5 +50,6 @@
         "special": "Special Sponsors"
     },
     "join": "Join",
+    "hackMD": "HackMD",
     "becomeASpeakerTitle": "Become a Speaker"
 }
