@@ -27,16 +27,16 @@ const SpeakerCard = ({ name, title, photo, onClick }) => {
 };
 
 const Speakers = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [speakers, setStaffs] = useState([]);
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    fetch("https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/speakers.json")
+    fetch(t("speakers.apiUrl"))
       .then((res) => res.json())
       .then((data) => setStaffs(data))
       .catch((error) => console.error("Failed to load speakers.json:", error));
-  }, []);
+  }, [i18n.language]);
 
   return (
     <section id="speakers" className="section-speakers">
