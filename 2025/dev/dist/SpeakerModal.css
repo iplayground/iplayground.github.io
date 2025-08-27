@@ -156,8 +156,7 @@
     margin-top: 15px;
   }
   .modal-speaker-sns {
-    margin-top: 0rem;
-    margin-bottom: 0rem;
+    margin-top: 0px;
     justify-content: center;
   }
 }
