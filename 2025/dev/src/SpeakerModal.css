@@ -79,7 +79,7 @@
 .modal-speaker-title {
   margin: 1rem 0 1rem 0;
   color: #666;
-  text-align: justify;
+  text-align: left;
   margin-top: 30px;
 }
 
@@ -142,18 +142,18 @@
   }
 
   .modal-content {
-    width: 328px;
-    height: 727px;
+    margin-left: 25px;
+    margin-right: 25px;
   }
 
   .modal-speaker-info {
-    width: 290px;
-    margin-bottom: -50px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 25px;
   }
 
   .modal-speaker-intro {
-    height: 85px;
-    -webkit-line-clamp: 4;
+    height: auto;
   }
 
   .modal-speaker-content {
