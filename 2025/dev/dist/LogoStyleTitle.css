@@ -2,10 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
   gap: 16px;
   margin: 40px auto;
   color: white;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .heading-icons {
@@ -21,8 +23,15 @@
 .heading-text {
   font-size: 36px;
   font-weight: 700;
-  white-space: nowrap;
   color: white;
+  word-break: break-word;
 }
+
+/* @media (max-width: 768px) {
+  .decorated-heading {
+    flex-direction: column;
+    gap: 1px;
+  }
+} */
 
 /*# sourceMappingURL=LogoStyleTitle.css.map */

@@ -5,6 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import LanguageRouter from './LanguageRouter';
 import { HashRouter } from 'react-router-dom';
+import CodeOfConduct from './CodeOfConduct';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,6 +14,7 @@ root.render(
     <HashRouter>
       <Routes>
         <Route path="/:lang/*" element={<LanguageRouter />} />
+        <Route path="/codeOfConduct/:lang" element={<CodeOfConduct />} />
         <Route path="*" element={<Navigate to="/en" replace />} />
       </Routes>
     </HashRouter>

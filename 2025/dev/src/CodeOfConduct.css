@@ -1,0 +1,30 @@
+.coc-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: auto;
+  z-index: -1;
+  background-image: url('./assets/background_about.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; 
+}
+
+.content-wrapper {
+    background-color: rgba(255, 195, 252, 0.19);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 24px auto;
+    margin-bottom: 200px;
+    max-width: 1200px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 1279px) {
+    .content-wrapper {
+        margin: 30px;
+        margin-bottom: 100px;
+    }
+}
