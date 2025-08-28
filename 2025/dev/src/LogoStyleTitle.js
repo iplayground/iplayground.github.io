@@ -13,7 +13,7 @@ const LogoStyleTitle = ({ text, className = "" }) => {
       <h2 className="heading-text">{text}</h2>
 
       <div className="heading-icons">
-      <img src={logoStyle_title} alt="" />
+        <img src={logoStyle_title} alt="" />
       </div>
     </div>
   );

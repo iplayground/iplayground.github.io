@@ -30,8 +30,8 @@ const About = () => {
             <img src={img2} alt="識別證照片" />
             <img src={img3} alt="報到現場" />
             </div>
-      </div>
-    </section>
+        </div>
+      </section>
     </section>
   );
 };
