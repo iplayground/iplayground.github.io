@@ -80,10 +80,17 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
               <button onClick={() => handleClick("staff")}>{t("staff.title")}</button>
               <button onClick={() => handleClick("sponsors")}>{t("sponsors.sponsorsTitle")}</button>
               <a
-                href="https://iplayground.kktix.cc/events/2025general"
+                href="https://hackmd.io/@iPlayground/2025"
                 target="_blank"
               >
                 {t("hackMD")}
+              </a>
+              <a
+                href={`#/codeOfConduct/${i18n.language}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("codeOfConduct.title")}
               </a>
             </div>
             <div className="mobile-language-select">
