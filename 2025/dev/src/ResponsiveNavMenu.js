@@ -85,6 +85,13 @@ const ResponsiveNavMenu = ({ scrollToSection }) => {
               >
                 {t("hackMD")}
               </a>
+              <a
+                href={`#/codeOfConduct/${i18n.language}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("codeOfConduct.title")}
+              </a>
             </div>
             <div className="mobile-language-select">
               <button onClick={() => changeLanguage("tw")}>🇹🇼 {t('lang.zh')}</button>
