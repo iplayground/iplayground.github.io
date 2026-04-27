@@ -1,5 +1,5 @@
 (function () {
-  const sponsorReferralUrl = "https://discord.com/channels/1256984270346649702/1492056108901204058/1497859375203614750";
+  const sponsorReferralUrl = "https://forms.gle/vwhkGFFQ8M4bbXUY9";
 
   window.IPLAYGROUND_SHARED = {
     sponsorReferralUrl,
