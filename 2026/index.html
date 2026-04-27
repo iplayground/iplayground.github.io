@@ -597,7 +597,7 @@
 
     h1.hero-title .hero-tagline {
       display: block;
-      font-size: 0.78em;
+      font-size: 0.546em;
       /* Dark mode: shimmer loading effect */
       background: linear-gradient(90deg,
           #eeeeee 0%,
@@ -670,13 +670,13 @@
     }
 
     .hero-logo-wrap .hero-logo {
-      margin-bottom: 0;
+      margin-bottom: 20px;
     }
 
     /* Pixel heart overlay */
     .px-heart {
       position: absolute;
-      top: 0;
+      top: 20px;
       left: calc(5% - 20px);
       display: grid;
       gap: 1px;
@@ -835,10 +835,10 @@
     .hero-cta-row {
       margin-top: 30px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 12px;
-      flex-wrap: wrap;
     }
 
     .hero-cta-row > .hero-cta-glow-wrap,
@@ -1127,7 +1127,7 @@
     }
 
     html[data-mode="light"] .fc-label {
-      color: #ffffff;
+      color: #1d1d1f;
     }
 
     @media (max-width: 520px) {
@@ -2812,7 +2812,7 @@
     }
 
     h1.hero-title .hero-logo {
-      margin-bottom: 22px;
+      margin-bottom: 0;
       filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.28));
     }
 
@@ -3277,7 +3277,7 @@
       }
 
       h1.hero-title .hero-tagline {
-        font-size: 0.78em;
+        font-size: 0.546em;
       }
     }
 
@@ -3520,7 +3520,7 @@
           <button data-lang="zh" class="active">中</button>
           <button data-lang="en">EN</button>
         </div>
-        <a class="nav-sponsor-cta" href="https://forms.gle/vwhkGFFQ8M4bbXUY9" target="_blank" rel="noopener"
+        <a class="nav-sponsor-cta" href="https://discord.com/channels/1256984270346649702/1492056108901204058/1497859375203614750" target="_blank" rel="noopener"
           data-i18n="nav_sponsor_cta">推薦贊助廠商</a>
       </div>
     </div>
@@ -3551,10 +3551,11 @@
   <header class="hero" data-screen-label="01 Hero">
     <div class="photo-wall" id="photoWall"></div>
     <div class="hero-overlay"></div>
+    <div id="heroInner" style="width:100%;transform-origin:top center;visibility:hidden;">
     <div class="wrap">
       <h1 class="hero-title">
         <div class="hero-logo-wrap">
-          <img src="img/test.png" alt="iPlayground" class="hero-logo">
+          <img src="img/logo.png" alt="iPlayground" class="hero-logo">
           <div class="px-heart" id="pxHeart"></div>
         </div>
         <div class="hero-date" data-i18n="hero_date">7/25(六)～7/26(日)</div>
@@ -3593,7 +3594,7 @@
           <a class="btn-primary hero-cta-btn" href="https://forms.gle/rocYKo7zQuKiGvTx9" target="_blank" rel="noopener"
             data-i18n="cta_submit">講者投稿表單</a>
           </div>
-          <a class="btn-primary hero-sponsor-btn" href="https://forms.gle/vwhkGFFQ8M4bbXUY9" target="_blank" rel="noopener"
+          <a class="btn-primary hero-sponsor-btn" href="https://discord.com/channels/1256984270346649702/1492056108901204058/1497859375203614750" target="_blank" rel="noopener"
             data-i18n="hero_sponsor_cta">推薦贊助廠商</a>
         </div>
 
@@ -3611,11 +3612,12 @@
           <img src="img/svg/media/youtube.svg" alt="YouTube" width="22" height="22">
         </a>
       </div>
-    </div>
+    </div><!-- /#heroInner -->
   </header>
 
   <!-- Latest News -->
-  <section id="news" data-screen-label="01.5 News">
+  <section id="news" data-screen-label="01.5 News" style="position:relative;">
+    <canvas id="newsConfettiCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
     <div class="wrap">
       <div class="news-card">
         <div class="news-section-layout">
@@ -3852,7 +3854,7 @@
       <div class="construction">
         <h3 data-i18n="construction">建構中</h3>
         <p data-i18n="sponsors_wip">正在邀請優秀的夥伴加入我們</p>
-        <a class="btn-primary" href="https://forms.gle/vwhkGFFQ8M4bbXUY9" target="_blank" rel="noopener"
+        <a class="btn-primary" href="https://discord.com/channels/1256984270346649702/1492056108901204058/1497859375203614750" target="_blank" rel="noopener"
           data-i18n="sponsors_cta" style="display:inline-block;margin-top:28px;">🔗 徵求贊助廠商 →</a>
       </div>
     </div>
@@ -5363,6 +5365,127 @@
       if (label) label.textContent = lang === "zh" ? "中" : "EN";
     }
   </script>
+
+<!-- ===== Confetti / Party Popper ===== -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<!-- ===== Hero Auto-Scale ===== -->
+<script>
+(function() {
+  const NAV_H   = 56;
+  const PADDING = 30;
+
+  function scaleHero() {
+    const inner = document.getElementById('heroInner');
+    if (!inner) return;
+
+    // Reset first
+    inner.style.zoom = '';
+
+    const naturalH = inner.offsetHeight;
+    const availH   = window.innerHeight - NAV_H - PADDING;
+
+    if (naturalH > availH) {
+      inner.style.zoom = availH / naturalH;
+    }
+
+    // Reveal after scale is applied
+    inner.style.visibility = 'visible';
+  }
+
+  window.addEventListener('load', function() {
+    scaleHero();
+    window.addEventListener('resize', scaleHero);
+  });
+})();
+</script>
+<script>
+(function() {
+  const COLORS = ['#FF6B35','#FFD700','#FF3D8B','#4895FF','#A688FF','#34C759','#FF9F0A','#64D2FF','#FF453A','#30D158'];
+
+  // ── 載入時的拉炮特效 ──────────────────────────────────────────
+  setTimeout(function() {
+    confetti({
+      particleCount: 320,
+      spread: 200,
+      startVelocity: 78,
+      decay: 0.87,
+      gravity: 0.75,
+      ticks: 420,
+      scalar: 1.4,
+      colors: COLORS,
+      shapes: ['square', 'circle'],
+      origin: { x: 0.5, y: 0.78 }
+    });
+  }, 250);
+
+  setTimeout(function() {
+    confetti({
+      particleCount: 180,
+      spread: 160,
+      startVelocity: 65,
+      decay: 0.88,
+      gravity: 0.8,
+      ticks: 380,
+      scalar: 1.2,
+      colors: COLORS,
+      shapes: ['square', 'circle'],
+      origin: { x: 0.3, y: 0.82 }
+    });
+    confetti({
+      particleCount: 180,
+      spread: 160,
+      startVelocity: 65,
+      decay: 0.88,
+      gravity: 0.8,
+      ticks: 380,
+      scalar: 1.2,
+      colors: COLORS,
+      shapes: ['square', 'circle'],
+      origin: { x: 0.7, y: 0.82 }
+    });
+  }, 500);
+
+  // ── 最新消息區塊：持續飄落粒子 ───────────────────────────────
+  const newsCanvas = document.getElementById('newsConfettiCanvas');
+  if (newsCanvas) {
+    const newsConfetti = confetti.create(newsCanvas, { resize: true, useWorker: false });
+    let animFrame = null;
+    let isVisible = false;
+
+    function drift() {
+      if (!isVisible) return;
+      newsConfetti({
+        particleCount: 3,
+        spread: 80,
+        startVelocity: 8,
+        decay: 0.94,
+        gravity: 0.6,
+        ticks: 280,
+        scalar: 0.85,
+        colors: COLORS,
+        shapes: ['square', 'circle'],
+        origin: { x: Math.random(), y: 0 }  // rain from top of the section
+      });
+      animFrame = requestAnimationFrame(drift);
+    }
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          isVisible = true;
+          drift();
+        } else {
+          isVisible = false;
+          if (animFrame) cancelAnimationFrame(animFrame);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(document.getElementById('news'));
+  }
+})();
+</script>
 
 </body>
 
