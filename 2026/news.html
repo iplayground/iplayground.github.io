@@ -1,0 +1,1162 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="推薦公司窗口並促成 iPlayground 2026 贊助合作，即可獲得兩日門票與紀念衣服。" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="iPlayground 2026" />
+<meta property="og:title" content="推薦贊助商 ,免費拿 iPlayground 門票 !" />
+<meta property="og:description" content="推薦公司窗口並促成 iPlayground 2026 贊助合作，即可獲得兩日門票與紀念衣服。" />
+<meta property="og:url" content="https://gztin.github.io/iPlayground/news.html?id=0" />
+<meta property="og:image" content="https://gztin.github.io/iPlayground/img/logo.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="推薦贊助商 ,免費拿 iPlayground 門票 !" />
+<meta name="twitter:description" content="推薦公司窗口並促成 iPlayground 2026 贊助合作，即可獲得兩日門票與紀念衣服。" />
+<meta name="twitter:image" content="https://gztin.github.io/iPlayground/img/logo.png" />
+<title>最新消息 · iPlayground 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --hue: 220;
+
+    /* Dark mode accents — electric blue */
+    --accent:   oklch(0.68 0.22 var(--hue));
+    --accent-2: oklch(0.74 0.20 calc(var(--hue) + 20));
+    --accent-3: oklch(0.62 0.22 calc(var(--hue) - 30));
+
+    /* Dark mode surfaces — deep blue-tinted dark */
+    --bg:        #0f1117;
+    --surface:   #1a1d27;
+    --surface-2: #22263a;
+
+    /* Dark mode text */
+    --ink:   #eef0f8;
+    --ink-2: #8a94b8;
+    --ink-3: #4d5880;
+
+    /* Dark mode rules */
+    --rule:   rgba(120, 140, 220, 0.15);
+    --rule-2: rgba(120, 140, 220, 0.07);
+
+    --f-sans: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    --maxw: 1280px;
+    --gutter: 48px;
+  }
+  html[data-mode="light"] {
+    /* Light mode accents — deep blue for readability */
+    --accent:   oklch(0.48 0.22 var(--hue));
+    --accent-2: oklch(0.54 0.20 calc(var(--hue) + 20));
+    --accent-3: oklch(0.44 0.22 calc(var(--hue) - 30));
+
+    /* Light mode surfaces */
+    --bg:        #f0f4ff;
+    --surface:   #ffffff;
+    --surface-2: #e8edf8;
+
+    /* Light mode text */
+    --ink:   #0a0e1f;
+    --ink-2: #2d3a66;
+    --ink-3: #5a6896;
+
+    /* Light mode rules */
+    --rule:   rgba(0, 40, 120, 0.12);
+    --rule-2: rgba(0, 40, 120, 0.06);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--f-sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.01em;
+    padding-top: 56px;
+  }
+  a { color: inherit; }
+  ::selection { background: var(--accent); color: #000; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ============ Nav ============ */
+  nav.top {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 72%, transparent);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--rule-2);
+  }
+  nav.top .row {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px; font-size: 13px;
+  }
+  nav.top .brand { display: flex; align-items: center; gap: 10px; font-weight: 500; text-decoration: none; }
+  nav.top .brand .mark {
+    width: 22px; height: 22px; border-radius: 6px;
+    background: conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent));
+  }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .back-link {
+    font-family: var(--f-mono); font-size: 12px;
+    color: var(--accent); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: opacity .2s;
+  }
+  .back-link:hover { opacity: 0.7; }
+
+  /* Logo switching by mode */
+  .nav-logo { height: 28px; width: auto; }
+  .nav-logo--dark  { display: none; }
+  .nav-logo--light { display: block; }
+  html[data-mode="dark"] .nav-logo--light { display: none; }
+  html[data-mode="dark"] .nav-logo--dark  { display: block; }
+
+  /* Footer logo — inverted (footer bg is always dark) */
+  .footer-logo { width: auto; }
+  .footer-logo--dark  { display: none; }
+  .footer-logo--light { display: block; }
+  html[data-mode="dark"] .footer-logo--light { display: none; }
+  html[data-mode="dark"] .footer-logo--dark  { display: block; }
+  .lang-switch {
+    display: inline-flex;
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 999px; padding: 3px;
+    font-family: var(--f-mono); font-size: 11px;
+  }
+  .lang-switch button {
+    padding: 6px 10px; border-radius: 999px;
+    color: var(--ink-2); background: none; border: 0;
+    cursor: pointer; font: inherit; transition: color .15s;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .lang-switch button.active { background: var(--ink); color: var(--bg) !important; }
+
+  /* ============ Two-column Layout ============ */
+  .news-page-layout {
+    display: grid; grid-template-columns: 300px minmax(0, 900px); gap: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - 53px);
+    border-left: 1px solid var(--rule-2);
+    border-right: 1px solid var(--rule-2);
+  }
+
+  /* ---- Sidebar ---- */
+  .news-sidebar {
+    border-right: 1px solid var(--rule-2);
+    padding: 32px 0;
+    position: sticky; top: 53px;
+    height: calc(100vh - 53px);
+    overflow-y: auto;
+  }
+  .news-sidebar .sidebar-heading {
+    padding: 0 24px 20px;
+    font-family: var(--f-mono); font-size: 11px; font-weight: 500;
+    color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .news-sidebar .sidebar-item {
+    display: block; text-decoration: none; color: inherit;
+    padding: 16px 24px; border-bottom: 1px solid var(--rule-2);
+    transition: background .2s;
+  }
+  .news-sidebar .sidebar-item:first-of-type { border-top: 1px solid var(--rule-2); }
+  .news-sidebar .sidebar-item:hover { background: var(--surface-2); }
+  .news-sidebar .sidebar-item.active {
+    background: var(--surface-2);
+    border-left: 3px solid var(--accent);
+  }
+  .news-sidebar .sidebar-item .s-date {
+    font-family: var(--f-mono); font-size: 11px; font-weight: 600;
+    color: var(--accent); margin-bottom: 4px;
+  }
+  .news-sidebar .sidebar-item .s-title {
+    font-size: 14px; font-weight: 500; color: var(--ink);
+    line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-sidebar .sidebar-item.active .s-title { color: var(--accent); }
+
+  /* ---- Main content ---- */
+  .news-main { padding: 0 calc(var(--gutter) / 2); }
+  .article-header {
+    padding: 48px 0 32px; text-align: center;
+    border-bottom: 1px solid var(--rule-2);
+    max-width: 768px; margin: 0 auto;
+  }
+  .article-date {
+    font-family: var(--f-mono); font-size: 13px; font-weight: 600;
+    background: linear-gradient(110deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    letter-spacing: 0.04em; margin-bottom: 14px;
+  }
+  .article-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.15;
+    margin: 0;
+  }
+  .article-body {
+    padding: 32px 0 72px;
+    font-size: 17px; line-height: 1.75; color: var(--ink-2);
+    max-width: 768px; margin: 0 auto;
+  }
+  .article-body p { margin: 0 0 20px; }
+  .article-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    padding: 14px 24px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--bg);
+    text-decoration: none;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .article-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+  }
+  .article-share {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule-2);
+  }
+  .article-share-title {
+    margin-bottom: 14px;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .article-share-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .share-btn {
+    display: inline-flex;
+    min-height: 38px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink);
+    text-decoration: none;
+    font: 700 13px/1 var(--f-sans);
+    cursor: pointer;
+    transition: transform .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .share-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ---- News listing (no ?id) ---- */
+  .listing-header {
+    padding: 80px 0 40px; text-align: center;
+    max-width: 720px; margin: 0 auto;
+  }
+  .listing-header h1 {
+    font-size: clamp(32px, 5vw, 52px); font-weight: 700;
+    letter-spacing: -0.03em; margin: 0;
+    background: linear-gradient(110deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .listing-header p { color: var(--ink-2); margin: 16px 0 0; font-size: 17px; }
+  .listing-grid {
+    max-width: 720px; margin: 0 auto; padding-bottom: 100px;
+  }
+  .listing-row {
+    display: grid; grid-template-columns: 120px 1fr 40px;
+    align-items: center; padding: 24px 0;
+    border-bottom: 1px solid var(--rule-2);
+    text-decoration: none; color: inherit; transition: background .2s;
+  }
+  .listing-row:hover { background: var(--surface-2); border-radius: 12px; padding-left: 16px; padding-right: 16px; }
+  .listing-row .l-date {
+    font-family: var(--f-mono); font-size: 13px; font-weight: 600;
+    background: linear-gradient(110deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .listing-row .l-title { font-size: 16px; color: var(--ink); }
+  .listing-row .l-arrow { color: var(--ink-3); text-align: right; font-size: 16px; }
+
+  /* ============ Footer ============ */
+  footer {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 80px 0 48px;
+    border-top: 1px solid var(--rule-2);
+  }
+  footer a {
+    color: var(--bg);
+    text-decoration: none;
+    transition: color .2s;
+    opacity: 0.8;
+  }
+  footer a:hover {
+    color: var(--bg);
+    opacity: 1;
+  }
+  footer h4 {
+    color: var(--bg) !important;
+    font-weight: 600;
+    opacity: 0.9;
+  }
+  footer .footer-tagline {
+    color: var(--bg);
+    opacity: 0.7;
+  }
+  footer .footer-bottom {
+    border-top: 1px solid var(--rule-2);
+    color: var(--bg);
+    opacity: 0.5;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    margin-bottom: 56px;
+  }
+  .footer-lock { display: flex; align-items: center; gap: 14px; font-weight: 500; }
+  .footer-lock .mark {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent));
+  }
+  .footer-tagline { margin-top: 24px; font-size: 14px; color: var(--ink-3); width: 100%; max-width: none; line-height: 1.55; }
+  footer h4 {
+    font-family: var(--f-mono); font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--bg) !important; margin: 0 0 16px;
+    opacity: 0.9;
+  }
+  footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+  footer ul a { text-decoration: none; color: var(--bg); opacity: 0.75; transition: all .3s; }
+  footer ul a:hover { color: var(--bg); opacity: 1; }
+  .footer-bottom {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    padding-top: 32px; border-top: 1px solid var(--rule-2);
+    font-family: var(--f-mono); font-size: 11px;
+    color: var(--ink-3); letter-spacing: 0.04em;
+  }
+
+  .msg {
+    padding: 200px 0; text-align: center;
+    color: var(--ink-3); font-size: 18px;
+  }
+
+  /* ============ Mobile dropdown ============ */
+  .mobile-picker {
+    display: none;
+    position: sticky; top: 53px; z-index: 40;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border-bottom: 1px solid var(--rule-2);
+    padding: 12px var(--gutter);
+  }
+  .mobile-picker label {
+    font-family: var(--f-mono); font-size: 11px; font-weight: 500;
+    color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em;
+    display: block; margin-bottom: 8px;
+  }
+  .mobile-picker select {
+    width: 100%; padding: 12px 16px;
+    font-family: var(--f-sans); font-size: 15px; font-weight: 500;
+    color: var(--ink); background: var(--surface);
+    border: 1px solid var(--rule); border-radius: 12px;
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236e6e73' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    cursor: pointer;
+    transition: border-color .2s;
+  }
+  .mobile-picker select:focus { outline: none; border-color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .news-page-layout { grid-template-columns: 1fr; }
+    .news-sidebar { display: none; }
+    .mobile-picker { display: block; }
+    .news-main { padding: 0 24px; }
+    footer .wrap {
+      max-width: none;
+      width: 100%;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 56px 40px;
+    }
+    .footer-grid > div:first-child {
+      grid-column: 1 / -1;
+    }
+    footer .footer-grid > div:first-child {
+      min-width: 0;
+    }
+    footer .footer-grid > div:first-child .footer-tagline {
+      max-width: 100%;
+      width: 100%;
+    }
+    .nav-right .back-link { display: none; }
+  }
+
+  /* ============ iOS HIG Preview Layer ============ */
+  :root {
+    --ios-blue: #007aff;
+    --ios-bg: #f2f2f7;
+    --ios-bg-dark: #000000;
+    --ios-card: #ffffff;
+    --ios-card-dark: #1c1c1e;
+    --ios-label: #000000;
+    --ios-label-dark: #ffffff;
+    --ios-secondary: rgba(60, 60, 67, 0.60);
+    --ios-secondary-dark: rgba(235, 235, 245, 0.60);
+    --ios-tertiary: rgba(60, 60, 67, 0.30);
+    --ios-tertiary-dark: rgba(235, 235, 245, 0.30);
+    --ios-separator: rgba(60, 60, 67, 0.29);
+    --ios-separator-dark: rgba(84, 84, 88, 0.65);
+    --ios-fill: rgba(120, 120, 128, 0.20);
+    --ios-fill-dark: rgba(120, 120, 128, 0.36);
+    --ios-selected: rgba(0, 122, 255, 0.14);
+    --ios-radius: 22px;
+    --ios-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+    --ios-space-2: 8px;
+    --ios-space-3: 12px;
+    --ios-space-4: 16px;
+    --ios-space-5: 20px;
+    --ios-space-6: 24px;
+    --ios-space-8: 32px;
+    --ios-space-12: 48px;
+    --ios-space-16: 64px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    background: var(--ios-bg);
+    letter-spacing: 0;
+  }
+
+  html[data-mode="dark"] body {
+    background: var(--ios-bg-dark);
+  }
+
+  nav.top {
+    background: rgba(248, 248, 248, 0.72);
+    border-bottom-color: var(--ios-separator);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+  }
+
+  html[data-mode="dark"] nav.top {
+    background: rgba(18, 18, 18, 0.72);
+    border-bottom-color: var(--ios-separator-dark);
+  }
+
+  nav.top .row {
+    min-height: 56px;
+    height: 56px;
+  }
+
+  .lang-switch {
+    min-height: 34px;
+    background: var(--ios-fill);
+    border: 0;
+    border-radius: 10px;
+    padding: 2px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .lang-switch button {
+    min-width: 32px;
+    min-height: 30px;
+    border-radius: 8px;
+    color: rgba(29, 29, 31, 0.78) !important;
+  }
+
+  html[data-mode="dark"] .lang-switch button {
+    color: var(--ios-secondary-dark) !important;
+  }
+
+  .lang-switch button.active {
+    background: rgba(255, 255, 255, 0.96) !important;
+    color: var(--ios-label) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  }
+
+  html[data-mode="dark"] .lang-switch button.active {
+    background: rgba(99, 99, 102, 0.72) !important;
+    color: #fff !important;
+  }
+
+  .back-link {
+    min-height: 36px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--ios-fill);
+    color: var(--ios-blue);
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .news-page-layout {
+    max-width: 1180px;
+    gap: var(--ios-space-4);
+    padding: var(--ios-space-6);
+    border: 0;
+  }
+
+  .news-sidebar,
+  .news-main {
+    background: var(--ios-card);
+    border: 1px solid var(--ios-separator);
+    border-radius: var(--ios-radius);
+    box-shadow: var(--ios-shadow);
+    backdrop-filter: saturate(180%) blur(22px);
+    -webkit-backdrop-filter: saturate(180%) blur(22px);
+  }
+
+  html[data-mode="dark"] .news-sidebar,
+  html[data-mode="dark"] .news-main {
+    background: var(--ios-card-dark);
+    border-color: var(--ios-separator-dark);
+  }
+
+  .news-sidebar {
+    top: 80px;
+    height: calc(100vh - 104px);
+    border-right: 0;
+    padding: var(--ios-space-5) 0;
+  }
+
+  .news-sidebar .sidebar-heading,
+  .article-share-title,
+  .mobile-picker label {
+    font-family: inherit;
+    color: var(--ios-secondary);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 700;
+  }
+
+  html[data-mode="dark"] .news-sidebar .sidebar-heading,
+  html[data-mode="dark"] .article-share-title,
+  html[data-mode="dark"] .mobile-picker label {
+    color: var(--ios-secondary-dark);
+  }
+
+  .news-sidebar .sidebar-item {
+    min-height: 64px;
+    margin: var(--ios-space-2) var(--ios-space-3);
+    padding: 10px var(--ios-space-4);
+    border-bottom: 1px solid var(--ios-separator);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  html[data-mode="dark"] .news-sidebar .sidebar-item {
+    border-bottom-color: var(--ios-separator-dark);
+  }
+
+  .news-sidebar .sidebar-item:first-of-type {
+    border-top: 0;
+  }
+
+  .news-sidebar .sidebar-item:hover,
+  .news-sidebar .sidebar-item.active {
+    background: var(--ios-selected);
+    border-left: 0;
+  }
+
+  .news-sidebar .sidebar-heading {
+    padding: 0 28px var(--ios-space-3);
+  }
+
+  .news-sidebar .sidebar-item .s-date {
+    margin-bottom: 3px;
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .news-sidebar .sidebar-item .s-title {
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .news-sidebar .sidebar-item .s-date,
+  .article-date,
+  .listing-row .l-date {
+    background: none;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    color: var(--ios-blue);
+    font-family: inherit;
+    letter-spacing: 0;
+    -webkit-text-fill-color: var(--ios-blue);
+  }
+
+  .news-sidebar .sidebar-item .s-title,
+  .article-title,
+  .listing-header h1,
+  .listing-row .l-title {
+    color: var(--ios-label);
+    letter-spacing: 0;
+  }
+
+  html[data-mode="dark"] .news-sidebar .sidebar-item .s-title,
+  html[data-mode="dark"] .article-title,
+  html[data-mode="dark"] .listing-header h1,
+  html[data-mode="dark"] .listing-row .l-title {
+    color: var(--ios-label-dark);
+  }
+
+  .news-main {
+    padding: 0 var(--ios-space-8);
+  }
+
+  .article-header {
+    padding: var(--ios-space-12) 0 var(--ios-space-8);
+    border-bottom-color: var(--ios-separator);
+  }
+
+  html[data-mode="dark"] .article-header {
+    border-bottom-color: var(--ios-separator-dark);
+  }
+
+  .article-title {
+    font-weight: 800;
+    line-height: 1.08;
+  }
+
+  .article-body {
+    padding: var(--ios-space-8) 0 var(--ios-space-16);
+    color: var(--ios-secondary);
+    font-size: 18px;
+    line-height: 1.72;
+  }
+
+  html[data-mode="dark"] .article-body {
+    color: var(--ios-secondary-dark);
+  }
+
+  .article-cta,
+  .share-btn {
+    min-height: 44px;
+    border-radius: 999px;
+    background: var(--ios-blue);
+    color: #fff;
+    border: 0;
+    font-family: inherit;
+    font-weight: 700;
+    box-shadow: 0 10px 24px rgba(0, 122, 255, 0.26);
+  }
+
+  .share-btn {
+    background: var(--ios-fill);
+    color: var(--ios-label);
+    box-shadow: none;
+  }
+
+  html[data-mode="dark"] .share-btn {
+    color: #fff;
+  }
+
+  .share-btn:hover,
+  .article-cta:hover {
+    transform: translateY(-2px);
+    color: #fff;
+  }
+
+  .listing-header h1 {
+    background: none;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-text-fill-color: currentColor;
+  }
+
+  .listing-header p {
+    margin-top: var(--ios-space-4);
+    color: var(--ios-secondary);
+  }
+
+  html[data-mode="dark"] .listing-header p {
+    color: var(--ios-secondary-dark);
+  }
+
+  .listing-grid {
+    background: var(--ios-card);
+    border: 1px solid var(--ios-separator);
+    border-radius: var(--ios-radius);
+    box-shadow: var(--ios-shadow);
+    padding: var(--ios-space-2) var(--ios-space-6) var(--ios-space-6);
+    backdrop-filter: saturate(180%) blur(22px);
+    -webkit-backdrop-filter: saturate(180%) blur(22px);
+  }
+
+  html[data-mode="dark"] .listing-grid {
+    background: var(--ios-card-dark);
+    border-color: var(--ios-separator-dark);
+  }
+
+  .listing-row {
+    border-bottom-color: var(--ios-separator);
+    grid-template-columns: 112px 1fr 32px;
+  }
+
+  html[data-mode="dark"] .listing-row {
+    border-bottom-color: var(--ios-separator-dark);
+  }
+
+  .listing-row:hover {
+    background: var(--ios-selected);
+    border-radius: 14px;
+  }
+
+  .mobile-picker {
+    top: 56px;
+    background: rgba(242, 242, 247, 0.86);
+    border-bottom-color: var(--ios-separator);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+  }
+
+  html[data-mode="dark"] .mobile-picker {
+    background: rgba(0, 0, 0, 0.82);
+    border-bottom-color: var(--ios-separator-dark);
+  }
+
+  .mobile-picker select {
+    min-height: 48px;
+    background-color: var(--ios-card);
+    border: 0;
+    border-radius: 14px;
+    font-family: inherit;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  html[data-mode="dark"] .mobile-picker select {
+    background-color: var(--ios-card-dark);
+    color: #fff;
+  }
+
+  footer {
+    background: #111113;
+    color: #f5f5f7;
+    padding: var(--ios-space-16) 0 var(--ios-space-12);
+  }
+
+  footer a,
+  footer h4,
+  footer .footer-tagline,
+  footer .footer-bottom {
+    color: #f5f5f7 !important;
+  }
+
+  footer .footer-event-links {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    .news-page-layout {
+      display: block;
+      padding: var(--ios-space-5);
+      min-height: auto;
+    }
+
+    .news-main {
+      padding: 0 var(--ios-space-5);
+    }
+
+    .article-header {
+      padding-top: var(--ios-space-8);
+    }
+  }
+
+  @media (max-width: 520px) {
+    :root {
+      --gutter: 20px;
+    }
+
+    nav.top .row {
+      gap: 12px;
+    }
+
+    .nav-right {
+      gap: 8px;
+    }
+
+    .news-page-layout {
+      padding: var(--ios-space-3);
+    }
+
+    .news-main {
+      border-radius: 20px;
+      padding: 0 var(--ios-space-4);
+    }
+
+    .article-body {
+      font-size: 17px;
+    }
+
+    .listing-grid {
+      padding-inline: var(--ios-space-4);
+    }
+
+    .listing-row {
+      grid-template-columns: 1fr 28px;
+      gap: var(--ios-space-2);
+    }
+
+    .listing-row .l-date {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="top">
+  <div class="wrap row">
+    <a class="brand" href="index.html">
+      <img src="img/svg/logo_header_light.svg" alt="iPlayground 2026" class="nav-logo nav-logo--light">
+      <img src="img/svg/logo_header_dark.svg" alt="iPlayground 2026" class="nav-logo nav-logo--dark">
+    </a>
+    <div class="nav-right">
+      <!-- Mode toggle -->
+      <div class="lang-switch" id="modeSwitch" title="Appearance">
+        <button data-mode="auto" aria-label="Auto" style="padding:6px 9px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 3a9 9 0 0 1 0 18"/></svg>
+          <span>A</span>
+        </button>
+        <button data-mode="light" aria-label="Light" style="padding:6px 9px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        <button data-mode="dark" aria-label="Dark" style="padding:6px 9px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+      <!-- Lang toggle -->
+      <div class="lang-switch" id="langSwitch">
+        <button data-lang="zh">中</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <a class="back-link" href="index.html" id="backLink">← 回到主頁</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Content (rendered by JS) -->
+<div id="pageRoot"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-lock">
+          <img src="img/svg/logo_header_dark.svg" alt="iPlayground" class="footer-logo footer-logo--light" style="height:32px;width:auto;">
+          <img src="img/svg/logo_header_light.svg" alt="iPlayground" class="footer-logo footer-logo--dark" style="height:32px;width:auto;">
+        </div>
+        <p class="footer-tagline" id="footerTagline"></p>
+      </div>
+      <div class="footer-event-links">
+        <h4>活動</h4>
+        <ul>
+          <li><a href="index.html#news">最新消息</a></li>
+          <li><a href="index.html#about">活動資訊</a></li>
+          <li><a href="index.html#agenda">議程</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>社群</h4>
+        <ul>
+          <li><a href="https://discord.gg/xS8yMKbbjB" target="_blank" rel="noopener">Discord</a></li>
+          <li><a href="https://www.facebook.com/theiPlayground/" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://twitter.com/theiPlayground" target="_blank" rel="noopener">Twitter / X</a></li>
+          <li><a href="https://youtube.com/@iplaygroundtaiwan" target="_blank" rel="noopener">YouTube</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>聯絡</h4>
+        <ul>
+          <li><a href="mailto:support@iplayground.io">一般支援</a></li>
+          <li><a href="mailto:session@iplayground.io">講者投稿</a></li>
+          <li><a href="mailto:support@iplayground.io">贊助合作</a></li>
+          <li><a href="https://github.com/iplayground/code_of_conduct" target="_blank" rel="noopener">行為準則</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+    </div>
+    <div style="padding-top:16px;text-align:center;font-family:var(--f-mono);font-size:11px;color:color-mix(in srgb, var(--bg) 35%, transparent);letter-spacing:0.02em;">
+      iPlayground 2026 is organized by Taipei Elite Software Developer Association (77212283). All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script src="shared-content.js"></script>
+<script>
+// ===== i18n strings =====
+const I18N = {
+  zh: {
+    back: "← 回到主頁",
+    all_news: "全部消息",
+    all_news_sub: "iPlayground 2026 的所有公告與最新動態。",
+    sidebar_heading: "所有消息",
+    mobile_label: "選擇消息",
+    not_found: "找不到這則消息。",
+    back_home: "回到主頁",
+    footer: "© 2026 iPlayground · Swift in the Wild",
+  },
+  en: {
+    back: "← Back to Home",
+    all_news: "All News",
+    all_news_sub: "All announcements and updates for iPlayground 2026.",
+    sidebar_heading: "All Posts",
+    mobile_label: "Select Post",
+    not_found: "Post not found.",
+    back_home: "Back to Home",
+    footer: "© 2026 iPlayground · Swift in the Wild",
+  },
+};
+
+// ===== News data (synced from iOS Meetup.html) =====
+const NEWS_DATA = window.IPLAYGROUND_SHARED.newsData;
+
+// ===== State =====
+let currentLang = "zh";
+
+function t(key) {
+  return (I18N[currentLang] || I18N.zh)[key] || key;
+}
+
+function getVal(obj) {
+  if (typeof obj === 'string') return obj;
+  return obj[currentLang] || obj.zh || "";
+}
+
+function setMeta(name, value, attr = "property") {
+  const selector = attr === "name" ? `meta[name="${name}"]` : `meta[property="${name}"]`;
+  const el = document.querySelector(selector);
+  if (el) el.setAttribute("content", value);
+}
+
+function articleUrl(id) {
+  return new URL(`news.html?id=${id}`, window.location.href).href;
+}
+
+function renderShareBlock(id, title) {
+  const url = articleUrl(id);
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent(title);
+  const shareLabel = currentLang === "en" ? "Share this post" : "分享這篇公告";
+  const copyLabel = currentLang === "en" ? "Copy Link" : "複製連結";
+  return `
+    <section class="article-share" aria-label="${shareLabel}">
+      <div class="article-share-title">${shareLabel}</div>
+      <div class="article-share-actions">
+        <button class="share-btn" type="button" data-copy-share="${url}">${copyLabel}</button>
+      </div>
+    </section>
+  `;
+}
+
+function bindShareButtons() {
+  document.querySelectorAll("[data-copy-share]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const url = btn.dataset.copyShare;
+      const original = btn.textContent;
+      try {
+        await navigator.clipboard.writeText(url);
+        btn.textContent = currentLang === "en" ? "Copied" : "已複製";
+      } catch (e) {
+        window.prompt(currentLang === "en" ? "Copy this link" : "請複製此連結", url);
+      }
+      setTimeout(() => { btn.textContent = original; }, 1600);
+    });
+  });
+}
+
+function updateArticleMeta(id, title) {
+  const url = articleUrl(id);
+  const desc = currentLang === "en"
+    ? "Recommend a company contact and help make iPlayground 2026 happen. Successful sponsorship referrals receive a two-day ticket and commemorative shirt."
+    : "推薦公司窗口並促成 iPlayground 2026 贊助合作，即可獲得兩日門票與紀念衣服。";
+  setMeta("description", desc, "name");
+  setMeta("og:title", title);
+  setMeta("og:description", desc);
+  setMeta("og:url", url);
+  setMeta("twitter:title", title, "name");
+  setMeta("twitter:description", desc, "name");
+}
+
+// ===== Appearance (Auto / Light / Dark) =====
+const mql = window.matchMedia("(prefers-color-scheme: dark)");
+function resolveMode(pref) {
+  if (pref === "light" || pref === "dark") return pref;
+  return mql.matches ? "dark" : "light";
+}
+function applyAppearance(pref) {
+  const effective = resolveMode(pref);
+  document.documentElement.dataset.mode = effective;
+  document.querySelectorAll("#modeSwitch button").forEach(b =>
+    b.classList.toggle("active", b.dataset.mode === pref)
+  );
+  try { localStorage.setItem("appearance", pref); } catch(e) {}
+}
+document.getElementById("modeSwitch").addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-mode]");
+  if (btn) applyAppearance(btn.dataset.mode);
+});
+mql.addEventListener("change", () => {
+  const saved = (() => { try { return localStorage.getItem("appearance"); } catch(e) { return null; } })() || "auto";
+  if (saved === "auto") applyAppearance("auto");
+});
+const savedAppearance = (() => { try { return localStorage.getItem("appearance"); } catch(e) { return null; } })() || "auto";
+applyAppearance(savedAppearance);
+
+// ===== i18n apply =====
+function applyLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
+  document.querySelectorAll("#langSwitch button").forEach(b =>
+    b.classList.toggle("active", b.dataset.lang === lang)
+  );
+  document.getElementById("backLink").textContent = t("back");
+  const footerTagline = document.getElementById("footerTagline");
+  if (footerTagline) footerTagline.textContent = window.IPLAYGROUND_SHARED.footerTagline[lang] || window.IPLAYGROUND_SHARED.footerTagline.zh;
+  try { localStorage.setItem("lang", lang); } catch(e) {}
+  renderPage();
+}
+document.getElementById("langSwitch").addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-lang]");
+  if (btn) applyLang(btn.dataset.lang);
+});
+
+// ===== Routing & Render =====
+function renderPage() {
+  const params = new URLSearchParams(window.location.search);
+  const root = document.getElementById("pageRoot");
+  const idParam = params.get("id");
+
+  if (idParam === null) {
+    // ---- Listing view ----
+    document.title = `${t("all_news")} · iPlayground 2026`;
+    root.innerHTML = `
+      <div class="wrap">
+        <div class="listing-header">
+          <h1>${t("all_news")}</h1>
+          <p>${t("all_news_sub")}</p>
+        </div>
+        <div class="listing-grid">
+          ${NEWS_DATA.map((n, i) => `
+            <a class="listing-row" href="news.html?id=${i}">
+              <div class="l-date">${n.date}</div>
+              <div class="l-title">${getVal(n.title)}</div>
+              <div class="l-arrow">→</div>
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  // ---- Article view ----
+  const id = parseInt(idParam, 10);
+  if (isNaN(id) || id < 0 || id >= NEWS_DATA.length) {
+    root.innerHTML = `<div class="msg">${t("not_found")}<br><a href="index.html" style="color:var(--accent);">${t("back_home")}</a></div>`;
+    return;
+  }
+
+  const n = NEWS_DATA[id];
+  const titleStr = getVal(n.title);
+  updateArticleMeta(id, titleStr);
+  document.title = `${titleStr} · iPlayground 2026`;
+
+  const sidebar = NEWS_DATA.map((item, i) => `
+    <a class="sidebar-item ${i === id ? 'active' : ''}" href="news.html?id=${i}">
+      <div class="s-date">${item.date}</div>
+      <div class="s-title">${getVal(item.title)}</div>
+    </a>
+  `).join("");
+
+  const options = NEWS_DATA.map((item, i) =>
+    `<option value="${i}" ${i === id ? 'selected' : ''}>${item.date}　${getVal(item.title)}</option>`
+  ).join("");
+
+  root.innerHTML = `
+    <div class="mobile-picker" id="mobilePicker">
+      <label>${t("mobile_label")}</label>
+      <select id="newsSelect">
+        ${options}
+      </select>
+    </div>
+    <div class="news-page-layout">
+      <aside class="news-sidebar">
+        <div class="sidebar-heading">${t("sidebar_heading")}</div>
+        ${sidebar}
+      </aside>
+      <main class="news-main">
+        <header class="article-header" id="artHeader">
+          <div class="article-date">${n.date}</div>
+          <h1 class="article-title">${titleStr}</h1>
+          </header>
+          <article class="article-body" id="artBody">
+            ${getVal(n.content)}
+            ${renderShareBlock(id, titleStr)}
+          </article>
+        </main>
+      </div>
+    `;
+  bindShareButtons();
+
+  // Mobile dropdown — swap content inline without full re-render
+  const sel = document.getElementById("newsSelect");
+  if (sel) {
+    sel.addEventListener("change", function() {
+      const newId = parseInt(this.value, 10);
+      const item = NEWS_DATA[newId];
+      const iTitle = getVal(item.title);
+      document.getElementById("artHeader").innerHTML = `
+        <div class="article-date">${item.date}</div>
+        <h1 class="article-title">${iTitle}</h1>
+      `;
+      document.getElementById("artBody").innerHTML = getVal(item.content) + renderShareBlock(newId, iTitle);
+      document.title = `${iTitle} · iPlayground 2026`;
+      updateArticleMeta(newId, iTitle);
+      bindShareButtons();
+      history.replaceState(null, "", `news.html?id=${newId}`);
+    });
+  }
+}
+
+// ===== Init =====
+const savedLang = (() => { try { return localStorage.getItem("lang"); } catch(e) { return null; } })() || "zh";
+const savedHue = (() => { try { return localStorage.getItem("hue"); } catch(e) { return null; } })() || 230;
+document.documentElement.style.setProperty("--hue", savedHue);
+applyLang(savedLang);
+</script>
+</body>
+</html>
