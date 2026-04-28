@@ -1,0 +1,10 @@
+    .lang-switch button.active {
+      background: rgba(255, 255, 255, 0.94);
+      color: #111113 !important;
+    }
+
+    html[data-mode="dark"] .lang-switch button.active {
+      background: rgba(99, 99, 102, 0.72);
+      color: #fff !important;
+    }
+  </style>

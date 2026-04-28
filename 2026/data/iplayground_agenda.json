@@ -1,0 +1,74 @@
+[
+  {
+    "time": "範例",
+    "track": "ios",
+    "tag": "iOS",
+    "title": "SwiftUI 在大型產品的落地經驗",
+    "sub": "架構選擇、效能挑戰、踩過的坑都歡迎",
+    "speaker": { "name": "20 / 30 / 45 分", "avatar": "iOS" }
+  },
+  {
+    "time": "範例",
+    "track": "ios",
+    "tag": "iOS",
+    "title": "Swift 6 Concurrency、visionOS、App Intents…",
+    "sub": "WWDC 沒說、或用了之後才發現的真相",
+    "speaker": { "name": "20 / 30 / 45 分", "avatar": "iOS" }
+  },
+  {
+    "time": "範例",
+    "track": "ai",
+    "tag": "AI",
+    "title": "LLM / RAG / Agent 在真實產品的應用",
+    "sub": "不是 Demo,是上線之後的故事",
+    "speaker": { "name": "20 / 30 / 45 分", "avatar": "AI" }
+  },
+  {
+    "time": "範例",
+    "track": "ai",
+    "tag": "AI",
+    "title": "On-device ML、Core ML、MLX 的實作",
+    "sub": "把模型塞進 iPhone 後發生了什麼事",
+    "speaker": { "name": "20 / 30 / 45 分", "avatar": "AI" }
+  },
+  {
+    "time": "範例",
+    "track": "product",
+    "tag": "產品",
+    "title": "從 0 到 1 的建立,或從 1 到 100 的擴張",
+    "sub": "產品決策、成長實驗、商業模式轉彎",
+    "speaker": { "name": "20 / 30 / 45 分", "avatar": "產" }
+  },
+  {
+    "time": "範例",
+    "track": "product",
+    "tag": "產品",
+    "title": "設計與工程的協作方法論",
+    "sub": "Design Token、Design System、Handoff",
+    "speaker": { "name": "20 / 30 / 45 分", "avatar": "產" }
+  },
+  {
+    "time": "範例",
+    "track": "other",
+    "tag": "Lightning",
+    "title": "有故事講不完?5 分鐘也可以。",
+    "sub": "Lightning Talk 歡迎短而快、任性、真誠",
+    "speaker": { "name": "5 分鐘", "avatar": "⚡" }
+  },
+  {
+    "time": "範例",
+    "track": "other",
+    "tag": "Panel",
+    "title": "想和其他人一起聊的話題?",
+    "sub": "Panel 圓桌 · 歡迎投稿提案與人選",
+    "speaker": { "name": "60 分", "avatar": "🗣" }
+  },
+  {
+    "time": "範例",
+    "track": "other",
+    "tag": "Workshop",
+    "title": "帶著電腦一起動手寫程式",
+    "sub": "Workshop · 限定人數、深度上手",
+    "speaker": { "name": "180 分", "avatar": "🛠" }
+  }
+]

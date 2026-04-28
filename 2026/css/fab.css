@@ -1,0 +1,84 @@
+    /* ===== Floating Action Buttons ===== */
+    .fab-group {
+      position: fixed;
+      right: max(18px, env(safe-area-inset-right));
+      bottom: max(22px, env(safe-area-inset-bottom));
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .fab {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(44, 44, 46, 0.72);
+      backdrop-filter: saturate(180%) blur(22px);
+      -webkit-backdrop-filter: saturate(180%) blur(22px);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease, opacity .18s ease;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .fab:hover {
+      background: var(--ios-blue, #007aff);
+      border-color: rgba(255, 255, 255, 0.24);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(0, 122, 255, 0.34);
+    }
+
+    html[data-mode="light"] .fab {
+      background: rgba(255, 255, 255, 0.86);
+      border-color: rgba(60, 60, 67, 0.18);
+      color: #1d1d1f;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .fab--top {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+    }
+
+    .fab--top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* Mode icon visibility */
+    .fab-icon { display: none; }
+    [data-fab-mode="auto"]  .fab-icon--auto  { display: block; }
+    [data-fab-mode="light"] .fab-icon--light { display: block; }
+    [data-fab-mode="dark"]  .fab-icon--dark  { display: block; }
+
+    @media (min-width: 981px) {
+      .fab-group {
+        right: 24px;
+        bottom: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .fab-group {
+        right: max(14px, env(safe-area-inset-right));
+        bottom: max(18px, env(safe-area-inset-bottom));
+      }
+
+      .fab {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>

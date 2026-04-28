@@ -1,0 +1,39 @@
+{
+  "social": [
+    {
+      "id": "discord",
+      "label": "Discord",
+      "url": "https://discord.gg/xS8yMKbbjB",
+      "icon": "img/svg/media/discord.svg"
+    },
+    {
+      "id": "facebook",
+      "label": "Facebook",
+      "url": "https://www.facebook.com/theiPlayground/",
+      "icon": "img/svg/media/facebook.svg"
+    },
+    {
+      "id": "twitter",
+      "label": "Twitter / X",
+      "url": "https://twitter.com/theiPlayground",
+      "icon": "img/svg/media/twitter.svg"
+    },
+    {
+      "id": "youtube",
+      "label": "YouTube",
+      "url": "https://youtube.com/@iplaygroundtaiwan",
+      "icon": "img/svg/media/youtube.svg"
+    }
+  ],
+  "important": {
+    "cfp_form": "https://forms.gle/rocYKo7zQuKiGvTx9",
+    "sponsor_referral": "https://discord.com/channels/1256984270346649702/1492056108901204058/1497859375203614750",
+    "venue_traffic": "https://cpbae.nccu.edu.tw/cpbae-service-nx2/traffic?random=1751004674691",
+    "coc": "https://github.com/iplayground/code_of_conduct"
+  },
+  "contact": {
+    "support": "mailto:support@iplayground.io",
+    "cfp": "mailto:session@iplayground.io",
+    "sponsor": "mailto:support@iplayground.io"
+  }
+}

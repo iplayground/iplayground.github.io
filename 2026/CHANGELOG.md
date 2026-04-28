@@ -2,6 +2,23 @@
 
 ---
 
+### `pending` · 2026.04.28
+
+模組化重構：資料層、CSS、多語系全面拆分
+
+1. 新增 `data/` 資料夾，將所有硬編碼資料拆成獨立 JSON 檔案
+2. 新增 `data/iplayground_staff.json`：工作人員名單，支援照片、連結、fallback 圖片
+3. 新增 `data/iplayground_news.json`：最新消息，移除 `shared-content.js` 資料依賴
+4. 新增 `data/iplayground_agenda.json`、`iplayground_cfp_steps.json`：議程與徵稿流程
+5. 新增 `data/iplayground_config.json`：全域設定（venue 地圖、footer 文字）
+6. 新增 `data/iplayground_links.json`：社群連結、重要連結、聯絡信箱集中管理，HTML 改用 `data-link` 注入
+7. 新增 `data/iplayground_i18n.json`：多語系文字採 key 為主軸結構（`{ zh, en }`），index.html 與 news.html 共用同一份
+8. 將 `index.html` 內嵌 CSS（3500+ 行）拆分為 `css/shared.css`、`css/main.css`、`css/news.css`、`css/fab.css`、`css/confetti.css`
+9. 新增工作人員區塊：圓形頭像、iOS 藍漸層外框、6 欄 grid、動態從 JSON 渲染
+10. 刪除未使用檔案：`tokens.css`、`icon/`、`shared-content.js` 資料內容；新增 `data/README.md` 說明文件
+
+---
+
 ### `a14c42b` · 2026.04.27
 
 調整文字尺寸、刪除多餘資料、移動檔案

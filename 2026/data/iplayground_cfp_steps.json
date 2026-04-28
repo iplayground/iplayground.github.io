@@ -1,0 +1,62 @@
+[
+  {
+    "name": { "zh": "4 月底", "en": "End of April" },
+    "role": { "zh": "Step 01 · 獲得靈感", "en": "Step 01 · Get Inspired" },
+    "topic": {
+      "zh": "看完這個網頁、腦中有個想聊的主題——這就是投稿的起點。",
+      "en": "Browse this page, let an idea come to mind — that's where your proposal starts."
+    },
+    "pic": "Idea",
+    "threshold": "2026-04-30"
+  },
+  {
+    "name": { "zh": "5 月上旬", "en": "Early May" },
+    "role": { "zh": "Step 02 · 組織想法", "en": "Step 02 · Shape Your Idea" },
+    "topic": {
+      "zh": "寫一段 200 字的摘要、試著用一句話說出你想讓觀眾帶走的東西。",
+      "en": "Write a 200-word abstract. Try to sum it up in one sentence — what do you want your audience to take away?"
+    },
+    "pic": "Outline",
+    "threshold": "2026-05-10"
+  },
+  {
+    "name": { "zh": "6/12 前建議", "en": "Before Jun 12" },
+    "role": { "zh": "Step 03 · 投表單", "en": "Step 03 · Submit the Form" },
+    "topic": {
+      "zh": "提前一週投達、避開最後一秒的主機未達悲劇。隨時可回頭修改。",
+      "en": "Submit a week early to avoid last-minute chaos. You can always revise later."
+    },
+    "pic": "Submit",
+    "threshold": "2026-06-12"
+  },
+  {
+    "name": { "zh": "06/19 24:00", "en": "Jun 19, 24:00" },
+    "role": { "zh": "Step 04 · 徵稿截止", "en": "Step 04 · CFP Deadline" },
+    "topic": {
+      "zh": "這是硬限。過了這個點就等下一年了——我們會很惋惜與你錯身。",
+      "en": "This is a hard deadline. Miss it, and it's another year's wait — we'd hate to miss you."
+    },
+    "pic": "Deadline",
+    "threshold": "2026-06-20"
+  },
+  {
+    "name": { "zh": "7 月初回覆", "en": "Early July" },
+    "role": { "zh": "Step 05 · 審核結果", "en": "Step 05 · Review Results" },
+    "topic": {
+      "zh": "無論採用與否、我們都會以 email 逐位回覆。未被採用不代表不好。",
+      "en": "We'll reply to every applicant by email, accepted or not. A pass doesn't mean your talk wasn't good."
+    },
+    "pic": "Review",
+    "threshold": "2026-07-07"
+  },
+  {
+    "name": { "zh": "7/25(六)～7/26(日)", "en": "Jul 25(Sat)～26(Sun)" },
+    "role": { "zh": "Step 06 · 大會當天", "en": "Step 06 · Conference Day" },
+    "topic": {
+      "zh": "帶著精心準備的分享，和與會者一起享受 iPlayground。",
+      "en": "NCCU Enterprise Development Center. Bring your talk and join hundreds of developers to make iPlayground 2026 the best one yet."
+    },
+    "pic": "Event",
+    "threshold": "2026-07-25"
+  }
+]
