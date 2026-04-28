@@ -1188,7 +1188,15 @@
 
       nav.top .row {
         display: flex !important;
-        justify-content: space-between;
+        justify-content: flex-end;
+        position: relative;
+      }
+
+      nav.top .brand {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        justify-self: auto;
       }
 
       nav.top ul.nav-menu {

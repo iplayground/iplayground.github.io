@@ -2,8 +2,8 @@
   "name": "iplayground-2026",
   "private": true,
   "scripts": {
-    "dev": "vite --host localhost --port 5567 --strictPort",
-    "preview": "vite preview --host localhost --port 5567 --strictPort"
+    "dev": "vite --host localhost --port 1234 --strictPort",
+    "preview": "vite preview --host localhost --port 1234 --strictPort"
   },
   "devDependencies": {
     "vite": "^6.3.5"

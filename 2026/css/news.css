@@ -289,6 +289,7 @@
       width: 100%;
     }
     .nav-right .back-link { display: none; }
+    .nav-right .home-icon-link { display: inline-flex; }
   }
 
   /* ============ iOS HIG Preview Layer ============ */
@@ -398,6 +399,18 @@
     font-family: inherit;
     font-weight: 700;
     letter-spacing: 0;
+  }
+  .home-icon-link {
+    display: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--ios-blue);
+    background: var(--ios-fill);
+    border: 1px solid transparent;
   }
 
   .news-page-layout {
@@ -649,6 +662,18 @@
   }
 
   @media (max-width: 900px) {
+    nav.top .row {
+      display: flex !important;
+      justify-content: flex-end;
+      position: relative;
+    }
+
+    nav.top .brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     .news-page-layout {
       display: block;
       padding: var(--ios-space-5);
@@ -661,6 +686,18 @@
 
     .article-header {
       padding-top: var(--ios-space-8);
+    }
+
+    .nav-right .back-link {
+      display: none !important;
+    }
+
+    .nav-right .lang-switch {
+      display: none;
+    }
+
+    .nav-right .home-icon-link {
+      display: inline-flex !important;
     }
   }
 

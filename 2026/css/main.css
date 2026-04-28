@@ -692,7 +692,7 @@
     .fc-label {
       font-family: var(--f-mono);
       font-size: 16px;
-      color: var(--ink-3);
+      color: #ffffff;
       letter-spacing: 0.14em;
       text-transform: uppercase;
     }
@@ -2481,4 +2481,3 @@
       font-size: 12px;
       color: var(--ink-3);
     }
-

@@ -2127,59 +2127,67 @@
 <script>
 (function() {
   const COLORS = ['#FF6B35','#FFD700','#FF3D8B','#4895FF','#A688FF','#34C759','#FF9F0A','#64D2FF','#FF453A','#30D158'];
+  let confettiEnabled = true;
 
-  // ── 載入時的拉炮特效 ──────────────────────────────────────────
-  setTimeout(function() {
-    confetti({
-      particleCount: 320,
-      spread: 200,
-      startVelocity: 78,
-      decay: 0.87,
-      gravity: 0.75,
-      ticks: 420,
-      scalar: 1.4,
-      colors: COLORS,
-      shapes: ['square', 'circle'],
-      origin: { x: 0.5, y: 0.78 }
-    });
-  }, 250);
+  function normalizeSwitchValue(v) {
+    return String(v || '').trim().toLowerCase() === 'on' ? 'on' : 'off';
+  }
 
-  setTimeout(function() {
-    confetti({
-      particleCount: 180,
-      spread: 160,
-      startVelocity: 65,
-      decay: 0.88,
-      gravity: 0.8,
-      ticks: 380,
-      scalar: 1.2,
-      colors: COLORS,
-      shapes: ['square', 'circle'],
-      origin: { x: 0.3, y: 0.82 }
-    });
-    confetti({
-      particleCount: 180,
-      spread: 160,
-      startVelocity: 65,
-      decay: 0.88,
-      gravity: 0.8,
-      ticks: 380,
-      scalar: 1.2,
-      colors: COLORS,
-      shapes: ['square', 'circle'],
-      origin: { x: 0.7, y: 0.82 }
-    });
-  }, 500);
+  function playLaunchConfetti() {
+    if (!confettiEnabled) return;
+    setTimeout(function() {
+      confetti({
+        particleCount: 320,
+        spread: 200,
+        startVelocity: 78,
+        decay: 0.87,
+        gravity: 0.75,
+        ticks: 420,
+        scalar: 1.4,
+        colors: COLORS,
+        shapes: ['square', 'circle'],
+        origin: { x: 0.5, y: 0.78 }
+      });
+    }, 250);
 
-  // ── 最新消息區塊：持續飄落粒子 ───────────────────────────────
-  const newsCanvas = document.getElementById('newsConfettiCanvas');
-  if (newsCanvas) {
+    setTimeout(function() {
+      confetti({
+        particleCount: 180,
+        spread: 160,
+        startVelocity: 65,
+        decay: 0.88,
+        gravity: 0.8,
+        ticks: 380,
+        scalar: 1.2,
+        colors: COLORS,
+        shapes: ['square', 'circle'],
+        origin: { x: 0.3, y: 0.82 }
+      });
+      confetti({
+        particleCount: 180,
+        spread: 160,
+        startVelocity: 65,
+        decay: 0.88,
+        gravity: 0.8,
+        ticks: 380,
+        scalar: 1.2,
+        colors: COLORS,
+        shapes: ['square', 'circle'],
+        origin: { x: 0.7, y: 0.82 }
+      });
+    }, 500);
+  }
+
+  function setupNewsConfetti(newsDriftEnabled) {
+    const newsCanvas = document.getElementById('newsConfettiCanvas');
+    if (!newsCanvas || !newsDriftEnabled) return;
+
     const newsConfetti = confetti.create(newsCanvas, { resize: true, useWorker: false });
     let animFrame = null;
     let isVisible = false;
 
     function drift() {
-      if (!isVisible) return;
+      if (!isVisible || !confettiEnabled) return;
       newsConfetti({
         particleCount: 3,
         spread: 80,
@@ -2190,7 +2198,7 @@
         scalar: window.innerWidth < 600 ? 0.5 : 0.85,
         colors: COLORS,
         shapes: ['square', 'circle'],
-        origin: { x: Math.random(), y: 0 }  // rain from top of the section
+        origin: { x: Math.random(), y: 0 }
       });
       animFrame = requestAnimationFrame(drift);
     }
@@ -2207,8 +2215,22 @@
       });
     }, { threshold: 0.1 });
 
-    observer.observe(document.getElementById('news'));
+    const newsSection = document.getElementById('news');
+    if (newsSection) observer.observe(newsSection);
   }
+
+  fetch('data/confetti-control.json')
+    .then(function(r) { return r.json(); })
+    .then(function(confettiConfig) {
+      confettiEnabled = normalizeSwitchValue(confettiConfig.launchConfetti) === 'on';
+      playLaunchConfetti();
+      setupNewsConfetti(normalizeSwitchValue(confettiConfig.newsDrift) === 'on');
+    })
+    .catch(function() {
+      confettiEnabled = true;
+      playLaunchConfetti();
+      setupNewsConfetti(true);
+    });
 })();
 </script>
 
