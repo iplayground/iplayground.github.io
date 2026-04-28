@@ -1,74 +1,87 @@
 [
   {
-    "time": "範例",
+    "day": 1,
+    "time": "10:00 – 10:20",
     "track": "ios",
-    "tag": "iOS",
     "title": "SwiftUI 在大型產品的落地經驗",
-    "sub": "架構選擇、效能挑戰、踩過的坑都歡迎",
-    "speaker": { "name": "20 / 30 / 45 分", "avatar": "iOS" }
+    "tags": ["iOS", "SwiftUI", "架構"],
+    "speaker": {
+      "name": "講者 A",
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [
+        { "type": "github",   "url": "https://github.com/" },
+        { "type": "linkedin", "url": "https://linkedin.com/" },
+        { "type": "web",      "url": "https://example.com/" }
+      ]
+    },
+    "description": "分享 SwiftUI 在大型產品中的實際落地經驗，包含架構選擇、效能挑戰與踩過的坑。",
+    "hackmd": "https://hackmd.io/"
   },
   {
-    "time": "範例",
-    "track": "ios",
-    "tag": "iOS",
-    "title": "Swift 6 Concurrency、visionOS、App Intents…",
-    "sub": "WWDC 沒說、或用了之後才發現的真相",
-    "speaker": { "name": "20 / 30 / 45 分", "avatar": "iOS" }
-  },
-  {
-    "time": "範例",
+    "day": 1,
+    "time": "10:30 – 11:00",
     "track": "ai",
-    "tag": "AI",
     "title": "LLM / RAG / Agent 在真實產品的應用",
-    "sub": "不是 Demo,是上線之後的故事",
-    "speaker": { "name": "20 / 30 / 45 分", "avatar": "AI" }
+    "tags": ["AI", "LLM", "產品"],
+    "speaker": {
+      "name": "講者 B",
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [
+        { "type": "github", "url": "https://github.com/" },
+        { "type": "web",    "url": "https://example.com/" }
+      ]
+    },
+    "description": "不是 Demo，是上線之後的故事。分享 LLM、RAG、Agent 在真實產品中的應用經驗與踩坑紀錄。",
+    "hackmd": "https://hackmd.io/"
   },
   {
-    "time": "範例",
+    "day": 1,
+    "time": "11:10 – 11:40",
+    "track": "product",
+    "title": "從 0 到 1 的建立，或從 1 到 100 的擴張",
+    "tags": ["產品", "成長"],
+    "speaker": {
+      "name": "講者 C",
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [
+        { "type": "linkedin", "url": "https://linkedin.com/" }
+      ]
+    },
+    "description": "產品決策、成長實驗、商業模式轉彎——從零到一的建立，或從一到百的擴張，都有值得分享的故事。",
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "10:00 – 10:30",
+    "track": "ios",
+    "title": "Swift 6 Concurrency 實戰：踩坑與解法",
+    "tags": ["iOS", "Swift 6", "Concurrency"],
+    "speaker": {
+      "name": "講者 D",
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [
+        { "type": "github",   "url": "https://github.com/" },
+        { "type": "linkedin", "url": "https://linkedin.com/" }
+      ]
+    },
+    "description": "Swift 6 的 Concurrency 改動讓不少開發者踩坑，本場分享實際遇到的問題與解法，幫助你少走彎路。",
+    "hackmd": "https://hackmd.io/"
+  },
+  {
+    "day": 2,
+    "time": "10:40 – 11:10",
     "track": "ai",
-    "tag": "AI",
-    "title": "On-device ML、Core ML、MLX 的實作",
-    "sub": "把模型塞進 iPhone 後發生了什麼事",
-    "speaker": { "name": "20 / 30 / 45 分", "avatar": "AI" }
-  },
-  {
-    "time": "範例",
-    "track": "product",
-    "tag": "產品",
-    "title": "從 0 到 1 的建立,或從 1 到 100 的擴張",
-    "sub": "產品決策、成長實驗、商業模式轉彎",
-    "speaker": { "name": "20 / 30 / 45 分", "avatar": "產" }
-  },
-  {
-    "time": "範例",
-    "track": "product",
-    "tag": "產品",
-    "title": "設計與工程的協作方法論",
-    "sub": "Design Token、Design System、Handoff",
-    "speaker": { "name": "20 / 30 / 45 分", "avatar": "產" }
-  },
-  {
-    "time": "範例",
-    "track": "other",
-    "tag": "Lightning",
-    "title": "有故事講不完?5 分鐘也可以。",
-    "sub": "Lightning Talk 歡迎短而快、任性、真誠",
-    "speaker": { "name": "5 分鐘", "avatar": "⚡" }
-  },
-  {
-    "time": "範例",
-    "track": "other",
-    "tag": "Panel",
-    "title": "想和其他人一起聊的話題?",
-    "sub": "Panel 圓桌 · 歡迎投稿提案與人選",
-    "speaker": { "name": "60 分", "avatar": "🗣" }
-  },
-  {
-    "time": "範例",
-    "track": "other",
-    "tag": "Workshop",
-    "title": "帶著電腦一起動手寫程式",
-    "sub": "Workshop · 限定人數、深度上手",
-    "speaker": { "name": "180 分", "avatar": "🛠" }
+    "title": "On-device ML：把模型塞進 iPhone 後發生了什麼事",
+    "tags": ["AI", "Core ML", "On-device"],
+    "speaker": {
+      "name": "講者 E",
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [
+        { "type": "github", "url": "https://github.com/" },
+        { "type": "web",    "url": "https://example.com/" }
+      ]
+    },
+    "description": "把模型塞進 iPhone 後發生了什麼事？分享 Core ML、MLX 的實作經驗，以及 on-device 推論的效能挑戰。",
+    "hackmd": "https://hackmd.io/"
   }
 ]

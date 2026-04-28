@@ -3,8 +3,8 @@
   "private": true,
   "packageManager": "yarn@4.4.1",
   "scripts": {
-    "dev": "vite --host localhost --port 3000 --strictPort",
-    "preview": "vite preview --host localhost --port 3000 --strictPort"
+    "dev": "vite --host localhost --port 5566 --strictPort",
+    "preview": "vite preview --host localhost --port 5566 --strictPort"
   },
   "devDependencies": {
     "vite": "^6.3.5"

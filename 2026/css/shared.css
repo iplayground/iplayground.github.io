@@ -673,11 +673,11 @@
     }
 
     .hero {
-      min-height: calc(100svh - 56px);
-      padding: 58px 0 92px;
+      min-height: unset;
+      padding: 58px 0 58px;
       background: #000;
-      display: flex;
-      align-items: center;
+      display: block;
+      align-items: unset;
     }
 
     .photo-wall {
@@ -708,9 +708,9 @@
     }
 
     h1.hero-title .hero-date {
-      margin-bottom: 28px;
+      margin-bottom: 0;
       font-family: inherit;
-      font-size: clamp(21px, 3vw, 38px);
+      font-size: 28px;
       font-weight: 700;
       letter-spacing: 0;
     }
@@ -725,7 +725,7 @@
     }
 
     .hero-cta-row {
-      --hero-cta-width: min(100%, 320px);
+      --hero-cta-width: min(100%, 380px);
       gap: 12px;
       margin-top: 28px;
     }
@@ -759,8 +759,7 @@
       animation: glowSpin 4s linear infinite, glowPulse 2.5s ease-in-out infinite;
     }
 
-    .hero-sponsor-btn,
-    html[data-mode="light"] .hero-sponsor-btn {
+    .hero-sponsor-btn {
       background: var(--ios-blue);
       color: #fff;
       box-shadow: 0 10px 28px rgba(0, 122, 255, 0.34);
@@ -848,7 +847,6 @@
 
     .hl,
     .news-card,
-    .speaker-card,
     .venue-card,
     .ticket,
     .submit-card,
@@ -865,7 +863,6 @@
 
     html[data-mode="dark"] .hl,
     html[data-mode="dark"] .news-card,
-    html[data-mode="dark"] .speaker-card,
     html[data-mode="dark"] .venue-card,
     html[data-mode="dark"] .ticket,
     html[data-mode="dark"] .submit-card,
@@ -999,6 +996,116 @@
       letter-spacing: 0.1em;
     }
 
+    /* ============ Speaker Grid ============ */
+    .speaker-grid {
+      margin-top: 72px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 40px 24px;
+      justify-items: center;
+    }
+
+    .speaker-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+
+    .speaker-avatar-wrap {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      padding: 5px;
+      background: conic-gradient(
+        from var(--speaker-ring-angle, 0deg),
+        #f59e0b, #ec4899, #8b5cf6, #f59e0b
+      );
+      transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: speakerRingSpin 4s linear infinite;
+    }
+
+    @property --speaker-ring-angle {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @keyframes speakerRingSpin {
+      to { --speaker-ring-angle: 360deg; }
+    }
+
+    /* 光暈效果 */
+    .speaker-avatar-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from var(--speaker-ring-angle, 0deg),
+        #f59e0b, #ec4899, #8b5cf6, #f59e0b
+      );
+      filter: blur(10px);
+      opacity: 0.6;
+      z-index: -1;
+      animation: speakerRingSpin 4s linear infinite;
+    }
+
+    .speaker-avatar-wrap:hover {
+      transform: translateY(-6px) scale(1.05);
+    }
+
+    .speaker-avatar-wrap:hover::before {
+      opacity: 0.9;
+      filter: blur(14px);
+    }
+
+    .speaker-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--surface);
+      outline: 3px solid var(--bg);
+    }
+
+    .speaker-avatar-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .speaker-card-link {
+      display: block;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+
+    .speaker-card-link:hover {
+      opacity: 0.88;
+    }
+
+    .speaker-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .speaker-role {
+      font-size: 12px;
+      font-family: var(--f-mono);
+      color: var(--ink-3);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
     /* ============ Staff Grid ============ */
     .staff-grid {
       margin-top: 72px;
@@ -1105,6 +1212,11 @@
         gap: 32px 16px;
       }
 
+      .speaker-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px 16px;
+      }
+
       .agenda-row {
         grid-template-columns: 80px 1fr;
         gap: 20px;
@@ -1157,11 +1269,7 @@
       }
 
       .hero {
-        padding: 50px 0 80px;
-      }
-
-      h1.hero-title {
-        font-size: clamp(48px, 11vw, 120px);
+        padding: 40px 0 40px;
       }
 
       h1.hero-title .gradient:first-child {
@@ -1170,21 +1278,27 @@
     }
 
     @media (max-width: 480px) {
-      h1.hero-title {
-        font-size: clamp(40px, 10vw, 72px);
-      }
-
       h1.hero-title .gradient:first-child {
         margin-bottom: 12px;
       }
 
       .hero {
-        padding: 50px 0 64px;
+        padding: 40px 0 40px;
       }
 
       .staff-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 28px 12px;
+      }
+
+      .speaker-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px 12px;
+      }
+
+      .speaker-avatar-wrap {
+        width: 96px;
+        height: 96px;
       }
 
       .staff-avatar-wrap {
@@ -1210,18 +1324,22 @@
 
     @media (max-width: 980px) {
       .hero {
-        min-height: calc(100svh - 56px);
-        padding: 56px 0 86px;
-      }
-
-      h1.hero-title {
-        font-size: clamp(50px, 13vw, 118px);
+        min-height: unset;
+        padding: 40px 0 40px;
       }
     }
 
     @media (max-width: 520px) {
       .hero-cta-row {
-        --hero-cta-width: min(100%, 292px);
+        --hero-cta-width: min(100%, 340px);
+      }
+
+      .flip-clock {
+        width: min(100%, 340px);
+      }
+
+      .hero-social-row {
+        width: min(100%, 340px);
       }
 
       .fc-card {
@@ -1238,19 +1356,6 @@
     @media (max-width: 480px) {
       .wrap {
         padding-inline: 22px;
-      }
-
-      h1.hero-title {
-        font-size: clamp(44px, 13vw, 70px);
-      }
-
-      h1.hero-title .hero-date {
-        font-size: 21px;
-        margin-bottom: 20px;
-      }
-
-      h1.hero-title .hero-logo {
-        width: clamp(204px, 74vw, 310px);
       }
 
       h1.hero-title .hero-tagline {
@@ -1393,11 +1498,6 @@
     @media (max-width: 980px) {
       section {
         padding: var(--ios-space-12) 0;
-      }
-
-      .agenda-row {
-        gap: var(--ios-space-4);
-        padding: var(--ios-space-5) var(--ios-space-4);
       }
 
       .venue-body,

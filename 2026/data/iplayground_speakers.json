@@ -1,0 +1,146 @@
+[
+  {
+    "name": "講者 A",
+    "role": "iOS Engineer",
+    "company": "某某科技",
+    "bio": "專注於 SwiftUI 與大型 iOS 產品架構設計，擁有超過 8 年 Apple 平台開發經驗。",
+    "photo": "img/speaker/speaker_terrykuo.jpg",
+    "social": {
+      "facebook": "https://facebook.com/",
+      "twitter": "https://twitter.com/",
+      "instagram": "https://instagram.com/"
+    }
+  },
+  {
+    "name": "講者 B",
+    "role": "AI Researcher",
+    "company": "AI 實驗室",
+    "bio": "研究方向為 LLM 應用與 RAG 系統設計，致力於將 AI 技術落地到真實產品中。",
+    "photo": "",
+    "social": {
+      "facebook": "https://facebook.com/",
+      "twitter": "https://twitter.com/",
+      "instagram": ""
+    }
+  },
+  {
+    "name": "講者 C",
+    "role": "Product Manager",
+    "company": "新創公司",
+    "bio": "從 0 到 1 打造過多款消費者產品，擅長在資源有限的環境下做出正確的產品決策。",
+    "photo": "img/speaker/speaker_terrykuo.jpg",
+    "social": {
+      "facebook": "",
+      "twitter": "https://twitter.com/",
+      "instagram": "https://instagram.com/"
+    }
+  },
+  {
+    "name": "講者 D",
+    "role": "Swift Developer",
+    "company": "獨立開發者",
+    "bio": "Swift 社群活躍貢獻者，深入研究 Swift 6 Concurrency 模型，整理出一套實用的遷移策略。",
+    "photo": "img/speaker/speaker_terrykuo.jpg",
+    "social": {
+      "facebook": "",
+      "twitter": "https://twitter.com/",
+      "instagram": ""
+    }
+  },
+  {
+    "name": "講者 E",
+    "role": "ML Engineer",
+    "company": "硬體公司",
+    "bio": "專注於 on-device 機器學習，實際將 Core ML 與 MLX 模型部署到 iPhone。",
+    "photo": "img/speaker/speaker_terrykuo.jpg",
+    "social": {
+      "facebook": "https://facebook.com/",
+      "twitter": "",
+      "instagram": "https://instagram.com/"
+    }
+  },
+  {
+    "name": "講者 F",
+    "role": "UI/UX Designer",
+    "company": "設計工作室",
+    "bio": "專注於 Apple 平台的視覺設計與互動體驗，曾參與多個獲獎 App 的設計工作。",
+    "photo": "img/speaker/speaker_terrykuo.jpg",
+    "social": {
+      "facebook": "https://facebook.com/",
+      "twitter": "https://twitter.com/",
+      "instagram": "https://instagram.com/"
+    }
+  },
+  {
+    "name": "講者 G",
+    "role": "Backend Engineer",
+    "company": "雲端服務商",
+    "bio": "負責大規模 API 設計與微服務架構，分享 iOS App 與後端協作的最佳實踐。",
+    "photo": "img/speaker/speaker_terrykuo.jpg",
+    "social": {
+      "facebook": "",
+      "twitter": "https://twitter.com/",
+      "instagram": ""
+    }
+  },
+  {
+    "name": "講者 H",
+    "role": "DevRel Engineer",
+    "company": "開發者平台",
+    "bio": "致力於開發者社群建設，擅長將複雜技術轉化為易懂的分享內容。",
+    "photo": "img/speaker/speaker_terrykuo.jpg",
+    "social": {
+      "facebook": "https://facebook.com/",
+      "twitter": "https://twitter.com/",
+      "instagram": ""
+    }
+  },
+  {
+    "name": "講者 I",
+    "role": "Security Engineer",
+    "company": "資安公司",
+    "bio": "專注於 iOS App 安全性研究，分享常見漏洞與防禦策略。",
+    "photo": "img/speaker/speaker_terrykuo.jpg",
+    "social": {
+      "facebook": "",
+      "twitter": "https://twitter.com/",
+      "instagram": "https://instagram.com/"
+    }
+  },
+  {
+    "name": "講者 J",
+    "role": "Indie Developer",
+    "company": "獨立開發者",
+    "bio": "獨立開發多款 App，分享從創意到上架的完整歷程與商業化經驗。",
+    "photo": "img/speaker/speaker_terrykuo.jpg",
+    "social": {
+      "facebook": "https://facebook.com/",
+      "twitter": "",
+      "instagram": "https://instagram.com/"
+    }
+  },
+  {
+    "name": "講者 K",
+    "role": "AR/VR Engineer",
+    "company": "空間運算公司",
+    "bio": "深耕 ARKit 與 visionOS 開發，分享空間運算在實際產品中的應用經驗。",
+    "photo": "img/speaker/speaker_terrykuo.jpg",
+    "social": {
+      "facebook": "",
+      "twitter": "https://twitter.com/",
+      "instagram": ""
+    }
+  },
+  {
+    "name": "講者 L",
+    "role": "Open Source Contributor",
+    "company": "社群貢獻者",
+    "bio": "活躍於 Swift 開源社群，維護多個熱門套件，分享開源協作的心得與挑戰。",
+    "photo": "img/speaker/speaker_terrykuo.jpg",
+    "social": {
+      "facebook": "https://facebook.com/",
+      "twitter": "https://twitter.com/",
+      "instagram": "https://instagram.com/"
+    }
+  }
+]

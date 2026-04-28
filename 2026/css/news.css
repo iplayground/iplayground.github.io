@@ -519,8 +519,7 @@
     color: var(--ios-secondary-dark);
   }
 
-  .article-cta,
-  .share-btn {
+  .article-cta {
     min-height: 44px;
     border-radius: 999px;
     background: var(--ios-blue);
@@ -531,17 +530,6 @@
     box-shadow: 0 10px 24px rgba(0, 122, 255, 0.26);
   }
 
-  .share-btn {
-    background: var(--ios-fill);
-    color: var(--ios-label);
-    box-shadow: none;
-  }
-
-  html[data-mode="dark"] .share-btn {
-    color: #fff;
-  }
-
-  .share-btn:hover,
   .article-cta:hover {
     transform: translateY(-2px);
     color: #fff;
@@ -691,4 +679,3 @@
       grid-column: 1 / -1;
     }
   }
-</style>

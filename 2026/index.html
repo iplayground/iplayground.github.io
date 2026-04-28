@@ -137,8 +137,6 @@
           <a class="btn-primary hero-cta-btn" href="#" data-link="cfp_form" target="_blank" rel="noopener"
             data-i18n="cta_submit">講者投稿表單</a>
           </div>
-          <a class="btn-primary hero-sponsor-btn" href="#" data-link="sponsor_referral" target="_blank" rel="noopener"
-            data-i18n="hero_sponsor_cta">推薦贊助廠商</a>
         </div>
 
       <div class="hero-social-row" id="heroSocialRow">
@@ -316,17 +314,40 @@
       </div>
     </div>
     <div class="wrap">
-      <div class="construction">
-        <h3 data-i18n="construction">建構中</h3>
-        <p data-i18n="agenda_wip">議程內容確認後即將公布</p>
-        <a class="btn-primary" href="#" data-link="cfp_form" target="_blank" rel="noopener" data-i18n="cta_submit" style="display:inline-block;margin-top:28px;">講者投稿表單</a>
+      <div class="agenda-wrap">
+        <div class="agenda-tabs-row">
+          <div class="agenda-tabs" id="agendaTabs">
+            <button class="active" data-day="1">7/25（六）</button>
+            <button data-day="2">7/26（日）</button>
+          </div>
+
+          <div class="agenda-search-bar" id="agendaSearchBar">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--ink-3);">
+              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <input type="text" id="agendaSearchInput" placeholder="搜尋議程名稱或標籤…" autocomplete="off">
+            <button class="agenda-search-clear" id="agendaSearchClear" aria-label="清除">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+
+          <button class="agenda-sort-btn" id="agendaSortBtn" aria-label="時間排序" title="時間由近到遠">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 5h10M11 9h7M11 13h4M3 17l3 3 3-3M6 18V4"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="agenda-list" id="agendaList"></div>
       </div>
     </div>
   </section>
 
 
   <!-- Speakers -->
-  <section id="speakers" data-screen-label="04 Speakers" hidden>
+  <section id="speakers" data-screen-label="04 Speakers">
     <div class="wrap center">
       <div class="striped-header-wrap">
         <div class="header-decoration">
@@ -339,12 +360,11 @@
           <img src="img/svg/title_sub.svg" alt="">
         </div>
       </div>
-      <div class="construction">
-        <h3 data-i18n="construction">建構中</h3>
-        <p data-i18n="speakers_wip">講者陣容確認後即將公布，敬請期待</p>
-        <a class="btn-primary" href="#" data-link="cfp_form" target="_blank" rel="noopener"
-          data-i18n="cta_submit" style="display:inline-block;margin-top:28px;">講者投稿表單</a>
+
+      <div class="speaker-grid" id="speakerGrid">
+        <!-- 由 data/iplayground_speakers.json 動態產生 -->
       </div>
+
     </div>
   </section>
 
@@ -490,6 +510,69 @@
         <div id="modalDesc" style="font-size: 16px; line-height: 1.8; color: var(--ink-2);"></div>
         <div id="modalAction" style="margin-top: 32px; display: flex; justify-content: center;"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- Agenda Modal -->
+  <div id="agendaModal" class="modal-overlay" onclick="closeAgendaModal()">
+    <div class="agenda-modal-content" onclick="event.stopPropagation()">
+      <button class="agenda-modal-close" onclick="closeAgendaModal()" aria-label="關閉">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- 時間 -->
+      <div class="am-time" id="amTime"></div>
+
+      <!-- 標題 -->
+      <h2 class="am-title" id="amTitle"></h2>
+
+      <!-- 標籤 -->
+      <div class="am-tags" id="amTags"></div>
+
+      <!-- 講者 -->
+      <div class="am-speaker" id="amSpeaker"></div>
+
+      <!-- 說明 -->
+      <p class="am-desc" id="amDesc"></p>
+
+      <!-- HackMD -->
+      <a class="am-hackmd" id="amHackmd" href="#" target="_blank" rel="noopener" style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        HackMD 共筆
+      </a>
+
+      <!-- 社群連結 -->
+      <div class="am-social" id="amSocial"></div>
+    </div>
+  </div>
+
+  <!-- Speaker Modal -->
+  <div id="speakerModal" class="modal-overlay" onclick="closeSpeakerModal()">
+    <div class="speaker-modal-content" onclick="event.stopPropagation()">
+      <button class="agenda-modal-close" onclick="closeSpeakerModal()" aria-label="關閉">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- 方案 B：左右分欄 header -->
+      <div class="sm-header">
+        <img class="sm-photo" id="smPhoto" src="" alt="">
+        <div class="sm-info">
+          <h2 class="sm-name" id="smName"></h2>
+          <p class="sm-role" id="smRole"></p>
+          <p class="sm-company" id="smCompany"></p>
+          <div class="sm-social" id="smSocial"></div>
+        </div>
+      </div>
+
+      <!-- 分隔線 -->
+      <div class="sm-divider"></div>
+
+      <!-- 自介 -->
+      <p class="sm-bio" id="smBio"></p>
     </div>
   </div>
 
@@ -879,27 +962,251 @@
     }
 
     // ===== Render =====
-    function renderAgenda(track = "all") {
+    let agendaCurrentDay = 1;
+    let agendaSortAsc = true; // true = 由近到遠（預設）
+
+    function parseTime(timeStr) {
+      // 取開始時間，例如 "10:00 – 10:20" → "10:00"
+      const start = (timeStr || "").split(/[–\-]/)[0].trim();
+      const [h, m] = start.split(":").map(Number);
+      return (h || 0) * 60 + (m || 0);
+    }
+
+    function renderAgenda(day) {
       const list = document.getElementById("agendaList");
       if (!list) return;
-      list.innerHTML = "";
-      AGENDA.filter(r => track === "all" || r.track === track).forEach(r => {
-        const row = document.createElement("div");
-        row.className = "agenda-row";
-        const isBreak = ["Break", "Check-in", "Opening", "Closing"].includes(r.tag);
-        row.innerHTML = `
-      <div class="time">${r.time}</div>
-      <div class="topic-col">
-        <span class="tag ${isBreak ? "t-break" : ""}">${r.tag}</span>
-        <div class="title">${r.title}</div>
-        <div class="sub">${r.sub}</div>
-      </div>
-      <div class="speaker"><div class="avatar">${r.speaker.avatar}</div>${r.speaker.name}</div>
-      <div class="arrow">→</div>
-    `;
-        list.appendChild(row);
+      const activeDay = day || 1;
+      agendaCurrentDay = activeDay;
+
+      // 更新 tab 狀態
+      document.querySelectorAll("#agendaTabs button").forEach(btn => {
+        btn.classList.toggle("active", parseInt(btn.dataset.day) === activeDay);
+      });
+
+      const rows = AGENDA.filter(r => r.day === activeDay)
+        .slice()
+        .sort((a, b) => agendaSortAsc
+          ? parseTime(a.time) - parseTime(b.time)
+          : parseTime(b.time) - parseTime(a.time)
+        );
+
+      if (rows.length === 0) {
+        list.innerHTML = `<div class="agenda-empty">議程公布後即將顯示</div>`;
+        return;
+      }
+
+      list.innerHTML = rows.map((r, idx) => `
+        <div class="agenda-card" data-agenda-idx="${idx}" data-agenda-day="${activeDay}">
+          <div class="agenda-card-time">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            ${r.time}
+          </div>
+          <div class="agenda-card-title">${r.title}</div>
+          <div class="agenda-card-tags">
+            ${(r.tags || []).map(tag => `<span class="agenda-tag">${tag}</span>`).join("")}
+          </div>
+        </div>
+      `).join("");
+
+      // 綁定點擊事件
+      list.querySelectorAll(".agenda-card").forEach(card => {
+        card.addEventListener("click", () => {
+          const day = parseInt(card.dataset.agendaDay);
+          const idx = parseInt(card.dataset.agendaIdx);
+          const item = AGENDA.filter(r => r.day === day)[idx];
+          if (item) showAgendaModal(item);
+        });
       });
     }
+
+    // tab 點擊事件
+    document.getElementById("agendaTabs")?.addEventListener("click", e => {
+      const btn = e.target.closest("button[data-day]");
+      if (btn) renderAgenda(parseInt(btn.dataset.day));
+    });
+
+    // ===== Agenda 搜尋 =====
+    document.getElementById("agendaSortBtn")?.addEventListener("click", () => {
+      agendaSortAsc = !agendaSortAsc;
+      const btn = document.getElementById("agendaSortBtn");
+      btn.classList.toggle("desc", !agendaSortAsc);
+      btn.title = agendaSortAsc ? "時間由近到遠" : "時間由遠到近";
+      // 搜尋中則重新搜尋，否則重新渲染當天
+      const q = document.getElementById("agendaSearchInput")?.value.trim();
+      if (q) {
+        document.getElementById("agendaSearchInput").dispatchEvent(new Event("input"));
+      } else {
+        renderAgenda(agendaCurrentDay);
+      }
+    });
+
+    document.getElementById("agendaSearchInput")?.addEventListener("input", e => {
+      const q = e.target.value.trim().toLowerCase();
+      const list = document.getElementById("agendaList");
+      if (!list) return;
+
+      if (!q) {
+        renderAgenda(agendaCurrentDay);
+        return;
+      }
+
+      // 搜尋全部 day 的議程
+      const results = AGENDA.filter(r =>
+        r.title.toLowerCase().includes(q) ||
+        (r.tags || []).some(tag => tag.toLowerCase().includes(q))
+      ).slice().sort((a, b) => agendaSortAsc
+        ? parseTime(a.time) - parseTime(b.time)
+        : parseTime(b.time) - parseTime(a.time)
+      );
+
+      if (results.length === 0) {
+        list.innerHTML = `<div class="agenda-empty">找不到符合「${e.target.value}」的議程</div>`;
+        return;
+      }
+
+      list.innerHTML = results.map((r, idx) => `
+        <div class="agenda-card" data-agenda-idx="${idx}" data-agenda-day="${r.day}">
+          <div class="agenda-card-time">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            ${r.time}
+          </div>
+          <div class="agenda-card-title">${r.title}</div>
+          <div class="agenda-card-tags">
+            ${(r.tags || []).map(tag => `<span class="agenda-tag">${tag}</span>`).join("")}
+          </div>
+        </div>
+      `).join("");
+
+      list.querySelectorAll(".agenda-card").forEach(card => {
+        card.addEventListener("click", () => {
+          const day = parseInt(card.dataset.agendaDay);
+          const idx = parseInt(card.dataset.agendaIdx);
+          const item = results[idx];
+          if (item) showAgendaModal(item);
+        });
+      });
+    });
+
+    document.getElementById("agendaSearchClear")?.addEventListener("click", () => {
+      const input = document.getElementById("agendaSearchInput");
+      input.value = "";
+      input.dispatchEvent(new Event("input"));
+      input.focus();
+    });
+
+    // ===== Agenda Modal =====
+    const SOCIAL_ICONS = {
+      github: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>`,
+      linkedin: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>`,
+      twitter: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+      web: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`
+    };
+
+    function showAgendaModal(item) {
+      const modal = document.getElementById("agendaModal");
+      if (!modal) return;
+
+      // 時間
+      document.getElementById("amTime").innerHTML = `
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        ${item.time}
+      `;
+
+      // 標題
+      document.getElementById("amTitle").textContent = item.title;
+
+      // 標籤
+      document.getElementById("amTags").innerHTML = (item.tags || [])
+        .map(tag => `<span class="agenda-tag">${tag}</span>`).join("");
+
+      // 講者
+      const sp = item.speaker || {};
+      const avatarSrc = sp.avatar || "img/staff/staff_sample.png";
+      document.getElementById("amSpeaker").innerHTML = `
+        <img class="am-speaker-avatar" src="${avatarSrc}" alt="${sp.name || ""}"
+          onerror="this.onerror=null;this.src='img/staff/staff_sample.png'">
+        <span class="am-speaker-name">${sp.name || ""}</span>
+      `;
+
+      // 說明
+      document.getElementById("amDesc").textContent = item.description || "";
+
+      // HackMD
+      const hackmdEl = document.getElementById("amHackmd");
+      if (item.hackmd) {
+        hackmdEl.href = item.hackmd;
+        hackmdEl.style.display = "inline-flex";
+      } else {
+        hackmdEl.style.display = "none";
+      }
+
+      // 社群連結
+      const social = (sp.social || []);
+      document.getElementById("amSocial").innerHTML = social.map(s => `
+        <a class="am-social-btn" href="${s.url}" target="_blank" rel="noopener" aria-label="${s.type}">
+          ${SOCIAL_ICONS[s.type] || SOCIAL_ICONS.web}
+        </a>
+      `).join("");
+
+      modal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeAgendaModal() {
+      const modal = document.getElementById("agendaModal");
+      if (modal) modal.style.display = "none";
+      document.body.style.overflow = "";
+    }
+
+    // ===== Speaker Modal =====
+    const SPEAKER_SOCIAL_ICONS = {
+      facebook:  'img/svg/media/facebook.svg',
+      twitter:   'img/svg/media/twitter.svg',
+      instagram: 'img/svg/media/instagram.svg',
+      discord:   'img/svg/media/discord.svg',
+      youtube:   'img/svg/media/youtube.svg',
+    };
+    const SPEAKER_SOCIAL_FALLBACK = 'img/svg/media/web.svg';
+
+    function getSocialIcon(type) {
+      return SPEAKER_SOCIAL_ICONS[type.toLowerCase()] || SPEAKER_SOCIAL_FALLBACK;
+    }
+
+    function showSpeakerModal(speaker) {
+      const modal = document.getElementById("speakerModal");
+      if (!modal) return;
+
+      const FALLBACK = 'img/speaker/speaker_sample.png';
+      document.getElementById("smPhoto").src = speaker.photo || FALLBACK;
+      document.getElementById("smPhoto").onerror = function() { this.src = FALLBACK; };
+      document.getElementById("smName").textContent = speaker.name || "";
+      document.getElementById("smRole").textContent = speaker.role || "";
+      document.getElementById("smCompany").textContent = speaker.company || "";
+      document.getElementById("smBio").textContent = speaker.bio || "";
+
+      const social = speaker.social || {};
+      document.getElementById("smSocial").innerHTML = Object.entries(social)
+        .filter(([, url]) => url)
+        .map(([type, url]) => `
+          <a class="sm-social-btn" href="${url}" target="_blank" rel="noopener" aria-label="${type}">
+            <img src="${getSocialIcon(type)}" alt="${type}" width="18" height="18" style="filter:brightness(0) invert(0.5);">
+          </a>
+        `).join("");
+
+      modal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpeakerModal() {
+      const modal = document.getElementById("speakerModal");
+      if (modal) modal.style.display = "none";
+      document.body.style.overflow = "";
+    }
+
+    // ESC 關閉彈窗
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") { closeAgendaModal(); closeSpeakerModal(); }
+    });
 
     // ===== Links — 從 data/iplayground_links.json 注入所有連結 =====
     function applyLinks(links) {
@@ -1266,14 +1573,6 @@
     document.getElementById("mobileModeSwitch")?.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-mode]");
       if (btn) applyAppearance(btn.dataset.mode);
-    });
-
-    document.getElementById("agendaTabs")?.addEventListener("click", (e) => {
-      const btn = e.target.closest("button");
-      if (!btn) return;
-      [...btn.parentElement.children].forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      renderAgenda(btn.dataset.track);
     });
 
     // ===== Hero Pixel Logo =====
@@ -1674,7 +1973,7 @@
         applyLinks(links);
 
         renderNews(savedLang);
-        renderAgenda("all");
+        renderAgenda(1);
         renderSpeakers();
 
         requestAnimationFrame(() => {
@@ -1690,7 +1989,7 @@
       }).catch(e => {
         console.warn("資料載入失敗，使用空資料初始化", e);
         renderNews(savedLang);
-        renderAgenda("all");
+        renderAgenda(1);
         renderSpeakers();
         requestAnimationFrame(() => {
           applyLang(savedLang);
@@ -1863,7 +2162,7 @@
         decay: 0.94,
         gravity: 0.6,
         ticks: 280,
-        scalar: 0.85,
+        scalar: window.innerWidth < 600 ? 0.5 : 0.85,
         colors: COLORS,
         shapes: ['square', 'circle'],
         origin: { x: Math.random(), y: 0 }  // rain from top of the section
@@ -1926,6 +2225,51 @@
           <p class="staff-role">${role}</p>
         </div>`;
     }).join('');
+  })();
+</script>
+
+<script>
+  // ============ Speaker Grid — 從 data/iplayground_speakers.json 動態渲染 ============
+  (async function () {
+    const FALLBACK_PHOTO = 'img/speaker/speaker_sample.png';
+    const grid = document.getElementById('speakerGrid');
+    if (!grid) return;
+
+    let speakers = [];
+    try {
+      const res = await fetch('data/iplayground_speakers.json');
+      speakers = await res.json();
+    } catch (e) {
+      console.warn('無法載入 data/iplayground_speakers.json', e);
+      return;
+    }
+
+    grid.innerHTML = speakers.map((speaker, i) => {
+      const { name, role, photo } = speaker;
+      const src = photo || FALLBACK_PHOTO;
+      const avatar = `
+        <div class="speaker-avatar-wrap">
+          <div class="speaker-avatar-inner">
+            <img src="${src}" alt="" loading="lazy"
+              onerror="this.onerror=null;this.src='${FALLBACK_PHOTO}'">
+          </div>
+        </div>`;
+
+      return `
+        <div class="speaker-card" data-speaker-idx="${i}" style="cursor:pointer;">
+          ${avatar}
+          <p class="speaker-name">${name}</p>
+          <p class="speaker-role">${role}</p>
+        </div>`;
+    }).join('');
+
+    // 點擊開啟彈窗
+    grid.querySelectorAll('.speaker-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = parseInt(card.dataset.speakerIdx);
+        if (typeof showSpeakerModal === 'function') showSpeakerModal(speakers[idx]);
+      });
+    });
   })();
 </script>
 

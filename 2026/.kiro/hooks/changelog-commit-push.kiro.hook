@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Changelog & Push",
+  "description": "整理這次的改動摘要（最多 10 點），更新 CHANGELOG.md，然後 commit 並 push 到目前的 branch",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "請執行以下步驟：\n1. 執行 `git diff HEAD --stat` 和 `git status --short` 確認這次的改動範圍\n2. 根據改動內容整理最多 10 點摘要，每點簡潔說明做了什麼\n3. 取得今天日期（格式 YYYY.MM.DD）\n4. 在 CHANGELOG.md 的第一個 `---` 之後插入新的記錄區塊，格式參考現有條目\n5. 執行 `git add -A`\n6. 用繁體中文寫 commit message，第一行為標題（50 字以內），空一行後列出摘要點\n7. 執行 `git push`\n8. 回報 commit hash 和 push 結果"
+  }
+}

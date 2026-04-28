@@ -1,7 +1,7 @@
     /* ============ Hero ============ */
     .hero {
       position: relative;
-      padding: 80px 0 160px;
+      padding: 40px 0 40px;
       text-align: center;
       overflow: hidden;
       z-index: 1;
@@ -177,7 +177,7 @@
     }
 
     h1.hero-title {
-      font-size: clamp(72px, 12vw, 180px);
+      font-size: 120px;
       font-weight: 800;
       letter-spacing: -0.05em;
       line-height: 1.1;
@@ -248,8 +248,8 @@
 
     h1.hero-title .hero-logo {
       display: block;
-      margin: 0 auto 32px;
-      width: clamp(204px, 32.8vw, 524px);
+      margin: 0 auto 0;
+      width: min(524px, 90vw);
       height: auto;
       filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.1));
     }
@@ -296,7 +296,7 @@
 
     .hero-pixel-logo {
       position: relative;
-      width: clamp(280px, 40vw, 560px);
+      width: 560px;
       aspect-ratio: 12544 / 6440;
       margin: 0 auto 32px;
       filter: none !important;
@@ -330,7 +330,7 @@
       position: absolute;
       top: 2%;
       left: 3%;
-      font-size: clamp(18px, 2.5vw, 32px);
+      font-size: 32px;
       cursor: pointer;
       user-select: none;
       filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
@@ -345,11 +345,11 @@
 
     h1.hero-title .hero-date {
       display: block;
-      font-size: clamp(16px, 2.2vw, 28px);
+      font-size: 28px;
       font-weight: 500;
       font-family: var(--f-mono);
       color: #ffffff !important;
-      margin-bottom: 48px;
+      margin-bottom: 0;
       letter-spacing: 0.1em;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
@@ -434,7 +434,7 @@
 
     .hero-cta-row > .hero-cta-glow-wrap,
     .hero-cta-row > .hero-sponsor-btn {
-      width: min(100%, 320px);
+      width: min(100%, 380px);
     }
 
     .hero-cta-row .hero-cta-btn {
@@ -556,6 +556,8 @@
       margin-top: 30px;
       position: relative;
       z-index: 2;
+      width: min(100%, 380px);
+      margin-inline: auto;
     }
 
     .hero-social-btn {
@@ -616,6 +618,8 @@
       gap: 5px;
       padding: 20px 0 0;
       flex-wrap: nowrap;
+      width: min(100%, 380px);
+      margin-inline: auto;
     }
 
     .fc-unit {
@@ -627,11 +631,11 @@
 
     .fc-card {
       position: relative;
-      width: 40px;
-      height: 48px;
+      width: 80px;
+      height: 96px;
       background: linear-gradient(180deg, #3a3a3c 0%, #1c1c1e 100%);
       color: #fff;
-      border-radius: 6px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -654,7 +658,7 @@
 
 
     .fc-num {
-      font-size: 27px;
+      font-size: 54px;
       font-weight: 300;
       letter-spacing: -0.03em;
       line-height: 1;
@@ -687,7 +691,7 @@
 
     .fc-label {
       font-family: var(--f-mono);
-      font-size: 8px;
+      font-size: 16px;
       color: var(--ink-3);
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -878,13 +882,127 @@
       margin-bottom: 0;
     }
 
-    .agenda-tabs button {
-      padding: 10px 20px;
-      border-radius: 999px;
+    /* tabs 列：左邊 tabs、中間搜尋欄、右邊排序按鈕 */
+    .agenda-tabs-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+    }
+
+    /* 手機版：搜尋欄移到上方滿版 */
+    @media (max-width: 600px) {
+      .agenda-tabs-row {
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+        padding: 8px 12px 4px;
+      }
+
+      .agenda-tabs-row .agenda-tabs {
+        grid-column: 1;
+        grid-row: 2;
+      }
+
+      .agenda-tabs-row .agenda-search-bar {
+        grid-column: 1 / -1;
+        grid-row: 1;
+      }
+
+      .agenda-tabs-row .agenda-sort-btn {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: end;
+      }
+    }
+
+    .agenda-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 搜尋列（inline，預設隱藏） */
+    .agenda-search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      background: var(--surface-2);
+      border-radius: 10px;
+      border: 1px solid var(--rule-2);
+      min-width: 0;
+    }
+
+    html[data-mode="dark"] .agenda-search-bar {
+      background: var(--ios-fill-dark);
+      border-color: var(--ios-separator-dark);
+    }
+
+    .agenda-search-bar input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      background: transparent;
+      font: inherit;
       font-size: 13px;
-      font-weight: 500;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .agenda-search-bar input::placeholder {
+      color: var(--ink-3);
+    }
+
+    .agenda-search-clear {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--ios-fill);
+      color: var(--ink-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: none;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+
+    .agenda-search-clear:hover {
+      background: var(--rule);
+      color: var(--ink);
+    }
+
+    .agenda-sort-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--ios-fill);
+      color: var(--ink-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background .15s, color .15s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .agenda-sort-btn:hover,
+    .agenda-sort-btn.desc {
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      color: var(--accent);
+    }
+
+    .agenda-tabs button {
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
       color: var(--ink-2);
       transition: all .2s;
+      letter-spacing: -0.01em;
     }
 
     .agenda-tabs button.active {
@@ -897,105 +1015,381 @@
     }
 
     .agenda-list {
-      padding: 0 8px 8px;
-    }
-
-    .agenda-row {
-      display: grid;
-      grid-template-columns: 120px 1fr 220px 40px;
-      align-items: center;
-      gap: 28px;
-      padding: 28px 32px;
-      border-radius: 16px;
-      border: 1px solid var(--rule-2);
-      margin-bottom: 12px;
-      cursor: pointer;
-      transition: all .3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .agenda-row:first-child {
-      border: 1px solid var(--rule-2);
-    }
-
-    .agenda-row:hover {
-      background: var(--surface);
-      border-color: var(--accent);
-      box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 12%, transparent);
-      transform: translateY(-2px);
-    }
-
-    .agenda-row .time {
-      font-family: var(--f-mono);
-      font-size: 13px;
-      color: var(--ink-2);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .agenda-row .topic-col .tag {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--accent) 16%, transparent);
-      color: var(--accent);
-      font-family: var(--f-mono);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      font-weight: 500;
-      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-    }
-
-    .agenda-row .topic-col .tag.t-break {
-      background: var(--surface-2);
-      color: var(--ink-2);
-      border: 1px solid var(--rule-2);
-    }
-
-    .agenda-row .topic-col .title {
-      font-size: 21px;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      line-height: 1.3;
-    }
-
-    .agenda-row .topic-col .sub {
-      margin-top: 4px;
-      font-size: 14px;
-      color: var(--ink-3);
-    }
-
-    .agenda-row .speaker {
+      padding: 8px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 10px;
-      font-size: 13px;
-      color: var(--ink-2);
     }
 
-    .agenda-row .avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--surface-2);
-      color: var(--ink-2);
-      display: grid;
-      place-items: center;
-      font-family: var(--f-mono);
-      font-size: 11px;
-      flex-shrink: 0;
+    /* ── 新卡片樣式（iOS HIG） ── */
+    .agenda-card {
+      background: var(--surface);
+      border: 1px solid var(--rule-2);
+      border-radius: var(--ios-radius);
+      padding: var(--ios-space-5) var(--ios-space-6);
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--ios-shadow);
     }
 
-    .agenda-row .arrow {
+    html[data-mode="dark"] .agenda-card {
+      background: var(--ios-card-dark);
+      border-color: var(--ios-separator-dark);
+    }
+
+    .agenda-card::after {
+      content: "›";
+      position: absolute;
+      right: var(--ios-space-6);
+      top: 50%;
+      transform: translateY(-50%);
       color: var(--ink-3);
-      text-align: right;
-      font-size: 18px;
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1;
       transition: color .2s, transform .2s;
     }
 
-    .agenda-row:hover .arrow {
+    .agenda-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 14%, transparent);
+    }
+
+    .agenda-card:hover::after {
       color: var(--accent);
-      transform: translateX(4px);
+      transform: translateY(-50%) translateX(3px);
+    }
+
+    .agenda-card-time {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--f-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: var(--ios-space-2);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.02em;
+    }
+
+    html[data-mode="dark"] .agenda-card-time {
+      color: var(--accent-2);
+    }
+
+    .agenda-card-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.4;
+      margin-bottom: var(--ios-space-3);
+      padding-right: var(--ios-space-8);
+    }
+
+    .agenda-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .agenda-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+      letter-spacing: 0.01em;
+    }
+
+    html[data-mode="dark"] .agenda-tag {
+      background: color-mix(in srgb, var(--accent) 18%, transparent);
+      border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+
+    .agenda-empty {
+      text-align: center;
+      padding: var(--ios-space-16) 0;
+      color: var(--ink-3);
+      font-family: var(--f-mono);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ============ Agenda Modal ============ */
+    .agenda-modal-content {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--rule-2);
+      border-radius: var(--ios-radius);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+      padding: var(--ios-space-8);
+      width: min(92vw, 560px);
+      max-height: 88vh;
+      overflow-y: auto;
+      animation: agendaModalIn .25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    html[data-mode="dark"] .agenda-modal-content {
+      background: var(--ios-card-dark);
+      border-color: var(--ios-separator-dark);
+    }
+
+    @keyframes agendaModalIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .agenda-modal-close {
+      position: absolute;
+      top: var(--ios-space-4);
+      right: var(--ios-space-4);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--ios-fill);
+      color: var(--ink-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s, color .15s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .agenda-modal-close:hover {
+      background: var(--rule);
+      color: var(--ink);
+    }
+
+    .am-time {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--f-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: var(--ios-space-3);
+      letter-spacing: 0.02em;
+    }
+
+    .am-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin: 0 0 var(--ios-space-4);
+      padding-right: var(--ios-space-8);
+    }
+
+    .am-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: var(--ios-space-5);
+    }
+
+    .am-speaker {
+      display: flex;
+      align-items: center;
+      gap: var(--ios-space-3);
+      margin-bottom: var(--ios-space-5);
+    }
+
+    .am-speaker-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      flex-shrink: 0;
+    }
+
+    .am-speaker-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .am-desc {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--ink-2);
+      margin: 0 0 var(--ios-space-5);
+    }
+
+    .am-hackmd {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: var(--ios-space-5);
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+      transition: background .15s;
+    }
+
+    .am-hackmd:hover {
+      background: color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+
+    .am-social {
+      display: flex;
+      gap: var(--ios-space-3);
+      flex-wrap: wrap;
+    }
+
+    .am-social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--ios-space-3);
+      background: var(--surface-2);
+      border: 1px solid var(--rule-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--ink-2);
+      transition: background .15s, color .15s, border-color .15s;
+    }
+
+    html[data-mode="dark"] .am-social-btn {
+      background: var(--ios-fill-dark);
+      border-color: var(--ios-separator-dark);
+    }
+
+    .am-social-btn:hover {
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ============ Speaker Modal ============ */
+    .speaker-modal-content {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--rule-2);
+      border-radius: var(--ios-radius);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+      padding: var(--ios-space-8);
+      width: min(92vw, 480px);
+      max-height: 88vh;
+      overflow-y: auto;
+      animation: agendaModalIn .25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    html[data-mode="dark"] .speaker-modal-content {
+      background: var(--ios-card-dark);
+      border-color: var(--ios-separator-dark);
+    }
+
+    /* 方案 B：左右分欄 header */
+    .sm-header {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--ios-space-5);
+      padding-right: var(--ios-space-8);
+    }
+
+    .sm-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 3px solid var(--rule-2);
+    }
+
+    .sm-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sm-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin: 0 0 4px;
+      line-height: 1.2;
+    }
+
+    .sm-role {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 2px;
+    }
+
+    .sm-company {
+      font-size: 13px;
+      color: var(--ink-3);
+      font-family: var(--f-mono);
+      margin: 0 0 var(--ios-space-3);
+    }
+
+    .sm-social {
+      display: flex;
+      gap: 8px;
+    }
+
+    .sm-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--rule-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--ink-2);
+      transition: background .15s, color .15s, border-color .15s;
+    }
+
+    html[data-mode="dark"] .sm-social-btn {
+      background: var(--ios-fill-dark);
+      border-color: var(--ios-separator-dark);
+    }
+
+    .sm-social-btn:hover {
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .sm-social-btn:hover img {
+      filter: brightness(0) saturate(100%) invert(40%) sepia(80%) saturate(500%) hue-rotate(190deg);
+    }
+
+    .sm-divider {
+      height: 1px;
+      background: var(--rule-2);
+      margin: var(--ios-space-5) 0;
+    }
+
+    html[data-mode="dark"] .sm-divider {
+      background: var(--ios-separator-dark);
+    }
+
+    .sm-bio {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--ink-2);
+      margin: 0;
     }
 
     /* ============ Timeline Section (Formerly Speakers) ============ */
