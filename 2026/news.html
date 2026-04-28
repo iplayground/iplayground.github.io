@@ -6,12 +6,12 @@
 <meta name="description" content="推薦公司窗口並促成 iPlayground 2026 贊助合作，即可獲得兩日門票與紀念衣服。" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="iPlayground 2026" />
-<meta property="og:title" content="推薦贊助商 ,免費拿 iPlayground 門票 !" />
+<meta property="og:title" content="推薦贊助商，免費拿 iPlayground 門票！" />
 <meta property="og:description" content="推薦公司窗口並促成 iPlayground 2026 贊助合作，即可獲得兩日門票與紀念衣服。" />
 <meta property="og:url" content="https://gztin.github.io/iPlayground/news.html?id=0" />
 <meta property="og:image" content="https://gztin.github.io/iPlayground/img/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="推薦贊助商 ,免費拿 iPlayground 門票 !" />
+<meta name="twitter:title" content="推薦贊助商，免費拿 iPlayground 門票！" />
 <meta name="twitter:description" content="推薦公司窗口並促成 iPlayground 2026 贊助合作，即可獲得兩日門票與紀念衣服。" />
 <meta name="twitter:image" content="https://gztin.github.io/iPlayground/img/logo.png" />
 <title>最新消息 · iPlayground 2026</title>
@@ -21,12 +21,13 @@
 
   <link rel="stylesheet" href="css/shared.css">
   <link rel="stylesheet" href="css/news.css">
+  <link rel="stylesheet" href="css/fab.css">
 </head>
 <body>
 
 <!-- Nav -->
 <nav class="top">
-  <div class="wrap row">
+  <div class="wrap row" style="grid-template-columns: 1fr auto !important;">
     <a class="brand" href="index.html">
       <img src="img/svg/logo_header_light.svg" alt="iPlayground 2026" class="nav-logo nav-logo--light">
       <img src="img/svg/logo_header_dark.svg" alt="iPlayground 2026" class="nav-logo nav-logo--dark">
@@ -69,15 +70,15 @@
         <p class="footer-tagline" id="footerTagline"></p>
       </div>
       <div class="footer-event-links">
-        <h4>活動</h4>
+        <h4 data-i18n="footer_event">活動</h4>
         <ul>
-          <li><a href="index.html#news">最新消息</a></li>
-          <li><a href="index.html#about">活動資訊</a></li>
-          <li><a href="index.html#agenda">議程</a></li>
+          <li><a href="index.html#news" data-i18n="footer_news">最新消息</a></li>
+          <li><a href="index.html#about" data-i18n="nav_about">活動資訊</a></li>
+          <li><a href="index.html#agenda" data-i18n="nav_agenda">議程</a></li>
         </ul>
       </div>
       <div>
-        <h4>社群</h4>
+        <h4 data-i18n="footer_community">社群</h4>
         <ul>
           <li><a href="https://discord.gg/xS8yMKbbjB" target="_blank" rel="noopener">Discord</a></li>
           <li><a href="https://www.facebook.com/theiPlayground/" target="_blank" rel="noopener">Facebook</a></li>
@@ -86,12 +87,12 @@
         </ul>
       </div>
       <div>
-        <h4>聯絡</h4>
+        <h4 data-i18n="footer_contact">聯絡</h4>
         <ul>
-          <li><a href="mailto:support@iplayground.io">一般支援</a></li>
-          <li><a href="mailto:session@iplayground.io">講者投稿</a></li>
-          <li><a href="mailto:support@iplayground.io">贊助合作</a></li>
-          <li><a href="https://github.com/iplayground/code_of_conduct" target="_blank" rel="noopener">行為準則</a></li>
+          <li><a href="mailto:support@iplayground.io" data-i18n="footer_support">一般支援</a></li>
+          <li><a href="mailto:session@iplayground.io" data-i18n="footer_cfp">講者投稿</a></li>
+          <li><a href="mailto:support@iplayground.io" data-i18n="footer_sponsor">贊助合作</a></li>
+          <li><a href="https://github.com/iplayground/code_of_conduct" target="_blank" rel="noopener" data-i18n="footer_coc">行為準則</a></li>
         </ul>
       </div>
     </div>
@@ -186,6 +187,7 @@ function applyAppearance(pref) {
   document.querySelectorAll("#modeSwitch button").forEach(b =>
     b.classList.toggle("active", b.dataset.mode === pref)
   );
+  if (typeof syncFabMode === "function") syncFabMode(pref);
   try { localStorage.setItem("appearance", pref); } catch(e) {}
 }
 document.getElementById("modeSwitch").addEventListener("click", (e) => {
@@ -205,8 +207,12 @@ function applyLang(lang) {
     b.classList.toggle("active", b.dataset.lang === lang)
   );
   document.getElementById("backLink").textContent = t("news_back");
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    el.textContent = t(el.dataset.i18n);
+  });
   const footerTagline = document.getElementById("footerTagline");
   if (footerTagline) footerTagline.textContent = t("footer_tagline");
+  if (typeof syncFabLang === "function") syncFabLang(lang);
   try { localStorage.setItem("lang", lang); } catch(e) {}
   renderPage();
 }
@@ -289,6 +295,16 @@ function renderPage() {
   `;
   bindShareButtons();
 
+  document.querySelectorAll(".sidebar-item").forEach(link => {
+    link.addEventListener("click", (event) => {
+      const target = new URL(link.href, window.location.href);
+      event.preventDefault();
+      history.pushState(null, "", target.pathname + target.search);
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      renderPage();
+    });
+  });
+
   const sel = document.getElementById("newsSelect");
   if (sel) {
     sel.addEventListener("change", function() {
@@ -304,6 +320,7 @@ function renderPage() {
       updateArticleMeta(newId, iTitle);
       bindShareButtons();
       history.replaceState(null, "", `news.html?id=${newId}`);
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     });
   }
 }
@@ -328,6 +345,60 @@ Promise.all([
   console.warn("資料載入失敗", e);
   applyLang(savedLang);
 });
+</script>
+
+<!-- Floating Action Buttons -->
+<div class="fab-group" id="fabGroup">
+  <button class="fab" id="fabMode" aria-label="Toggle appearance">
+    <svg class="fab-icon fab-icon--auto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 3a9 9 0 0 1 0 18"/></svg>
+    <svg class="fab-icon fab-icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="fab-icon fab-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+  <button class="fab" id="fabLang" aria-label="Toggle language">
+    <span class="fab-lang-label">中</span>
+  </button>
+  <button class="fab fab--top" id="fabTop" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+</div>
+
+<script>
+const modeOrder = ["auto", "light", "dark"];
+const fabMode = document.getElementById("fabMode");
+const fabLang = document.getElementById("fabLang");
+const fabTop  = document.getElementById("fabTop");
+const fabGroup = document.getElementById("fabGroup");
+
+function syncFabMode(pref) {
+  if (fabGroup) fabGroup.dataset.fabMode = pref;
+}
+
+function syncFabLang(lang) {
+  const label = fabLang?.querySelector(".fab-lang-label");
+  if (label) label.textContent = lang === "zh" ? "中" : "EN";
+}
+
+fabMode?.addEventListener("click", () => {
+  const cur = (() => { try { return localStorage.getItem("appearance"); } catch(e) { return "auto"; } })() || "auto";
+  const next = modeOrder[(modeOrder.indexOf(cur) + 1) % modeOrder.length];
+  applyAppearance(next);
+  syncFabMode(next);
+});
+
+fabLang?.addEventListener("click", () => {
+  applyLang(currentLang === "zh" ? "en" : "zh");
+});
+
+fabTop?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+window.addEventListener("scroll", () => {
+  fabTop?.classList.toggle("visible", window.scrollY > 300);
+}, { passive: true });
+
+syncFabMode((() => { try { return localStorage.getItem("appearance"); } catch(e) { return null; } })() || "auto");
+syncFabLang(currentLang);
 </script>
 </body>
 </html>

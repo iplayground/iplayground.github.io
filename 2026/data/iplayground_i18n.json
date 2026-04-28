@@ -47,6 +47,13 @@
   "agenda_title":        { "zh": "議程",                              "en": "Agenda" },
   "agenda_desc":         { "zh": "我們正在招募講者，分享有趣的主題內容。", "en": "We're looking for speakers to share interesting topics." },
   "agenda_wip":          { "zh": "我們正在招募講者，分享有趣的主題內容，歡迎報名投稿！", "en": "We're looking for speakers to share interesting topics — submit your proposal now!" },
+  "agenda_day1":         { "zh": "7/25（六）",                        "en": "Jul 25 (Sat)" },
+  "agenda_day2":         { "zh": "7/26（日）",                        "en": "Jul 26 (Sun)" },
+  "agenda_search_placeholder": { "zh": "搜尋議程名稱或標籤…",          "en": "Search agenda titles or tags..." },
+  "agenda_search_clear": { "zh": "清除",                              "en": "Clear" },
+  "agenda_sort_label":   { "zh": "時間排序",                          "en": "Sort by time" },
+  "agenda_sort_asc":     { "zh": "時間由近到遠",                      "en": "Earliest first" },
+  "agenda_sort_desc":    { "zh": "時間由遠到近",                      "en": "Latest first" },
 
   "speakers_eyebrow":    { "zh": "— 講者群 Speakers",                "en": "— Speakers" },
   "speakers_title":      { "zh": "講者群",                            "en": "Speakers" },

@@ -317,23 +317,23 @@
       <div class="agenda-wrap">
         <div class="agenda-tabs-row">
           <div class="agenda-tabs" id="agendaTabs">
-            <button class="active" data-day="1">7/25（六）</button>
-            <button data-day="2">7/26（日）</button>
+            <button class="active" data-day="1" data-i18n="agenda_day1">7/25（六）</button>
+            <button data-day="2" data-i18n="agenda_day2">7/26（日）</button>
           </div>
 
           <div class="agenda-search-bar" id="agendaSearchBar">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--ink-3);">
               <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
             </svg>
-            <input type="text" id="agendaSearchInput" placeholder="搜尋議程名稱或標籤…" autocomplete="off">
-            <button class="agenda-search-clear" id="agendaSearchClear" aria-label="清除">
+            <input type="text" id="agendaSearchInput" data-i18n-placeholder="agenda_search_placeholder" placeholder="搜尋議程名稱或標籤…" autocomplete="off">
+            <button class="agenda-search-clear" id="agendaSearchClear" data-i18n-aria="agenda_search_clear" aria-label="清除">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M18 6L6 18M6 6l12 12"/>
               </svg>
             </button>
           </div>
 
-          <button class="agenda-sort-btn" id="agendaSortBtn" aria-label="時間排序" title="時間由近到遠">
+          <button class="agenda-sort-btn" id="agendaSortBtn" data-i18n-aria="agenda_sort_label" data-i18n-title="agenda_sort_asc" aria-label="時間排序" title="時間由近到遠">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M11 5h10M11 9h7M11 13h4M3 17l3 3 3-3M6 18V4"/>
             </svg>
@@ -965,6 +965,12 @@
     let agendaCurrentDay = 1;
     let agendaSortAsc = true; // true = 由近到遠（預設）
 
+    function localized(value, lang = currentLang) {
+      if (Array.isArray(value)) return value.map(item => localized(item, lang));
+      if (value && typeof value === "object") return value[lang] || value.zh || value.en || "";
+      return value || "";
+    }
+
     function parseTime(timeStr) {
       // 取開始時間，例如 "10:00 – 10:20" → "10:00"
       const start = (timeStr || "").split(/[–\-]/)[0].trim();
@@ -991,7 +997,7 @@
         );
 
       if (rows.length === 0) {
-        list.innerHTML = `<div class="agenda-empty">議程公布後即將顯示</div>`;
+        list.innerHTML = `<div class="agenda-empty">${currentLang === "en" ? "Agenda will be announced soon" : "議程公布後即將顯示"}</div>`;
         return;
       }
 
@@ -1001,9 +1007,9 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             ${r.time}
           </div>
-          <div class="agenda-card-title">${r.title}</div>
+          <div class="agenda-card-title">${localized(r.title)}</div>
           <div class="agenda-card-tags">
-            ${(r.tags || []).map(tag => `<span class="agenda-tag">${tag}</span>`).join("")}
+            ${localized(r.tags || []).map(tag => `<span class="agenda-tag">${tag}</span>`).join("")}
           </div>
         </div>
       `).join("");
@@ -1052,15 +1058,15 @@
 
       // 搜尋全部 day 的議程
       const results = AGENDA.filter(r =>
-        r.title.toLowerCase().includes(q) ||
-        (r.tags || []).some(tag => tag.toLowerCase().includes(q))
+        localized(r.title).toLowerCase().includes(q) ||
+        localized(r.tags || []).some(tag => tag.toLowerCase().includes(q))
       ).slice().sort((a, b) => agendaSortAsc
         ? parseTime(a.time) - parseTime(b.time)
         : parseTime(b.time) - parseTime(a.time)
       );
 
       if (results.length === 0) {
-        list.innerHTML = `<div class="agenda-empty">找不到符合「${e.target.value}」的議程</div>`;
+        list.innerHTML = `<div class="agenda-empty">${currentLang === "en" ? `No agenda found for "${e.target.value}"` : `找不到符合「${e.target.value}」的議程`}</div>`;
         return;
       }
 
@@ -1070,9 +1076,9 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             ${r.time}
           </div>
-          <div class="agenda-card-title">${r.title}</div>
+          <div class="agenda-card-title">${localized(r.title)}</div>
           <div class="agenda-card-tags">
-            ${(r.tags || []).map(tag => `<span class="agenda-tag">${tag}</span>`).join("")}
+            ${localized(r.tags || []).map(tag => `<span class="agenda-tag">${tag}</span>`).join("")}
           </div>
         </div>
       `).join("");
@@ -1113,23 +1119,24 @@
       `;
 
       // 標題
-      document.getElementById("amTitle").textContent = item.title;
+      document.getElementById("amTitle").textContent = localized(item.title);
 
       // 標籤
-      document.getElementById("amTags").innerHTML = (item.tags || [])
+      document.getElementById("amTags").innerHTML = localized(item.tags || [])
         .map(tag => `<span class="agenda-tag">${tag}</span>`).join("");
 
       // 講者
       const sp = item.speaker || {};
       const avatarSrc = sp.avatar || "img/staff/staff_sample.png";
+      const speakerName = localized(sp.name);
       document.getElementById("amSpeaker").innerHTML = `
-        <img class="am-speaker-avatar" src="${avatarSrc}" alt="${sp.name || ""}"
+        <img class="am-speaker-avatar" src="${avatarSrc}" alt="${speakerName}"
           onerror="this.onerror=null;this.src='img/staff/staff_sample.png'">
-        <span class="am-speaker-name">${sp.name || ""}</span>
+        <span class="am-speaker-name">${speakerName}</span>
       `;
 
       // 說明
-      document.getElementById("amDesc").textContent = item.description || "";
+      document.getElementById("amDesc").textContent = localized(item.description);
 
       // HackMD
       const hackmdEl = document.getElementById("amHackmd");
@@ -1506,10 +1513,28 @@
         const k = el.dataset.i18n;
         if (dict[k]) el.innerHTML = dict[k];
       });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const k = el.dataset.i18nPlaceholder;
+        if (dict[k]) el.setAttribute("placeholder", dict[k]);
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach(el => {
+        const k = el.dataset.i18nAria;
+        if (dict[k]) el.setAttribute("aria-label", dict[k]);
+      });
+      document.querySelectorAll("[data-i18n-title]").forEach(el => {
+        const k = el.dataset.i18nTitle;
+        if (dict[k]) el.setAttribute("title", dict[k]);
+      });
       syncCountdownUnits(dict);
       document.documentElement.lang = lang === "zh" ? "zh-Hant" : lang;
       syncLangButtons(lang);
       renderNews(lang);
+      const agendaSearchInput = document.getElementById("agendaSearchInput");
+      if (agendaSearchInput?.value.trim()) {
+        agendaSearchInput.dispatchEvent(new Event("input"));
+      } else {
+        renderAgenda(agendaCurrentDay);
+      }
       renderSpeakers(lang);
       applyTweaks(state);
       try { localStorage.setItem("lang", lang); } catch (e) { }

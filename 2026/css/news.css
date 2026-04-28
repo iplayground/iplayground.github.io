@@ -49,7 +49,7 @@
   .article-header {
     padding: 48px 0 32px; text-align: center;
     border-bottom: 1px solid var(--rule-2);
-    max-width: 768px; margin: 0 auto;
+    max-width: min(1040px, 100%); margin: 0 auto;
   }
   .article-date {
     font-family: var(--f-mono); font-size: 13px; font-weight: 600;
@@ -61,11 +61,15 @@
     font-size: clamp(28px, 4vw, 44px);
     font-weight: 700; letter-spacing: -0.03em; line-height: 1.15;
     margin: 0;
+    word-break: normal;
+    overflow-wrap: normal;
+    line-break: strict;
+    text-wrap: balance;
   }
   .article-body {
     padding: 32px 0 72px;
     font-size: 17px; line-height: 1.75; color: var(--ink-2);
-    max-width: 768px; margin: 0 auto;
+    max-width: min(1040px, 100%); margin: 0 auto;
   }
   .article-body p { margin: 0 0 20px; }
   .article-cta {
@@ -91,6 +95,9 @@
     margin-top: 28px;
     padding-top: 22px;
     border-top: 1px solid var(--rule-2);
+    background: none !important;
+    border-radius: 0;
+    box-shadow: none;
   }
   .article-share-title {
     margin-bottom: 14px;
@@ -249,9 +256,17 @@
   .mobile-picker select:focus { outline: none; border-color: var(--accent); }
 
   @media (max-width: 900px) {
-    .news-page-layout { grid-template-columns: 1fr; }
+    .news-page-layout {
+      grid-template-columns: 1fr;
+      padding: 0 12px 24px;
+    }
     .news-sidebar { display: none; }
-    .mobile-picker { display: block; }
+    .mobile-picker {
+      display: block;
+      position: relative;
+      top: auto;
+      padding: 12px 20px;
+    }
     .news-main { padding: 0 24px; }
     footer .wrap {
       max-width: none;
@@ -331,6 +346,14 @@
   nav.top .row {
     min-height: 56px;
     height: 56px;
+    grid-template-columns: 1fr auto !important;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-self: end;
   }
 
   .lang-switch {
@@ -378,9 +401,9 @@
   }
 
   .news-page-layout {
-    max-width: 1180px;
+    max-width: var(--maxw);
     gap: var(--ios-space-4);
-    padding: var(--ios-space-6);
+    padding: var(--ios-space-4) var(--gutter);
     border: 0;
   }
 
@@ -401,8 +424,10 @@
   }
 
   .news-sidebar {
-    top: 80px;
-    height: calc(100vh - 104px);
+    position: static;
+    align-self: start;
+    height: auto;
+    max-height: calc(100vh - 56px - (var(--ios-space-4) * 2));
     border-right: 0;
     padding: var(--ios-space-5) 0;
   }
@@ -581,7 +606,6 @@
   }
 
   .mobile-picker {
-    top: 56px;
     background: rgba(242, 242, 247, 0.86);
     border-bottom-color: var(--ios-separator);
     backdrop-filter: saturate(180%) blur(24px);

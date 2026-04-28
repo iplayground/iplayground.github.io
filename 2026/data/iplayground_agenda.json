@@ -3,10 +3,19 @@
     "day": 1,
     "time": "10:00 – 10:20",
     "track": "ios",
-    "title": "SwiftUI 在大型產品的落地經驗",
-    "tags": ["iOS", "SwiftUI", "架構"],
+    "title": {
+      "zh": "SwiftUI 在大型產品的落地經驗",
+      "en": "Shipping SwiftUI in Large-Scale Products"
+    },
+    "tags": {
+      "zh": ["iOS", "SwiftUI", "架構"],
+      "en": ["iOS", "SwiftUI", "Architecture"]
+    },
     "speaker": {
-      "name": "講者 A",
+      "name": {
+        "zh": "講者 A",
+        "en": "Speaker A"
+      },
       "avatar": "img/staff/staff_hokila.jpg",
       "social": [
         { "type": "github",   "url": "https://github.com/" },
@@ -14,74 +23,125 @@
         { "type": "web",      "url": "https://example.com/" }
       ]
     },
-    "description": "分享 SwiftUI 在大型產品中的實際落地經驗，包含架構選擇、效能挑戰與踩過的坑。",
+    "description": {
+      "zh": "分享 SwiftUI 在大型產品中的實際落地經驗，包含架構選擇、效能挑戰與踩過的坑。",
+      "en": "A practical look at adopting SwiftUI in large-scale products, covering architectural choices, performance challenges, and lessons learned."
+    },
     "hackmd": "https://hackmd.io/"
   },
   {
     "day": 1,
     "time": "10:30 – 11:00",
     "track": "ai",
-    "title": "LLM / RAG / Agent 在真實產品的應用",
-    "tags": ["AI", "LLM", "產品"],
+    "title": {
+      "zh": "LLM / RAG / Agent 在真實產品的應用",
+      "en": "LLM, RAG, and Agents in Real Products"
+    },
+    "tags": {
+      "zh": ["AI", "LLM", "產品"],
+      "en": ["AI", "LLM", "Product"]
+    },
     "speaker": {
-      "name": "講者 B",
+      "name": {
+        "zh": "講者 B",
+        "en": "Speaker B"
+      },
       "avatar": "img/staff/staff_hokila.jpg",
       "social": [
         { "type": "github", "url": "https://github.com/" },
         { "type": "web",    "url": "https://example.com/" }
       ]
     },
-    "description": "不是 Demo，是上線之後的故事。分享 LLM、RAG、Agent 在真實產品中的應用經驗與踩坑紀錄。",
+    "description": {
+      "zh": "不是 Demo，是上線之後的故事。分享 LLM、RAG、Agent 在真實產品中的應用經驗與踩坑紀錄。",
+      "en": "Not a demo, but the story after launch: lessons from applying LLMs, RAG, and agents in real production environments."
+    },
     "hackmd": "https://hackmd.io/"
   },
   {
     "day": 1,
     "time": "11:10 – 11:40",
     "track": "product",
-    "title": "從 0 到 1 的建立，或從 1 到 100 的擴張",
-    "tags": ["產品", "成長"],
+    "title": {
+      "zh": "從 0 到 1 的建立，或從 1 到 100 的擴張",
+      "en": "Building from 0 to 1, or Scaling from 1 to 100"
+    },
+    "tags": {
+      "zh": ["產品", "成長"],
+      "en": ["Product", "Growth"]
+    },
     "speaker": {
-      "name": "講者 C",
+      "name": {
+        "zh": "講者 C",
+        "en": "Speaker C"
+      },
       "avatar": "img/staff/staff_hokila.jpg",
       "social": [
         { "type": "linkedin", "url": "https://linkedin.com/" }
       ]
     },
-    "description": "產品決策、成長實驗、商業模式轉彎——從零到一的建立，或從一到百的擴張，都有值得分享的故事。",
+    "description": {
+      "zh": "產品決策、成長實驗、商業模式轉彎——從零到一的建立，或從一到百的擴張，都有值得分享的故事。",
+      "en": "Product decisions, growth experiments, and business model pivots: stories worth sharing from early creation to later-stage scaling."
+    },
     "hackmd": ""
   },
   {
     "day": 2,
     "time": "10:00 – 10:30",
     "track": "ios",
-    "title": "Swift 6 Concurrency 實戰：踩坑與解法",
-    "tags": ["iOS", "Swift 6", "Concurrency"],
+    "title": {
+      "zh": "Swift 6 Concurrency 實戰：踩坑與解法",
+      "en": "Swift 6 Concurrency in Practice: Pitfalls and Fixes"
+    },
+    "tags": {
+      "zh": ["iOS", "Swift 6", "Concurrency"],
+      "en": ["iOS", "Swift 6", "Concurrency"]
+    },
     "speaker": {
-      "name": "講者 D",
+      "name": {
+        "zh": "講者 D",
+        "en": "Speaker D"
+      },
       "avatar": "img/staff/staff_hokila.jpg",
       "social": [
         { "type": "github",   "url": "https://github.com/" },
         { "type": "linkedin", "url": "https://linkedin.com/" }
       ]
     },
-    "description": "Swift 6 的 Concurrency 改動讓不少開發者踩坑，本場分享實際遇到的問題與解法，幫助你少走彎路。",
+    "description": {
+      "zh": "Swift 6 的 Concurrency 改動讓不少開發者踩坑，本場分享實際遇到的問題與解法，幫助你少走彎路。",
+      "en": "Swift 6 concurrency changes have surprised many developers. This session shares real issues, practical fixes, and migration lessons."
+    },
     "hackmd": "https://hackmd.io/"
   },
   {
     "day": 2,
     "time": "10:40 – 11:10",
     "track": "ai",
-    "title": "On-device ML：把模型塞進 iPhone 後發生了什麼事",
-    "tags": ["AI", "Core ML", "On-device"],
+    "title": {
+      "zh": "On-device ML：把模型塞進 iPhone 後發生了什麼事",
+      "en": "On-device ML: What Happens After Putting Models on iPhone"
+    },
+    "tags": {
+      "zh": ["AI", "Core ML", "On-device"],
+      "en": ["AI", "Core ML", "On-device"]
+    },
     "speaker": {
-      "name": "講者 E",
+      "name": {
+        "zh": "講者 E",
+        "en": "Speaker E"
+      },
       "avatar": "img/staff/staff_hokila.jpg",
       "social": [
         { "type": "github", "url": "https://github.com/" },
         { "type": "web",    "url": "https://example.com/" }
       ]
     },
-    "description": "把模型塞進 iPhone 後發生了什麼事？分享 Core ML、MLX 的實作經驗，以及 on-device 推論的效能挑戰。",
+    "description": {
+      "zh": "把模型塞進 iPhone 後發生了什麼事？分享 Core ML、MLX 的實作經驗，以及 on-device 推論的效能挑戰。",
+      "en": "What happens after putting models on iPhone? A practical session on Core ML, MLX, and the performance challenges of on-device inference."
+    },
     "hackmd": "https://hackmd.io/"
   }
 ]

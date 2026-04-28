@@ -4,18 +4,18 @@
 
 ### `pending` · 2026.04.28
 
-模組化重構：資料層、CSS、多語系全面拆分
+News 頁版面與多語系資料修正
 
-1. 新增 `data/` 資料夾，將所有硬編碼資料拆成獨立 JSON 檔案
-2. 新增 `data/iplayground_staff.json`：工作人員名單，支援照片、連結、fallback 圖片
-3. 新增 `data/iplayground_news.json`：最新消息，移除 `shared-content.js` 資料依賴
-4. 新增 `data/iplayground_agenda.json`、`iplayground_cfp_steps.json`：議程與徵稿流程
-5. 新增 `data/iplayground_config.json`：全域設定（venue 地圖、footer 文字）
-6. 新增 `data/iplayground_links.json`：社群連結、重要連結、聯絡信箱集中管理，HTML 改用 `data-link` 注入
-7. 新增 `data/iplayground_i18n.json`：多語系文字採 key 為主軸結構（`{ zh, en }`），index.html 與 news.html 共用同一份
-8. 將 `index.html` 內嵌 CSS（3500+ 行）拆分為 `css/shared.css`、`css/main.css`、`css/news.css`、`css/fab.css`、`css/confetti.css`
-9. 新增工作人員區塊：圓形頭像、iOS 藍漸層外框、6 欄 grid、動態從 JSON 渲染
-10. 刪除未使用檔案：`tokens.css`、`icon/`、`shared-content.js` 資料內容；新增 `data/README.md` 說明文件
+1. 修正 news 文章標題寬度與中英混排斷行，避免桌面版標題過早換行。
+2. 調整 news 文章與內文容器寬度，讓下方內容對齊頂部導覽列的左右邊界。
+3. 修正 mobile picker 遮住文章卡片的問題，手機版選單改回正常文流。
+4. 修正 news 左側文章列表因 sticky 與捲動狀態造成的下沉問題。
+5. 將 news 頁右下角浮動按鈕補齊，支援主題切換、語言切換與回到頂部。
+6. 修正 news footer 多語系切換，活動、社群、聯絡與連結文字會跟著語系更新。
+7. 修正贊助公告標題標點，並同步更新 OG / Twitter metadata。
+8. 將議程範例資料改為中英雙語 JSON 結構，包含標題、標籤、講者名稱與說明。
+9. 更新首頁議程渲染、搜尋與彈窗邏輯，讓範例議題資料可依目前語系顯示。
+10. 將 Vite dev / preview port 改為 `5567`，避開既有 `5566` 開發伺服器衝突。
 
 ---
 
