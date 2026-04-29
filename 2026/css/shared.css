@@ -194,7 +194,7 @@
       width: 24px;
       height: 2px;
       background: var(--ink);
-      border-radius: 2px;
+      border-radius: 6px;
       transition: all .3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
@@ -310,7 +310,7 @@
       min-width: 0;
       padding: 12px 8px;
       border: 1px solid var(--rule-2);
-      border-radius: 12px;
+      border-radius: 6px;
       background: var(--surface);
       color: var(--ink-2);
       font-size: 14px;
@@ -355,7 +355,7 @@
       display: inline-flex;
       background: var(--surface);
       border: 1px solid var(--rule);
-      border-radius: 999px;
+      border-radius: 6px;
       padding: 3px;
       font-family: var(--f-mono);
       font-size: 11px;
@@ -364,7 +364,7 @@
 
     .nav-switch button {
       padding: 6px 9px;
-      border-radius: 999px;
+      border-radius: 6px;
       color: var(--ink-2);
       display: inline-flex;
       align-items: center;
@@ -379,7 +379,7 @@
       background: var(--ink);
       color: var(--bg);
       padding: 8px 14px;
-      border-radius: 999px;
+      border-radius: 6px;
       font-weight: 500;
       white-space: nowrap;
       text-decoration: none;
@@ -441,7 +441,7 @@
     .footer-lock .mark {
       width: 32px;
       height: 32px;
-      border-radius: 10px;
+      border-radius: 6px;
       background: conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent));
       flex-shrink: 0;
     }
@@ -514,8 +514,8 @@
       --ios-fill: rgba(120, 120, 128, 0.20);
       --ios-fill-dark: rgba(120, 120, 128, 0.36);
       --ios-selected: rgba(210, 255, 0, 0.14);
-      --ios-radius: 22px;
-      --ios-control-radius: 16px;
+      --ios-radius: 6px;
+      --ios-control-radius: 6px;
       --ios-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
       --ios-space-2: 8px;
       --ios-space-3: 12px;
@@ -557,7 +557,7 @@
       min-height: 34px;
       background: var(--ios-fill);
       border: 0;
-      border-radius: 10px;
+      border-radius: 6px;
       padding: 2px;
       font-family: inherit;
       font-size: 12px;
@@ -567,7 +567,7 @@
     .nav-switch button {
       min-width: 32px;
       min-height: 30px;
-      border-radius: 8px;
+      border-radius: 6px;
       color: rgba(29, 29, 31, 0.72);
     }
 
@@ -610,7 +610,7 @@
       justify-content: center;
       background: var(--ios-blue);
       color: #000;
-      border-radius: 999px;
+      border-radius: 6px;
       padding: 8px 16px;
       font-weight: 700;
       box-shadow: 0 6px 16px rgba(210, 255, 0, 0.22);
@@ -650,7 +650,7 @@
     .mobile-menu ul {
       margin: 16px;
       overflow: hidden;
-      border-radius: var(--ios-control-radius);
+      border-radius: 6px;
       background: var(--ios-card);
     }
 
@@ -691,7 +691,7 @@
     }
 
     .photo-col img {
-      border-radius: 18px;
+      border-radius: 6px;
       box-shadow: none;
     }
 
@@ -743,7 +743,7 @@
     .btn-primary,
     .submit-card-cta {
       min-height: 50px;
-      border-radius: 999px;
+      border-radius: 6px;
       font-size: 17px;
       font-weight: 700;
       letter-spacing: 0;
@@ -783,7 +783,7 @@
     .fc-card {
       width: 64px;
       height: 72px;
-      border-radius: 16px;
+      border-radius: 6px;
       background: rgba(44, 44, 46, 0.74);
       border: 1px solid rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(20px);
@@ -860,7 +860,7 @@
     .register-hero {
       background: var(--ios-card);
       border: 1px solid var(--ios-separator);
-      border-radius: var(--ios-radius);
+      border-radius: 6px;
       box-shadow: var(--ios-shadow);
       backdrop-filter: saturate(180%) blur(22px);
       -webkit-backdrop-filter: saturate(180%) blur(22px);
@@ -887,7 +887,7 @@
     .topic-pill {
       background: var(--ios-fill);
       border: 0;
-      border-radius: 999px;
+      border-radius: 6px;
       font-family: inherit;
       color: var(--ios-secondary-label);
     }
@@ -935,7 +935,7 @@
       padding: 80px 40px;
       background: var(--surface-2);
       border: 1px dashed var(--rule);
-      border-radius: 32px;
+      border-radius: 6px;
       text-align: center;
       position: relative;
     }
@@ -951,7 +951,7 @@
       border: 1px solid rgba(0, 0, 0, 0.1);
       color: #1d1d1f;
       padding: 10px 16px;
-      border-radius: 12px;
+      border-radius: 6px;
       font-size: 14px;
       font-weight: 600;
       text-decoration: none;
@@ -1335,7 +1335,7 @@
     .construction {
       background: var(--ios-card);
       border: 1px solid var(--ios-separator);
-      border-radius: var(--ios-radius);
+      border-radius: 6px;
       box-shadow: var(--ios-shadow);
       backdrop-filter: saturate(180%) blur(22px);
       -webkit-backdrop-filter: saturate(180%) blur(22px);
@@ -1369,7 +1369,7 @@
       .fc-card {
         width: 58px;
         height: 70px;
-        border-radius: 15px;
+        border-radius: 6px;
       }
 
       .fc-num {

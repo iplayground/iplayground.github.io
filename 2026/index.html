@@ -107,10 +107,16 @@
     <div class="wordmark-banner">
       <svg class="dot-field" id="dotField" preserveAspectRatio="none" viewBox="0 0 1200 400" aria-hidden="true"></svg>
 
-      <span class="status-pill" role="status">
-        <span class="dot" aria-hidden="true"></span>
-        <span data-i18n="hero_status_pill">CFP 開放投稿中</span>
-      </span>
+      <div class="hero-brand-row">
+        <a class="hero-brand-mark" href="#hero" aria-label="iPlayground 2026">
+          <img src="img/svg/logo_header_light.svg" alt="iPlayground" class="hero-brand-img hero-brand-img--light">
+          <img src="img/svg/logo_header_dark.svg" alt="iPlayground" class="hero-brand-img hero-brand-img--dark">
+        </a>
+        <span class="status-pill" role="status">
+          <span class="dot" aria-hidden="true"></span>
+          <span data-i18n="hero_status_pill">開放投稿中</span>
+        </span>
+      </div>
 
       <div class="eyebrow">
         <span class="eyebrow-bracket">[</span>
@@ -160,7 +166,7 @@
 
       <aside class="countdown-panel" aria-label="CFP deadline countdown">
         <div class="cd-meta">
-          <span class="cd-mono" data-i18n="cd_meta_label">// CFP 投稿截止</span>
+          <span class="cd-mono" data-i18n="cd_meta_label">// 投稿截止</span>
           <span class="cd-mono cd-zh" data-i18n="cd_meta_zh">投稿截止</span>
         </div>
 
@@ -224,9 +230,32 @@
       <!-- Process Timeline -->
       <div id="processTimeline" style="display: none;"></div>
 
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-label">// DATES</span>
+          <span class="stat-value" data-i18n="stat_dates_value">7.25–26</span>
+          <span class="stat-sub" data-i18n="stat_dates_sub">2026 · 週六–週日</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">// VENUE</span>
+          <span class="stat-value" data-i18n="stat_venue_value">CPBAE</span>
+          <span class="stat-sub" data-i18n="stat_venue_sub">政大公企中心 · 台北</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">// FORMAT</span>
+          <span class="stat-value" data-i18n="stat_format_value">2 DAYS</span>
+          <span class="stat-sub" data-i18n="stat_format_sub">MULTI-TRACK · IOS / SWIFT / UX</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">// TICKETS</span>
+          <span class="stat-value" data-i18n="stat_tickets_value">SOON</span>
+          <span class="stat-sub" data-i18n="stat_tickets_sub">早鳥票即將開賣</span>
+        </div>
+      </div>
+
       <div class="venue-wrap" style="margin-top: 100px;">
         <div class="map-card"
-          style="margin-top: 48px; border-radius: 24px; overflow: hidden; border: 1px solid var(--rule); box-shadow: 0 20px 40px rgba(0,0,0,0.1); background: var(--surface); position: relative;">
+          style="margin-top: 48px; border-radius: 6px; overflow: hidden; border: 1px solid var(--rule); box-shadow: 0 20px 40px rgba(0,0,0,0.1); background: var(--surface); position: relative;">
           <iframe id="venueMap"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.71!2d121.5276213!3d25.0301042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a98364e9ea0f%3A0xc1736c6258ca4f72!2z5pS_5aSn5YWs5LyB5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1713840000000"
             width="100%" height="450" style="border:0; display: block;" allowfullscreen="" loading="lazy"
@@ -344,33 +373,19 @@
       <header class="section-head">
         <span class="section-eyebrow">// 03</span>
         <h2 class="section-title section-title--zh" data-i18n="agenda_title">議程</h2>
-        <span class="section-meta"></span>
+        <span class="section-meta" data-i18n="agenda_meta">議程公布後即時更新</span>
       </header>
     </div>
     <div class="wrap">
       <div class="agenda-wrap">
-        <div class="agenda-tabs-row">
-          <div class="agenda-tabs" id="agendaTabs">
-            <button class="active" data-day="1" data-i18n="agenda_day1">7/25（六）</button>
-            <button data-day="2" data-i18n="agenda_day2">7/26（日）</button>
-          </div>
-
-          <div class="agenda-search-bar" id="agendaSearchBar">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--ink-3);">
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-            </svg>
-            <input type="text" id="agendaSearchInput" data-i18n-placeholder="agenda_search_placeholder" placeholder="搜尋議程名稱或標籤…" autocomplete="off">
-            <button class="agenda-search-clear" id="agendaSearchClear" data-i18n-aria="agenda_search_clear" aria-label="清除">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 6L6 18M6 6l12 12"/>
-              </svg>
-            </button>
-          </div>
-
-          <button class="agenda-sort-btn" id="agendaSortBtn" data-i18n-aria="agenda_sort_label" data-i18n-title="agenda_sort_asc" aria-label="時間排序" title="時間由近到遠">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M11 5h10M11 9h7M11 13h4M3 17l3 3 3-3M6 18V4"/>
-            </svg>
+        <div class="agenda-tabs" role="tablist" id="agendaTabs">
+          <button class="agenda-tab is-active" data-day="1" role="tab" aria-selected="true">
+            <span class="tab-label">DAY 01</span>
+            <span class="tab-date">07.25</span>
+          </button>
+          <button class="agenda-tab" data-day="2" role="tab" aria-selected="false">
+            <span class="tab-label">DAY 02</span>
+            <span class="tab-date">07.26</span>
           </button>
         </div>
 
@@ -674,7 +689,7 @@
       const labelTip = l === 'en' ? 'Tips:' : '溫馨提示：';
 
       let content = `
-        <div id="smartGuidance" style="background: var(--surface-2); padding: 20px; border-radius: 16px; margin-bottom: 0px;">
+        <div id="smartGuidance" style="background: var(--surface-2); padding: 20px; border-radius: 6px; margin-bottom: 0px;">
           <p style="font-weight: 700; color: var(--accent); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
             ${labelSteps}
@@ -755,7 +770,7 @@
       
       action.innerHTML = `
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%;">
-          <a href="${navUrl}" target="_blank" class="btn-primary" style="padding: 14px 20px; border-radius: 18px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-weight: 700; justify-content: center; background: var(--surface); color: var(--accent); border: 2.5px solid var(--accent); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
+          <a href="${navUrl}" target="_blank" class="btn-primary" style="padding: 14px 20px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-weight: 700; justify-content: center; background: var(--surface); color: var(--accent); border: 2.5px solid var(--accent); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
               <line x1="8" y1="2" x2="8" y2="18"></line>
@@ -763,7 +778,7 @@
             </svg>
             <span style="font-size: 15px;">${navLabel}</span>
           </a>
-          <a href="${statusUrl}" target="_blank" class="btn-primary" style="padding: 14px 20px; border-radius: 18px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-weight: 700; justify-content: center; background: var(--surface); color: var(--accent); border: 2.5px solid var(--accent); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
+          <a href="${statusUrl}" target="_blank" class="btn-primary" style="padding: 14px 20px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-weight: 700; justify-content: center; background: var(--surface); color: var(--accent); border: 2.5px solid var(--accent); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
               <path d="M12 8v4l3 3"></path>
@@ -1006,37 +1021,50 @@
       agendaCurrentDay = activeDay;
 
       // 更新 tab 狀態
-      document.querySelectorAll("#agendaTabs button").forEach(btn => {
-        btn.classList.toggle("active", parseInt(btn.dataset.day) === activeDay);
+      document.querySelectorAll("#agendaTabs .agenda-tab").forEach(btn => {
+        const isActive = parseInt(btn.dataset.day) === activeDay;
+        btn.classList.toggle("is-active", isActive);
+        btn.setAttribute("aria-selected", String(isActive));
       });
 
       const rows = AGENDA.filter(r => r.day === activeDay)
         .slice()
-        .sort((a, b) => agendaSortAsc
-          ? parseTime(a.time) - parseTime(b.time)
-          : parseTime(b.time) - parseTime(a.time)
-        );
+        .sort((a, b) => parseTime(a.time) - parseTime(b.time));
 
       if (rows.length === 0) {
         list.innerHTML = `<div class="agenda-empty">${currentLang === "en" ? "Agenda will be announced soon" : "議程公布後即將顯示"}</div>`;
         return;
       }
 
-      list.innerHTML = rows.map((r, idx) => `
-        <div class="agenda-card" data-agenda-idx="${idx}" data-agenda-day="${activeDay}">
-          <div class="agenda-card-time">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            ${r.time}
+      const tbaLabel = currentLang === "en" ? "TBA" : "TBA";
+
+      list.innerHTML = rows.map((r, idx) => {
+        const tags = localized(r.tags || []);
+        const primaryTag = tags[0] || "";
+        const isKeynote = primaryTag.toUpperCase() === "KEYNOTE" || (r.track || "").toLowerCase() === "keynote";
+        const tagHTML = primaryTag
+          ? `<span class="session-tag${isKeynote ? " is-keynote" : ""}">${primaryTag.toUpperCase()}</span>`
+          : "";
+        const speakerName = localized(r.speaker?.name) || tbaLabel;
+        const startTime = (r.time || "").split(/[–\-]/)[0].trim();
+        const desc = localized(r.description) || "";
+
+        return `
+        <div class="session" data-agenda-idx="${idx}" data-agenda-day="${activeDay}">
+          <span class="session-time">${startTime}</span>
+          <div class="session-body">
+            <h3 class="session-title">${localized(r.title)}</h3>
+            ${desc ? `<p class="session-desc">${desc}</p>` : ""}
           </div>
-          <div class="agenda-card-title">${localized(r.title)}</div>
-          <div class="agenda-card-tags">
-            ${localized(r.tags || []).map(tag => `<span class="agenda-tag">${tag}</span>`).join("")}
+          <div class="session-meta">
+            ${tagHTML}
+            <span class="session-speaker">${speakerName}</span>
           </div>
-        </div>
-      `).join("");
+        </div>`;
+      }).join("");
 
       // 綁定點擊事件
-      list.querySelectorAll(".agenda-card").forEach(card => {
+      list.querySelectorAll(".session").forEach(card => {
         card.addEventListener("click", () => {
           const day = parseInt(card.dataset.agendaDay);
           const idx = parseInt(card.dataset.agendaIdx);
@@ -1052,75 +1080,6 @@
       if (btn) renderAgenda(parseInt(btn.dataset.day));
     });
 
-    // ===== Agenda 搜尋 =====
-    document.getElementById("agendaSortBtn")?.addEventListener("click", () => {
-      agendaSortAsc = !agendaSortAsc;
-      const btn = document.getElementById("agendaSortBtn");
-      btn.classList.toggle("desc", !agendaSortAsc);
-      btn.title = agendaSortAsc ? "時間由近到遠" : "時間由遠到近";
-      // 搜尋中則重新搜尋，否則重新渲染當天
-      const q = document.getElementById("agendaSearchInput")?.value.trim();
-      if (q) {
-        document.getElementById("agendaSearchInput").dispatchEvent(new Event("input"));
-      } else {
-        renderAgenda(agendaCurrentDay);
-      }
-    });
-
-    document.getElementById("agendaSearchInput")?.addEventListener("input", e => {
-      const q = e.target.value.trim().toLowerCase();
-      const list = document.getElementById("agendaList");
-      if (!list) return;
-
-      if (!q) {
-        renderAgenda(agendaCurrentDay);
-        return;
-      }
-
-      // 搜尋全部 day 的議程
-      const results = AGENDA.filter(r =>
-        localized(r.title).toLowerCase().includes(q) ||
-        localized(r.tags || []).some(tag => tag.toLowerCase().includes(q))
-      ).slice().sort((a, b) => agendaSortAsc
-        ? parseTime(a.time) - parseTime(b.time)
-        : parseTime(b.time) - parseTime(a.time)
-      );
-
-      if (results.length === 0) {
-        list.innerHTML = `<div class="agenda-empty">${currentLang === "en" ? `No agenda found for "${e.target.value}"` : `找不到符合「${e.target.value}」的議程`}</div>`;
-        return;
-      }
-
-      list.innerHTML = results.map((r, idx) => `
-        <div class="agenda-card" data-agenda-idx="${idx}" data-agenda-day="${r.day}">
-          <div class="agenda-card-time">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            ${r.time}
-          </div>
-          <div class="agenda-card-title">${localized(r.title)}</div>
-          <div class="agenda-card-tags">
-            ${localized(r.tags || []).map(tag => `<span class="agenda-tag">${tag}</span>`).join("")}
-          </div>
-        </div>
-      `).join("");
-
-      list.querySelectorAll(".agenda-card").forEach(card => {
-        card.addEventListener("click", () => {
-          const day = parseInt(card.dataset.agendaDay);
-          const idx = parseInt(card.dataset.agendaIdx);
-          const item = results[idx];
-          if (item) showAgendaModal(item);
-        });
-      });
-    });
-
-    document.getElementById("agendaSearchClear")?.addEventListener("click", () => {
-      const input = document.getElementById("agendaSearchInput");
-      input.value = "";
-      input.dispatchEvent(new Event("input"));
-      input.focus();
-    });
-
     // ===== Agenda Modal =====
     const SOCIAL_ICONS = {
       github: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>`,
@@ -1134,10 +1093,7 @@
       if (!modal) return;
 
       // 時間
-      document.getElementById("amTime").innerHTML = `
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        ${item.time}
-      `;
+      document.getElementById("amTime").textContent = item.time;
 
       // 標題
       document.getElementById("amTitle").textContent = localized(item.title);
@@ -2431,24 +2387,28 @@
     if (!newsCanvas || !newsDriftEnabled) return;
 
     const newsConfetti = confetti.create(newsCanvas, { resize: true, useWorker: false });
-    let animFrame = null;
+    let driftTimer = null;
     let isVisible = false;
+
+    // Subtle drift palette: lime + warm whites/blacks. No saturated rainbow.
+    const DRIFT_COLORS = ['#D2FF00', '#F5E8E8', '#FFFFFF', '#888888'];
 
     function drift() {
       if (!isVisible || !confettiEnabled) return;
       newsConfetti({
-        particleCount: 3,
-        spread: 80,
-        startVelocity: 8,
-        decay: 0.94,
-        gravity: 0.6,
-        ticks: 280,
-        scalar: window.innerWidth < 600 ? 0.5 : 0.85,
-        colors: COLORS,
+        particleCount: 1,
+        spread: 60,
+        startVelocity: 5,
+        decay: 0.95,
+        gravity: 0.5,
+        ticks: 200,
+        scalar: window.innerWidth < 600 ? 0.35 : 0.55,
+        colors: DRIFT_COLORS,
         shapes: ['square', 'circle'],
         origin: { x: Math.random(), y: 0 }
       });
-      animFrame = requestAnimationFrame(drift);
+      // Cadenced drop instead of every-frame — about ~5 particles/sec
+      driftTimer = setTimeout(drift, 200);
     }
 
     const observer = new IntersectionObserver(function(entries) {
@@ -2458,7 +2418,7 @@
           drift();
         } else {
           isVisible = false;
-          if (animFrame) cancelAnimationFrame(animFrame);
+          if (driftTimer) clearTimeout(driftTimer);
         }
       });
     }, { threshold: 0.1 });
