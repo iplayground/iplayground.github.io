@@ -87,19 +87,19 @@
       <div>
         <h4 data-i18n="footer_community">社群</h4>
         <ul>
-          <li><a href="https://discord.gg/xS8yMKbbjB" target="_blank" rel="noopener">Discord</a></li>
-          <li><a href="https://www.facebook.com/theiPlayground/" target="_blank" rel="noopener">Facebook</a></li>
-          <li><a href="https://twitter.com/theiPlayground" target="_blank" rel="noopener">Twitter / X</a></li>
-          <li><a href="https://youtube.com/@iplaygroundtaiwan" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="#" data-link="social_discord" target="_blank" rel="noopener">Discord</a></li>
+          <li><a href="#" data-link="social_facebook" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="#" data-link="social_twitter" target="_blank" rel="noopener">Twitter / X</a></li>
+          <li><a href="#" data-link="social_youtube" target="_blank" rel="noopener">YouTube</a></li>
         </ul>
       </div>
       <div>
         <h4 data-i18n="footer_contact">聯絡</h4>
         <ul>
-          <li><a href="mailto:support@iplayground.io" data-i18n="footer_support">一般支援</a></li>
-          <li><a href="mailto:session@iplayground.io" data-i18n="footer_cfp">講者投稿</a></li>
-          <li><a href="mailto:support@iplayground.io" data-i18n="footer_sponsor">贊助合作</a></li>
-          <li><a href="https://github.com/iplayground/code_of_conduct" target="_blank" rel="noopener" data-i18n="footer_coc">行為準則</a></li>
+          <li><a href="#" data-link="contact_support" data-i18n="footer_support">一般支援</a></li>
+          <li><a href="#" data-link="contact_cfp" data-i18n="footer_cfp">講者投稿</a></li>
+          <li><a href="#" data-link="contact_sponsor" data-i18n="footer_sponsor">贊助合作</a></li>
+          <li><a href="#" data-link="coc" target="_blank" rel="noopener" data-i18n="footer_coc">行為準則</a></li>
         </ul>
       </div>
     </div>
@@ -122,6 +122,7 @@ const NEWS_DATA_URLS = {
 let NEWS_DATA_BY_LANG = { zh: [], en: [] };
 let NEWS_DATA = [];   // 從 GitHub raw HTTPS 來源載入
 let CONFIG    = {};   // 從 data/iplayground_config.json 載入
+let LINKS     = {};
 
 // ===== i18n helpers =====
 function t(key) {
@@ -148,6 +149,19 @@ function escapeHtml(value) {
     '"': "&quot;",
     "'": "&#39;",
   }[ch]));
+}
+
+function applyLinks(links) {
+  if (!links) return;
+  const map = {};
+  Object.entries(links.important || {}).forEach(([key, value]) => { map[key] = value; });
+  Object.entries(links.contact || {}).forEach(([key, value]) => { map[`contact_${key}`] = value; });
+  (links.social || []).forEach(item => { map[`social_${item.id}`] = item.url; });
+
+  document.querySelectorAll("[data-link]").forEach(el => {
+    const url = map[el.dataset.link];
+    if (url) el.href = url;
+  });
 }
 
 function normalizeButtons(buttons) {
@@ -384,10 +398,13 @@ Promise.all([
   fetch(NEWS_DATA_URLS.zh).then(r => r.json()),
   fetch(NEWS_DATA_URLS.en).then(r => r.json()),
   fetch("data/iplayground_config.json").then(r => r.json()),
-]).then(([i18n, newsZh, newsEn, config]) => {
+  fetch("data/iplayground_links.json").then(r => r.json()),
+]).then(([i18n, newsZh, newsEn, config, links]) => {
   I18N_DATA = i18n;
   NEWS_DATA_BY_LANG = { zh: newsZh, en: newsEn };
   CONFIG     = config;
+  LINKS      = links;
+  applyLinks(LINKS);
   applyLang(savedLang);
 }).catch(e => {
   console.warn("資料載入失敗", e);

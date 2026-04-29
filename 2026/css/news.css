@@ -487,28 +487,21 @@
 
   /* ============ Footer ============ */
   footer {
-    background: #0a0b08;
-    color: var(--ink);
     padding: 80px 0 48px;
-    border-top: 1px solid var(--rule-2);
-  }
-  html[data-mode="light"] footer {
-    background: oklch(0.18 0.04 130);
   }
   footer a {
-    color: var(--ink);
     text-decoration: none;
     transition: color .2s, opacity .2s;
-    opacity: 0.78;
   }
-  footer a:hover { opacity: 1; }
+  footer a:hover {
+    opacity: 1;
+  }
   footer h4 {
     font-family: var(--news-f-mono);
     font-size: 11px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.16em;
-    color: var(--ink-3) !important;
     margin: 0 0 16px;
   }
   footer ul {
@@ -534,7 +527,6 @@
   .footer-tagline {
     margin-top: 24px;
     font-size: 13px;
-    color: var(--ink-3);
     line-height: 1.6;
     max-width: 38ch;
   }
@@ -547,7 +539,6 @@
     border-top: 1px solid var(--rule-2);
     font-family: var(--news-f-mono);
     font-size: 11px;
-    color: var(--ink-3);
     letter-spacing: 0.06em;
   }
   footer .footer-event-links { display: none; }
