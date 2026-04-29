@@ -41,7 +41,7 @@
     --fs-lede:     clamp(17px, 1.1vw + 0.8rem, 22px);
     --fs-wordmark: clamp(28px, 8vw, 112px);
     --fs-year:     clamp(44px, 9.5vw, 136px);
-    --fs-cd-digit: clamp(38px, 4.4vw, 64px);
+    --fs-cd-digit: clamp(32px, 3.4vw, 48px);
     --fs-cd-label: 11px;
 
     /* Spacing — 4pt scale */
@@ -414,10 +414,33 @@
   .wordmark-banner {
     position: relative;
     z-index: 1;
+    isolation: isolate;            /* contain the dot-field's negative z-index */
     display: flex;
     flex-direction: column;
     gap: clamp(14px, 2.4vh, 28px);
     margin-bottom: clamp(28px, 5vh, 56px);
+  }
+
+  /* Dot field — animated star-like backdrop behind the IPLAYGROUND text */
+  .dot-field {
+    position: absolute;
+    inset: clamp(-32px, -3vh, -16px) clamp(-24px, -2vw, -16px);
+    width: auto;
+    height: auto;
+    z-index: -1;
+    pointer-events: none;
+    overflow: visible;
+  }
+  .dot-field circle {
+    fill: var(--c-ink);
+    animation: dot-twinkle var(--dur, 5s) ease-in-out var(--delay, 0s) infinite;
+  }
+  .dot-field circle.dot-signal {
+    fill: var(--c-signal);
+  }
+  @keyframes dot-twinkle {
+    0%, 100% { opacity: var(--base-op, 0.3); }
+    50%      { opacity: calc(var(--base-op, 0.3) * 0.22); }
   }
 
   .eyebrow {
@@ -680,11 +703,15 @@
 
   .cd-grid {
     display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    /* minmax(0, 1fr) lets cells shrink under content min-width — without this,
+       large digits force the grid wider than the panel and the seconds cell
+       overflows on the right. */
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
     gap: 4px;
     position: relative;
     z-index: 1;
+    min-width: 0;
   }
 
   .cd-cell {
@@ -695,6 +722,7 @@
     padding: 8px 4px 10px;
     border-bottom: 1px solid var(--rule-1);
     transition: border-color var(--t-mid) var(--ease-out);
+    min-width: 0;
   }
   .cd-cell.tick {
     border-bottom-color: var(--c-signal);
@@ -733,12 +761,14 @@
 
   .cd-sep {
     font-family: var(--f-mono);
-    font-size: var(--fs-cd-digit);
+    /* Smaller than digits — at digit-size the colons ate too much horizontal
+       space and pushed the seconds cell off the panel. */
+    font-size: clamp(20px, 2vw, 28px);
     font-weight: 500;
     line-height: 1;
     color: var(--c-accent);
     padding-bottom: 18px;
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     user-select: none;
   }
 
@@ -970,10 +1000,12 @@
   }
   .stat-value {
     font-family: var(--f-display);
-    font-size: clamp(32px, 4.2vw, 56px);
+    font-size: clamp(28px, 3.4vw, 46px);
     line-height: 1;
     letter-spacing: -0.04em;
     color: var(--c-ink);
+    /* Prevent breaks at hyphens / spaces — "7.25-26" and "2 DAYS" must stay on one line */
+    white-space: nowrap;
   }
   .stat-sub {
     font-family: var(--f-mono);
@@ -1368,6 +1400,8 @@
 
   <!-- Wordmark banner — full width above the grid so IPLAYGROUND never clips -->
   <div class="wordmark-banner">
+    <svg class="dot-field" id="dotField" preserveAspectRatio="none" viewBox="0 0 1200 400" aria-hidden="true"></svg>
+
     <div class="eyebrow">
       <span class="eyebrow-bracket">[</span>
       <span>TAIPEI</span>
@@ -1380,11 +1414,12 @@
     </div>
 
     <div class="brand-crest" aria-label="iPlayground brand mark">
-      <svg class="crest-tri" viewBox="0 0 24 24" aria-hidden="true" style="--i:0">
-        <polygon class="shape-fill" points="12,3 22,21 2,21"/>
-      </svg>
-      <svg class="crest-cir" viewBox="0 0 24 24" aria-hidden="true" style="--i:1">
+      <svg class="crest-cir" viewBox="0 0 24 24" aria-hidden="true" style="--i:0">
         <circle class="shape-stroke" cx="12" cy="12" r="9.5"/>
+      </svg>
+      <svg class="crest-tri" viewBox="0 0 24 24" aria-hidden="true" style="--i:1">
+        <!-- Right-angled triangle, 90° at bottom-left, hypotenuse top-right → bottom-right -->
+        <polygon class="shape-fill" points="2,2 2,22 22,22"/>
       </svg>
       <svg class="crest-dia" viewBox="0 0 24 24" aria-hidden="true" style="--i:2">
         <polygon class="shape-fill" points="12,2 22,12 12,22 2,12"/>
@@ -2215,6 +2250,35 @@
       span.setAttribute('aria-hidden', 'true');
       wmMark.appendChild(span);
     });
+  })();
+
+  // ============================================================
+  // Dot field — twinkling backdrop behind the IPLAYGROUND wordmark
+  // ============================================================
+  (function buildDotField() {
+    const field = document.getElementById('dotField');
+    if (!field) return;
+    const W = 1200, H = 400;
+    const N = 140;
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < N; i++) {
+      const c = document.createElementNS(SVG_NS, 'circle');
+      c.setAttribute('cx', (Math.random() * W).toFixed(1));
+      c.setAttribute('cy', (Math.random() * H).toFixed(1));
+      c.setAttribute('r',  (0.5 + Math.random() * 1.7).toFixed(2));
+      const baseOp = (0.15 + Math.random() * 0.5).toFixed(3);
+      const delay  = (-Math.random() * 9).toFixed(2);
+      const dur    = (3 + Math.random() * 6).toFixed(2);
+      c.style.setProperty('--base-op', baseOp);
+      c.style.setProperty('--delay', delay + 's');
+      c.style.setProperty('--dur', dur + 's');
+      c.style.opacity = baseOp;
+      // 7% of dots are signal-color — occasional brand pop
+      if (Math.random() < 0.07) c.classList.add('dot-signal');
+      frag.appendChild(c);
+    }
+    field.appendChild(frag);
   })();
 
   (function setupMsTicker() {
