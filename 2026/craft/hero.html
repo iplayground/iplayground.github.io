@@ -1,0 +1,2324 @@
+<!doctype html>
+<html lang="zh-Hant" data-mode="dark" data-lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>iPlayground 2026 · Hero (Craft)</title>
+<meta name="description" content="iPlayground 2026 hero + CFP countdown — design craft preview using the new red palette and Michroma identity." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     Tokens — sourced from .impeccable.md, exact hex preserved
+     ============================================================ */
+  :root {
+    /* Brand palette */
+    --c-bg:        #000000;                    /* canvas */
+    --c-surface:   #282C20;                    /* dark warm gray-green secondary */
+    --c-accent:    oklch(0.60 0.03 130);       /* quiet warm-gray support — no chromatic pop */
+    --c-signal:    #D2FF00;                    /* lime — only colorful element in the palette */
+
+    /* Inks — off-whites subtly tinted toward the signal hue (130°) for cohesion */
+    --c-ink:       oklch(0.96 0.005 130);
+    --c-ink-2:     oklch(0.78 0.008 130);
+    --c-ink-3:     oklch(0.58 0.012 130);
+
+    /* Hairlines */
+    --rule-1:      oklch(0.40 0.020 130 / 0.55);
+    --rule-2:      oklch(0.96 0.005 130 / 0.10);
+
+    /* Typography */
+    --f-display:   'Michroma', ui-monospace, 'SF Mono', monospace;
+    --f-body:      'Geist', 'PingFang TC', 'Noto Sans TC', system-ui, sans-serif;
+    --f-mono:      'Geist Mono', ui-monospace, 'SF Mono', monospace;
+
+    /* Type scale — fluid for hero, fixed for body */
+    --fs-eyebrow:  11px;
+    --fs-body:     clamp(15px, 0.95vw + 0.7rem, 18px);
+    --fs-lede:     clamp(17px, 1.1vw + 0.8rem, 22px);
+    --fs-wordmark: clamp(28px, 8vw, 112px);
+    --fs-year:     clamp(44px, 9.5vw, 136px);
+    --fs-cd-digit: clamp(38px, 4.4vw, 64px);
+    --fs-cd-label: 11px;
+
+    /* Spacing — 4pt scale */
+    --s-1:   4px;
+    --s-2:   8px;
+    --s-3:  12px;
+    --s-4:  16px;
+    --s-5:  24px;
+    --s-6:  32px;
+    --s-7:  48px;
+    --s-8:  64px;
+    --s-9:  96px;
+
+    /* Layout */
+    --gutter: clamp(20px, 4vw, 56px);
+    --maxw:   1320px;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);   /* ease-out-quart */
+    --t-fast:   180ms;
+    --t-mid:    320ms;
+    --t-slow:   600ms;
+  }
+
+  /* Light mode derivations — same hue family (130°), inverted lightness */
+  html[data-mode="light"] {
+    --c-bg:        oklch(0.985 0.005 130);   /* cool off-white, very subtle warm green */
+    --c-surface:   oklch(0.96  0.008 130);   /* paper */
+    --c-accent:    oklch(0.42  0.03  130);   /* darker warm gray on light bg for contrast */
+    --c-ink:       oklch(0.18  0.04  130);   /* warm near-black */
+    --c-ink-2:     oklch(0.36  0.03  130);
+    --c-ink-3:     oklch(0.52  0.02  130);
+    --rule-1:      oklch(0.40  0.04  130 / 0.30);
+    --rule-2:      oklch(0.18  0.03  130 / 0.10);
+  }
+
+  /* ============================================================
+     Reset & base
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { background: var(--c-bg); color-scheme: dark; }
+  html[data-mode="light"] { color-scheme: light; }
+
+  body {
+    font-family: var(--f-body);
+    font-size: var(--fs-body);
+    line-height: 1.55;
+    color: var(--c-ink);
+    background: var(--c-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* OpenType: tighten Mandarin punctuation; enable ss tab figures for the countdown */
+    font-feature-settings: 'palt' 1, 'tnum' 1, 'cv11' 1;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* Selection — only place the signal color leaks into typography */
+  ::selection { background: var(--c-signal); color: var(--c-bg); }
+
+  /* ============================================================
+     Hero — the showpiece
+     ============================================================ */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(28px, 4vh, 56px) var(--gutter) clamp(40px, 6vh, 80px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Photo wall — quieted, behind a heavy curtain */
+  .photo-wall {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 12px;
+    opacity: 0.18;
+    filter: saturate(0.6) contrast(1.05);
+    pointer-events: none;
+  }
+  html[data-mode="light"] .photo-wall {
+    opacity: 0.28;
+    filter: saturate(0.4) contrast(0.95);
+  }
+  .photo-wall .pw-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    will-change: transform;
+    animation: pw-drift 60s linear infinite;
+  }
+  .photo-wall .pw-col:nth-child(odd) { animation-direction: reverse; }
+  .photo-wall img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    filter: grayscale(0.4);
+  }
+  @keyframes pw-drift {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-8%); }
+  }
+
+  /* Curtain — radial-gradient vignette, not glassmorphism */
+  .hero-curtain {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 35%,
+        var(--c-bg) 0%,
+        color-mix(in oklab, var(--c-bg) 88%, transparent) 50%,
+        color-mix(in oklab, var(--c-bg) 70%, transparent) 100%),
+      linear-gradient(180deg,
+        var(--c-bg) 0%,
+        color-mix(in oklab, var(--c-bg) 80%, transparent) 60%,
+        var(--c-bg) 100%);
+  }
+
+  /* ------------------------------------------------------------
+     Wave + perspective grid — techy, subtle, deliberately gritty
+     Sits ABOVE the curtain so it remains legible, BELOW corner
+     brackets and content so it never competes for attention.
+     ------------------------------------------------------------ */
+  .wave-grid {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    /* slight horizontal drift — long enough to feel like ambient breathing */
+    animation: wave-drift 84s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+  @keyframes wave-drift {
+    0%, 100% { transform: translateX(0); }
+    50%      { transform: translateX(-1.1%); }
+  }
+
+  /* Stroke styles — warm off-white grid lines on the dark-gray floor */
+  .wave-grid .wg-vertical line,
+  .wave-grid .wg-horizontal line {
+    stroke: var(--c-ink);
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+  .wave-grid .wg-vertical   line { stroke-width: 0.5; }
+  .wave-grid .wg-horizontal line { stroke-width: 0.5; }
+  .wave-grid .wg-vertical   { opacity: 0.26; }
+  .wave-grid .wg-horizontal { opacity: 0.34; }
+
+  /* Dark-gray plate fill — sits behind the lines, inside the under-wave clip */
+  .wave-grid .wg-floor {
+    fill: oklch(0.21 0.012 130);   /* matches --c-surface tone, distinctly above #000 */
+  }
+  html[data-mode="light"] .wave-grid .wg-floor {
+    fill: oklch(0.92 0.008 130);   /* warm light gray-green plate on light mode */
+  }
+  html[data-mode="light"] .wave-grid .wg-vertical line,
+  html[data-mode="light"] .wave-grid .wg-horizontal line {
+    stroke: oklch(0.30 0.04 130);  /* dark warm-green lines on light plate */
+  }
+
+  /* Wave outline — the horizon hairline */
+  .wave-grid .wg-wave-line {
+    stroke: var(--c-accent);
+    stroke-width: 0.7;
+    fill: none;
+    opacity: 0.62;
+    vector-effect: non-scaling-stroke;
+  }
+
+  /* Vanishing-point anchor — a single pinprick of signal red */
+  .wave-grid .wg-vp {
+    fill: var(--c-signal);
+    opacity: 0.55;
+  }
+  html[data-mode="light"] .wave-grid .wg-vp {
+    fill: var(--c-accent);
+    opacity: 0.85;
+  }
+
+  /* Light-mode dampening — the whole pattern reads softer on warm white */
+  html[data-mode="light"] .wave-grid {
+    opacity: 0.55;
+  }
+
+  /* Mobile reflow — wave gets shorter and grain less visible at small sizes */
+  @media (max-width: 540px) {
+    .wave-grid { opacity: 0.85; }
+  }
+
+  /* Architectural corner brackets — 1px hairlines, not stripes */
+  .hero-frame {
+    position: absolute;
+    inset: clamp(16px, 2vh, 32px) clamp(16px, 2vw, 32px);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .corner {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+  }
+  .corner::before, .corner::after {
+    content: '';
+    position: absolute;
+    background: var(--c-accent);
+  }
+  .corner::before { /* horizontal arm */ height: 1px; }
+  .corner::after  { /* vertical arm   */ width:  1px; }
+
+  .corner--tl { top: 0; left: 0; }
+  .corner--tl::before { top: 0; left: 0; right: 0; }
+  .corner--tl::after  { top: 0; left: 0; bottom: 0; }
+
+  .corner--tr { top: 0; right: 0; }
+  .corner--tr::before { top: 0; left: 0; right: 0; }
+  .corner--tr::after  { top: 0; right: 0; bottom: 0; }
+
+  .corner--bl { bottom: 0; left: 0; }
+  .corner--bl::before { bottom: 0; left: 0; right: 0; }
+  .corner--bl::after  { bottom: 0; left: 0; top: 0; }
+
+  .corner--br { bottom: 0; right: 0; }
+  .corner--br::before { bottom: 0; left: 0; right: 0; }
+  .corner--br::after  { bottom: 0; right: 0; top: 0; }
+
+  /* ============================================================
+     Top utility row — lang + theme + status pill
+     ============================================================ */
+  .hero-top {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--s-5);
+    margin-bottom: clamp(24px, 6vh, 64px);
+  }
+
+  .hero-top-left {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-4);
+  }
+
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: hero-in 560ms var(--ease-out) 60ms forwards;
+  }
+  .brand-mark img {
+    height: clamp(20px, 1.6vw, 28px);
+    width: auto;
+    display: none;
+  }
+  html[data-mode="dark"]  .brand-mark .brand-img--dark  { display: block; }
+  html[data-mode="light"] .brand-mark .brand-img--light { display: block; }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    padding: 7px 12px 7px 10px;
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+    letter-spacing: 0.06em;
+    color: var(--c-ink);
+    border: 1px solid var(--rule-2);
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--c-bg) 80%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .status-pill .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--c-signal);
+    box-shadow: 0 0 0 0 var(--c-signal);
+    animation: pulse 1.6s var(--ease-out) infinite;
+  }
+  html[data-mode="light"] .status-pill .dot {
+    box-shadow: none;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0   color-mix(in oklab, var(--c-signal) 50%, transparent); }
+    70%  { box-shadow: 0 0 0 8px color-mix(in oklab, var(--c-signal)  0%, transparent); }
+    100% { box-shadow: 0 0 0 0   color-mix(in oklab, var(--c-signal)  0%, transparent); }
+  }
+
+  .hero-top-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    justify-self: end;
+  }
+
+  .seg-toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px;
+    border: 1px solid var(--rule-2);
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--c-bg) 70%, transparent);
+    backdrop-filter: blur(8px);
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+    letter-spacing: 0.04em;
+  }
+  .seg-toggle button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--c-ink-2);
+    padding: 5px 11px;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    transition: color var(--t-fast) var(--ease-out),
+                background var(--t-fast) var(--ease-out);
+  }
+  .seg-toggle button[data-active="true"] {
+    color: var(--c-bg);
+    background: var(--c-ink);
+  }
+  .seg-toggle button:hover:not([data-active="true"]) {
+    color: var(--c-ink);
+  }
+  .seg-toggle button:focus-visible {
+    outline: 2px solid var(--c-signal);
+    outline-offset: 2px;
+  }
+
+  /* ============================================================
+     Hero grid — asymmetric 60/35
+     ============================================================ */
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+    padding: clamp(8px, 4vh, 32px) 0;
+  }
+
+  /* ============================================================
+     Hero main column
+     ============================================================ */
+  .hero-main {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 3vh, 36px);
+  }
+
+  /* Full-width wordmark banner — sits between top utility row and the grid */
+  .wordmark-banner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 2.4vh, 28px);
+    margin-bottom: clamp(28px, 5vh, 56px);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+    color: var(--c-ink-2);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    /* Entrance — first to arrive, sets the rhythm */
+    opacity: 0;
+    transform: translateY(8px);
+    animation: hero-in 560ms var(--ease-out) 80ms forwards;
+  }
+  .eyebrow .eyebrow-bracket { color: var(--c-accent); }
+  .eyebrow .eyebrow-sep { color: var(--c-accent); padding: 0 2px; }
+
+  /* Brand crest — triangle / circle / diamond above the wordmark */
+  .brand-crest {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(12px, 1.4vw, 20px);
+    /* shapes are sized in em so they scale with the crest's font-size */
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 0;
+  }
+  .brand-crest svg {
+    width:  1em;
+    height: 1em;
+    display: block;
+    overflow: visible;
+    /* per-shape entrance with tight stagger */
+    opacity: 0;
+    transform: translateY(6px) scale(0.85);
+    animation: crest-in 620ms var(--ease-out) calc(var(--i, 0) * 70ms + 160ms) forwards;
+  }
+  @keyframes crest-in {
+    0%   { opacity: 0; transform: translateY(6px) scale(0.85); }
+    100% { opacity: 1; transform: translateY(0)   scale(1);    }
+  }
+  /* Subtle hover pulse — confirms they are interactive (whole crest is one mark) */
+  .brand-crest:hover svg { animation-play-state: paused; }
+  .brand-crest svg .shape-fill   { fill: currentColor; }
+  .brand-crest svg .shape-stroke { fill: none; stroke: currentColor; stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+  .brand-crest .crest-tri  { color: var(--c-signal); }    /* solid lime — bold edge */
+  .brand-crest .crest-cir  { color: var(--c-ink); opacity: 0.85; }    /* hollow warm-white aperture */
+  .brand-crest .crest-dia  { color: var(--c-signal); }    /* solid lime — bold edge */
+  /* Light-mode: lime on warm-white is unreadable, drop both filled shapes to accent */
+  html[data-mode="light"] .brand-crest .crest-tri,
+  html[data-mode="light"] .brand-crest .crest-dia {
+    color: var(--c-accent);
+  }
+
+  .wordmark {
+    margin: 0;
+    font-family: var(--f-display);
+    font-weight: 400;
+    line-height: 0.92;
+    color: var(--c-ink);
+    letter-spacing: -0.04em;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.04em;
+  }
+  .wordmark .wm-mark {
+    font-size: var(--fs-wordmark);
+    display: block;
+    white-space: nowrap;        /* IPLAYGROUND must never wrap or clip */
+    overflow: visible;
+    /* Michroma is wide; tighten */
+    letter-spacing: -0.08em;
+    word-spacing: -0.1em;
+  }
+  .wordmark .wm-year {
+    font-size: var(--fs-year);
+    color: var(--c-signal);
+    display: inline-block;       /* inline-block so transforms compose with entrance */
+    letter-spacing: -0.04em;
+    align-self: flex-end;
+    /* Entrance — arrives after IPLAYGROUND letters finish */
+    opacity: 0;
+    transform: translateX(-0.06em) translateY(0.3em) scale(1.06);
+    filter: blur(6px);
+    animation: wm-year-in 820ms var(--ease-out) 980ms forwards;
+  }
+  html[data-mode="light"] .wordmark .wm-year {
+    color: var(--c-accent);   /* signal red on light is too loud — drop to accent */
+  }
+
+  .wordmark:hover .wm-year {
+    transform: translateX(-0.06em) translateY(-2px);
+    transition: transform var(--t-mid) var(--ease-out);
+  }
+
+  /* Per-letter staggered entrance */
+  .wm-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.5em);
+    filter: blur(8px);
+    animation: wm-letter-in 720ms var(--ease-out) calc(var(--i, 0) * 55ms + 220ms) forwards;
+    will-change: opacity, transform, filter;
+  }
+  @keyframes wm-letter-in {
+    0%   { opacity: 0; transform: translateY(0.5em); filter: blur(8px); }
+    100% { opacity: 1; transform: translateY(0);     filter: blur(0); }
+  }
+  @keyframes wm-year-in {
+    0%   { opacity: 0; transform: translateX(-0.06em) translateY(0.3em) scale(1.06); filter: blur(6px); }
+    100% { opacity: 1; transform: translateX(-0.06em) translateY(0)     scale(1);    filter: blur(0); }
+  }
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0);   }
+  }
+
+  .lede {
+    margin: 0;
+    font-size: var(--fs-lede);
+    line-height: 1.55;
+    color: var(--c-ink-2);
+    max-width: 32ch;
+    font-weight: 400;
+    /* Entrance */
+    opacity: 0;
+    transform: translateY(10px);
+    animation: hero-in 700ms var(--ease-out) 1340ms forwards;
+  }
+  html[lang="zh-Hant"] .lede,
+  [data-lang="zh"] .lede { line-height: 1.7; }
+
+  .cta-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-4);
+    margin-top: var(--s-3);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: hero-in 700ms var(--ease-out) 1500ms forwards;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: 16px 22px;
+    font-family: var(--f-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: transform var(--t-fast) var(--ease-out),
+                background var(--t-fast) var(--ease-out),
+                color var(--t-fast) var(--ease-out),
+                box-shadow var(--t-fast) var(--ease-out);
+    cursor: pointer;
+  }
+  .cta:focus-visible {
+    outline: 2px solid var(--c-signal);
+    outline-offset: 3px;
+  }
+
+  /* Primary — signal red */
+  .cta-signal {
+    background: var(--c-signal);
+    color: var(--c-bg);
+    box-shadow: 0 0 0 1px var(--c-signal),
+                0 8px 24px -8px color-mix(in oklab, var(--c-signal) 80%, transparent);
+  }
+  html[data-mode="light"] .cta-signal {
+    box-shadow: 0 0 0 1px var(--c-signal);   /* no glow in light per Design Context */
+  }
+  .cta-signal:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px var(--c-signal),
+                0 12px 32px -8px color-mix(in oklab, var(--c-signal) 90%, transparent);
+  }
+  html[data-mode="light"] .cta-signal:hover {
+    box-shadow: 0 0 0 1px var(--c-signal),
+                0 4px 12px -4px color-mix(in oklab, var(--c-signal) 25%, transparent);
+  }
+  .cta-signal .cta-arrow {
+    transition: transform var(--t-mid) var(--ease-out);
+  }
+  .cta-signal:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Secondary — ghost with deep-red border */
+  .cta-ghost {
+    background: transparent;
+    color: var(--c-ink);
+    box-shadow: inset 0 0 0 1px var(--rule-1);
+    padding: 14px 18px;
+    font-size: 12px;
+  }
+  .cta-ghost:hover {
+    color: var(--c-ink);
+    box-shadow: inset 0 0 0 1px var(--c-accent);
+    background: color-mix(in oklab, var(--c-accent) 12%, transparent);
+  }
+
+  /* ============================================================
+     Countdown panel
+     ============================================================ */
+  .countdown-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+    padding: var(--s-6) var(--s-5);
+    background: color-mix(in oklab, var(--c-surface) 70%, transparent);
+    border: 1px solid var(--rule-1);
+    border-radius: 4px;
+    backdrop-filter: blur(12px);
+    position: relative;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-in 800ms var(--ease-out) 1660ms forwards;
+  }
+
+  /* Panel scanlines — purposeful, not decoration */
+  .countdown-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 4px;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 3px,
+      color-mix(in oklab, var(--c-bg) 10%, transparent) 3px,
+      color-mix(in oklab, var(--c-bg) 10%, transparent) 4px
+    );
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  html[data-mode="light"] .countdown-panel::before { opacity: 0.25; }
+
+  .cd-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-3);
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+    color: var(--c-ink-2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+  .cd-meta .cd-mono.cd-zh { color: var(--c-ink-3); font-family: var(--f-body); letter-spacing: 0.06em; text-transform: none; }
+
+  .cd-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cd-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 4px 10px;
+    border-bottom: 1px solid var(--rule-1);
+    transition: border-color var(--t-mid) var(--ease-out);
+  }
+  .cd-cell.tick {
+    border-bottom-color: var(--c-signal);
+  }
+
+  .cd-digits {
+    /* Geist Mono has real tabular figures — Michroma does not, so the seconds
+       digit was jittering as it ticked. Mono renders all four cells identically. */
+    font-family: var(--f-mono);
+    font-size: var(--fs-cd-digit);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--c-ink);
+    font-variant-numeric: tabular-nums;
+    position: relative;
+  }
+
+  .cd-cell.swap .cd-digits {
+    animation: digit-swap 320ms var(--ease-out);
+  }
+  @keyframes digit-swap {
+    0%   { opacity: 1; transform: translateY(0); }
+    40%  { opacity: 0; transform: translateY(-4px); }
+    60%  { opacity: 0; transform: translateY( 4px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .cd-label {
+    font-family: var(--f-mono);
+    font-size: var(--fs-cd-label);
+    color: var(--c-ink-3);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .cd-sep {
+    font-family: var(--f-mono);
+    font-size: var(--fs-cd-digit);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--c-accent);
+    padding-bottom: 18px;
+    transform: translateY(-4px);
+    user-select: none;
+  }
+
+  .cd-deadline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-3);
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+    color: var(--c-ink-3);
+    letter-spacing: 0.08em;
+    position: relative;
+    z-index: 1;
+  }
+  .cd-deadline-meta {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--s-2);
+  }
+  .cd-deadline .cd-deadline-arrow { color: var(--c-accent); }
+  .cd-ms {
+    color: var(--c-signal);
+    opacity: 0.78;
+    font-variant-numeric: tabular-nums;
+    min-width: 4ch;
+    text-align: right;
+    letter-spacing: 0.02em;
+  }
+  html[data-mode="light"] .cd-ms { color: var(--c-accent); opacity: 0.9; }
+
+  /* CFP closed state */
+  .hero[data-state="closed"] .cd-cell { border-bottom-color: var(--c-accent); }
+  .hero[data-state="closed"] .cd-cell.tick { border-bottom-color: var(--c-accent); }
+  .hero[data-state="closed"] .status-pill .dot {
+    background: var(--c-accent);
+    animation: none;
+    box-shadow: none;
+  }
+
+  /* ============================================================
+     Bilingual swap — show only the active language
+     ============================================================ */
+  [data-i18n-zh], [data-i18n-en] { display: none; }
+  html[data-lang="zh"] [data-i18n-zh] { display: inline; }
+  html[data-lang="en"] [data-i18n-en] { display: inline; }
+  html[data-lang="zh"] [data-i18n-block-zh],
+  html[data-lang="en"] [data-i18n-block-en] { display: block; }
+
+  /* ============================================================
+     Responsive — redesign, don't shrink
+     ============================================================ */
+  @media (max-width: 880px) {
+    .hero {
+      min-height: auto;
+      padding-bottom: var(--s-7);
+    }
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: var(--s-7);
+      align-items: stretch;
+    }
+    .hero-main { max-width: none; }
+    .wordmark .wm-year { transform: none; align-self: flex-start; }
+    .countdown-panel {
+      order: -1;        /* countdown moves above wordmark on mobile */
+      padding: var(--s-5) var(--s-4);
+    }
+    .cd-grid {
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    }
+    .corner { width: 20px; height: 20px; }
+    .cta-stack { width: 100%; }
+    .cta-signal { width: 100%; justify-content: space-between; }
+  }
+
+  @media (max-width: 540px) {
+    .hero-top { grid-template-columns: 1fr auto; gap: var(--s-3); }
+    .status-pill { display: none; }   /* status moves to countdown panel only */
+    .hero-top-actions { gap: var(--s-2); }
+    .seg-toggle button { padding: 4px 9px; font-size: 10px; }
+    .cd-grid { gap: 2px; }
+    .cd-sep { font-size: clamp(28px, 6vw, 48px); padding-bottom: 14px; }
+    :root { --fs-cd-label: 9px; }
+  }
+
+  /* ============================================================
+     Accessibility — reduced motion + focus
+     ============================================================ */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+    .photo-wall .pw-col { animation: none; }
+    .status-pill .dot { animation: none; }
+    .cd-cell.tick { border-bottom-color: var(--c-accent); }
+    .wave-grid { animation: none; }
+    /* Skip entrance staging — show final state immediately */
+    .wm-letter, .wm-year, .eyebrow, .lede, .cta-stack, .countdown-panel, .brand-mark, .brand-crest svg {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+    }
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--c-signal);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* ============================================================
+     Sections below the hero — News, About, Agenda, Speakers, Staff
+     ============================================================ */
+  .section {
+    position: relative;
+    padding: clamp(72px, 12vh, 128px) 0;
+    border-top: 1px solid var(--rule-2);
+  }
+  .section-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+  .section-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    gap: var(--s-5);
+    margin-bottom: clamp(40px, 6vh, 72px);
+    padding-bottom: var(--s-5);
+    border-bottom: 1px solid var(--rule-2);
+  }
+  .section-eyebrow {
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+    letter-spacing: 0.16em;
+    color: var(--c-accent);
+    text-transform: uppercase;
+  }
+  .section-title {
+    margin: 0;
+    font-family: var(--f-display);
+    font-size: clamp(28px, 4.2vw, 56px);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    color: var(--c-ink);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .section-title .section-title-zh {
+    font-family: var(--f-body);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .section-meta {
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+    letter-spacing: 0.1em;
+    color: var(--c-ink-3);
+    text-transform: uppercase;
+  }
+
+  /* ---------- News ---------- */
+  .news-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .news-row {
+    display: grid;
+    grid-template-columns: 132px 1fr auto;
+    align-items: center;
+    gap: var(--s-5);
+    padding: var(--s-5) 0;
+    border-bottom: 1px solid var(--rule-2);
+    cursor: pointer;
+    transition: background var(--t-fast) var(--ease-out),
+                padding-left var(--t-mid) var(--ease-out),
+                color var(--t-fast) var(--ease-out);
+  }
+  .news-row:hover {
+    background: color-mix(in oklab, var(--c-surface) 35%, transparent);
+    padding-left: var(--s-3);
+  }
+  .news-row:hover .news-arrow { transform: translateX(6px); color: var(--c-signal); }
+  .news-date {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    color: var(--c-accent);
+    letter-spacing: 0.04em;
+  }
+  .news-title {
+    font-size: var(--fs-lede);
+    color: var(--c-ink);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .news-arrow {
+    color: var(--c-ink-3);
+    font-family: var(--f-mono);
+    font-size: 18px;
+    transition: transform var(--t-mid) var(--ease-out), color var(--t-fast) var(--ease-out);
+  }
+
+  /* ---------- About — stat blocks in a 1px-gap grid ---------- */
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--rule-2);
+    border: 1px solid var(--rule-2);
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    padding: clamp(28px, 4vh, 48px) clamp(20px, 2.4vw, 32px);
+    background: var(--c-bg);
+  }
+  .stat-label {
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+    color: var(--c-accent);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .stat-value {
+    font-family: var(--f-display);
+    font-size: clamp(32px, 4.2vw, 56px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--c-ink);
+  }
+  .stat-sub {
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+    color: var(--c-ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Agenda ---------- */
+  .agenda-tabs {
+    display: inline-flex;
+    border: 1px solid var(--rule-2);
+    margin-bottom: var(--s-7);
+    background: color-mix(in oklab, var(--c-surface) 25%, transparent);
+  }
+  .agenda-tab {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    padding: var(--s-4) var(--s-5);
+    font-family: var(--f-mono);
+    color: var(--c-ink-2);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+  }
+  .agenda-tab + .agenda-tab { border-left: 1px solid var(--rule-2); }
+  .agenda-tab:hover { color: var(--c-ink); }
+  .agenda-tab.is-active {
+    background: var(--c-accent);
+    color: var(--c-ink);
+  }
+  .agenda-tab .tab-date {
+    font-size: 9px;
+    opacity: 0.7;
+  }
+  .agenda-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .session {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: var(--s-5);
+    padding: var(--s-5) 0;
+    border-bottom: 1px solid var(--rule-2);
+    align-items: baseline;
+    transition: background var(--t-fast) var(--ease-out);
+  }
+  .session:hover { background: color-mix(in oklab, var(--c-surface) 30%, transparent); }
+  .session-time {
+    font-family: var(--f-display);
+    font-size: 18px;
+    color: var(--c-accent);
+    letter-spacing: -0.02em;
+  }
+  .session-body { min-width: 0; }
+  .session-title {
+    margin: 0;
+    font-size: var(--fs-lede);
+    color: var(--c-ink);
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  .session-desc {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: var(--c-ink-2);
+    line-height: 1.55;
+  }
+  .session-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--s-2);
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+  }
+  .session-tag {
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c-ink-3);
+    border: 1px solid var(--rule-2);
+    padding: 4px 8px;
+  }
+  .session-tag.is-keynote {
+    color: var(--c-signal);
+    border-color: color-mix(in oklab, var(--c-signal) 40%, transparent);
+  }
+  /* Lime on warm-white is unreadable — drop to accent in light mode */
+  html[data-mode="light"] .session-tag.is-keynote {
+    color: var(--c-accent);
+    border-color: color-mix(in oklab, var(--c-accent) 40%, transparent);
+  }
+  .session-speaker {
+    color: var(--c-ink-2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Speakers ---------- */
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(20px, 2.4vw, 32px);
+  }
+  .speaker {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+    cursor: pointer;
+  }
+  .speaker-photo {
+    aspect-ratio: 4 / 5;
+    background: var(--c-surface);
+    overflow: hidden;
+    border-radius: 12px;
+    filter: saturate(0.78) contrast(1.05);
+    transition: filter var(--t-mid) var(--ease-out);
+    position: relative;
+  }
+  .speaker-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      transparent 60%,
+      color-mix(in oklab, var(--c-bg) 80%, transparent) 100%);
+    pointer-events: none;
+  }
+  .speaker-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .speaker:hover .speaker-photo { filter: saturate(1.0) contrast(1.0); }
+  .speaker-name {
+    margin: 0;
+    font-family: var(--f-display);
+    font-size: 14px;
+    color: var(--c-ink);
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .speaker-role {
+    margin: 4px 0 0;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--c-ink-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .speaker-talk {
+    margin: var(--s-2) 0 0;
+    font-size: 13px;
+    color: var(--c-ink-2);
+    line-height: 1.5;
+  }
+
+  /* ---------- Staff — denser, smaller ---------- */
+  .staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--s-4);
+  }
+  .staff-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    align-items: center;
+    text-align: center;
+  }
+  .staff-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--c-surface);
+    overflow: hidden;
+    filter: saturate(0.78) contrast(1.05);
+    transition: filter var(--t-mid) var(--ease-out), transform var(--t-mid) var(--ease-out);
+  }
+  .staff-card:hover .staff-photo {
+    filter: saturate(1.0) contrast(1.0);
+    transform: translateY(-2px);
+  }
+  .staff-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .staff-name {
+    margin: 0;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: var(--c-ink);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .staff-role {
+    margin: 0;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: var(--c-ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Gallery (photo wall) — masonry via CSS columns ---------- */
+  .gallery {
+    column-count: 4;
+    column-gap: 10px;
+  }
+  .gallery-item {
+    break-inside: avoid;
+    margin: 0 0 10px;
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--c-surface);
+    cursor: zoom-in;
+    transition: transform var(--t-mid) var(--ease-out),
+                filter var(--t-mid) var(--ease-out);
+    filter: saturate(0.78) contrast(1.04);
+  }
+  .gallery-item:hover {
+    transform: translateY(-2px);
+    filter: saturate(1.0) contrast(1.0);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  @media (max-width: 1080px) { .gallery { column-count: 3; } }
+  @media (max-width:  720px) { .gallery { column-count: 2; } }
+  @media (max-width:  420px) { .gallery { column-count: 1; } }
+
+  /* ---------- Footer ---------- */
+  .site-footer {
+    background: oklch(0.13 0.008 130);
+    border-top: 1px solid var(--rule-2);
+    padding: clamp(64px, 10vh, 112px) 0 clamp(40px, 6vh, 64px);
+    position: relative;
+  }
+  html[data-mode="light"] .site-footer {
+    background: oklch(0.94 0.008 130);
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 2fr;
+    gap: clamp(40px, 6vw, 96px);
+  }
+  .footer-brand .footer-logo {
+    height: 28px;
+    width: auto;
+    margin-bottom: var(--s-5);
+  }
+  .footer-brand .footer-logo--dark { display: none; }
+  html[data-mode="dark"]  .footer-brand .footer-logo--dark  { display: block; }
+  html[data-mode="light"] .footer-brand .footer-logo--light { display: block; }
+  html[data-mode="dark"]  .footer-brand .footer-logo--light { display: none; }
+  .footer-tagline {
+    margin: 0;
+    font-size: 14px;
+    color: var(--c-ink-2);
+    line-height: 1.7;
+    max-width: 38ch;
+  }
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(24px, 3vw, 48px);
+  }
+  .footer-col h4 {
+    margin: 0 0 var(--s-4);
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+    color: var(--c-accent);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+  .footer-col a {
+    font-size: 14px;
+    color: var(--c-ink-2);
+    transition: color var(--t-fast) var(--ease-out);
+  }
+  .footer-col a:hover { color: var(--c-ink); }
+  .footer-meta {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--s-4);
+    padding-top: var(--s-7);
+    margin-top: var(--s-7);
+    border-top: 1px solid var(--rule-2);
+    font-family: var(--f-mono);
+    font-size: var(--fs-eyebrow);
+    color: var(--c-ink-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .footer-meta .disclaimer { color: var(--c-accent); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 720px) {
+    .section-head {
+      grid-template-columns: auto 1fr;
+      gap: var(--s-4);
+    }
+    .section-meta { grid-column: 1 / -1; }
+    .news-row { grid-template-columns: 96px 1fr auto; gap: var(--s-3); }
+    .session  { grid-template-columns: 64px 1fr; }
+    .session .session-meta { grid-column: 2; align-items: flex-start; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-cols  { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 440px) {
+    .footer-cols { grid-template-columns: 1fr; }
+  }
+</style>
+
+</head>
+<body>
+
+<section class="hero" id="hero" data-state="open">
+
+  <!-- Photo wall (quieted, behind curtain) -->
+  <div class="photo-wall" id="photoWall" aria-hidden="true"></div>
+
+  <!-- Curtain vignette -->
+  <div class="hero-curtain" aria-hidden="true"></div>
+
+  <!-- Dark wave horizon + perspective grid (procedurally drawn) -->
+  <svg class="wave-grid" id="waveGrid" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true"></svg>
+
+  <!-- Architectural corner brackets -->
+  <div class="hero-frame" aria-hidden="true">
+    <span class="corner corner--tl"></span>
+    <span class="corner corner--tr"></span>
+    <span class="corner corner--bl"></span>
+    <span class="corner corner--br"></span>
+  </div>
+
+  <!-- Top utility: brand mark + status pill (left), spacer, actions (right) -->
+  <div class="hero-top">
+    <div class="hero-top-left">
+      <a class="brand-mark" href="#" aria-label="iPlayground 2026">
+        <img src="../img/svg/logo_header_dark.svg"  alt="iPlayground" class="brand-img brand-img--dark"/>
+        <img src="../img/svg/logo_header_light.svg" alt="iPlayground" class="brand-img brand-img--light"/>
+      </a>
+      <span class="status-pill" role="status">
+        <span class="dot" aria-hidden="true"></span>
+        <span data-i18n-zh>CFP 開放投稿中</span>
+        <span data-i18n-en>CFP NOW OPEN</span>
+      </span>
+    </div>
+
+    <div></div>
+
+    <div class="hero-top-actions">
+      <div class="seg-toggle" id="modeToggle" role="group" aria-label="Theme">
+        <button data-mode="dark"  data-active="true"  aria-label="Dark mode">DARK</button>
+        <button data-mode="light" data-active="false" aria-label="Light mode">LIGHT</button>
+      </div>
+      <div class="seg-toggle" id="langToggle" role="group" aria-label="Language">
+        <button data-lang="zh" data-active="true"  aria-label="中文">中</button>
+        <button data-lang="en" data-active="false" aria-label="English">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wordmark banner — full width above the grid so IPLAYGROUND never clips -->
+  <div class="wordmark-banner">
+    <div class="eyebrow">
+      <span class="eyebrow-bracket">[</span>
+      <span>TAIPEI</span>
+      <span class="eyebrow-sep">·</span>
+      <span>2026.07.25–26</span>
+      <span class="eyebrow-sep">·</span>
+      <span data-i18n-zh>徵稿中</span>
+      <span data-i18n-en>CFP OPEN</span>
+      <span class="eyebrow-bracket">]</span>
+    </div>
+
+    <div class="brand-crest" aria-label="iPlayground brand mark">
+      <svg class="crest-tri" viewBox="0 0 24 24" aria-hidden="true" style="--i:0">
+        <polygon class="shape-fill" points="12,3 22,21 2,21"/>
+      </svg>
+      <svg class="crest-cir" viewBox="0 0 24 24" aria-hidden="true" style="--i:1">
+        <circle class="shape-stroke" cx="12" cy="12" r="9.5"/>
+      </svg>
+      <svg class="crest-dia" viewBox="0 0 24 24" aria-hidden="true" style="--i:2">
+        <polygon class="shape-fill" points="12,2 22,12 12,22 2,12"/>
+      </svg>
+    </div>
+
+    <h1 class="wordmark" id="wordmark" tabindex="0" aria-label="iPlayground 2026">
+      <span class="wm-mark" data-text="IPLAYGROUND">IPLAYGROUND</span>
+      <span class="wm-year">2026</span>
+    </h1>
+  </div>
+
+  <!-- Main grid -->
+  <div class="hero-grid">
+
+    <!-- Lede + CTAs -->
+    <div class="hero-main">
+      <p class="lede">
+        <span data-i18n-zh>為 Apple 開發者準備的兩天，由社群志工策劃。技術分享、深度交流、與一群在乎品質的人。</span>
+        <span data-i18n-en>Two days for Apple-platform developers, organised by volunteers. Talks, conversations, and a room full of people who care about craft.</span>
+      </p>
+
+      <div class="cta-stack">
+        <a class="cta cta-signal" href="#" id="ctaSubmit">
+          <span data-i18n-zh>投稿議程</span>
+          <span data-i18n-en>Submit a talk</span>
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="cta cta-ghost" href="#" id="ctaSponsor">
+          <span data-i18n-zh>推薦贊助 / Refer a sponsor</span>
+          <span data-i18n-en>Refer a sponsor</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Countdown panel -->
+    <aside class="countdown-panel" aria-label="CFP deadline countdown">
+      <div class="cd-meta">
+        <span class="cd-mono">// CFP DEADLINE</span>
+        <span class="cd-mono cd-zh">
+          <span data-i18n-zh>投稿截止</span>
+          <span data-i18n-en>Deadline</span>
+        </span>
+      </div>
+
+      <div class="cd-grid" id="cdGrid">
+        <div class="cd-cell" data-unit="d">
+          <div class="cd-digits" id="cdD">00</div>
+          <div class="cd-label">
+            <span data-i18n-zh>天</span>
+            <span data-i18n-en>DAYS</span>
+          </div>
+        </div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-cell" data-unit="h">
+          <div class="cd-digits" id="cdH">00</div>
+          <div class="cd-label">
+            <span data-i18n-zh>時</span>
+            <span data-i18n-en>HRS</span>
+          </div>
+        </div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-cell" data-unit="m">
+          <div class="cd-digits" id="cdM">00</div>
+          <div class="cd-label">
+            <span data-i18n-zh>分</span>
+            <span data-i18n-en>MIN</span>
+          </div>
+        </div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-cell" data-unit="s">
+          <div class="cd-digits" id="cdS">00</div>
+          <div class="cd-label">
+            <span data-i18n-zh>秒</span>
+            <span data-i18n-en>SEC</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cd-deadline">
+        <span class="cd-mono">2026-06-19 · 23:59 UTC+8</span>
+        <span class="cd-deadline-meta">
+          <span class="cd-mono cd-ms" id="cdMs" aria-hidden="true">.000</span>
+          <span class="cd-deadline-arrow" aria-hidden="true">↗</span>
+        </span>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     01 · 最新消息 / Latest News
+     ============================================================ -->
+<section class="section section-news" id="news">
+  <div class="section-inner">
+    <header class="section-head">
+      <span class="section-eyebrow">// 01</span>
+      <h2 class="section-title">
+        <span data-i18n-zh class="section-title-zh">最新消息</span>
+        <span data-i18n-en>Latest News</span>
+      </h2>
+      <span class="section-meta">
+        <span data-i18n-zh>過去 14 天</span>
+        <span data-i18n-en>Past 14 days</span>
+      </span>
+    </header>
+
+    <ol class="news-list">
+      <li class="news-row">
+        <span class="news-date">2026.04.28</span>
+        <span class="news-title">
+          <span data-i18n-zh>iPlayground 2026 徵稿正式開啟，請於 6/19 前完成投稿</span>
+          <span data-i18n-en>CFP officially open — submit your talk by 6/19</span>
+        </span>
+        <span class="news-arrow" aria-hidden="true">→</span>
+      </li>
+      <li class="news-row">
+        <span class="news-date">2026.04.27</span>
+        <span class="news-title">
+          <span data-i18n-zh>場地公布：政大公企中心，捷運大安站步行五分鐘</span>
+          <span data-i18n-en>Venue confirmed: NCCU CPBAE, 5 minutes from Daan station</span>
+        </span>
+        <span class="news-arrow" aria-hidden="true">→</span>
+      </li>
+      <li class="news-row">
+        <span class="news-date">2026.04.26</span>
+        <span class="news-title">
+          <span data-i18n-zh>贊助商徵集中：推薦公司窗口可獲得兩日門票</span>
+          <span data-i18n-en>Calling sponsors — refer your company and get two-day passes</span>
+        </span>
+        <span class="news-arrow" aria-hidden="true">→</span>
+      </li>
+      <li class="news-row">
+        <span class="news-date">2026.04.22</span>
+        <span class="news-title">
+          <span data-i18n-zh>主視覺與識別更新，新一年的 iPlayground 來了</span>
+          <span data-i18n-en>New visual identity for 2026 — iPlayground returns</span>
+        </span>
+        <span class="news-arrow" aria-hidden="true">→</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 · 活動資訊 / Event Info
+     ============================================================ -->
+<section class="section section-about" id="about">
+  <div class="section-inner">
+    <header class="section-head">
+      <span class="section-eyebrow">// 02</span>
+      <h2 class="section-title">
+        <span data-i18n-zh class="section-title-zh">活動資訊</span>
+        <span data-i18n-en>Event Info</span>
+      </h2>
+    </header>
+
+    <div class="about-stats">
+      <div class="stat">
+        <span class="stat-label">// DATES</span>
+        <span class="stat-value">7.25–26</span>
+        <span class="stat-sub">2026 · SAT–SUN</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">// VENUE</span>
+        <span class="stat-value">CPBAE</span>
+        <span class="stat-sub">
+          <span data-i18n-zh>政大公企中心 · 台北</span>
+          <span data-i18n-en>NCCU CPBAE · Taipei</span>
+        </span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">// FORMAT</span>
+        <span class="stat-value">2 DAYS</span>
+        <span class="stat-sub">MULTI-TRACK · IOS / SWIFT / UX</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">// TICKETS</span>
+        <span class="stat-value">SOON</span>
+        <span class="stat-sub">
+          <span data-i18n-zh>早鳥票即將開賣</span>
+          <span data-i18n-en>Early-bird TBA</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 · 議程 / Agenda
+     ============================================================ -->
+<section class="section section-agenda" id="agenda">
+  <div class="section-inner">
+    <header class="section-head">
+      <span class="section-eyebrow">// 03</span>
+      <h2 class="section-title">
+        <span data-i18n-zh class="section-title-zh">議程</span>
+        <span data-i18n-en>Agenda</span>
+      </h2>
+      <span class="section-meta">
+        <span data-i18n-zh>議程公布後即時更新</span>
+        <span data-i18n-en>Updates as sessions confirm</span>
+      </span>
+    </header>
+
+    <div class="agenda-tabs" role="tablist" id="agendaTabs">
+      <button class="agenda-tab is-active" data-day="1" role="tab" aria-selected="true">
+        <span class="tab-label">DAY 01</span>
+        <span class="tab-date">07.25</span>
+      </button>
+      <button class="agenda-tab" data-day="2" role="tab" aria-selected="false">
+        <span class="tab-label">DAY 02</span>
+        <span class="tab-date">07.26</span>
+      </button>
+    </div>
+
+    <div class="agenda-list" id="agendaList">
+      <div class="session">
+        <span class="session-time">10:00</span>
+        <div class="session-body">
+          <h3 class="session-title">
+            <span data-i18n-zh>Opening Keynote · 設計與工程的交集</span>
+            <span data-i18n-en>Opening Keynote · Where Design Meets Engineering</span>
+          </h3>
+          <p class="session-desc">
+            <span data-i18n-zh>關於 Apple 平台開發者面對的新一輪轉折，與我們為什麼還要繼續寫 Swift。</span>
+            <span data-i18n-en>The next inflection point for Apple-platform developers, and why we keep writing Swift.</span>
+          </p>
+        </div>
+        <div class="session-meta">
+          <span class="session-tag is-keynote">KEYNOTE</span>
+          <span class="session-speaker">TBA</span>
+        </div>
+      </div>
+
+      <div class="session">
+        <span class="session-time">11:00</span>
+        <div class="session-body">
+          <h3 class="session-title">
+            <span data-i18n-zh>SwiftUI 在生產環境的三年回顧</span>
+            <span data-i18n-en>Three Years of SwiftUI in Production</span>
+          </h3>
+          <p class="session-desc">
+            <span data-i18n-zh>從早期遷移到全面採用，一份來自工程現場的盤點。</span>
+            <span data-i18n-en>From migration to full adoption — an honest field report.</span>
+          </p>
+        </div>
+        <div class="session-meta">
+          <span class="session-tag">IOS</span>
+          <span class="session-speaker">TBA</span>
+        </div>
+      </div>
+
+      <div class="session">
+        <span class="session-time">13:30</span>
+        <div class="session-body">
+          <h3 class="session-title">
+            <span data-i18n-zh>Apple Intelligence 與 On-Device ML</span>
+            <span data-i18n-en>Apple Intelligence &amp; On-Device ML</span>
+          </h3>
+          <p class="session-desc">
+            <span data-i18n-zh>把模型放進使用者的口袋，與隨之而來的工程取捨。</span>
+            <span data-i18n-en>Putting models in your users' pockets, and the trade-offs that follow.</span>
+          </p>
+        </div>
+        <div class="session-meta">
+          <span class="session-tag">AI</span>
+          <span class="session-speaker">TBA</span>
+        </div>
+      </div>
+
+      <div class="session">
+        <span class="session-time">15:00</span>
+        <div class="session-body">
+          <h3 class="session-title">
+            <span data-i18n-zh>從 UIKit 到宣告式：四個遷移路徑</span>
+            <span data-i18n-en>From UIKit to Declarative — Four Migration Paths</span>
+          </h3>
+          <p class="session-desc">
+            <span data-i18n-zh>沒有萬靈丹，但有四條被驗證過的路。</span>
+            <span data-i18n-en>No silver bullets — but four well-tested paths.</span>
+          </p>
+        </div>
+        <div class="session-meta">
+          <span class="session-tag">IOS</span>
+          <span class="session-speaker">TBA</span>
+        </div>
+      </div>
+
+      <div class="session">
+        <span class="session-time">16:30</span>
+        <div class="session-body">
+          <h3 class="session-title">
+            <span data-i18n-zh>使用者經驗與微互動：細節如何構成品牌</span>
+            <span data-i18n-en>UX &amp; Micro-Interactions — Detail as Brand</span>
+          </h3>
+          <p class="session-desc">
+            <span data-i18n-zh>從 Apple HIG 之外，我們還能學到什麼。</span>
+            <span data-i18n-en>What we can learn beyond Apple's HIG.</span>
+          </p>
+        </div>
+        <div class="session-meta">
+          <span class="session-tag">UX</span>
+          <span class="session-speaker">TBA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 · 講者群 / Speakers
+     ============================================================ -->
+<section class="section section-speakers" id="speakers">
+  <div class="section-inner">
+    <header class="section-head">
+      <span class="section-eyebrow">// 04</span>
+      <h2 class="section-title">
+        <span data-i18n-zh class="section-title-zh">講者群</span>
+        <span data-i18n-en>Speakers</span>
+      </h2>
+      <span class="section-meta">
+        <span data-i18n-zh>更多講者陸續公布</span>
+        <span data-i18n-en>More speakers TBA</span>
+      </span>
+    </header>
+
+    <div class="speakers-grid">
+      <article class="speaker">
+        <div class="speaker-photo"><img src="../img/speaker/speaker_terrykuo.jpg" alt="Terry Kuo" loading="lazy"/></div>
+        <div>
+          <h3 class="speaker-name">Terry Kuo</h3>
+          <p class="speaker-role">iOS Engineer · Nitra</p>
+          <p class="speaker-talk" data-i18n-zh>關於 SwiftUI 在生產環境的三年回顧</p>
+          <p class="speaker-talk" data-i18n-en>Three years of SwiftUI in production</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <div class="speaker-photo"><img src="../img/speaker/speaker_hokila.jpg" alt="Hokila" loading="lazy"/></div>
+        <div>
+          <h3 class="speaker-name">Hokila</h3>
+          <p class="speaker-role">Indie Developer</p>
+          <p class="speaker-talk" data-i18n-zh>Apple Intelligence 與 On-Device ML</p>
+          <p class="speaker-talk" data-i18n-en>Apple Intelligence &amp; on-device ML</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <div class="speaker-photo"><img src="../img/speaker/speaker_sample.png" alt="Speaker TBA" loading="lazy"/></div>
+        <div>
+          <h3 class="speaker-name">TBA</h3>
+          <p class="speaker-role" data-i18n-zh>講者徵稿中</p>
+          <p class="speaker-role" data-i18n-en>CFP open</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <div class="speaker-photo"><img src="../img/speaker/speaker_sample.png" alt="Speaker TBA" loading="lazy"/></div>
+        <div>
+          <h3 class="speaker-name">TBA</h3>
+          <p class="speaker-role" data-i18n-zh>講者徵稿中</p>
+          <p class="speaker-role" data-i18n-en>CFP open</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <div class="speaker-photo"><img src="../img/speaker/speaker_sample.png" alt="Speaker TBA" loading="lazy"/></div>
+        <div>
+          <h3 class="speaker-name">TBA</h3>
+          <p class="speaker-role" data-i18n-zh>講者徵稿中</p>
+          <p class="speaker-role" data-i18n-en>CFP open</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <div class="speaker-photo"><img src="../img/speaker/speaker_sample.png" alt="Speaker TBA" loading="lazy"/></div>
+        <div>
+          <h3 class="speaker-name">TBA</h3>
+          <p class="speaker-role" data-i18n-zh>講者徵稿中</p>
+          <p class="speaker-role" data-i18n-en>CFP open</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05 · 工作人員 / Staff
+     ============================================================ -->
+<section class="section section-staff" id="staff">
+  <div class="section-inner">
+    <header class="section-head">
+      <span class="section-eyebrow">// 05</span>
+      <h2 class="section-title">
+        <span data-i18n-zh class="section-title-zh">工作人員</span>
+        <span data-i18n-en>Staff</span>
+      </h2>
+      <span class="section-meta">
+        <span data-i18n-zh>由社群志工自主籌辦</span>
+        <span data-i18n-en>Run by community volunteers</span>
+      </span>
+    </header>
+
+    <div class="staff-grid">
+      <div class="staff-card">
+        <div class="staff-photo"><img src="../img/staff/staff_terrykuo.jpg" alt="Terry Kuo" loading="lazy"/></div>
+        <div>
+          <h4 class="staff-name">Terry Kuo</h4>
+          <p class="staff-role">Web</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-photo"><img src="../img/staff/staff_hokila.jpg" alt="Hokila" loading="lazy"/></div>
+        <div>
+          <h4 class="staff-name">Hokila</h4>
+          <p class="staff-role">Producer</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-photo"><img src="../img/staff/staff_sample.png" alt="Staff" loading="lazy"/></div>
+        <div>
+          <h4 class="staff-name">TBA</h4>
+          <p class="staff-role">CFP Lead</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-photo"><img src="../img/staff/staff_sample.png" alt="Staff" loading="lazy"/></div>
+        <div>
+          <h4 class="staff-name">TBA</h4>
+          <p class="staff-role">Venue</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-photo"><img src="../img/staff/staff_sample.png" alt="Staff" loading="lazy"/></div>
+        <div>
+          <h4 class="staff-name">TBA</h4>
+          <p class="staff-role">Sponsors</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-photo"><img src="../img/staff/staff_sample.png" alt="Staff" loading="lazy"/></div>
+        <div>
+          <h4 class="staff-name">TBA</h4>
+          <p class="staff-role">Design</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-photo"><img src="../img/staff/staff_sample.png" alt="Staff" loading="lazy"/></div>
+        <div>
+          <h4 class="staff-name">TBA</h4>
+          <p class="staff-role">Marketing</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-photo"><img src="../img/staff/staff_sample.png" alt="Staff" loading="lazy"/></div>
+        <div>
+          <h4 class="staff-name">TBA</h4>
+          <p class="staff-role">Volunteer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 · 歷年現場 / Past Editions — masonry photo wall
+     ============================================================ -->
+<section class="section section-gallery" id="gallery">
+  <div class="section-inner">
+    <header class="section-head">
+      <span class="section-eyebrow">// 06</span>
+      <h2 class="section-title">
+        <span data-i18n-zh class="section-title-zh">歷年現場</span>
+        <span data-i18n-en>Past Editions</span>
+      </h2>
+      <span class="section-meta">2018 → NOW</span>
+    </header>
+
+    <div class="gallery" aria-label="iPlayground past editions photo wall">
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_1.jpg"  target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_1.jpg"  alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_2.jpg"  target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_2.jpg"  alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_3.jpg"  target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_3.jpg"  alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_4.jpg"  target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_4.jpg"  alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_5.jpg"  target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_5.jpg"  alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_6.jpg"  target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_6.jpg"  alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_7.jpg"  target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_7.jpg"  alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_8.jpg"  target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_8.jpg"  alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_9.jpg"  target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_9.jpg"  alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_10.jpg" target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_10.jpg" alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_11.jpg" target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_11.jpg" alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_12.jpg" target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_12.jpg" alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_13.jpg" target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_13.jpg" alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_14.jpg" target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_14.jpg" alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_15.jpg" target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_15.jpg" alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_16.jpg" target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_16.jpg" alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_17.jpg" target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_17.jpg" alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_18.jpg" target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_18.jpg" alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_19.jpg" target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_19.jpg" alt="" loading="lazy" decoding="async"/></a>
+      <a class="gallery-item" href="../img/slider/LINE_ALBUM_23042026_260424_20.jpg" target="_blank" rel="noopener"><img src="../img/slider/LINE_ALBUM_23042026_260424_20.jpg" alt="" loading="lazy" decoding="async"/></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Footer
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <div class="footer-brand">
+      <img src="../img/svg/logo_header_dark.svg"  alt="iPlayground" class="footer-logo footer-logo--dark"/>
+      <img src="../img/svg/logo_header_light.svg" alt="iPlayground" class="footer-logo footer-logo--light"/>
+      <p class="footer-tagline">
+        <span data-i18n-zh>iPlayground 是從 2018 年開始專為蘋果軟體開發者設計的研討會，由一群資深工程師創辦，目的是彌補台灣在 iOS 開發領域的研討會不足。</span>
+        <span data-i18n-en>iPlayground is a conference designed for Apple software developers since 2018 — founded by senior engineers to fill the gap in iOS-focused conferences in Taiwan.</span>
+      </p>
+    </div>
+
+    <nav class="footer-cols" aria-label="Footer">
+      <div class="footer-col">
+        <h4>// EVENT</h4>
+        <ul>
+          <li><a href="#news"     data-i18n-zh>最新消息</a><a href="#news"     data-i18n-en>News</a></li>
+          <li><a href="#about"    data-i18n-zh>活動資訊</a><a href="#about"    data-i18n-en>About</a></li>
+          <li><a href="#agenda"   data-i18n-zh>議程</a><a href="#agenda"   data-i18n-en>Agenda</a></li>
+          <li><a href="#speakers" data-i18n-zh>講者群</a><a href="#speakers" data-i18n-en>Speakers</a></li>
+          <li><a href="#staff"    data-i18n-zh>工作人員</a><a href="#staff"    data-i18n-en>Staff</a></li>
+          <li><a href="#gallery"  data-i18n-zh>歷年現場</a><a href="#gallery"  data-i18n-en>Past editions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>// COMMUNITY</h4>
+        <ul>
+          <li><a href="#" data-i18n-zh>Discord</a><a href="#" data-i18n-en>Discord</a></li>
+          <li><a href="#" data-i18n-zh>Twitter / X</a><a href="#" data-i18n-en>Twitter / X</a></li>
+          <li><a href="#" data-i18n-zh>Facebook</a><a href="#" data-i18n-en>Facebook</a></li>
+          <li><a href="#" data-i18n-zh>YouTube</a><a href="#" data-i18n-en>YouTube</a></li>
+          <li><a href="#" data-i18n-zh>行為準則</a><a href="#" data-i18n-en>Code of Conduct</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>// CONTACT</h4>
+        <ul>
+          <li><a href="mailto:session@iplayground.io">session@iplayground.io</a></li>
+          <li><a href="mailto:support@iplayground.io">support@iplayground.io</a></li>
+          <li><a href="#" data-i18n-zh>投稿表單</a><a href="#" data-i18n-en>CFP form</a></li>
+          <li><a href="#" data-i18n-zh>推薦贊助</a><a href="#" data-i18n-en>Refer a sponsor</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="footer-meta">
+      <span>© 2026 IOS TAIPEI COMMUNITY</span>
+      <span>INDEPENDENT · NON-COMMERCIAL</span>
+      <span class="disclaimer">
+        <span data-i18n-zh>本活動與 Apple Inc. 無關</span>
+        <span data-i18n-en>Not affiliated with Apple Inc.</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  // ============================================================
+  // Bilingual swap
+  // ============================================================
+  const langToggle = document.getElementById('langToggle');
+  const modeToggle = document.getElementById('modeToggle');
+  const root = document.documentElement;
+
+  const setLang = (lang) => {
+    root.dataset.lang = lang;
+    root.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+    langToggle.querySelectorAll('button').forEach(b => {
+      b.dataset.active = String(b.dataset.lang === lang);
+    });
+    try { localStorage.setItem('craft.lang', lang); } catch {}
+  };
+  const setMode = (mode) => {
+    root.dataset.mode = mode;
+    modeToggle.querySelectorAll('button').forEach(b => {
+      b.dataset.active = String(b.dataset.mode === mode);
+    });
+    try { localStorage.setItem('craft.mode', mode); } catch {}
+  };
+
+  langToggle.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-lang]');
+    if (btn) setLang(btn.dataset.lang);
+  });
+  modeToggle.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-mode]');
+    if (btn) setMode(btn.dataset.mode);
+  });
+
+  try {
+    const savedLang = localStorage.getItem('craft.lang');
+    const savedMode = localStorage.getItem('craft.mode');
+    if (savedLang === 'zh' || savedLang === 'en') setLang(savedLang);
+    if (savedMode === 'dark' || savedMode === 'light') setMode(savedMode);
+  } catch {}
+
+  // ============================================================
+  // Countdown — to 2026-06-19 23:59:59 UTC+8 (CFP submission close)
+  // ============================================================
+  const TARGET = new Date('2026-06-19T23:59:59+08:00').getTime();
+
+  const cells = {
+    d: { cell: document.querySelector('.cd-cell[data-unit="d"]'), digits: document.getElementById('cdD'), last: null },
+    h: { cell: document.querySelector('.cd-cell[data-unit="h"]'), digits: document.getElementById('cdH'), last: null },
+    m: { cell: document.querySelector('.cd-cell[data-unit="m"]'), digits: document.getElementById('cdM'), last: null },
+    s: { cell: document.querySelector('.cd-cell[data-unit="s"]'), digits: document.getElementById('cdS'), last: null },
+  };
+  const hero = document.getElementById('hero');
+
+  const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
+
+  let tickTimer = null;
+
+  const update = () => {
+    const now = Date.now();
+    const diff = TARGET - now;
+
+    if (diff <= 0) {
+      hero.dataset.state = 'closed';
+      Object.values(cells).forEach(c => { c.digits.textContent = '00'; });
+      return;
+    }
+    hero.dataset.state = 'open';
+
+    const days = Math.floor(diff / 86_400_000);
+    const hrs  = Math.floor((diff % 86_400_000) / 3_600_000);
+    const min  = Math.floor((diff % 3_600_000) / 60_000);
+    const sec  = Math.floor((diff % 60_000) / 1000);
+
+    const next = { d: pad(days), h: pad(hrs), m: pad(min), s: pad(sec) };
+
+    for (const [unit, val] of Object.entries(next)) {
+      const c = cells[unit];
+      if (c.last === val) continue;
+      c.digits.textContent = val;
+
+      // swap animation only on change (skip first paint AND skip seconds — it
+      // ticks every second, and the keyframe's mid-cycle opacity:0 reads as
+      // the digit being "cut". Heartbeat tick on the cell border is enough.)
+      if (c.last !== null && unit !== 's') {
+        c.cell.classList.remove('swap');
+        // force reflow to restart animation
+        // eslint-disable-next-line no-unused-expressions
+        void c.cell.offsetWidth;
+        c.cell.classList.add('swap');
+      }
+      c.last = val;
+    }
+
+    // Heartbeat — flash signal red on the seconds cell every tick
+    cells.s.cell.classList.remove('tick');
+    void cells.s.cell.offsetWidth;
+    cells.s.cell.classList.add('tick');
+    clearTimeout(tickTimer);
+    tickTimer = setTimeout(() => cells.s.cell.classList.remove('tick'), 240);
+  };
+
+  update();
+  // Align next tick to the start of the next second for accuracy
+  const align = () => {
+    const drift = 1000 - (Date.now() % 1000);
+    setTimeout(() => {
+      update();
+      setInterval(update, 1000);
+    }, drift);
+  };
+  align();
+
+  // ============================================================
+  // Wave + perspective grid — procedurally drawn, gently animated
+  // ============================================================
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  (function buildWaveGrid() {
+    const W = 1600, H = 900;
+    const horizon = 460;       // ~51% from top — wave sits at viewport mid
+    const vpX = 800;           // vanishing point X (centered)
+    const vpY = horizon;
+    const amp = 95;            // wave amplitude — pronounced, not subtle
+
+    // Bezier control X positions and base amplitudes for the 5 wave control points
+    const xs = [0, W * 0.27, W * 0.52, W * 0.78, W];
+    const baseAmps = [-0.10, -0.85, 0.40, -0.55, 0.18];
+    // Out-of-phase wobble per control point — irregular wave, never reads as machine-perfect
+    const phases   = [0,    1.20, 2.55, 4.10, 5.70];
+
+    function buildWavePath(t) {
+      const ys = baseAmps.map((b, i) => {
+        // Each control point oscillates ±0.18·amp around its base. Period ≈ 17s.
+        const wobble = Math.sin(t * 0.00038 + phases[i]) * 0.18;
+        return horizon + amp * (b + wobble);
+      });
+      let d = `M${xs[0]},${ys[0].toFixed(1)}`;
+      for (let i = 1; i < xs.length; i++) {
+        const dx = xs[i] - xs[i - 1];
+        const c1x = xs[i - 1] + dx * 0.5;
+        const c1y = ys[i - 1];
+        const c2x = xs[i] - dx * 0.5;
+        const c2y = ys[i];
+        d += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${xs[i].toFixed(1)},${ys[i].toFixed(1)}`;
+      }
+      return d;
+    }
+
+    // Initial wave (frozen at t=0 if reduced motion)
+    const initialWave = buildWavePath(reduceMotion ? 0 : performance.now());
+    const initialClip = `${initialWave} L${W},${H} L0,${H} Z`;
+
+    // Vertical fan lines from the vanishing point down to the bottom edge
+    const NUM_VERT = 26;
+    const vertLines = [];
+    for (let i = 0; i <= NUM_VERT; i++) {
+      const t = i / NUM_VERT;
+      const exitX = -W * 0.45 + t * W * 1.9;
+      vertLines.push(`<line x1="${vpX}" y1="${vpY}" x2="${exitX.toFixed(1)}" y2="${H}"/>`);
+    }
+
+    // Horizontal lines — built as empty <line> elements; positions are driven by rAF
+    // for the conveyor-belt floor effect (lines walk from horizon down toward viewer).
+    const NUM_HORZ = 14;
+    const horzLineMarkup = [];
+    for (let i = 0; i < NUM_HORZ; i++) {
+      horzLineMarkup.push(`<line data-h-i="${i}" x1="0" y1="${horizon}" x2="${W}" y2="${horizon}"/>`);
+    }
+
+    function horzY(localT) {
+      // power-spaced — lines crowd near horizon, spread out near viewer
+      return horizon + Math.pow(localT, 1.7) * (H - horizon);
+    }
+
+    const svg = document.getElementById('waveGrid');
+    svg.innerHTML = `
+      <defs>
+        <clipPath id="wgUnder">
+          <path id="wgClipPath" d="${initialClip}"/>
+        </clipPath>
+        <linearGradient id="wgFade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0"    stop-color="#000000" stop-opacity="0"/>
+          <stop offset="0.85" stop-color="#000000" stop-opacity="0.10"/>
+          <stop offset="1"    stop-color="#000000" stop-opacity="0.45"/>
+        </linearGradient>
+        <filter id="wgGrain" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="7"/>
+          <feColorMatrix values="0 0 0 0 0
+                                 0 0 0 0 0
+                                 0 0 0 0 0
+                                 0 0 0 0.7 0"/>
+        </filter>
+      </defs>
+
+      <g clip-path="url(#wgUnder)">
+        <!-- Dark-gray floor plate — opaque, sits behind the grid lines -->
+        <rect class="wg-floor" x="0" y="0" width="${W}" height="${H}"/>
+        <g class="wg-horizontal">${horzLineMarkup.join('')}</g>
+        <g class="wg-vertical">${vertLines.join('')}</g>
+        <!-- Subtle bottom-edge fade for depth -->
+        <rect x="0" y="0" width="${W}" height="${H}" fill="url(#wgFade)"/>
+      </g>
+
+      <path id="wgWaveLine" class="wg-wave-line" d="${initialWave}"/>
+      <circle class="wg-vp" cx="${vpX}" cy="${vpY}" r="1.8"/>
+
+      <rect x="0" y="0" width="${W}" height="${H}" filter="url(#wgGrain)" opacity="0.045"/>
+    `;
+
+    // Cache horizontal-line elements for rAF updates
+    const horzLineEls = [...svg.querySelectorAll('.wg-horizontal line')];
+
+    // Static initial layout (and frozen for reduced motion) — distribute lines evenly
+    function setHorzPositions(t) {
+      // t advances continuously; each line's effective index = (i + t) mod NUM_HORZ
+      for (let i = 0; i < NUM_HORZ; i++) {
+        const localT = ((i + t) % NUM_HORZ) / NUM_HORZ;
+        // Skip exact 0 — would put the line on the horizon, invisible
+        const safeT = localT < 0.001 ? 0.001 : localT;
+        const y = horzY(safeT);
+        const el = horzLineEls[i];
+        el.setAttribute('y1', y.toFixed(1));
+        el.setAttribute('y2', y.toFixed(1));
+        // Fade lines as they're born at the horizon (in) and as they exit at the bottom (out)
+        const fadeIn  = Math.min(1, safeT * 18);
+        const fadeOut = Math.min(1, (1 - safeT) * 6);
+        el.setAttribute('stroke-opacity', (fadeIn * fadeOut).toFixed(3));
+      }
+    }
+    setHorzPositions(0);
+
+    if (!reduceMotion) {
+      const wavePathEl = svg.querySelector('#wgWaveLine');
+      const clipPathEl = svg.querySelector('#wgClipPath');
+      let lastWave = 0, lastGrid = 0;
+      function tick(now) {
+        // Wave morph at ~30fps — slow, no need for higher
+        if (now - lastWave >= 33) {
+          const d = buildWavePath(now);
+          wavePathEl.setAttribute('d', d);
+          clipPathEl.setAttribute('d', `${d} L${W},${H} L0,${H} Z`);
+          lastWave = now;
+        }
+        // Grid conveyor at ~30fps — slow contemplative drift, full lap every ~35s
+        if (now - lastGrid >= 33) {
+          const t = (now * 0.0004) % NUM_HORZ;
+          setHorzPositions(t);
+          lastGrid = now;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+  })();
+
+  // ============================================================
+  // Wordmark letter-by-letter reveal + millisecond ticker
+  // ============================================================
+  (function setupWordmarkLetters() {
+    const wmMark = document.querySelector('.wm-mark');
+    if (!wmMark) return;
+    const text = wmMark.dataset.text || wmMark.textContent.trim();
+    wmMark.textContent = '';
+    [...text].forEach((char, i) => {
+      const span = document.createElement('span');
+      span.className = 'wm-letter';
+      span.style.setProperty('--i', i);
+      span.textContent = char;
+      // Treat as decorative — parent <h1> has aria-label="iPlayground 2026"
+      span.setAttribute('aria-hidden', 'true');
+      wmMark.appendChild(span);
+    });
+  })();
+
+  (function setupMsTicker() {
+    const cdMs = document.getElementById('cdMs');
+    if (!cdMs) return;
+    if (reduceMotion) {
+      cdMs.textContent = '.000';
+      return;
+    }
+    let lastUpdate = 0;
+    function tickMs(now) {
+      // 30fps is more than enough for ms readout legibility, and avoids 60fps text reflow cost
+      if (now - lastUpdate >= 33) {
+        const ms = Date.now() % 1000;
+        cdMs.textContent = '.' + String(ms).padStart(3, '0');
+        lastUpdate = now;
+      }
+      requestAnimationFrame(tickMs);
+    }
+    requestAnimationFrame(tickMs);
+  })();
+
+  // ============================================================
+  // Photo wall — quietly drifting columns from img/slider/
+  // ============================================================
+  const PHOTOS = [
+    'LINE_ALBUM_23042026_260424_1.jpg',
+    'LINE_ALBUM_23042026_260424_2.jpg',
+    'LINE_ALBUM_23042026_260424_3.jpg',
+    'LINE_ALBUM_23042026_260424_4.jpg',
+    'LINE_ALBUM_23042026_260424_5.jpg',
+    'LINE_ALBUM_23042026_260424_6.jpg',
+    'LINE_ALBUM_23042026_260424_7.jpg',
+    'LINE_ALBUM_23042026_260424_8.jpg',
+    'LINE_ALBUM_23042026_260424_9.jpg',
+    'LINE_ALBUM_23042026_260424_10.jpg',
+    'LINE_ALBUM_23042026_260424_11.jpg',
+    'LINE_ALBUM_23042026_260424_12.jpg',
+  ];
+  const wall = document.getElementById('photoWall');
+  const COLS = 4;
+  const PER_COL = 4;
+  for (let c = 0; c < COLS; c++) {
+    const col = document.createElement('div');
+    col.className = 'pw-col';
+    col.style.animationDelay = `${c * -7}s`;
+    for (let i = 0; i < PER_COL; i++) {
+      const idx = (c * PER_COL + i) % PHOTOS.length;
+      const img = document.createElement('img');
+      img.src = `../img/slider/${PHOTOS[idx]}`;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.alt = '';
+      col.appendChild(img);
+    }
+    wall.appendChild(col);
+  }
+
+  // ============================================================
+  // Easter egg — confetti on wordmark click
+  // ============================================================
+  const wordmark = document.getElementById('wordmark');
+  wordmark.addEventListener('click', async () => {
+    if (!window.confetti) {
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js';
+      s.onload = fire;
+      document.head.appendChild(s);
+    } else {
+      fire();
+    }
+    function fire() {
+      window.confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.5 },
+        colors: ['#D2FF00', '#282C20', '#000000', '#F5E8E8'],
+        scalar: 0.9,
+      });
+    }
+  });
+  wordmark.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); wordmark.click(); }
+  });
+
+  // Per-element entrance animations now handle the staged reveal — see CSS keyframes
+  // hero-in / wm-letter-in / wm-year-in. No body-level fade needed.
+
+  // ============================================================
+  // Agenda day tabs — visual toggle only (sample data is shared)
+  // ============================================================
+  const agendaTabs = document.getElementById('agendaTabs');
+  if (agendaTabs) {
+    agendaTabs.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-day]');
+      if (!btn) return;
+      agendaTabs.querySelectorAll('button[data-day]').forEach(b => {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-selected', String(active));
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
