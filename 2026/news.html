@@ -141,20 +141,6 @@ function articleUrl(id) {
   return new URL(`news.html?id=${id}`, window.location.href).href;
 }
 
-function renderShareBlock(id, title) {
-  const url = articleUrl(id);
-  const shareLabel = currentLang === "en" ? "Share this post" : "分享這篇公告";
-  const copyLabel  = currentLang === "en" ? "Copy Link" : "複製連結";
-  return `
-    <section class="article-share" aria-label="${shareLabel}">
-      <div class="article-share-title">${shareLabel}</div>
-      <div class="article-share-actions">
-        <button class="share-btn" type="button" data-copy-share="${url}">${copyLabel}</button>
-      </div>
-    </section>
-  `;
-}
-
 function bindShareButtons() {
   document.querySelectorAll("[data-copy-share]").forEach(btn => {
     btn.addEventListener("click", async () => {
@@ -295,7 +281,6 @@ function renderPage() {
         </header>
         <article class="article-body" id="artBody">
           ${getVal(n.content)}
-          ${renderShareBlock(id, titleStr)}
         </article>
       </main>
     </div>
@@ -322,7 +307,7 @@ function renderPage() {
         <div class="article-date">${item.date}</div>
         <h1 class="article-title">${iTitle}</h1>
       `;
-      document.getElementById("artBody").innerHTML = getVal(item.content) + renderShareBlock(newId, iTitle);
+      document.getElementById("artBody").innerHTML = getVal(item.content)
       document.title = `${iTitle} · iPlayground 2026`;
       updateArticleMeta(newId, iTitle);
       bindShareButtons();
