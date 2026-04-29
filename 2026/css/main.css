@@ -2352,3 +2352,239 @@
       font-size: 12px;
       color: var(--ink-3);
     }
+
+    /* ===== Keyboard shortcuts overlay (margin-level delight) ===== */
+    .kbd-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.66);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      opacity: 0;
+      transition: opacity .22s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .kbd-overlay[data-open="true"] {
+      display: flex;
+      opacity: 1;
+    }
+    .kbd-card {
+      width: min(560px, 100%);
+      max-height: min(82vh, 720px);
+      overflow-y: auto;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 28px 28px 22px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+      transform: translateY(8px) scale(0.985);
+      transition: transform .26s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .kbd-overlay[data-open="true"] .kbd-card {
+      transform: translateY(0) scale(1);
+    }
+    .kbd-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    .kbd-head-text { min-width: 0; }
+    .kbd-title {
+      font-family: 'Michroma', var(--f-sans);
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0 0 6px;
+      text-transform: uppercase;
+    }
+    .kbd-sub {
+      font-family: var(--f-mono);
+      font-size: 12px;
+      color: var(--ink-3, var(--ink));
+      opacity: 0.7;
+      margin: 0;
+    }
+    .kbd-close-btn {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--f-mono);
+      font-size: 14px;
+      line-height: 1;
+      transition: background .16s, border-color .16s, color .16s;
+    }
+    .kbd-close-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #000;
+    }
+    .kbd-group {
+      margin-top: 8px;
+    }
+    .kbd-group + .kbd-group {
+      margin-top: 18px;
+    }
+    .kbd-group-label {
+      display: block;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--ink-3, var(--ink));
+      opacity: 0.62;
+      margin-bottom: 8px;
+    }
+    .kbd-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 4px;
+      border-top: 1px solid var(--rule);
+    }
+    .kbd-row:first-of-type { border-top: 0; }
+    .kbd-row-label {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+    .kbd-keys {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .kbd-keys .kbd-plus {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      color: var(--ink-3, var(--ink));
+      opacity: 0.5;
+    }
+    kbd, .kbd-key {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      line-height: 1;
+      padding: 5px 7px;
+      min-width: 22px;
+      text-align: center;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--rule);
+      border-radius: 5px;
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+      letter-spacing: 0.02em;
+    }
+    html[data-mode="light"] kbd,
+    html[data-mode="light"] .kbd-key {
+      background: rgba(0, 0, 0, 0.03);
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+    }
+    .kbd-foot {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--f-mono);
+      font-size: 11px;
+      color: var(--ink-3, var(--ink));
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+    .kbd-foot kbd {
+      font-size: 10px;
+      padding: 3px 5px;
+      min-width: 18px;
+    }
+
+    /* Floating "?" button mini-affordance */
+    .fab-kbd {
+      position: fixed;
+      left: max(18px, env(safe-area-inset-left));
+      bottom: max(22px, env(safe-area-inset-bottom));
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--rule);
+      background: rgba(40, 44, 32, 0.72);
+      backdrop-filter: saturate(160%) blur(18px);
+      -webkit-backdrop-filter: saturate(160%) blur(18px);
+      color: var(--ink);
+      font-family: var(--f-mono);
+      font-size: 14px;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .2s, transform .2s, background .18s, color .18s, border-color .18s;
+    }
+    @media (hover: hover) and (pointer: fine) and (min-width: 981px) {
+      .fab-kbd { display: inline-flex; }
+      .fab-kbd[data-visible="true"] {
+        opacity: 0.65;
+        transform: translateY(0);
+      }
+      .fab-kbd:hover {
+        opacity: 1;
+        background: var(--accent);
+        color: #000;
+        border-color: var(--accent);
+      }
+    }
+    html[data-mode="light"] .fab-kbd {
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--ink);
+    }
+
+    /* ===== Konami / discovery toast ===== */
+    .easter-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 32px;
+      transform: translate(-50%, 16px);
+      z-index: 1200;
+      padding: 12px 18px;
+      background: #000;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      font-family: var(--f-mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s cubic-bezier(0.25, 1, 0.5, 1),
+                  transform .35s cubic-bezier(0.25, 1, 0.5, 1);
+      box-shadow: 0 12px 36px rgba(210, 255, 0, 0.18);
+    }
+    .easter-toast[data-show="true"] {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+    html[data-mode="light"] .easter-toast {
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .kbd-overlay,
+      .kbd-card,
+      .easter-toast { transition: none; }
+    }

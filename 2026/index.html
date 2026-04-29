@@ -2529,6 +2529,354 @@
   })();
 </script>
 
+<!-- ===== Margin-level delight: console hello · keyboard shortcuts · Konami · tab-blur title ===== -->
+<script>
+(function () {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lang = () => (typeof currentLang === 'string' ? currentLang : (document.documentElement.dataset.lang || 'zh'));
+  const t = (key, fallbackZh, fallbackEn) => {
+    const dict = (typeof I18N_DATA === 'object' && I18N_DATA) || {};
+    const entry = dict[key];
+    if (entry && entry[lang()]) return entry[lang()];
+    return lang() === 'en' ? fallbackEn : fallbackZh;
+  };
+  const isTypingTarget = (el) => {
+    if (!el) return false;
+    const tag = el.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return true;
+    if (el.isContentEditable) return true;
+    return false;
+  };
+
+  // ---- 1. DevTools console message (one-time per load) ----
+  // The audience inspects everything; reward the curious.
+  try {
+    const lime = '#D2FF00';
+    const surface = '#282C20';
+    const ink = '#F5E8E8';
+    console.log(
+      '%c iPlayground 2026 ',
+      `background:${lime};color:#000;font-family:Michroma,sans-serif;font-size:13px;padding:6px 10px;border-radius:4px;letter-spacing:0.06em;`
+    );
+    console.log(
+      `%c你好，正在 inspect 的開發者 👋\nHi developer — we see you. Apple-platform conf, run by volunteers.\n\n• CFP: 2026-06-19 · 23:59 UTC+8\n• Site source: https://github.com/iPlayground/iplayground.github.io\n• Like the lime? It's #D2FF00 on #000.\n\nP.S. ${lang() === 'en' ? 'press ?' : '網頁上按 ?'} for keyboard shortcuts.`,
+      `background:${surface};color:${ink};font-family:ui-monospace,monospace;font-size:12px;padding:8px 12px;line-height:1.6;border-left:2px solid ${lime};`
+    );
+  } catch (_) { /* no-op */ }
+
+  // ---- 2. Keyboard shortcuts ----
+  const SECTIONS = {
+    h: 'hero',
+    1: 'news',
+    2: 'about',
+    3: 'agenda',
+    4: 'speakers',
+    5: 'staff',
+  };
+  let gPrefix = false;
+  let gPrefixTimer = null;
+  const clearGPrefix = () => {
+    gPrefix = false;
+    if (gPrefixTimer) { clearTimeout(gPrefixTimer); gPrefixTimer = null; }
+  };
+
+  function scrollToId(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  function fireQuickConfetti() {
+    if (reduceMotion) return;
+    if (typeof window.confetti !== 'function') return;
+    window.confetti({
+      particleCount: 60,
+      spread: 65,
+      startVelocity: 38,
+      origin: { y: 0.6 },
+      colors: ['#D2FF00', '#F5E8E8', '#FFFFFF', '#282C20'],
+      scalar: 0.85,
+    });
+  }
+
+  function openCfpForm() {
+    const cta = document.getElementById('ctaSubmit');
+    if (cta && cta.href) window.open(cta.href, '_blank', 'noopener');
+  }
+
+  // ---- 3. Shortcuts overlay ----
+  const overlay = document.createElement('div');
+  overlay.className = 'kbd-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-labelledby', 'kbdOverlayTitle');
+  overlay.innerHTML = `
+    <div class="kbd-card" role="document">
+      <div class="kbd-head">
+        <div class="kbd-head-text">
+          <h2 id="kbdOverlayTitle" class="kbd-title" data-i18n="kbd_overlay_title">鍵盤捷徑</h2>
+          <p class="kbd-sub" data-i18n="kbd_overlay_sub">// 給用鍵盤思考的開發者</p>
+        </div>
+        <button type="button" class="kbd-close-btn" data-kbd-close aria-label="Close">×</button>
+      </div>
+      <div class="kbd-group">
+        <span class="kbd-group-label" data-i18n="kbd_group_action">// 動作</span>
+        <div class="kbd-row">
+          <span class="kbd-row-label" data-i18n="kbd_action_help">顯示這份清單</span>
+          <span class="kbd-keys"><kbd>?</kbd><span class="kbd-plus">/</span><kbd>/</kbd></span>
+        </div>
+        <div class="kbd-row">
+          <span class="kbd-row-label" data-i18n="kbd_action_theme">切換主題</span>
+          <span class="kbd-keys"><kbd>t</kbd></span>
+        </div>
+        <div class="kbd-row">
+          <span class="kbd-row-label" data-i18n="kbd_action_lang">切換語言</span>
+          <span class="kbd-keys"><kbd>l</kbd></span>
+        </div>
+        <div class="kbd-row">
+          <span class="kbd-row-label" data-i18n="kbd_action_confetti">灑一把彩帶</span>
+          <span class="kbd-keys"><kbd>c</kbd></span>
+        </div>
+        <div class="kbd-row">
+          <span class="kbd-row-label" data-i18n="kbd_action_submit">前往投稿表單</span>
+          <span class="kbd-keys"><kbd>s</kbd></span>
+        </div>
+      </div>
+      <div class="kbd-group">
+        <span class="kbd-group-label" data-i18n="kbd_group_nav">// 跳轉</span>
+        <div class="kbd-row">
+          <span class="kbd-row-label" data-i18n="kbd_nav_home">回到頂部</span>
+          <span class="kbd-keys"><kbd>g</kbd><span class="kbd-plus">→</span><kbd>h</kbd></span>
+        </div>
+        <div class="kbd-row">
+          <span class="kbd-row-label" data-i18n="kbd_nav_news">最新消息</span>
+          <span class="kbd-keys"><kbd>g</kbd><span class="kbd-plus">→</span><kbd>1</kbd></span>
+        </div>
+        <div class="kbd-row">
+          <span class="kbd-row-label" data-i18n="kbd_nav_about">活動資訊</span>
+          <span class="kbd-keys"><kbd>g</kbd><span class="kbd-plus">→</span><kbd>2</kbd></span>
+        </div>
+        <div class="kbd-row">
+          <span class="kbd-row-label" data-i18n="kbd_nav_agenda">議程</span>
+          <span class="kbd-keys"><kbd>g</kbd><span class="kbd-plus">→</span><kbd>3</kbd></span>
+        </div>
+        <div class="kbd-row">
+          <span class="kbd-row-label" data-i18n="kbd_nav_speakers">講者</span>
+          <span class="kbd-keys"><kbd>g</kbd><span class="kbd-plus">→</span><kbd>4</kbd></span>
+        </div>
+        <div class="kbd-row">
+          <span class="kbd-row-label" data-i18n="kbd_nav_staff">工作人員</span>
+          <span class="kbd-keys"><kbd>g</kbd><span class="kbd-plus">→</span><kbd>5</kbd></span>
+        </div>
+      </div>
+      <p class="kbd-foot" data-i18n="kbd_hint">提示：先按 <kbd>g</kbd>，再按下方數字或 <kbd>h</kbd>。</p>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  // re-apply i18n to the freshly injected nodes (the language dictionary may already be loaded)
+  if (typeof applyLang === 'function' && typeof currentLang === 'string') {
+    try { applyLang(currentLang); } catch (_) { /* no-op */ }
+  }
+
+  let lastFocused = null;
+  function openOverlay() {
+    if (overlay.dataset.open === 'true') return;
+    lastFocused = document.activeElement;
+    overlay.dataset.open = 'true';
+    const closeBtn = overlay.querySelector('[data-kbd-close]');
+    if (closeBtn) closeBtn.focus({ preventScroll: true });
+  }
+  function closeOverlay() {
+    if (overlay.dataset.open !== 'true') return;
+    overlay.dataset.open = 'false';
+    if (lastFocused && typeof lastFocused.focus === 'function') {
+      try { lastFocused.focus({ preventScroll: true }); } catch (_) {}
+    }
+  }
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeOverlay();
+  });
+  overlay.querySelector('[data-kbd-close]')?.addEventListener('click', closeOverlay);
+
+  // Optional desktop "?" affordance — hidden on touch / small screens via CSS.
+  const fabKbd = document.createElement('button');
+  fabKbd.type = 'button';
+  fabKbd.className = 'fab-kbd';
+  fabKbd.setAttribute('aria-label', 'Keyboard Shortcuts');
+  fabKbd.setAttribute('data-i18n-aria', 'kbd_fab_label');
+  fabKbd.textContent = '?';
+  fabKbd.addEventListener('click', openOverlay);
+  document.body.appendChild(fabKbd);
+  // Reveal after first scroll, like the back-to-top FAB
+  let revealed = false;
+  window.addEventListener('scroll', () => {
+    if (!revealed && window.scrollY > 80) {
+      revealed = true;
+      fabKbd.dataset.visible = 'true';
+    }
+  }, { passive: true });
+
+  // ---- 4. Konami code ----
+  const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let konamiIdx = 0;
+  let konamiFired = false;
+
+  const toast = document.createElement('div');
+  toast.className = 'easter-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  document.body.appendChild(toast);
+  let toastTimer = null;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.dataset.show = 'true';
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.dataset.show = 'false'; }, 2400);
+  }
+
+  function fireKonamiBurst() {
+    if (typeof window.confetti !== 'function' || reduceMotion) return;
+    const colors = ['#D2FF00', '#F5E8E8', '#FFFFFF', '#282C20'];
+    window.confetti({ particleCount: 140, spread: 90, startVelocity: 55, origin: { y: 0.7, x: 0.5 }, colors, scalar: 1.1 });
+    setTimeout(() => window.confetti({ particleCount: 80, spread: 120, startVelocity: 35, origin: { y: 0.9, x: 0.2 }, colors, scalar: 0.9 }), 220);
+    setTimeout(() => window.confetti({ particleCount: 80, spread: 120, startVelocity: 35, origin: { y: 0.9, x: 0.8 }, colors, scalar: 0.9 }), 280);
+  }
+
+  // ---- Master keydown handler ----
+  document.addEventListener('keydown', (e) => {
+    // Konami: track regardless of typing target (uses arrows + plain letters)
+    const expected = KONAMI[konamiIdx];
+    const matches = e.key === expected || (expected.length === 1 && e.key.toLowerCase() === expected);
+    if (matches) {
+      konamiIdx += 1;
+      if (konamiIdx === KONAMI.length) {
+        konamiIdx = 0;
+        if (!konamiFired) {
+          konamiFired = true;
+          fireKonamiBurst();
+          showToast(t('konami_toast', '🎉 你找到了 — Up Up Down Down …', '🎉 Up Up Down Down — you found it.'));
+        }
+      }
+    } else {
+      konamiIdx = 0;
+    }
+
+    // Skip remaining shortcuts when typing or with modifier keys
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (isTypingTarget(e.target)) return;
+
+    // Esc closes overlay
+    if (e.key === 'Escape') {
+      if (overlay.dataset.open === 'true') {
+        e.preventDefault();
+        closeOverlay();
+      }
+      clearGPrefix();
+      return;
+    }
+
+    // ? or / opens overlay
+    if (e.key === '?' || e.key === '/') {
+      e.preventDefault();
+      if (overlay.dataset.open === 'true') closeOverlay();
+      else openOverlay();
+      return;
+    }
+
+    // g-prefix navigation (vim-style)
+    if (gPrefix && SECTIONS[e.key]) {
+      e.preventDefault();
+      scrollToId(SECTIONS[e.key]);
+      clearGPrefix();
+      return;
+    }
+
+    if (e.key === 'g') {
+      gPrefix = true;
+      if (gPrefixTimer) clearTimeout(gPrefixTimer);
+      gPrefixTimer = setTimeout(clearGPrefix, 1200);
+      return;
+    }
+
+    if (gPrefix) {
+      // any non-matching key cancels the prefix
+      clearGPrefix();
+    }
+
+    // Single-key actions
+    if (e.key === 't') {
+      e.preventDefault();
+      if (typeof applyAppearance === 'function') {
+        const order = ['auto', 'light', 'dark'];
+        let cur = 'auto';
+        try { cur = localStorage.getItem('appearance') || 'auto'; } catch (_) {}
+        const next = order[(order.indexOf(cur) + 1) % order.length];
+        applyAppearance(next);
+      }
+      return;
+    }
+    if (e.key === 'l') {
+      e.preventDefault();
+      if (typeof applyLang === 'function') applyLang(lang() === 'zh' ? 'en' : 'zh');
+      return;
+    }
+    if (e.key === 'c') {
+      e.preventDefault();
+      fireQuickConfetti();
+      return;
+    }
+    if (e.key === 's') {
+      e.preventDefault();
+      openCfpForm();
+      return;
+    }
+  });
+
+  // ---- 5. Tab-blur title personality ----
+  // CFP deadline 2026-06-19 23:59 UTC+8 — match the visible countdown anchor.
+  const DEADLINE = new Date('2026-06-19T23:59:00+08:00').getTime();
+  const ORIGINAL_TITLE = document.title;
+  let focusedAt = Date.now();
+  let blurTimer = null;
+
+  function daysToDeadline() {
+    return Math.ceil((DEADLINE - Date.now()) / (24 * 60 * 60 * 1000));
+  }
+  function blurTitleString() {
+    const n = daysToDeadline();
+    if (n > 0) {
+      return t('blur_title', `← 投稿截止剩 ${n} 天 · iPlayground 2026`, `← ${n} days left to submit · iPlayground 2026`)
+        .replace('{n}', String(n));
+    }
+    if (n === 0) {
+      return t('blur_title_zero', '← 今天是投稿截止日 · iPlayground 2026', '← CFP closes today · iPlayground 2026');
+    }
+    return t('blur_title_past', '← iPlayground 2026 · 7/25–26 見', '← See you 7/25–26 · iPlayground 2026');
+  }
+
+  function onBlur() {
+    if (Date.now() - focusedAt < 8000) return; // ignore quick alt-tabs
+    if (blurTimer) clearTimeout(blurTimer);
+    blurTimer = setTimeout(() => {
+      if (document.hidden || !document.hasFocus()) {
+        document.title = blurTitleString();
+      }
+    }, 6000);
+  }
+  function onFocus() {
+    focusedAt = Date.now();
+    if (blurTimer) { clearTimeout(blurTimer); blurTimer = null; }
+    document.title = ORIGINAL_TITLE;
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) onBlur(); else onFocus();
+  });
+  window.addEventListener('blur', onBlur);
+  window.addEventListener('focus', onFocus);
+})();
+</script>
+
 </body>
 
 </html>

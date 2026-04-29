@@ -118,5 +118,29 @@
   "news_mobile_label":   { "zh": "選擇消息",                          "en": "Select Post" },
   "news_not_found":      { "zh": "找不到這則消息。",                  "en": "Post not found." },
   "news_back_home":      { "zh": "回到主頁",                          "en": "Back to Home" },
-  "news_footer":         { "zh": "© 2026 iPlayground · Swift in the Wild", "en": "© 2026 iPlayground · Swift in the Wild" }
+  "news_footer":         { "zh": "© 2026 iPlayground · Swift in the Wild", "en": "© 2026 iPlayground · Swift in the Wild" },
+
+  "kbd_overlay_title":     { "zh": "鍵盤捷徑",                          "en": "Keyboard Shortcuts" },
+  "kbd_overlay_sub":       { "zh": "// 給用鍵盤思考的開發者",          "en": "// for keyboard-first developers" },
+  "kbd_close":             { "zh": "關閉",                              "en": "Close" },
+  "kbd_group_nav":         { "zh": "// 跳轉",                           "en": "// JUMP" },
+  "kbd_group_action":      { "zh": "// 動作",                           "en": "// ACTION" },
+  "kbd_action_help":       { "zh": "顯示這份清單",                      "en": "Show this list" },
+  "kbd_action_theme":      { "zh": "切換主題",                          "en": "Cycle theme" },
+  "kbd_action_lang":       { "zh": "切換語言",                          "en": "Toggle language" },
+  "kbd_action_confetti":   { "zh": "灑一把彩帶",                        "en": "Throw confetti" },
+  "kbd_action_submit":     { "zh": "前往投稿表單",                      "en": "Open CFP form" },
+  "kbd_nav_home":          { "zh": "回到頂部",                          "en": "Back to top" },
+  "kbd_nav_news":          { "zh": "最新消息",                          "en": "Latest News" },
+  "kbd_nav_about":         { "zh": "活動資訊",                          "en": "Event Info" },
+  "kbd_nav_agenda":        { "zh": "議程",                              "en": "Agenda" },
+  "kbd_nav_speakers":      { "zh": "講者",                              "en": "Speakers" },
+  "kbd_nav_staff":         { "zh": "工作人員",                          "en": "Staff" },
+  "kbd_hint":              { "zh": "提示：先按 <kbd>g</kbd>，再按下方數字或 <kbd>h</kbd>。", "en": "Tip: press <kbd>g</kbd> then a number or <kbd>h</kbd>." },
+  "kbd_fab_label":         { "zh": "鍵盤捷徑",                          "en": "Keyboard Shortcuts" },
+
+  "konami_toast":          { "zh": "🎉 你找到了 — Up Up Down Down …",   "en": "🎉 Up Up Down Down — you found it." },
+  "blur_title":            { "zh": "← 投稿截止剩 {n} 天 · iPlayground 2026", "en": "← {n} days left to submit · iPlayground 2026" },
+  "blur_title_zero":       { "zh": "← 今天是投稿截止日 · iPlayground 2026",   "en": "← CFP closes today · iPlayground 2026" },
+  "blur_title_past":       { "zh": "← iPlayground 2026 · 7/25–26 見",   "en": "← See you 7/25–26 · iPlayground 2026" }
 }
