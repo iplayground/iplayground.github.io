@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="推薦公司窗口並促成 iPlayground 2026 贊助合作，即可獲得兩日門票與紀念衣服。" />
+<meta name="description" content="iPlayground 2026 最新消息" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="iPlayground 2026" />
-<meta property="og:title" content="推薦贊助商，免費拿 iPlayground 門票！" />
-<meta property="og:description" content="推薦公司窗口並促成 iPlayground 2026 贊助合作，即可獲得兩日門票與紀念衣服。" />
+<meta property="og:title" content="最新消息 · iPlayground 2026" />
+<meta property="og:description" content="iPlayground 2026 最新消息" />
 <meta property="og:url" content="https://gztin.github.io/iPlayground/news.html?id=0" />
 <meta property="og:image" content="https://gztin.github.io/iPlayground/img/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="推薦贊助商，免費拿 iPlayground 門票！" />
-<meta name="twitter:description" content="推薦公司窗口並促成 iPlayground 2026 贊助合作，即可獲得兩日門票與紀念衣服。" />
+<meta name="twitter:title" content="最新消息 · iPlayground 2026" />
+<meta name="twitter:description" content="iPlayground 2026 最新消息" />
 <meta name="twitter:image" content="https://gztin.github.io/iPlayground/img/logo.png" />
 <title>最新消息 · iPlayground 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,7 +115,12 @@
 // ===== State =====
 let currentLang = "zh";
 let I18N_DATA = {};   // 從 data/iplayground_i18n.json 載入
-let NEWS_DATA = [];   // 從 data/iplayground_news.json 載入
+const NEWS_DATA_URLS = {
+  zh: "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/develop/news.json",
+  en: "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/develop/news_en.json",
+};
+let NEWS_DATA_BY_LANG = { zh: [], en: [] };
+let NEWS_DATA = [];   // 從 GitHub raw HTTPS 來源載入
 let CONFIG    = {};   // 從 data/iplayground_config.json 載入
 
 // ===== i18n helpers =====
@@ -129,6 +134,41 @@ function t(key) {
 function getVal(obj) {
   if (typeof obj === 'string') return obj;
   return obj[currentLang] || obj.zh || "";
+}
+
+function getContentHtml(content) {
+  return getVal(content).replace(/\\n|\r\n|\r|\n/g, "<br>");
+}
+
+function escapeHtml(value) {
+  return String(value || "").replace(/[&<>"']/g, ch => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  }[ch]));
+}
+
+function normalizeButtons(buttons) {
+  if (!buttons) return [];
+  if (Array.isArray(buttons)) return buttons;
+  if (Array.isArray(buttons[currentLang])) return buttons[currentLang];
+  if (buttons.url || buttons.href || buttons.link) return [buttons];
+  return [];
+}
+
+function renderArticleButtons(buttons) {
+  const links = normalizeButtons(buttons).map(button => {
+    if (!button || typeof button !== "object") return "";
+    const label = getVal(button.label || button.title || button.text || button.name || button.content || "");
+    const url = button.url || button.href || button.link || "";
+    if (!label || !url) return "";
+    return `<a class="article-cta" href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`;
+  }).filter(Boolean);
+
+  if (!links.length) return "";
+  return `<div class="article-actions">${links.join("")}</div>`;
 }
 
 function setMeta(name, value, attr = "property") {
@@ -157,11 +197,21 @@ function bindShareButtons() {
   });
 }
 
-function updateArticleMeta(id, title) {
+function plainTextFromHtml(html) {
+  const div = document.createElement("div");
+  div.innerHTML = html || "";
+  return (div.textContent || div.innerText || "").replace(/\s+/g, " ").trim();
+}
+
+function articleDescription(article) {
+  const text = plainTextFromHtml(getContentHtml(article?.content || ""));
+  if (!text) return currentLang === "en" ? "Latest news from iPlayground 2026." : "iPlayground 2026 最新消息";
+  return text.length > 140 ? `${text.slice(0, 140)}…` : text;
+}
+
+function updateArticleMeta(id, title, article) {
   const url = articleUrl(id);
-  const desc = currentLang === "en"
-    ? "Recommend a company contact and help make iPlayground 2026 happen. Successful sponsorship referrals receive a two-day ticket and commemorative shirt."
-    : "推薦公司窗口並促成 iPlayground 2026 贊助合作，即可獲得兩日門票與紀念衣服。";
+  const desc = articleDescription(article);
   setMeta("description", desc, "name");
   setMeta("og:title", title);
   setMeta("og:description", desc);
@@ -195,6 +245,7 @@ mql.addEventListener("change", () => {
 // ===== i18n apply =====
 function applyLang(lang) {
   currentLang = lang;
+  NEWS_DATA = NEWS_DATA_BY_LANG[lang] || NEWS_DATA_BY_LANG.zh || [];
   document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
   document.querySelectorAll("#langSwitch button").forEach(b =>
     b.classList.toggle("active", b.dataset.lang === lang)
@@ -250,7 +301,7 @@ function renderPage() {
 
   const n = NEWS_DATA[id];
   const titleStr = getVal(n.title);
-  updateArticleMeta(id, titleStr);
+  updateArticleMeta(id, titleStr, n);
   document.title = `${titleStr} · iPlayground 2026`;
 
   const sidebar = NEWS_DATA.map((item, i) => `
@@ -280,7 +331,8 @@ function renderPage() {
           <h1 class="article-title">${titleStr}</h1>
         </header>
         <article class="article-body" id="artBody">
-          ${getVal(n.content)}
+          ${getContentHtml(n.content)}
+          ${renderArticleButtons(n.buttons)}
         </article>
       </main>
     </div>
@@ -307,9 +359,12 @@ function renderPage() {
         <div class="article-date">${item.date}</div>
         <h1 class="article-title">${iTitle}</h1>
       `;
-      document.getElementById("artBody").innerHTML = getVal(item.content)
+      document.getElementById("artBody").innerHTML = `
+        ${getContentHtml(item.content)}
+        ${renderArticleButtons(item.buttons)}
+      `;
       document.title = `${iTitle} · iPlayground 2026`;
-      updateArticleMeta(newId, iTitle);
+      updateArticleMeta(newId, iTitle, item);
       bindShareButtons();
       history.replaceState(null, "", `news.html?id=${newId}`);
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -326,11 +381,12 @@ applyAppearance(savedAppearance);
 
 Promise.all([
   fetch("data/iplayground_i18n.json").then(r => r.json()),
-  fetch("data/iplayground_news.json").then(r => r.json()),
+  fetch(NEWS_DATA_URLS.zh).then(r => r.json()),
+  fetch(NEWS_DATA_URLS.en).then(r => r.json()),
   fetch("data/iplayground_config.json").then(r => r.json()),
-]).then(([i18n, news, config]) => {
+]).then(([i18n, newsZh, newsEn, config]) => {
   I18N_DATA = i18n;
-  NEWS_DATA  = news;
+  NEWS_DATA_BY_LANG = { zh: newsZh, en: newsEn };
   CONFIG     = config;
   applyLang(savedLang);
 }).catch(e => {

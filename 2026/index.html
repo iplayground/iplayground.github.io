@@ -931,7 +931,12 @@
     // ===== State =====
     let currentLang = "zh";
 
-    // ===== Data (從 data/ 資料夾 fetch) =====
+    // ===== Data =====
+    const NEWS_DATA_URLS = {
+      zh: "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/develop/news.json",
+      en: "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/develop/news_en.json",
+    };
+    let NEWS_DATA_BY_LANG = { zh: [], en: [] };
     let NEWS_DATA = [];
     let AGENDA = [];
     let SPEAKERS = [];
@@ -1508,6 +1513,7 @@
 
     function applyLang(lang) {
       currentLang = lang;
+      NEWS_DATA = NEWS_DATA_BY_LANG[lang] || NEWS_DATA_BY_LANG.zh || [];
       const dict = getDict(lang);
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const k = el.dataset.i18n;
@@ -1980,14 +1986,15 @@
 
       // 並行載入所有 data/ 資料後再初始化
       Promise.all([
-        fetch("data/iplayground_news.json").then(r => r.json()),
+        fetch(NEWS_DATA_URLS.zh).then(r => r.json()),
+        fetch(NEWS_DATA_URLS.en).then(r => r.json()),
         fetch("data/iplayground_agenda.json").then(r => r.json()),
         fetch("data/iplayground_cfp_steps.json").then(r => r.json()),
         fetch("data/iplayground_config.json").then(r => r.json()),
         fetch("data/iplayground_links.json").then(r => r.json()),
         fetch("data/iplayground_i18n.json").then(r => r.json()),
-      ]).then(([news, agenda, cfpSteps, config, links, i18n]) => {
-        NEWS_DATA = news;
+      ]).then(([newsZh, newsEn, agenda, cfpSteps, config, links, i18n]) => {
+        NEWS_DATA_BY_LANG = { zh: newsZh, en: newsEn };
         AGENDA = agenda;
         SPEAKERS = cfpSteps;
         CONFIG = config;

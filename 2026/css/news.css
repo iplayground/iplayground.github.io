@@ -72,11 +72,17 @@
     max-width: min(1040px, 100%); margin: 0 auto;
   }
   .article-body p { margin: 0 0 20px; }
+  .article-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-top: 24px;
+  }
   .article-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 12px;
     padding: 14px 24px;
     border-radius: 999px;
     background: var(--ink);
