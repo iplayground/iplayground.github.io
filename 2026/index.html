@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Michroma&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap"
     rel="stylesheet">
 
   <script src="shared-content.js"></script>
@@ -91,95 +91,135 @@
 
   <link rel="stylesheet" href="css/confetti.css">
   <!-- Hero -->
-  <header class="hero" data-screen-label="01 Hero">
-    <div class="photo-wall" id="photoWall"></div>
-    <div class="hero-overlay"></div>
-    <div id="heroInner" style="width:100%;transform-origin:top center;visibility:hidden;">
-    <div class="wrap">
-      <h1 class="hero-title">
-        <div class="hero-logo-wrap">
-          <img src="img/logo.png" alt="iPlayground" class="hero-logo">
-          <div class="px-heart" id="pxHeart"></div>
-        </div>
-        <div class="hero-date" data-i18n="hero_date">7/25(六)～7/26(日)</div>
-        <span class="hero-tagline">徵稿中</span>
+  <header class="hero" id="hero" data-screen-label="01 Hero" data-state="open">
+
+    <div class="photo-wall" id="photoWall" aria-hidden="true"></div>
+    <div class="hero-curtain" aria-hidden="true"></div>
+    <svg class="wave-grid" id="waveGrid" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true"></svg>
+
+    <div class="hero-frame" aria-hidden="true">
+      <span class="corner corner--tl"></span>
+      <span class="corner corner--tr"></span>
+      <span class="corner corner--bl"></span>
+      <span class="corner corner--br"></span>
+    </div>
+
+    <div class="wordmark-banner">
+      <svg class="dot-field" id="dotField" preserveAspectRatio="none" viewBox="0 0 1200 400" aria-hidden="true"></svg>
+
+      <span class="status-pill" role="status">
+        <span class="dot" aria-hidden="true"></span>
+        <span data-i18n="hero_status_pill">CFP 開放投稿中</span>
+      </span>
+
+      <div class="eyebrow">
+        <span class="eyebrow-bracket">[</span>
+        <span data-i18n="hero_eyebrow_taipei">TAIPEI</span>
+        <span class="eyebrow-sep">·</span>
+        <span data-i18n="hero_eyebrow_dates">2026.07.25–26</span>
+        <span class="eyebrow-sep">·</span>
+        <span data-i18n="hero_eyebrow_cfp">徵稿中</span>
+        <span class="eyebrow-bracket">]</span>
+      </div>
+
+      <div class="brand-crest" aria-label="iPlayground brand mark">
+        <svg class="crest-cir" viewBox="0 0 24 24" aria-hidden="true" style="--i:0">
+          <circle class="shape-stroke" cx="12" cy="12" r="9.5"/>
+        </svg>
+        <svg class="crest-tri" viewBox="0 0 24 24" aria-hidden="true" style="--i:1">
+          <polygon class="shape-fill" points="2,2 2,22 22,22"/>
+        </svg>
+        <svg class="crest-dia" viewBox="0 0 24 24" aria-hidden="true" style="--i:2">
+          <polygon class="shape-fill" points="12,2 22,12 12,22 2,12"/>
+        </svg>
+      </div>
+
+      <h1 class="wordmark" id="wordmark" tabindex="0" aria-label="iPlayground 2026">
+        <span class="wm-mark" data-text="IPLAYGROUND">IPLAYGROUND</span>
+        <span class="wm-year">2026</span>
       </h1>
+    </div>
 
-      <div data-i18n="countdown_label"
-        style="text-align: center; margin: 20px 0 0; font-family: var(--f-mono); font-size: 1em; color: #ffffff; text-transform: uppercase; letter-spacing: 0.12em; position: relative; z-index: 1; text-shadow: 0 0 12px rgba(255,255,255,0.8), 0 0 28px rgba(255,255,255,0.4);">
-        截止倒數</div>
+    <div class="hero-grid">
 
-      <div class="flip-clock" id="countdown" style="margin-top: -8px;">
-        <div class="fc-unit">
-          <div class="fc-card" id="fc-d"><span class="fc-num" id="cd-d">00</span></div>
-          <div class="fc-label" data-countdown-unit="days">天</div>
+      <div class="hero-main">
+        <p class="lede" data-i18n="hero_lede">為 Apple 開發者準備的兩天，由社群志工策劃。技術分享、深度交流、與一群在乎品質的人。</p>
+
+        <div class="cta-stack">
+          <a class="cta cta-signal" id="ctaSubmit" href="#" data-link="cfp_form" target="_blank" rel="noopener">
+            <span data-i18n="cta_submit">投稿議程</span>
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="cta cta-ghost" id="ctaSponsor" href="#" data-link="sponsor_referral" target="_blank" rel="noopener" data-i18n="cta_sponsor">推薦贊助</a>
         </div>
-        <div class="fc-sep">:</div>
-        <div class="fc-unit">
-          <div class="fc-card" id="fc-h"><span class="fc-num" id="cd-h">00</span></div>
-          <div class="fc-label" data-countdown-unit="hours">時</div>
-        </div>
-        <div class="fc-sep">:</div>
-        <div class="fc-unit">
-          <div class="fc-card" id="fc-m"><span class="fc-num" id="cd-m">00</span></div>
-          <div class="fc-label" data-countdown-unit="minutes">分</div>
-        </div>
-        <div class="fc-sep">:</div>
-        <div class="fc-unit">
-          <div class="fc-card" id="fc-s"><span class="fc-num" id="cd-s">00</span></div>
-          <div class="fc-label" data-countdown-unit="seconds">秒</div>
+
+        <div class="hero-social-row" id="heroSocialRow">
+          <!-- 由 data/iplayground_links.json 動態產生 -->
         </div>
       </div>
 
+      <aside class="countdown-panel" aria-label="CFP deadline countdown">
+        <div class="cd-meta">
+          <span class="cd-mono" data-i18n="cd_meta_label">// CFP 投稿截止</span>
+          <span class="cd-mono cd-zh" data-i18n="cd_meta_zh">投稿截止</span>
+        </div>
 
-      <div class="hero-cta-row">
-          <div class="hero-cta-glow-wrap">
-          <a class="btn-primary hero-cta-btn" href="#" data-link="cfp_form" target="_blank" rel="noopener"
-            data-i18n="cta_submit">講者投稿表單</a>
+        <div class="cd-grid" id="cdGrid">
+          <div class="cd-cell" data-unit="d">
+            <div class="cd-digits" id="cdD">00</div>
+            <div class="cd-label" data-i18n="cd_unit_d">天</div>
+          </div>
+          <div class="cd-sep" aria-hidden="true">:</div>
+          <div class="cd-cell" data-unit="h">
+            <div class="cd-digits" id="cdH">00</div>
+            <div class="cd-label" data-i18n="cd_unit_h">時</div>
+          </div>
+          <div class="cd-sep" aria-hidden="true">:</div>
+          <div class="cd-cell" data-unit="m">
+            <div class="cd-digits" id="cdM">00</div>
+            <div class="cd-label" data-i18n="cd_unit_m">分</div>
+          </div>
+          <div class="cd-sep" aria-hidden="true">:</div>
+          <div class="cd-cell" data-unit="s">
+            <div class="cd-digits" id="cdS">00</div>
+            <div class="cd-label" data-i18n="cd_unit_s">秒</div>
           </div>
         </div>
 
-      <div class="hero-social-row" id="heroSocialRow">
-        <!-- 由 data/iplayground_links.json 動態產生 -->
-      </div>
-    </div><!-- /#heroInner -->
+        <div class="cd-deadline">
+          <span class="cd-mono" data-i18n="cd_deadline_stamp">2026-06-19 · 23:59 UTC+8</span>
+          <span class="cd-deadline-meta">
+            <span class="cd-mono cd-ms" id="cdMs" aria-hidden="true">.000</span>
+            <span class="cd-deadline-arrow" aria-hidden="true">↗</span>
+          </span>
+        </div>
+      </aside>
+
+    </div>
   </header>
 
   <!-- Latest News -->
-  <section id="news" data-screen-label="01.5 News" style="position:relative;">
+  <section class="section section-news" id="news" data-screen-label="01.5 News" style="position:relative;">
     <canvas id="newsConfettiCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
-    <div class="wrap">
-      <div class="news-card">
-        <div class="news-section-layout">
-          <div class="news-side-title">
-            <span class="label-eyebrow" data-i18n="news_eyebrow">— 最新消息 Latest News</span>
-            <h2 class="label-heading" data-i18n="news_heading">掌握 <span class="gradient">iPlayground</span> <span
-                style="white-space: nowrap;">的第一手動態</span><span class="thin">。</span>
-            </h2>
-          </div>
-          <div class="news-wrap">
-            <div id="newsList"></div>
-          </div>
-        </div>
-        <div id="newsMore"></div>
-      </div>
+    <div class="section-inner">
+      <header class="section-head">
+        <span class="section-eyebrow">// 01</span>
+        <h2 class="section-title section-title--zh" data-i18n="nav_news">最新消息</h2>
+        <span class="section-meta" id="newsMeta"></span>
+      </header>
+      <ol class="news-list" id="newsList"></ol>
+      <div id="newsMore"></div>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" data-screen-label="02 About">
+  <section class="section section-about" id="about" data-screen-label="02 About">
     <div class="wrap center">
-      <div class="striped-header-wrap">
-        <div class="header-decoration">
-          <img src="img/svg/title_sub.svg" alt="">
-        </div>
-        <div class="striped-text-group">
-          <h2 class="striped-title" data-i18n="about_eyebrow">活動資訊</h2>
-        </div>
-        <div class="header-decoration flipped">
-          <img src="img/svg/title_sub.svg" alt="">
-        </div>
-      </div>
+      <header class="section-head">
+        <span class="section-eyebrow">// 02</span>
+        <h2 class="section-title section-title--zh" data-i18n="nav_about">活動資訊</h2>
+        <span class="section-meta"></span>
+      </header>
 
       <!-- Process Timeline -->
       <div id="processTimeline" style="display: none;"></div>
@@ -299,19 +339,13 @@
 
 
   <!-- Agenda -->
-  <section id="agenda" data-screen-label="03 Agenda">
+  <section class="section section-agenda" id="agenda" data-screen-label="03 Agenda">
     <div class="wrap center">
-      <div class="striped-header-wrap">
-        <div class="header-decoration">
-          <img src="img/svg/title_sub.svg" alt="">
-        </div>
-        <div class="striped-text-group">
-          <h2 class="striped-title" data-i18n="agenda_title">議程</h2>
-        </div>
-        <div class="header-decoration flipped">
-          <img src="img/svg/title_sub.svg" alt="">
-        </div>
-      </div>
+      <header class="section-head">
+        <span class="section-eyebrow">// 03</span>
+        <h2 class="section-title section-title--zh" data-i18n="agenda_title">議程</h2>
+        <span class="section-meta"></span>
+      </header>
     </div>
     <div class="wrap">
       <div class="agenda-wrap">
@@ -347,19 +381,13 @@
 
 
   <!-- Speakers -->
-  <section id="speakers" data-screen-label="04 Speakers">
+  <section class="section section-speakers" id="speakers" data-screen-label="04 Speakers">
     <div class="wrap center">
-      <div class="striped-header-wrap">
-        <div class="header-decoration">
-          <img src="img/svg/title_sub.svg" alt="">
-        </div>
-        <div class="striped-text-group">
-          <h2 class="striped-title" data-i18n="speakers_title">講者群</h2>
-        </div>
-        <div class="header-decoration flipped">
-          <img src="img/svg/title_sub.svg" alt="">
-        </div>
-      </div>
+      <header class="section-head">
+        <span class="section-eyebrow">// 04</span>
+        <h2 class="section-title section-title--zh" data-i18n="speakers_title">講者群</h2>
+        <span class="section-meta"></span>
+      </header>
 
       <div class="speaker-grid" id="speakerGrid">
         <!-- 由 data/iplayground_speakers.json 動態產生 -->
@@ -369,19 +397,13 @@
   </section>
 
   <!-- Staff -->
-  <section id="staff" data-screen-label="05 Staff">
+  <section class="section section-staff" id="staff" data-screen-label="05 Staff">
     <div class="wrap center">
-      <div class="striped-header-wrap">
-        <div class="header-decoration">
-          <img src="img/svg/title_sub.svg" alt="">
-        </div>
-        <div class="striped-text-group">
-          <h2 class="striped-title" data-i18n="staff_title">工作人員</h2>
-        </div>
-        <div class="header-decoration flipped">
-          <img src="img/svg/title_sub.svg" alt="">
-        </div>
-      </div>
+      <header class="section-head">
+        <span class="section-eyebrow">// 05</span>
+        <h2 class="section-title section-title--zh" data-i18n="staff_title">工作人員</h2>
+        <span class="section-meta"></span>
+      </header>
 
       <div class="staff-grid" id="staffGrid">
         <!-- 由 data/staff.json 動態產生 -->
@@ -391,19 +413,13 @@
   </section>
 
   <!-- Sponsors -->
-  <section id="sponsors" data-screen-label="06 Sponsors" hidden>
+  <section class="section section-sponsors" id="sponsors" data-screen-label="06 Sponsors" hidden>
     <div class="wrap center">
-      <div class="striped-header-wrap">
-        <div class="header-decoration">
-          <img src="img/svg/title_sub.svg" alt="">
-        </div>
-        <div class="striped-text-group">
-          <h2 class="striped-title" data-i18n="sponsors_title">贊助廠商</h2>
-        </div>
-        <div class="header-decoration flipped">
-          <img src="img/svg/title_sub.svg" alt="">
-        </div>
-      </div>
+      <header class="section-head">
+        <span class="section-eyebrow">// 06</span>
+        <h2 class="section-title section-title--zh" data-i18n="sponsors_title">贊助廠商</h2>
+        <span class="section-meta"></span>
+      </header>
       <div class="construction">
         <h3 data-i18n="construction">建構中</h3>
         <p data-i18n="sponsors_wip">正在邀請優秀的夥伴加入我們</p>
@@ -1255,30 +1271,54 @@
     function renderNews(lang) {
       const list = document.getElementById("newsList");
       const more = document.getElementById("newsMore");
+      const meta = document.getElementById("newsMeta");
       if (!list) return;
       const l = lang || currentLang || "zh";
       const MAX_DISPLAY = 10;
-      const truncate = (str, len) => str.length > len ? str.substring(0, len) + "…" : str;
       const visible = NEWS_DATA.slice(0, MAX_DISPLAY);
+
+      // News date is formatted as "YYYY.MM.DD" or "YYYY-MM-DD" — normalise both
+      const normaliseDate = (d) => {
+        if (!d) return null;
+        const parts = String(d).split(/[-./]/);
+        if (parts.length !== 3) return null;
+        return new Date(+parts[0], +parts[1] - 1, +parts[2]);
+      };
+      const formatDate = (d) => {
+        const p = String(d || '').split(/[-./]/);
+        if (p.length !== 3) return d || '';
+        return `${p[0]}.${p[1].padStart(2, '0')}.${p[2].padStart(2, '0')}`;
+      };
+
       list.innerHTML = visible.map((n, i) => {
         const title = typeof n.title === 'string' ? n.title : (n.title[l] || n.title.zh || n.title);
         return `
-    <a class="news-row" href="news.html?id=${i}" target="_blank" rel="noopener">
-      <div class="news-row-header">
-        <div class="date">${n.date}</div>
-        <div class="summary">${truncate(title, 40)}</div>
-        <div class="arrow-circle">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>
-          </svg>
-        </div>
-      </div>
-    </a>
-  `;
+    <li class="news-row">
+      <a class="news-row-link" href="news.html?id=${i}" target="_blank" rel="noopener">
+        <span class="news-date">${formatDate(n.date)}</span>
+        <span class="news-title">${title}</span>
+        <span class="news-arrow" aria-hidden="true">→</span>
+      </a>
+    </li>`;
       }).join("");
-      if (more && NEWS_DATA.length > MAX_DISPLAY) {
-        const moreLabel = l === "en" ? `View all news (${NEWS_DATA.length}) →` : `查看全部消息 (${NEWS_DATA.length}) →`;
-        more.innerHTML = `<div class="news-more"><a href="news.html" target="_blank" rel="noopener">${moreLabel}</a></div>`;
+
+      if (more) {
+        more.innerHTML = NEWS_DATA.length > MAX_DISPLAY
+          ? `<div class="news-more"><a href="news.html" target="_blank" rel="noopener">${l === "en" ? `View all news (${NEWS_DATA.length}) →` : `查看全部消息 (${NEWS_DATA.length}) →`}</a></div>`
+          : '';
+      }
+
+      // Section meta — "Past N days" computed from oldest visible news entry
+      if (meta) {
+        const oldest = visible.map(n => normaliseDate(n.date)).filter(Boolean).sort((a, b) => a - b)[0];
+        if (oldest) {
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          const days = Math.max(1, Math.round((today - oldest) / 86400000));
+          meta.textContent = l === "en" ? `Past ${days} days` : `過去 ${days} 天`;
+        } else {
+          meta.textContent = '';
+        }
       }
     }
 
@@ -1310,25 +1350,62 @@
       container.innerHTML = '<div class="h-timeline">' + items + '</div>';
     }
 
-    // Countdown
-    function flipSet(id, val) {
-      var span = document.getElementById("cd-" + id);
-      var card = document.getElementById("fc-" + id);
-      if (!span || !card) return;
-      var str = String(val).padStart(2, "0");
-      if (span.textContent === str) return;
-      span.textContent = str;
-      card.classList.remove("flip");
-      void card.offsetWidth;
-      card.classList.add("flip");
-    }
+    // Countdown — to 2026-06-19 23:59:59 UTC+8 (CFP submission close)
+    const CD_TARGET = new Date("2026-06-19T23:59:59+08:00").getTime();
+    const cdCells = {};
+    let cdTickResetTimer = null;
+
     function tickCountdown() {
-      var target = new Date("2026-06-20T00:00:00+08:00").getTime();
-      var diff = Math.max(0, target - Date.now());
-      flipSet("d", Math.floor(diff / 86400000));
-      flipSet("h", Math.floor((diff % 86400000) / 3600000));
-      flipSet("m", Math.floor((diff % 3600000) / 60000));
-      flipSet("s", Math.floor((diff % 60000) / 1000));
+      if (!cdCells.d) {
+        cdCells.d = { cell: document.querySelector('.cd-cell[data-unit="d"]'), digits: document.getElementById("cdD"), last: null };
+        cdCells.h = { cell: document.querySelector('.cd-cell[data-unit="h"]'), digits: document.getElementById("cdH"), last: null };
+        cdCells.m = { cell: document.querySelector('.cd-cell[data-unit="m"]'), digits: document.getElementById("cdM"), last: null };
+        cdCells.s = { cell: document.querySelector('.cd-cell[data-unit="s"]'), digits: document.getElementById("cdS"), last: null };
+      }
+      const hero = document.getElementById("hero");
+      const diff = CD_TARGET - Date.now();
+      const pad = n => String(Math.max(0, n)).padStart(2, "0");
+
+      if (diff <= 0) {
+        if (hero) hero.dataset.state = "closed";
+        for (const k of ["d", "h", "m", "s"]) {
+          const c = cdCells[k];
+          if (c && c.digits) c.digits.textContent = "00";
+        }
+        return;
+      }
+      if (hero) hero.dataset.state = "open";
+
+      const next = {
+        d: pad(Math.floor(diff / 86400000)),
+        h: pad(Math.floor((diff % 86400000) / 3600000)),
+        m: pad(Math.floor((diff % 3600000) / 60000)),
+        s: pad(Math.floor((diff % 60000) / 1000)),
+      };
+
+      for (const [unit, val] of Object.entries(next)) {
+        const c = cdCells[unit];
+        if (!c || !c.digits) continue;
+        if (c.last === val) continue;
+        c.digits.textContent = val;
+        // Swap animation only on change, and skip seconds (the keyframe's mid-cycle
+        // opacity:0 reads as the digit being "cut" when it ticks every second).
+        if (c.last !== null && unit !== "s" && c.cell) {
+          c.cell.classList.remove("swap");
+          void c.cell.offsetWidth;
+          c.cell.classList.add("swap");
+        }
+        c.last = val;
+      }
+
+      // Heartbeat — flash signal on the seconds cell every tick
+      if (cdCells.s.cell) {
+        cdCells.s.cell.classList.remove("tick");
+        void cdCells.s.cell.offsetWidth;
+        cdCells.s.cell.classList.add("tick");
+        clearTimeout(cdTickResetTimer);
+        cdTickResetTimer = setTimeout(() => cdCells.s.cell.classList.remove("tick"), 240);
+      }
     }
 
     // ===== Interaction Utilities =====
@@ -1533,6 +1610,7 @@
       });
       syncCountdownUnits(dict);
       document.documentElement.lang = lang === "zh" ? "zh-Hant" : lang;
+      document.documentElement.dataset.lang = lang;
       syncLangButtons(lang);
       renderNews(lang);
       const agendaSearchInput = document.getElementById("agendaSearchInput");
@@ -1956,12 +2034,12 @@
 
       const wall = document.getElementById("photoWall");
       if (!wall) return;
-      const COLS = 5;
+      const COLS = 4;
       const perCol = Math.ceil(imgs.length / COLS);
 
       for (let c = 0; c < COLS; c++) {
         const col = document.createElement("div");
-        col.className = "photo-col";
+        col.className = "pw-col";
         // Each column gets a slice, then duplicated for seamless loop
         const slice = [];
         for (let r = 0; r < perCol + 2; r++) {
@@ -2101,39 +2179,202 @@
 <!-- ===== Confetti / Party Popper ===== -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-<!-- ===== Hero Auto-Scale ===== -->
+<!-- ===== Hero: wave grid · dot field · wordmark letters · ms ticker · confetti ===== -->
 <script>
-(function() {
-  const NAV_H   = 56;
-  const PADDING = 30;
+(function heroFx() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function scaleHero() {
-    const inner = document.getElementById('heroInner');
-    if (!inner) return;
+  // ---- Wave + perspective grid ----
+  (function buildWaveGrid() {
+    const svg = document.getElementById('waveGrid');
+    if (!svg) return;
+    const W = 1600, H = 900;
+    const horizon = 460;
+    const vpX = 800, vpY = horizon;
+    const amp = 95;
+    const xs = [0, W * 0.27, W * 0.52, W * 0.78, W];
+    const baseAmps = [-0.10, -0.85, 0.40, -0.55, 0.18];
+    const phases = [0, 1.20, 2.55, 4.10, 5.70];
 
-    // Reset first
-    inner.style.zoom = '';
-
-    const naturalH = inner.offsetHeight;
-    const availH   = window.innerHeight - NAV_H - PADDING;
-
-    if (naturalH > availH) {
-      inner.style.zoom = availH / naturalH;
+    function buildWavePath(t) {
+      const ys = baseAmps.map((b, i) => {
+        const wobble = Math.sin(t * 0.00038 + phases[i]) * 0.18;
+        return horizon + amp * (b + wobble);
+      });
+      let d = `M${xs[0]},${ys[0].toFixed(1)}`;
+      for (let i = 1; i < xs.length; i++) {
+        const dx = xs[i] - xs[i - 1];
+        const c1x = xs[i - 1] + dx * 0.5;
+        const c1y = ys[i - 1];
+        const c2x = xs[i] - dx * 0.5;
+        const c2y = ys[i];
+        d += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${xs[i].toFixed(1)},${ys[i].toFixed(1)}`;
+      }
+      return d;
     }
 
-    // Reveal after scale is applied
-    inner.style.visibility = 'visible';
-  }
+    const initialWave = buildWavePath(reduceMotion ? 0 : performance.now());
+    const initialClip = `${initialWave} L${W},${H} L0,${H} Z`;
 
-  window.addEventListener('load', function() {
-    scaleHero();
-    window.addEventListener('resize', scaleHero);
-  });
+    const NUM_VERT = 26;
+    const vertLines = [];
+    for (let i = 0; i <= NUM_VERT; i++) {
+      const t = i / NUM_VERT;
+      const exitX = -W * 0.45 + t * W * 1.9;
+      vertLines.push(`<line x1="${vpX}" y1="${vpY}" x2="${exitX.toFixed(1)}" y2="${H}"/>`);
+    }
+    const NUM_HORZ = 14;
+    const horzLineMarkup = [];
+    for (let i = 0; i < NUM_HORZ; i++) {
+      horzLineMarkup.push(`<line data-h-i="${i}" x1="0" y1="${horizon}" x2="${W}" y2="${horizon}"/>`);
+    }
+    function horzY(localT) {
+      return horizon + Math.pow(localT, 1.7) * (H - horizon);
+    }
+
+    svg.innerHTML = `
+      <defs>
+        <clipPath id="wgUnder"><path id="wgClipPath" d="${initialClip}"/></clipPath>
+        <linearGradient id="wgFade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0"    stop-color="#000000" stop-opacity="0"/>
+          <stop offset="0.85" stop-color="#000000" stop-opacity="0.10"/>
+          <stop offset="1"    stop-color="#000000" stop-opacity="0.45"/>
+        </linearGradient>
+        <filter id="wgGrain" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="7"/>
+          <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.7 0"/>
+        </filter>
+      </defs>
+      <g clip-path="url(#wgUnder)">
+        <rect class="wg-floor" x="0" y="0" width="${W}" height="${H}"/>
+        <g class="wg-horizontal">${horzLineMarkup.join('')}</g>
+        <g class="wg-vertical">${vertLines.join('')}</g>
+        <rect x="0" y="0" width="${W}" height="${H}" fill="url(#wgFade)"/>
+      </g>
+      <path id="wgWaveLine" class="wg-wave-line" d="${initialWave}"/>
+      <circle class="wg-vp" cx="${vpX}" cy="${vpY}" r="1.8"/>
+      <rect x="0" y="0" width="${W}" height="${H}" filter="url(#wgGrain)" opacity="0.045"/>
+    `;
+
+    const horzLineEls = [...svg.querySelectorAll('.wg-horizontal line')];
+    function setHorzPositions(t) {
+      for (let i = 0; i < NUM_HORZ; i++) {
+        const localT = ((i + t) % NUM_HORZ) / NUM_HORZ;
+        const safeT = localT < 0.001 ? 0.001 : localT;
+        const y = horzY(safeT);
+        const el = horzLineEls[i];
+        el.setAttribute('y1', y.toFixed(1));
+        el.setAttribute('y2', y.toFixed(1));
+        const fadeIn = Math.min(1, safeT * 18);
+        const fadeOut = Math.min(1, (1 - safeT) * 6);
+        el.setAttribute('stroke-opacity', (fadeIn * fadeOut).toFixed(3));
+      }
+    }
+    setHorzPositions(0);
+
+    if (!reduceMotion) {
+      const wavePathEl = svg.querySelector('#wgWaveLine');
+      const clipPathEl = svg.querySelector('#wgClipPath');
+      let lastWave = 0, lastGrid = 0;
+      function tick(now) {
+        if (now - lastWave >= 33) {
+          const d = buildWavePath(now);
+          wavePathEl.setAttribute('d', d);
+          clipPathEl.setAttribute('d', `${d} L${W},${H} L0,${H} Z`);
+          lastWave = now;
+        }
+        if (now - lastGrid >= 33) {
+          const t = (now * 0.0004) % NUM_HORZ;
+          setHorzPositions(t);
+          lastGrid = now;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+  })();
+
+  // ---- Wordmark letter-by-letter reveal ----
+  (function setupWordmarkLetters() {
+    const wmMark = document.querySelector('.wm-mark');
+    if (!wmMark) return;
+    const text = wmMark.dataset.text || wmMark.textContent.trim();
+    wmMark.textContent = '';
+    [...text].forEach((char, i) => {
+      const span = document.createElement('span');
+      span.className = 'wm-letter';
+      span.style.setProperty('--i', i);
+      span.textContent = char;
+      span.setAttribute('aria-hidden', 'true');
+      wmMark.appendChild(span);
+    });
+  })();
+
+  // ---- Dot field — twinkling backdrop behind the wordmark ----
+  (function buildDotField() {
+    const field = document.getElementById('dotField');
+    if (!field) return;
+    const W = 1200, H = 400, N = 140;
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < N; i++) {
+      const c = document.createElementNS(SVG_NS, 'circle');
+      c.setAttribute('cx', (Math.random() * W).toFixed(1));
+      c.setAttribute('cy', (Math.random() * H).toFixed(1));
+      c.setAttribute('r', (0.5 + Math.random() * 1.7).toFixed(2));
+      const baseOp = (0.15 + Math.random() * 0.5).toFixed(3);
+      const delay = (-Math.random() * 9).toFixed(2);
+      const dur = (3 + Math.random() * 6).toFixed(2);
+      c.style.setProperty('--base-op', baseOp);
+      c.style.setProperty('--delay', delay + 's');
+      c.style.setProperty('--dur', dur + 's');
+      c.style.opacity = baseOp;
+      if (Math.random() < 0.07) c.classList.add('dot-signal');
+      frag.appendChild(c);
+    }
+    field.appendChild(frag);
+  })();
+
+  // ---- Millisecond ticker ----
+  (function setupMsTicker() {
+    const cdMs = document.getElementById('cdMs');
+    if (!cdMs) return;
+    if (reduceMotion) { cdMs.textContent = '.000'; return; }
+    let lastUpdate = 0;
+    function tickMs(now) {
+      if (now - lastUpdate >= 33) {
+        const ms = Date.now() % 1000;
+        cdMs.textContent = '.' + String(ms).padStart(3, '0');
+        lastUpdate = now;
+      }
+      requestAnimationFrame(tickMs);
+    }
+    requestAnimationFrame(tickMs);
+  })();
+
+  // ---- Wordmark click → confetti ----
+  const wordmark = document.getElementById('wordmark');
+  if (wordmark) {
+    function fireWordmarkConfetti() {
+      if (typeof window.confetti !== 'function') return;
+      window.confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.5 },
+        colors: ['#D2FF00', '#282C20', '#000000', '#F5E8E8'],
+        scalar: 0.9,
+      });
+    }
+    wordmark.addEventListener('click', fireWordmarkConfetti);
+    wordmark.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fireWordmarkConfetti(); }
+    });
+  }
 })();
 </script>
 <script>
 (function() {
-  const COLORS = ['#FF6B35','#FFD700','#FF3D8B','#4895FF','#A688FF','#34C759','#FF9F0A','#64D2FF','#FF453A','#30D158'];
+  const COLORS = ['#D2FF00','#FFD700','#FF6B35','#FF3D8B','#34C759','#FF9F0A','#FF453A','#FFFFFF','#F5E8E8','#A8C800'];
   let confettiEnabled = true;
 
   function normalizeSwitchValue(v) {
@@ -2230,12 +2471,10 @@
     .then(function(r) { return r.json(); })
     .then(function(confettiConfig) {
       confettiEnabled = normalizeSwitchValue(confettiConfig.launchConfetti) === 'on';
-      playLaunchConfetti();
       setupNewsConfetti(normalizeSwitchValue(confettiConfig.newsDrift) === 'on');
     })
     .catch(function() {
       confettiEnabled = true;
-      playLaunchConfetti();
       setupNewsConfetti(true);
     });
 })();

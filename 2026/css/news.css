@@ -300,7 +300,7 @@
 
   /* ============ iOS HIG Preview Layer ============ */
   :root {
-    --ios-blue: #007aff;
+    --ios-blue: #D2FF00;
     --ios-bg: #f2f2f7;
     --ios-bg-dark: #000000;
     --ios-card: #ffffff;
@@ -315,7 +315,7 @@
     --ios-separator-dark: rgba(84, 84, 88, 0.65);
     --ios-fill: rgba(120, 120, 128, 0.20);
     --ios-fill-dark: rgba(120, 120, 128, 0.36);
-    --ios-selected: rgba(0, 122, 255, 0.14);
+    --ios-selected: rgba(210, 255, 0, 0.14);
     --ios-radius: 22px;
     --ios-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
     --ios-space-2: 8px;
@@ -567,16 +567,20 @@
     min-height: 44px;
     border-radius: 999px;
     background: var(--ios-blue);
-    color: #fff;
+    color: #000;
     border: 0;
     font-family: inherit;
     font-weight: 700;
-    box-shadow: 0 10px 24px rgba(0, 122, 255, 0.26);
+    box-shadow: 0 10px 24px rgba(210, 255, 0, 0.26);
+  }
+  html[data-mode="light"] .article-cta {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
   }
 
   .article-cta:hover {
     transform: translateY(-2px);
-    color: #fff;
   }
 
   .listing-header h1 {

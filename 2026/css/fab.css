@@ -31,11 +31,16 @@
     }
 
     .fab:hover {
-      background: var(--ios-blue, #007aff);
+      background: var(--ios-blue, #D2FF00);
       border-color: rgba(255, 255, 255, 0.24);
-      color: #fff;
+      color: #000;
       transform: translateY(-2px);
-      box-shadow: 0 14px 32px rgba(0, 122, 255, 0.34);
+      box-shadow: 0 14px 32px rgba(210, 255, 0, 0.34);
+    }
+    html[data-mode="light"] .fab:hover {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
     }
 
     html[data-mode="light"] .fab {

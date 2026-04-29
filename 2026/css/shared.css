@@ -1,25 +1,25 @@
 /* ============ Variables & Reset ============ */
     :root {
-      --hue: 220;
+      --hue: 130;
 
-      /* Dark mode accents — electric blue */
-      --accent:   oklch(0.68 0.22 var(--hue));
-      --accent-2: oklch(0.74 0.20 calc(var(--hue) + 20));
-      --accent-3: oklch(0.62 0.22 calc(var(--hue) - 30));
+      /* Dark mode accents — signal lime */
+      --accent:   #D2FF00;
+      --accent-2: oklch(0.92 0.22 110);
+      --accent-3: oklch(0.86 0.20 130);
 
-      /* Dark mode surfaces — deep blue-tinted dark */
-      --bg:        #0f1117;
-      --surface:   #1a1d27;
-      --surface-2: #22263a;
+      /* Dark mode surfaces — warm-grey dark, lime-friendly */
+      --bg:        #000000;
+      --surface:   #14160F;
+      --surface-2: #282C20;
 
-      /* Dark mode text */
-      --ink:   #eef0f8;
-      --ink-2: #8a94b8;
-      --ink-3: #4d5880;
+      /* Dark mode text — warm off-whites tinted toward signal hue */
+      --ink:   oklch(0.96 0.005 130);
+      --ink-2: oklch(0.78 0.008 130);
+      --ink-3: oklch(0.58 0.012 130);
 
-      /* Dark mode rules */
-      --rule:   rgba(120, 140, 220, 0.15);
-      --rule-2: rgba(120, 140, 220, 0.07);
+      /* Dark mode rules — lime-tinted hairlines */
+      --rule:   oklch(0.96 0.005 130 / 0.18);
+      --rule-2: oklch(0.96 0.005 130 / 0.07);
 
       --f-sans: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
       --f-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -29,24 +29,24 @@
     }
 
     html[data-mode="light"] {
-      /* Light mode accents — deep blue for readability */
-      --accent:   oklch(0.48 0.22 var(--hue));
-      --accent-2: oklch(0.54 0.20 calc(var(--hue) + 20));
-      --accent-3: oklch(0.44 0.22 calc(var(--hue) - 30));
+      /* Light mode accents — deep warm-gray (lime is unreadable on white) */
+      --accent:   oklch(0.42 0.03 130);
+      --accent-2: oklch(0.50 0.04 130);
+      --accent-3: oklch(0.36 0.04 130);
 
       /* Light mode surfaces */
-      --bg:        #f0f4ff;
+      --bg:        oklch(0.985 0.005 130);
       --surface:   #ffffff;
-      --surface-2: #e8edf8;
+      --surface-2: oklch(0.96 0.008 130);
 
       /* Light mode text */
-      --ink:   #0a0e1f;
-      --ink-2: #2d3a66;
-      --ink-3: #5a6896;
+      --ink:   oklch(0.18 0.04 130);
+      --ink-2: oklch(0.36 0.03 130);
+      --ink-3: oklch(0.52 0.02 130);
 
       /* Light mode rules */
-      --rule:   rgba(0, 40, 120, 0.12);
-      --rule-2: rgba(0, 40, 120, 0.06);
+      --rule:   oklch(0.40 0.04 130 / 0.30);
+      --rule-2: oklch(0.18 0.03 130 / 0.10);
     }
 
     * {
@@ -495,7 +495,7 @@
 
     /* ============ iOS HIG Preview Layer ============ */
     :root {
-      --ios-blue: #007aff;
+      --ios-blue: #D2FF00;
       --ios-pink: #ff2d55;
       --ios-green: #34c759;
       --ios-yellow: #ffcc00;
@@ -513,7 +513,7 @@
       --ios-separator-dark: rgba(84, 84, 88, 0.65);
       --ios-fill: rgba(120, 120, 128, 0.20);
       --ios-fill-dark: rgba(120, 120, 128, 0.36);
-      --ios-selected: rgba(0, 122, 255, 0.14);
+      --ios-selected: rgba(210, 255, 0, 0.14);
       --ios-radius: 22px;
       --ios-control-radius: 16px;
       --ios-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
@@ -609,11 +609,16 @@
       align-items: center;
       justify-content: center;
       background: var(--ios-blue);
-      color: #fff;
+      color: #000;
       border-radius: 999px;
       padding: 8px 16px;
       font-weight: 700;
-      box-shadow: 0 6px 16px rgba(0, 122, 255, 0.22);
+      box-shadow: 0 6px 16px rgba(210, 255, 0, 0.22);
+    }
+    html[data-mode="light"] nav.top .nav-sponsor-cta {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     }
 
     .hamburger {
@@ -761,8 +766,8 @@
 
     .hero-sponsor-btn {
       background: var(--ios-blue);
-      color: #fff;
-      box-shadow: 0 10px 28px rgba(0, 122, 255, 0.34);
+      color: #000;
+      box-shadow: 0 10px 28px rgba(210, 255, 0, 0.34);
     }
 
     .hero-cta-btn:hover,
@@ -893,8 +898,13 @@
 
     .submit-card-cta {
       background: var(--ios-blue);
+      color: #000;
+      box-shadow: 0 10px 24px rgba(210, 255, 0, 0.26);
+    }
+    html[data-mode="light"] .submit-card-cta {
+      background: var(--accent);
       color: #fff;
-      box-shadow: 0 10px 24px rgba(0, 122, 255, 0.26);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -967,12 +977,15 @@
 
     .map-btn.active {
       background: var(--accent);
-      color: #fff;
+      color: var(--bg);
       border-color: var(--accent);
     }
 
     html[data-mode="dark"] .map-btn.active {
       background: var(--accent);
+      color: var(--bg);
+    }
+    html[data-mode="light"] .map-btn.active {
       color: #fff;
     }
 
@@ -1129,10 +1142,13 @@
       height: 120px;
       border-radius: 50%;
       padding: 5px;
-      background: #007aff;
-      box-shadow: 0 4px 20px rgba(0, 122, 255, 0.35);
+      background: var(--accent);
+      box-shadow: 0 4px 20px rgba(210, 255, 0, 0.35);
       transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .3s;
       animation: none;
+    }
+    html[data-mode="light"] .staff-avatar-wrap {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
     }
 
     .staff-avatar-wrap:hover {
