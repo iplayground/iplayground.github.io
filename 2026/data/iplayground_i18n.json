@@ -21,7 +21,7 @@
   "hero_eyebrow_cfp":    { "zh": "徵稿中",                            "en": "CFP OPEN" },
   "hero_lede":           { "zh": "為 Apple 開發者準備的兩天，由社群志工策劃。技術分享、深度交流、與一群在乎品質的人。", "en": "Two days for Apple-platform developers, organised by volunteers. Talks, conversations, and a room full of people who care about craft." },
   "cta_submit":          { "zh": "投稿議程",                          "en": "Submit a talk" },
-  "cta_sponsor":         { "zh": "推薦贊助",                          "en": "Refer a sponsor" },
+  "cta_sponsor":         { "zh": "推薦贊助商",                        "en": "Refer a sponsor" },
   "cta_topics":          { "zh": "看看主題範圍",                      "en": "Browse Topics" },
 
   "countdown_label":     { "zh": "截止倒數",                          "en": "Deadline Countdown" },
