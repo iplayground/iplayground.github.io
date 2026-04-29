@@ -2588,3 +2588,61 @@
       .kbd-card,
       .easter-toast { transition: none; }
     }
+
+    /* ===== Reveal-on-scroll (single orchestrated rhythm for below-the-fold sections) ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 640ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+        transform 640ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+      will-change: opacity, transform;
+    }
+    .reveal.reveal--soft {
+      transform: translateY(8px);
+    }
+    .reveal.is-in {
+      opacity: 1;
+      transform: none;
+    }
+    /* Guard: once revealed, drop will-change so the GPU layer is released */
+    .reveal.is-in {
+      will-change: auto;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        will-change: auto !important;
+      }
+    }
+
+    /* ===== Theme + language crossfade via View Transitions API =====
+       Browsers without support fall through to instant snap. */
+    @media (prefers-reduced-motion: no-preference) {
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation-duration: 280ms;
+        animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      ::view-transition-old(root) {
+        animation-name: vt-fade-out;
+      }
+      ::view-transition-new(root) {
+        animation-name: vt-fade-in;
+      }
+    }
+    @keyframes vt-fade-out {
+      from { opacity: 1; }
+      to   { opacity: 0; }
+    }
+    @keyframes vt-fade-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(root),
+      ::view-transition-new(root) { animation: none; }
+    }

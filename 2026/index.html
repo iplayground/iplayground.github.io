@@ -2874,6 +2874,112 @@
   });
   window.addEventListener('blur', onBlur);
   window.addEventListener('focus', onFocus);
+
+  // ---- 6. Reveal-on-scroll (one orchestrated rhythm for below-the-fold sections) ----
+  // Brand register: motion is part of the voice; below-the-fold sections enter as a unit
+  // with a small stagger. Hero already owns its own choreography — don't touch it.
+  if (!reduceMotion) {
+    const REVEAL_GROUPS = [
+      { container: '.section-head', child: ':scope > *',     stagger: 80,  soft: true },
+      { container: '.about-stats',  child: ':scope > .stat', stagger: 90 },
+      { container: '.transport-grid', child: ':scope > .transport-card', stagger: 110 },
+      { container: '#newsList',     child: ':scope > .news-row',         stagger: 60 },
+      { container: '#speakerGrid',  child: ':scope > .speaker-card',     stagger: 60 },
+      { container: '#staffGrid',    child: ':scope > .staff-card',       stagger: 50 },
+    ];
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+    const inViewport = (el) => {
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      return r.top < vh * 0.94 && r.bottom > 0;
+    };
+
+    function rescanReveal() {
+      REVEAL_GROUPS.forEach(group => {
+        document.querySelectorAll(group.container).forEach(container => {
+          let kids;
+          try { kids = container.querySelectorAll(group.child); }
+          catch (_) { return; }
+          let i = 0;
+          kids.forEach(el => {
+            if (el.dataset.revealInit === '1') return;
+            el.classList.add('reveal');
+            if (group.soft) el.classList.add('reveal--soft');
+            const delay = i * group.stagger;
+            if (delay) el.style.setProperty('--reveal-delay', `${delay}ms`);
+            el.dataset.revealInit = '1';
+            // If it's already in viewport (e.g. above-the-fold news section on first paint),
+            // reveal it on the next frame so the CSS transition can kick in.
+            if (inViewport(el)) {
+              requestAnimationFrame(() => el.classList.add('is-in'));
+            } else {
+              revealObserver.observe(el);
+            }
+            i += 1;
+          });
+        });
+      });
+    }
+
+    // Initial scan + re-scan whenever dynamic containers change
+    const dynamicIds = ['newsList', 'agendaList', 'speakerGrid', 'staffGrid'];
+    let rescanScheduled = false;
+    function scheduleRescan() {
+      if (rescanScheduled) return;
+      rescanScheduled = true;
+      requestAnimationFrame(() => {
+        rescanScheduled = false;
+        rescanReveal();
+      });
+    }
+    dynamicIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      new MutationObserver(scheduleRescan).observe(el, { childList: true });
+    });
+
+    // Also run after DOMContentLoaded data fetch settles (renders happen inside that promise)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => setTimeout(rescanReveal, 0));
+    } else {
+      setTimeout(rescanReveal, 0);
+    }
+    // Catch the first wave of renders triggered by data fetches
+    setTimeout(rescanReveal, 400);
+    setTimeout(rescanReveal, 1200);
+  }
+
+  // ---- 7. Theme + language crossfade via View Transitions API ----
+  // Wraps the global applyAppearance / applyLang in document.startViewTransition().
+  // Browsers without support get the original instant call; reduced-motion bypasses entirely.
+  function withViewTransition(fn) {
+    if (reduceMotion) return fn();
+    if (typeof document.startViewTransition !== 'function') return fn();
+    try { document.startViewTransition(fn); }
+    catch (_) { fn(); }
+  }
+  if (typeof window.applyAppearance === 'function' && !window.__vtAppearancePatched) {
+    const _origAppearance = window.applyAppearance;
+    window.applyAppearance = function (pref) {
+      withViewTransition(() => _origAppearance(pref));
+    };
+    window.__vtAppearancePatched = true;
+  }
+  if (typeof window.applyLang === 'function' && !window.__vtLangPatched) {
+    const _origLang = window.applyLang;
+    window.applyLang = function (lang) {
+      withViewTransition(() => _origLang(lang));
+    };
+    window.__vtLangPatched = true;
+  }
 })();
 </script>
 
