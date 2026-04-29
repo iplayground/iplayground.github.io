@@ -22,7 +22,7 @@
   </script>
 
   <link rel="stylesheet" href="css/shared.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/main.css?v=agenda-search-20260429">
 </head>
 
 <body>
@@ -212,7 +212,7 @@
     <canvas id="newsConfettiCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
     <div class="section-inner">
       <header class="section-head">
-        <span class="section-eyebrow">// 01</span>
+        <span class="section-eyebrow" id="newsEyebrow">// 最新消息</span>
         <h2 class="section-title section-title--zh" data-i18n="nav_news">最新消息</h2>
         <span class="section-meta" id="newsMeta"></span>
       </header>
@@ -381,15 +381,31 @@
     </div>
     <div class="wrap">
       <div class="agenda-wrap">
-        <div class="agenda-tabs" role="tablist" id="agendaTabs">
-          <button class="agenda-tab is-active" data-day="1" role="tab" aria-selected="true">
-            <span class="tab-label">DAY 01</span>
-            <span class="tab-date">07.25</span>
-          </button>
-          <button class="agenda-tab" data-day="2" role="tab" aria-selected="false">
-            <span class="tab-label">DAY 02</span>
-            <span class="tab-date">07.26</span>
-          </button>
+        <div class="agenda-toolbar">
+          <div class="agenda-tabs" role="tablist" id="agendaTabs">
+            <button class="agenda-tab is-active" data-day="1" role="tab" aria-selected="true">
+              <span class="tab-label">DAY 01</span>
+              <span class="tab-date">07.25</span>
+            </button>
+            <button class="agenda-tab" data-day="2" role="tab" aria-selected="false">
+              <span class="tab-label">DAY 02</span>
+              <span class="tab-date">07.26</span>
+            </button>
+          </div>
+          <div class="agenda-controls">
+            <label class="agenda-search" aria-label="搜尋議程">
+              <input id="agendaSearchInput" type="search" autocomplete="off" placeholder="搜尋議題或標籤" aria-label="搜尋議程">
+            </label>
+            <button class="agenda-sort-btn" id="agendaSortBtn" type="button" aria-label="切換議程排序" title="切換議程排序">
+              <svg class="sort-icon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 5v14"></path>
+                <path d="M4 8l3-3 3 3"></path>
+                <path d="M14 19h6"></path>
+                <path d="M14 13h4"></path>
+                <path d="M14 7h2"></path>
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div class="agenda-list" id="agendaList"></div>
@@ -549,7 +565,7 @@
 
   <!-- Agenda Modal -->
   <div id="agendaModal" class="modal-overlay" onclick="closeAgendaModal()">
-    <div class="agenda-modal-content" onclick="event.stopPropagation()">
+    <div class="agenda-modal-content" id="agendaModalContent" data-modal-label="// 議程" onclick="event.stopPropagation()">
       <button class="agenda-modal-close" onclick="closeAgendaModal()" aria-label="關閉">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <path d="M18 6L6 18M6 6l12 12"/>
@@ -1003,6 +1019,7 @@
     // ===== Render =====
     let agendaCurrentDay = 1;
     let agendaSortAsc = true; // true = 由近到遠（預設）
+    let agendaSearchQuery = "";
 
     function localized(value, lang = currentLang) {
       if (Array.isArray(value)) return value.map(item => localized(item, lang));
@@ -1015,6 +1032,35 @@
       const start = (timeStr || "").split(/[–\-]/)[0].trim();
       const [h, m] = start.split(":").map(Number);
       return (h || 0) * 60 + (m || 0);
+    }
+
+    function normalizeSearchText(value) {
+      return String(value || "").toLocaleLowerCase().replace(/\s+/g, "");
+    }
+
+    function agendaMatchesSearch(item, query) {
+      if (!query) return true;
+      const title = localized(item.title);
+      const tags = localized(item.tags || []).join(" ");
+      const haystack = normalizeSearchText(`${title} ${tags}`);
+      return haystack.includes(query);
+    }
+
+    function syncAgendaControls() {
+      const input = document.getElementById("agendaSearchInput");
+      if (input) {
+        if (input.value !== agendaSearchQuery) input.value = agendaSearchQuery;
+        input.placeholder = currentLang === "en" ? "Search title or tags" : "搜尋議題或標籤";
+      }
+
+      const sortBtn = document.getElementById("agendaSortBtn");
+      if (sortBtn) {
+        sortBtn.classList.toggle("is-desc", !agendaSortAsc);
+        sortBtn.setAttribute("aria-label", agendaSortAsc
+          ? (currentLang === "en" ? "Sort latest first" : "切換為時間倒序")
+          : (currentLang === "en" ? "Sort earliest first" : "切換為時間正序"));
+        sortBtn.title = sortBtn.getAttribute("aria-label");
+      }
     }
 
     function renderAgenda(day) {
@@ -1030,18 +1076,28 @@
         btn.setAttribute("aria-selected", String(isActive));
       });
 
-      const rows = AGENDA.filter(r => r.day === activeDay)
+      const query = normalizeSearchText(agendaSearchQuery);
+      const rows = AGENDA
+        .map((item, sourceIdx) => ({ item, sourceIdx }))
+        .filter(({ item }) => item.day === activeDay)
+        .filter(({ item }) => agendaMatchesSearch(item, query))
         .slice()
-        .sort((a, b) => parseTime(a.time) - parseTime(b.time));
+        .sort((a, b) => {
+          const delta = parseTime(a.item.time) - parseTime(b.item.time);
+          return agendaSortAsc ? delta : -delta;
+        });
 
       if (rows.length === 0) {
-        list.innerHTML = `<div class="agenda-empty">${currentLang === "en" ? "Agenda will be announced soon" : "議程公布後即將顯示"}</div>`;
+        list.innerHTML = `<div class="agenda-empty">${query
+          ? (currentLang === "en" ? "No matching sessions" : "沒有符合的議題")
+          : (currentLang === "en" ? "Agenda will be announced soon" : "議程公布後即將顯示")}</div>`;
+        syncAgendaControls();
         return;
       }
 
       const tbaLabel = currentLang === "en" ? "TBA" : "TBA";
 
-      list.innerHTML = rows.map((r, idx) => {
+      list.innerHTML = rows.map(({ item: r, sourceIdx }) => {
         const tags = localized(r.tags || []);
         const primaryTag = tags[0] || "";
         const isKeynote = primaryTag.toUpperCase() === "KEYNOTE" || (r.track || "").toLowerCase() === "keynote";
@@ -1053,7 +1109,7 @@
         const desc = localized(r.description) || "";
 
         return `
-        <div class="session" data-agenda-idx="${idx}" data-agenda-day="${activeDay}">
+        <div class="session" data-agenda-idx="${sourceIdx}" data-agenda-day="${activeDay}">
           <span class="session-time">${startTime}</span>
           <div class="session-body">
             <h3 class="session-title">${localized(r.title)}</h3>
@@ -1071,16 +1127,27 @@
         card.addEventListener("click", () => {
           const day = parseInt(card.dataset.agendaDay);
           const idx = parseInt(card.dataset.agendaIdx);
-          const item = AGENDA.filter(r => r.day === day)[idx];
+          const item = AGENDA[idx];
           if (item) showAgendaModal(item);
         });
       });
+      syncAgendaControls();
     }
 
     // tab 點擊事件
     document.getElementById("agendaTabs")?.addEventListener("click", e => {
       const btn = e.target.closest("button[data-day]");
       if (btn) renderAgenda(parseInt(btn.dataset.day));
+    });
+
+    document.getElementById("agendaSearchInput")?.addEventListener("input", e => {
+      agendaSearchQuery = e.target.value || "";
+      renderAgenda(agendaCurrentDay);
+    });
+
+    document.getElementById("agendaSortBtn")?.addEventListener("click", () => {
+      agendaSortAsc = !agendaSortAsc;
+      renderAgenda(agendaCurrentDay);
     });
 
     // ===== Agenda Modal =====
@@ -1567,6 +1634,14 @@
         const k = el.dataset.i18nTitle;
         if (dict[k]) el.setAttribute("title", dict[k]);
       });
+      const agendaModalContent = document.getElementById("agendaModalContent");
+      if (agendaModalContent) {
+        agendaModalContent.setAttribute("data-modal-label", lang === "en" ? "// SESSION" : "// 議程");
+      }
+      const newsEyebrow = document.getElementById("newsEyebrow");
+      if (newsEyebrow) {
+        newsEyebrow.textContent = lang === "en" ? "// NEWS" : "// 最新消息";
+      }
       syncCountdownUnits(dict);
       document.documentElement.lang = lang === "zh" ? "zh-Hant" : lang;
       document.documentElement.dataset.lang = lang;
@@ -2273,25 +2348,35 @@
   (function buildDotField() {
     const field = document.getElementById('dotField');
     if (!field) return;
-    const W = 1200, H = 400, N = 140;
+    const W = 1200, H = 400;
     const SVG_NS = 'http://www.w3.org/2000/svg';
-    const frag = document.createDocumentFragment();
-    for (let i = 0; i < N; i++) {
-      const c = document.createElementNS(SVG_NS, 'circle');
-      c.setAttribute('cx', (Math.random() * W).toFixed(1));
-      c.setAttribute('cy', (Math.random() * H).toFixed(1));
-      c.setAttribute('r', (0.5 + Math.random() * 1.7).toFixed(2));
-      const baseOp = (0.15 + Math.random() * 0.5).toFixed(3);
-      const delay = (-Math.random() * 9).toFixed(2);
-      const dur = (3 + Math.random() * 6).toFixed(2);
-      c.style.setProperty('--base-op', baseOp);
-      c.style.setProperty('--delay', delay + 's');
-      c.style.setProperty('--dur', dur + 's');
-      c.style.opacity = baseOp;
-      if (Math.random() < 0.07) c.classList.add('dot-signal');
-      frag.appendChild(c);
-    }
-    field.appendChild(frag);
+    const layers = [
+      { cls: 'dot-layer dot-layer--far', count: 72, rMin: 0.45, rMax: 1.05, opMin: 0.08, opMax: 0.26, dMin: 6.5, dMax: 11.5, signalRate: 0.02 },
+      { cls: 'dot-layer dot-layer--mid', count: 52, rMin: 0.7,  rMax: 1.5,  opMin: 0.14, opMax: 0.42, dMin: 4.8, dMax: 8.2,  signalRate: 0.06 },
+      { cls: 'dot-layer dot-layer--near', count: 34, rMin: 0.95, rMax: 2.2,  opMin: 0.2,  opMax: 0.58, dMin: 3.4, dMax: 6.2,  signalRate: 0.1  },
+    ];
+
+    layers.forEach(layerConf => {
+      const layer = document.createElementNS(SVG_NS, 'g');
+      layer.setAttribute('class', layerConf.cls);
+
+      for (let i = 0; i < layerConf.count; i++) {
+        const c = document.createElementNS(SVG_NS, 'circle');
+        c.setAttribute('cx', (Math.random() * W).toFixed(1));
+        c.setAttribute('cy', (Math.random() * H).toFixed(1));
+        c.setAttribute('r', (layerConf.rMin + Math.random() * (layerConf.rMax - layerConf.rMin)).toFixed(2));
+        const baseOp = (layerConf.opMin + Math.random() * (layerConf.opMax - layerConf.opMin)).toFixed(3);
+        const delay = (-Math.random() * 11).toFixed(2);
+        const dur = (layerConf.dMin + Math.random() * (layerConf.dMax - layerConf.dMin)).toFixed(2);
+        c.style.setProperty('--base-op', baseOp);
+        c.style.setProperty('--delay', delay + 's');
+        c.style.setProperty('--dur', dur + 's');
+        c.style.opacity = baseOp;
+        if (Math.random() < layerConf.signalRate) c.classList.add('dot-signal');
+        layer.appendChild(c);
+      }
+      field.appendChild(layer);
+    });
   })();
 
   // ---- Millisecond ticker ----

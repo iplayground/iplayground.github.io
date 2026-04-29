@@ -205,7 +205,7 @@
     margin: 0 auto;
   }
   .article-header::before {
-    content: '// NEWS';
+    content: '// 最新消息';
     display: block;
     font-family: var(--news-f-mono);
     font-size: 11px;
@@ -407,7 +407,7 @@
     padding-bottom: 24px;
   }
   .listing-header::before {
-    content: '// ARCHIVE';
+    content: '// 最新消息';
     font-family: var(--news-f-mono);
     font-size: 11px;
     letter-spacing: 0.16em;
@@ -488,6 +488,12 @@
   /* ============ Footer ============ */
   footer {
     padding: 80px 0 48px;
+  }
+  html[lang="en"] .article-header::before {
+    content: '// NEWS';
+  }
+  html[lang="en"] .listing-header::before {
+    content: '// ARCHIVE';
   }
   footer a {
     text-decoration: none;
