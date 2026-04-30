@@ -1204,12 +1204,14 @@
 
       modal.style.display = "flex";
       document.body.style.overflow = "hidden";
+      document.body.classList.add("is-modal-open");
     }
 
     function closeAgendaModal() {
       const modal = document.getElementById("agendaModal");
       if (modal) modal.style.display = "none";
       document.body.style.overflow = "";
+      document.body.classList.remove("is-modal-open");
     }
 
     // ===== Speaker Modal =====
@@ -1249,12 +1251,14 @@
 
       modal.style.display = "flex";
       document.body.style.overflow = "hidden";
+      document.body.classList.add("is-modal-open");
     }
 
     function closeSpeakerModal() {
       const modal = document.getElementById("speakerModal");
       if (modal) modal.style.display = "none";
       document.body.style.overflow = "";
+      document.body.classList.remove("is-modal-open");
     }
 
     // ESC 關閉彈窗
