@@ -10,6 +10,8 @@
       align-items: center;
     }
 
+    .fab[hidden] { display: none; }
+
     .fab {
       width: 52px;
       height: 52px;

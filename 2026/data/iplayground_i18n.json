@@ -126,7 +126,6 @@
   "kbd_group_nav":         { "zh": "// 跳轉",                           "en": "// JUMP" },
   "kbd_group_action":      { "zh": "// 動作",                           "en": "// ACTION" },
   "kbd_action_help":       { "zh": "顯示這份清單",                      "en": "Show this list" },
-  "kbd_action_theme":      { "zh": "切換主題",                          "en": "Cycle theme" },
   "kbd_action_lang":       { "zh": "切換語言",                          "en": "Toggle language" },
   "kbd_action_confetti":   { "zh": "灑一把彩帶",                        "en": "Throw confetti" },
   "kbd_action_submit":     { "zh": "前往投稿表單",                      "en": "Open CFP form" },
