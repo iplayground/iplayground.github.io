@@ -2576,7 +2576,6 @@
 <script>
   // ============ Speaker Grid — 從 data/iplayground_speakers.json 動態渲染 ============
   (async function () {
-    const FALLBACK_PHOTO = 'img/speaker/speaker_sample.png';
     const grid = document.getElementById('speakerGrid');
     if (!grid) return;
 
@@ -2589,23 +2588,34 @@
       return;
     }
 
+    const swapToPlaceholder = (img) => {
+      const card = img.closest('.speaker-card');
+      if (card) card.classList.add('speaker-card--placeholder');
+      const ph = document.createElement('div');
+      ph.className = 'speaker-photo-placeholder';
+      ph.setAttribute('aria-hidden', 'true');
+      img.replaceWith(ph);
+    };
+    window.__speakerPhotoFallback = swapToPlaceholder;
+
     grid.innerHTML = speakers.map((speaker, i) => {
       const { name, role, photo } = speaker;
-      const src = photo || FALLBACK_PHOTO;
-      const avatar = `
-        <div class="speaker-avatar-wrap">
-          <div class="speaker-avatar-inner">
-            <img src="${src}" alt="" loading="lazy"
-              onerror="this.onerror=null;this.src='${FALLBACK_PHOTO}'">
-          </div>
-        </div>`;
+      const isPlaceholder = !photo;
+      const inner = isPlaceholder
+        ? `<div class="speaker-photo-placeholder" aria-hidden="true"></div>`
+        : `<img src="${photo}" alt="" loading="lazy"
+              onerror="window.__speakerPhotoFallback(this);">`;
 
       return `
-        <div class="speaker-card" data-speaker-idx="${i}" style="cursor:pointer;">
-          ${avatar}
-          <p class="speaker-name">${name}</p>
-          <p class="speaker-role">${role}</p>
-        </div>`;
+        <article class="speaker-card${isPlaceholder ? ' speaker-card--placeholder' : ''}" data-speaker-idx="${i}">
+          <div class="speaker-photo">
+            ${inner}
+          </div>
+          <div class="speaker-card-meta">
+            <h3 class="speaker-name">${name}</h3>
+            <p class="speaker-role">${role}</p>
+          </div>
+        </article>`;
     }).join('');
 
     // 點擊開啟彈窗

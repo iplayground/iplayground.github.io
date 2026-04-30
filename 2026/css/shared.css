@@ -1013,31 +1013,30 @@
     .speaker-grid {
       margin-top: 72px;
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 40px 24px;
-      justify-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: clamp(20px, 2.4vw, 32px);
     }
 
     .speaker-card {
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 14px;
-      text-align: center;
+      cursor: pointer;
+      text-align: left;
     }
 
-    .speaker-avatar-wrap {
+    .speaker-photo {
       position: relative;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      padding: 5px;
+      aspect-ratio: 4 / 5;
+      padding: 2px;
+      border-radius: 12px;
       background: conic-gradient(
         from var(--speaker-ring-angle, 0deg),
-        #f59e0b, #ec4899, #8b5cf6, #f59e0b
+        #f59e0b, #ec4899, #8b5cf6, #D2FF00, #f59e0b
       );
       transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1);
       animation: speakerRingSpin 4s linear infinite;
+      isolation: isolate;
     }
 
     @property --speaker-ring-angle {
@@ -1050,15 +1049,14 @@
       to { --speaker-ring-angle: 360deg; }
     }
 
-    /* 光暈效果 */
-    .speaker-avatar-wrap::before {
+    .speaker-photo::before {
       content: "";
       position: absolute;
       inset: -4px;
-      border-radius: 50%;
+      border-radius: 14px;
       background: conic-gradient(
         from var(--speaker-ring-angle, 0deg),
-        #f59e0b, #ec4899, #8b5cf6, #f59e0b
+        #f59e0b, #ec4899, #8b5cf6, #D2FF00, #f59e0b
       );
       filter: blur(10px);
       opacity: 0.6;
@@ -1066,69 +1064,92 @@
       animation: speakerRingSpin 4s linear infinite;
     }
 
-    .speaker-avatar-wrap:hover {
-      transform: translateY(-6px) scale(1.05);
+    .speaker-photo::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: 10px;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 60%,
+        color-mix(in oklab, var(--bg) 80%, transparent) 100%
+      );
+      pointer-events: none;
     }
 
-    .speaker-avatar-wrap:hover::before {
+    .speaker-photo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      display: block;
+      background: var(--surface);
+      filter: saturate(0.78) contrast(1.05);
+      transition: filter var(--t-mid) var(--ease-out);
+    }
+
+    .speaker-card:hover .speaker-photo {
+      transform: translateY(-4px);
+    }
+    .speaker-card:hover .speaker-photo::before {
       opacity: 0.9;
       filter: blur(14px);
     }
+    .speaker-card:hover .speaker-photo img {
+      filter: saturate(1.0) contrast(1.0);
+    }
 
-    body.is-modal-open .speaker-avatar-wrap,
-    body.is-modal-open .speaker-avatar-wrap::before {
+    body.is-modal-open .speaker-photo,
+    body.is-modal-open .speaker-photo::before {
       animation-play-state: paused;
     }
-    body.is-modal-open .speaker-avatar-wrap:hover {
+    body.is-modal-open .speaker-card:hover .speaker-photo {
       transform: none;
     }
-    body.is-modal-open .speaker-avatar-wrap:hover::before {
+    body.is-modal-open .speaker-card:hover .speaker-photo::before {
       opacity: 0.6;
       filter: blur(10px);
     }
 
-    .speaker-avatar-inner {
+    /* Placeholder — flat dark surface, keeps the rainbow ring + halo around it */
+    .speaker-photo-placeholder {
       width: 100%;
       height: 100%;
-      border-radius: 50%;
-      overflow: hidden;
-      background: var(--surface);
-      outline: 3px solid var(--bg);
+      border-radius: 10px;
+      background:
+        radial-gradient(circle at 50% 45%,
+          color-mix(in oklab, var(--ink-3) 10%, transparent) 0%,
+          transparent 60%),
+        var(--surface);
+    }
+    .speaker-card--placeholder .speaker-photo::after {
+      opacity: 0.35;
     }
 
-    .speaker-avatar-inner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .speaker-card-link {
-      display: block;
-      border-radius: 50%;
-      text-decoration: none;
-      transition: opacity .2s;
-    }
-
-    .speaker-card-link:hover {
-      opacity: 0.88;
+    .speaker-card-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .speaker-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: -0.01em;
       margin: 0;
+      font-family: var(--f-display);
+      font-size: 14px;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      line-height: 1.2;
     }
 
     .speaker-role {
-      font-size: 12px;
-      font-family: var(--f-mono);
-      color: var(--ink-3);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
       margin: 0;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     /* ============ Staff Grid ============ */
@@ -1248,11 +1269,6 @@
         gap: 32px 16px;
       }
 
-      .speaker-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 32px 16px;
-      }
-
       .agenda-row {
         grid-template-columns: 80px 1fr;
         gap: 20px;
@@ -1325,16 +1341,6 @@
       .staff-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 28px 12px;
-      }
-
-      .speaker-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 28px 12px;
-      }
-
-      .speaker-avatar-wrap {
-        width: 96px;
-        height: 96px;
       }
 
       .staff-avatar-wrap {
