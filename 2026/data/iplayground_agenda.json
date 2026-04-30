@@ -1,147 +1,400 @@
 [
   {
     "day": 1,
-    "time": "10:00 – 10:20",
+    "time": "09:00 – 09:20",
+    "track": "special",
+    "noModal": false,
+    "title": { "zh": "開場介紹", "en": "Opening" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": { "name": { "zh": "主辦團隊", "en": "Organizing Team" }, "avatar": "img/staff/staff_hokila.jpg", "social": [] },
+    "description": {
+      "zh": "iPlayground 2026 正式開幕！歡迎來到台灣最大的 Apple 開發者社群年會。今年匯集了來自各地的工程師、設計師與產品人，一同分享實戰經驗、交流最新技術。希望這兩天的議程能帶給你滿滿的收穫與靈感，也期待你在茶水間與走廊繼續交流。感謝所有贊助商、講者與工作人員讓這一切成真。",
+      "en": "Welcome to iPlayground 2026 — Taiwan's largest Apple developer community conference. We've gathered engineers, designers, and product folks to share real-world experience and discuss the latest in Apple platform development. Thank you to all sponsors, speakers, and staff who made this possible."
+    },
+    "hackmd": ""
+  },
+  {
+    "day": 1,
+    "time": "09:20 – 10:10",
     "track": "ios",
-    "title": {
-      "zh": "SwiftUI 在大型產品的落地經驗",
-      "en": "Shipping SwiftUI in Large-Scale Products"
-    },
-    "tags": {
-      "zh": ["iOS", "SwiftUI", "架構"],
-      "en": ["iOS", "SwiftUI", "Architecture"]
-    },
+    "title": { "zh": "Swift Macro 從零到上線：消滅樣板程式碼的真實歷程", "en": "Swift Macros from Zero to Production: Eliminating Boilerplate for Real" },
+    "tags": { "zh": ["Swift", "Macro", "工具鏈"], "en": ["Swift", "Macro", "Toolchain"] },
     "speaker": {
-      "name": {
-        "zh": "講者 A",
-        "en": "Speaker A"
-      },
+      "name": { "zh": "林思宇", "en": "Szu-Yu Lin" },
       "avatar": "img/staff/staff_hokila.jpg",
-      "social": [
-        { "type": "github",   "url": "https://github.com/" },
-        { "type": "linkedin", "url": "https://linkedin.com/" },
-        { "type": "web",      "url": "https://example.com/" }
-      ]
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "twitter", "url": "https://x.com/" }]
     },
     "description": {
-      "zh": "分享 SwiftUI 在大型產品中的實際落地經驗，包含架構選擇、效能挑戰與踩過的坑。",
-      "en": "A practical look at adopting SwiftUI in large-scale products, covering architectural choices, performance challenges, and lessons learned."
+      "zh": "Swift 5.9 的 Macro 功能看起來很美好，但從「hello world macro」走到「上線穩定運行」之間的距離遠比想像中長。這場分享從一個真實的內部工具需求出發，描述如何從零開始摸索 macro 的語法限制與 AST 操作，如何設計出讓團隊成員願意使用的 API，又如何在 Xcode 支援尚不完整的情況下讓 macro 在 CI 環境穩定展開。踩過的坑包括 freestanding 與 attached macro 的選擇困境、診斷訊息的表達方式，以及展開結果難以 debug 的痛苦。如果你對 Swift Macro 充滿期待卻還在觀望，這場希望給你一個腳踏實地的參考座標。",
+      "en": "The journey from a hello-world macro to a stable production tool is longer than it looks. This talk covers real tooling needs, API design for team adoption, freestanding vs attached trade-offs, and surviving CI without full Xcode macro support."
     },
     "hackmd": "https://hackmd.io/"
   },
   {
     "day": 1,
-    "time": "10:30 – 11:00",
-    "track": "ai",
-    "title": {
-      "zh": "LLM / RAG / Agent 在真實產品的應用",
-      "en": "LLM, RAG, and Agents in Real Products"
-    },
-    "tags": {
-      "zh": ["AI", "LLM", "產品"],
-      "en": ["AI", "LLM", "Product"]
-    },
+    "time": "10:10 – 10:25",
+    "track": "break",
+    "noModal": true,
+    "title": { "zh": "休息時間", "en": "Break" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": null,
+    "description": { "zh": "", "en": "" },
+    "hackmd": ""
+  },
+  {
+    "day": 1,
+    "time": "10:25 – 11:15",
+    "track": "ios",
+    "title": { "zh": "@Observable 與 Combine 共存：新舊狀態管理的摩擦與和解", "en": "Observable and Combine Coexistence: Friction and Peace Between Old and New" },
+    "tags": { "zh": ["Observation", "Combine", "狀態管理"], "en": ["Observation", "Combine", "State Management"] },
     "speaker": {
-      "name": {
-        "zh": "講者 B",
-        "en": "Speaker B"
-      },
+      "name": { "zh": "吳雅雯", "en": "Ya-Wen Wu" },
       "avatar": "img/staff/staff_hokila.jpg",
-      "social": [
-        { "type": "github", "url": "https://github.com/" },
-        { "type": "web",    "url": "https://example.com/" }
-      ]
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "linkedin", "url": "https://linkedin.com/" }]
     },
     "description": {
-      "zh": "不是 Demo，是上線之後的故事。分享 LLM、RAG、Agent 在真實產品中的應用經驗與踩坑紀錄。",
-      "en": "Not a demo, but the story after launch: lessons from applying LLMs, RAG, and agents in real production environments."
+      "zh": "iOS 17 帶來的 Observation 框架承諾更直覺的狀態管理，但大多數 app 都有大量 Combine 程式碼等著共存。這場從一個真實的漸進遷移案例出發，深入討論 @Observable 的追蹤機制與 Combine Publisher 模型之間的核心摩擦：re-render 時機不同步、生命週期綁定的眉角，以及在 ViewModel 層混用最常出現的記憶體洩漏模式。也會分享我們最終採用的共存策略，讓你不必一口氣重寫所有程式碼，也能安全地讓新舊模型在同一個 codebase 裡運作。如果你正在評估是否要遷移，這場會給你一些更接近現實的判斷依據。",
+      "en": "Observation promises cleaner state management but most apps still run Combine. This talk covers re-render timing mismatches, memory leak patterns in mixed ViewModels, and a practical coexistence strategy that avoids a full rewrite."
     },
     "hackmd": "https://hackmd.io/"
   },
   {
     "day": 1,
-    "time": "11:10 – 11:40",
-    "track": "product",
-    "title": {
-      "zh": "從 0 到 1 的建立，或從 1 到 100 的擴張",
-      "en": "Building from 0 to 1, or Scaling from 1 to 100"
-    },
-    "tags": {
-      "zh": ["產品", "成長"],
-      "en": ["Product", "Growth"]
-    },
+    "time": "11:15 – 11:30",
+    "track": "break",
+    "noModal": true,
+    "title": { "zh": "休息時間", "en": "Break" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": null,
+    "description": { "zh": "", "en": "" },
+    "hackmd": ""
+  },
+  {
+    "day": 1,
+    "time": "11:30 – 12:20",
+    "track": "ios",
+    "title": { "zh": "Swift Testing 上線一年：XCTest 之後，測試習慣真的改變了嗎", "en": "One Year with Swift Testing: Did Our Test Habits Actually Change After XCTest?" },
+    "tags": { "zh": ["Swift Testing", "XCTest", "品質"], "en": ["Swift Testing", "XCTest", "Quality"] },
     "speaker": {
-      "name": {
-        "zh": "講者 C",
-        "en": "Speaker C"
-      },
+      "name": { "zh": "陳柏宇", "en": "Po-Yu Chen" },
       "avatar": "img/staff/staff_hokila.jpg",
-      "social": [
-        { "type": "linkedin", "url": "https://linkedin.com/" }
-      ]
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "web", "url": "https://example.com/" }]
     },
     "description": {
-      "zh": "產品決策、成長實驗、商業模式轉彎——從零到一的建立，或從一到百的擴張，都有值得分享的故事。",
-      "en": "Product decisions, growth experiments, and business model pivots: stories worth sharing from early creation to later-stage scaling."
+      "zh": "Xcode 16 讓 Swift Testing 成為一等公民，但換了框架之後，我們的測試習慣真的有改變嗎？這場來自一個花了半年把中型 app 從 XCTest 遷移到 Swift Testing 的團隊，誠實地說說遷移後的差異：parametrize 讓邊界條件測試變得更容易了、非同步測試的表達方式清晰許多，但也有些 XCTest 寫法在新框架找不到直接對應，CI 報告的整合也比預期花了更多時間。最後會聊到一個比較意外的發現：工具本身的易用性，確實讓團隊成員更願意主動補測試——好的 DX 真的會影響行為。",
+      "en": "Did switching to Swift Testing actually change how the team writes tests? This honest retrospective covers parameterized tests, async support, missing XCTest equivalents, CI integration hurdles, and the surprising DX effect on team motivation."
+    },
+    "hackmd": "https://hackmd.io/"
+  },
+  {
+    "day": 1,
+    "time": "12:20 – 13:20",
+    "track": "break",
+    "noModal": true,
+    "title": { "zh": "午餐休息", "en": "Lunch Break" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": null,
+    "description": { "zh": "", "en": "" },
+    "hackmd": ""
+  },
+  {
+    "day": 1,
+    "time": "13:20 – 13:40",
+    "track": "special",
+    "noModal": false,
+    "title": { "zh": "贊助商介紹", "en": "Sponsor Showcase" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": { "name": { "zh": "主辦團隊", "en": "Organizing Team" }, "avatar": "img/staff/staff_hokila.jpg", "social": [] },
+    "description": {
+      "zh": "感謝所有贊助夥伴對 iPlayground 2026 的支持。本場次將由各贊助商代表簡短介紹公司與職缺機會，如果你正在尋找下一個挑戰，這是與業界直接交流的好機會。歡迎會後至贊助商攤位深入交流，掃描現場 QR code 取得更多資訊。",
+      "en": "Thank you to all sponsors supporting iPlayground 2026. Sponsor representatives will briefly introduce their companies and open positions. Visit sponsor booths after the session or scan the on-site QR codes for more details."
+    },
+    "hackmd": ""
+  },
+  {
+    "day": 1,
+    "time": "13:40 – 14:30",
+    "track": "ios",
+    "title": { "zh": "SPM 多模組地獄：菱形依賴、版本衝突與 monorepo 的取捨", "en": "SPM Multi-Module Hell: Diamond Dependencies, Version Conflicts, and Monorepo Trade-offs" },
+    "tags": { "zh": ["SPM", "模組化", "架構", "依賴管理"], "en": ["SPM", "Modularization", "Architecture", "Dependency Management"] },
+    "speaker": {
+      "name": { "zh": "張哲維", "en": "Che-Wei Chang" },
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "linkedin", "url": "https://linkedin.com/" }]
+    },
+    "description": {
+      "zh": "當 app 長大、模組變多，Swift Package Manager 的依賴解析就開始讓人頭痛。這場從一個真實的多模組 monorepo 出發，分享我們在採用 SPM 管理內部模組與外部依賴時踩過的各種坑：菱形依賴怎麼處理、local 與 remote package 混用的策略、Xcode 解析失敗時那些幾乎沒有用的錯誤訊息要怎麼 debug，以及模組越來越多之後如何維持合理的 build time。最後也會誠實聊到我們最終在某個 target 放棄 SPM 退回 CocoaPods 的原因，以及事後有沒有後悔——答案不是你想的那個。",
+      "en": "Growing module counts make SPM dependency resolution painful. This talk shares real monorepo pitfalls: diamond dependencies, local vs remote package strategies, unhelpful Xcode errors, build time management, and why we briefly reverted to CocoaPods."
+    },
+    "hackmd": "https://hackmd.io/"
+  },
+  {
+    "day": 1,
+    "time": "14:30 – 14:45",
+    "track": "break",
+    "noModal": true,
+    "title": { "zh": "休息時間", "en": "Break" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": null,
+    "description": { "zh": "", "en": "" },
+    "hackmd": ""
+  },
+  {
+    "day": 1,
+    "time": "14:45 – 15:35",
+    "track": "ios",
+    "title": { "zh": "UIKit → SwiftUI：十萬行 legacy codebase 的漸進遷移實錄", "en": "UIKit to SwiftUI: Incremental Migration Notes from a 100K-Line Legacy Codebase" },
+    "tags": { "zh": ["SwiftUI", "UIKit", "遷移", "架構"], "en": ["SwiftUI", "UIKit", "Migration", "Architecture"] },
+    "speaker": {
+      "name": { "zh": "黃建宏", "en": "Chien-Hung Huang" },
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "twitter", "url": "https://x.com/" }]
+    },
+    "description": {
+      "zh": "沒有人能一夜之間把五年的 UIKit app 重寫成 SwiftUI。這場來自一個超過十萬行 UIKit 程式碼的 app 團隊，描述他們用兩年時間逐步導入 SwiftUI 的過程：怎麼選第一個動手的畫面、UIHostingController 與 UIViewRepresentable 的邊界怎麼拿捏、navigation stack 切換策略的演進，以及遇到哪些 SwiftUI 目前仍缺乏對等實作的 UIKit 元件。也會坦白說哪幾次遷移後悔了、哪幾次讓整個團隊覺得值得，以及最重要的：如何在遷移的同時不拖垮日常的功能開發節奏。",
+      "en": "A two-year incremental SwiftUI migration from a 100K-line UIKit app. Covers choosing where to start, UIHostingController boundaries, navigation migration, missing UIKit equivalents, and keeping feature velocity alive throughout."
+    },
+    "hackmd": "https://hackmd.io/"
+  },
+  {
+    "day": 1,
+    "time": "15:35 – 15:50",
+    "track": "break",
+    "noModal": true,
+    "title": { "zh": "休息時間", "en": "Break" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": null,
+    "description": { "zh": "", "en": "" },
+    "hackmd": ""
+  },
+  {
+    "day": 1,
+    "time": "15:50 – 16:40",
+    "track": "ios",
+    "title": { "zh": "App Clip 實戰：10MB 內做出夠好的體驗，然後說服 PM 繼續投資", "en": "App Clips in Practice: A Great Experience Under 10MB, Then Convincing the PM to Keep Investing" },
+    "tags": { "zh": ["App Clip", "用戶獲取", "產品"], "en": ["App Clip", "Acquisition", "Product"] },
+    "speaker": {
+      "name": { "zh": "陳彥蓉", "en": "Yen-Jung Chen" },
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "web", "url": "https://example.com/" }]
+    },
+    "description": {
+      "zh": "App Clip 讓使用者在安裝完整 app 前就能體驗核心流程，聽起來很美好——但讓它真正有用，需要的遠不只是技術實作。這場來自一個餐飲業 app 導入 App Clip 的完整歷程，聊聊我們如何決定哪個流程適合做成 clip、如何在 10MB 的硬限制內做出夠好的體驗、Universal Link 的設定踩了哪些坑，以及上線後用實際轉換率數字說服業主繼續維護這個入口點。最後也會分享一個工程師最不想承認的事：有時候產品決策比技術選擇更影響最終成效。",
+      "en": "App Clips sound great but making them work takes more than code. This talk covers flow selection, fitting quality into 10MB, Universal Link gotchas, real conversion numbers post-launch, and why product decisions often matter more than technical ones."
+    },
+    "hackmd": "https://hackmd.io/"
+  },
+  {
+    "day": 1,
+    "time": "16:40 – 17:30",
+    "track": "special",
+    "noModal": false,
+    "title": { "zh": "閉幕與交流時間", "en": "Closing & Networking" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": { "name": { "zh": "主辦團隊", "en": "Organizing Team" }, "avatar": "img/staff/staff_hokila.jpg", "social": [] },
+    "description": {
+      "zh": "Day 1 的議程正式結束！感謝所有講者用心準備的內容，以及每一位參與者讓今天充滿了精彩的討論。明天 Day 2 同樣精彩，請好好休息。會場開放交流至 18:00，歡迎留下來繼續聊天、交換名片。別忘了用 #iPlayground2026 在社群上分享今天的心得！",
+      "en": "That's a wrap on Day 1. Thank you to all speakers and attendees. The venue stays open for networking until 18:00 — share your highlights with #iPlayground2026 and rest up for Day 2."
     },
     "hackmd": ""
   },
   {
     "day": 2,
-    "time": "10:00 – 10:30",
+    "time": "09:00 – 09:20",
+    "track": "special",
+    "noModal": false,
+    "title": { "zh": "Day 2 開場", "en": "Day 2 Opening" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": { "name": { "zh": "主辦團隊", "en": "Organizing Team" }, "avatar": "img/staff/staff_hokila.jpg", "social": [] },
+    "description": {
+      "zh": "歡迎回到 iPlayground 2026 第二天！昨天的議程收到了許多熱烈回饋，相信今天的內容同樣精彩。今天將繼續深入探討 Swift 開發的各個面向，從 Concurrency 遷移到 visionOS 初探，請把握每場議程的提問機會，也歡迎在休息時間繼續和講者交流。",
+      "en": "Welcome back to Day 2 of iPlayground 2026. Yesterday's sessions sparked great discussions, and today's lineup keeps the momentum going — from Swift 6 concurrency to first steps with visionOS."
+    },
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "09:20 – 10:10",
     "track": "ios",
-    "title": {
-      "zh": "Swift 6 Concurrency 實戰：踩坑與解法",
-      "en": "Swift 6 Concurrency in Practice: Pitfalls and Fixes"
-    },
-    "tags": {
-      "zh": ["iOS", "Swift 6", "Concurrency"],
-      "en": ["iOS", "Swift 6", "Concurrency"]
-    },
+    "title": { "zh": "Swift 6 Concurrency 遷移筆記：從滿版紅字到 zero error 的六週", "en": "Swift 6 Concurrency Migration: Six Weeks from a Screen Full of Errors to Zero" },
+    "tags": { "zh": ["Swift 6", "Concurrency", "非同步"], "en": ["Swift 6", "Concurrency", "Async"] },
     "speaker": {
-      "name": {
-        "zh": "講者 D",
-        "en": "Speaker D"
-      },
+      "name": { "zh": "劉宗翰", "en": "Tsung-Han Liu" },
       "avatar": "img/staff/staff_hokila.jpg",
-      "social": [
-        { "type": "github",   "url": "https://github.com/" },
-        { "type": "linkedin", "url": "https://linkedin.com/" }
-      ]
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "linkedin", "url": "https://linkedin.com/" }]
     },
     "description": {
-      "zh": "Swift 6 的 Concurrency 改動讓不少開發者踩坑，本場分享實際遇到的問題與解法，幫助你少走彎路。",
-      "en": "Swift 6 concurrency changes have surprised many developers. This session shares real issues, practical fixes, and migration lessons."
+      "zh": "把專案設定切到 Swift 6 的第一天，Xcode 給了我們幾百個紅字。這場是一個三人團隊花了六週把中型 app 推進到 complete concurrency checking 的親身紀錄：哪些 warning 最容易處理、哪些需要重新設計資料流、@Sendable 的限制在哪些情況下讓你進退兩難。也會聊到如何與還沒跟上 Swift 6 的 Objective-C SDK 共存，以及我們用什麼決策框架讓三個人對每一個 nonisolated 的使用達成共識。這不是教學，是一份沒有刪減過的遷移日誌。",
+      "en": "Six weeks, three engineers, one mid-sized app, and hundreds of Swift 6 concurrency errors. This unfiltered migration log covers easy wins, data flow redesigns, @Sendable dilemmas, ObjC SDK coexistence, and team decision-making for every nonisolated call."
     },
     "hackmd": "https://hackmd.io/"
   },
   {
     "day": 2,
-    "time": "10:40 – 11:10",
-    "track": "ai",
-    "title": {
-      "zh": "On-device ML：把模型塞進 iPhone 後發生了什麼事",
-      "en": "On-device ML: What Happens After Putting Models on iPhone"
-    },
-    "tags": {
-      "zh": ["AI", "Core ML", "On-device"],
-      "en": ["AI", "Core ML", "On-device"]
-    },
+    "time": "10:10 – 10:25",
+    "track": "break",
+    "noModal": true,
+    "title": { "zh": "休息時間", "en": "Break" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": null,
+    "description": { "zh": "", "en": "" },
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "10:25 – 11:15",
+    "track": "ios",
+    "title": { "zh": "從 Figma Token 到 Swift Token：打造真正能被設計師信任的 Design System", "en": "From Figma Tokens to Swift Tokens: Building a Design System Designers Actually Trust" },
+    "tags": { "zh": ["Design System", "SwiftUI", "協作", "設計工程"], "en": ["Design System", "SwiftUI", "Collaboration", "Design Engineering"] },
     "speaker": {
-      "name": {
-        "zh": "講者 E",
-        "en": "Speaker E"
-      },
+      "name": { "zh": "許雅婷", "en": "Ya-Ting Hsu" },
       "avatar": "img/staff/staff_hokila.jpg",
-      "social": [
-        { "type": "github", "url": "https://github.com/" },
-        { "type": "web",    "url": "https://example.com/" }
-      ]
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "twitter", "url": "https://x.com/" }]
     },
     "description": {
-      "zh": "把模型塞進 iPhone 後發生了什麼事？分享 Core ML、MLX 的實作經驗，以及 on-device 推論的效能挑戰。",
-      "en": "What happens after putting models on iPhone? A practical session on Core ML, MLX, and the performance challenges of on-device inference."
+      "zh": "Design system 的核心挑戰不是寫出多少元件，而是讓設計師相信工程端呈現的結果和設計稿一致。這場描述我們如何建立一套從 Figma token 到 Swift type-safe token 的自動同步管線、如何設計元件 API 讓設計師不需要懂 Swift 也能驗證行為，以及在 API 過度彈性與過度封裝之間找到那條微妙的平衡線。也會誠實聊到維護成本有多高、版本管理的策略，以及當產品快速迭代時，design system 怎麼避免成為工程進度的瓶頸而不是助力。",
+      "en": "The real challenge of a design system is earning designer trust. This talk covers Figma-to-Swift token pipelines, component API design for non-Swift designers, the flexibility vs encapsulation balance, versioning, and avoiding bottleneck status during fast iteration."
     },
     "hackmd": "https://hackmd.io/"
+  },
+  {
+    "day": 2,
+    "time": "11:15 – 11:30",
+    "track": "break",
+    "noModal": true,
+    "title": { "zh": "休息時間", "en": "Break" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": null,
+    "description": { "zh": "", "en": "" },
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "11:30 – 12:20",
+    "track": "ios",
+    "title": { "zh": "SwiftData 踩坑報告：migration、predicate 限制與背景執行緒的 crash", "en": "SwiftData Pitfall Report: Migration Traps, Predicate Limits, and Background Thread Crashes" },
+    "tags": { "zh": ["SwiftData", "Core Data", "持久化"], "en": ["SwiftData", "Core Data", "Persistence"] },
+    "speaker": {
+      "name": { "zh": "蔡明哲", "en": "Ming-Che Tsai" },
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "linkedin", "url": "https://linkedin.com/" }]
+    },
+    "description": {
+      "zh": "SwiftData 的 API 設計讓人耳目一新，但它目前還有許多邊界沒有穩定下來。這場來自一個把既有 Core Data stack 遷移到 SwiftData 的真實過程，聚焦在三個最讓我們意外的地方：輕量 migration 策略的選擇陷阱、複雜 predicate 在 SwiftData 裡能做到什麼又做不到什麼，以及在背景執行緒操作 ModelContext 時出現的神祕 crash 模式與解法。最後也會給一個誠實的建議：在哪些情境下目前還是 Core Data 比較穩，以及哪些 SwiftData 的特性讓你裝了之後再也不想回頭。",
+      "en": "SwiftData's API is refreshing but still rough at the edges. This honest report covers lightweight migration traps, predicate limitations, mysterious background thread crashes with ModelContext, and when Core Data is still the safer choice."
+    },
+    "hackmd": "https://hackmd.io/"
+  },
+  {
+    "day": 2,
+    "time": "12:20 – 13:20",
+    "track": "break",
+    "noModal": true,
+    "title": { "zh": "午餐休息", "en": "Lunch Break" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": null,
+    "description": { "zh": "", "en": "" },
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "13:20 – 13:40",
+    "track": "special",
+    "noModal": false,
+    "title": { "zh": "贊助商介紹", "en": "Sponsor Showcase" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": { "name": { "zh": "主辦團隊", "en": "Organizing Team" }, "avatar": "img/staff/staff_hokila.jpg", "social": [] },
+    "description": {
+      "zh": "感謝所有贊助夥伴對 iPlayground 2026 的支持。本場次將由各贊助商代表簡短介紹公司與職缺機會，如果你正在尋找下一個挑戰，這是與業界直接交流的好機會。歡迎會後至贊助商攤位深入交流，掃描現場 QR code 取得更多資訊。",
+      "en": "Thank you to all sponsors supporting iPlayground 2026. Representatives will briefly introduce companies and open positions. Visit booths after the session or scan the on-site QR codes for details."
+    },
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "13:40 – 14:30",
+    "track": "ios",
+    "title": { "zh": "Instruments 找不到的慢：Swift 型別推斷、ARC 風暴與 protocol existential 的效能陷阱", "en": "Slowness Instruments Misses: Type Inference, ARC Storms, and Protocol Existential Traps" },
+    "tags": { "zh": ["效能", "Instruments", "ARC", "最佳化"], "en": ["Performance", "Instruments", "ARC", "Optimization"] },
+    "speaker": {
+      "name": { "zh": "鄭俊豪", "en": "Chun-Hao Cheng" },
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "twitter", "url": "https://x.com/" }]
+    },
+    "description": {
+      "zh": "有些效能問題打開 Instruments 就能找到，但有些慢藏在 Instruments 的盲區：過度複雜的型別推斷讓 build time 暴增、ARC 的引用計數風暴在執行期難以察覺、protocol existential 帶來的 heap allocation 看起來很無辜卻影響深遠。這場從幾個真實的線上 bug 出發，示範如何用 swiftc 的診斷 flag 定位 build time 殺手、如何辨識 value type 與 reference type 的選擇是否真的影響了 allocation，以及什麼時候值得犧牲可讀性換效能。最後也會聊到效能優化的邊際效益，以及怎麼說服 PM 這件事值得排進 sprint。",
+      "en": "Some slowness hides beyond Instruments: type inference bloating build time, ARC storms invisible at runtime, and innocuous-looking protocol existentials hammering heap allocation. This talk uses real production bugs to show how to find and fix each."
+    },
+    "hackmd": "https://hackmd.io/"
+  },
+  {
+    "day": 2,
+    "time": "14:30 – 14:45",
+    "track": "break",
+    "noModal": true,
+    "title": { "zh": "休息時間", "en": "Break" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": null,
+    "description": { "zh": "", "en": "" },
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "14:45 – 15:35",
+    "track": "ios",
+    "title": { "zh": "Xcode Cloud 落地報告：把 Bitrise 換掉之後，那些沒人告訴你的事", "en": "Xcode Cloud Adoption Report: What Nobody Told You About Replacing Bitrise" },
+    "tags": { "zh": ["Xcode Cloud", "CI/CD", "自動化", "DevOps"], "en": ["Xcode Cloud", "CI/CD", "Automation", "DevOps"] },
+    "speaker": {
+      "name": { "zh": "游凱翔", "en": "Kai-Hsiang Yu" },
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "linkedin", "url": "https://linkedin.com/" }]
+    },
+    "description": {
+      "zh": "Xcode Cloud 是 Apple 為 iOS 開發者量身打造的 CI/CD 解決方案，但從現有的 Bitrise 流程遷移過去，中間的過程比宣傳影片看起來長得多。這場分享 workflow 設計的思考方式、custom script 的限制與繞過方法、多個 scheme 與 target 的管理策略，以及最讓人崩潰的 TestFlight 自動上傳失敗要怎麼 debug。也會給一個誠實的評估：Xcode Cloud 在哪些地方真的優於其他方案，哪些地方你還是得妥協或補足，以及對於不同規模的團隊，遷移的 CP 值到底如何。",
+      "en": "Migrating from Bitrise to Xcode Cloud takes longer than the promo video suggests. This talk covers workflow design, custom script limitations, multi-scheme management, TestFlight upload debugging, and an honest ROI assessment for teams of different sizes."
+    },
+    "hackmd": "https://hackmd.io/"
+  },
+  {
+    "day": 2,
+    "time": "15:35 – 15:50",
+    "track": "break",
+    "noModal": true,
+    "title": { "zh": "休息時間", "en": "Break" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": null,
+    "description": { "zh": "", "en": "" },
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "15:50 – 16:40",
+    "track": "ios",
+    "title": { "zh": "visionOS 初探：一個 iOS 工程師的空間運算第一步", "en": "First Steps with visionOS: An iOS Engineer's Entry into Spatial Computing" },
+    "tags": { "zh": ["visionOS", "RealityKit", "空間運算"], "en": ["visionOS", "RealityKit", "Spatial Computing"] },
+    "speaker": {
+      "name": { "zh": "林冠廷", "en": "Kuan-Ting Lin" },
+      "avatar": "img/staff/staff_hokila.jpg",
+      "social": [{ "type": "github", "url": "https://github.com/" }, { "type": "web", "url": "https://example.com/" }]
+    },
+    "description": {
+      "zh": "Apple Vision Pro 上市後，不少 iOS 開發者開始好奇 visionOS 開發到底是什麼體驗。這場來自一個利用業餘時間探索 visionOS 的工程師，分享從第一個畫面到一個可以拿出來展示的 immersive experience 之間的學習曲線：SwiftUI 在 visionOS 上哪些 API 能用哪些不能、RealityKit 的空間概念如何和既有的 iOS 知識接軌，以及在沒有實機的情況下如何用 Simulator 有效開發與除錯。這不是一場「visionOS 有多厲害」的展示，而是一份給對空間運算好奇但還沒踏入的 iOS 開發者的誠實入門指南。",
+      "en": "A realistic entry guide to visionOS for curious iOS developers. Covers which SwiftUI APIs carry over, how RealityKit spatial concepts map to existing iOS knowledge, effective Simulator-only development, and an honest first-person learning curve report."
+    },
+    "hackmd": "https://hackmd.io/"
+  },
+  {
+    "day": 2,
+    "time": "16:40 – 17:30",
+    "track": "special",
+    "noModal": false,
+    "title": { "zh": "閉幕典禮與抽獎", "en": "Closing Ceremony & Raffle" },
+    "tags": { "zh": [], "en": [] },
+    "speaker": { "name": { "zh": "主辦團隊", "en": "Organizing Team" }, "avatar": "img/staff/staff_hokila.jpg", "social": [] },
+    "description": {
+      "zh": "iPlayground 2026 正式進入尾聲。感謝所有講者用心準備的分享、贊助商的慷慨支持，更感謝每一位參與者讓這場活動充滿活力。閉幕典禮將進行精彩抽獎，請保留好入場憑證。我們明年再見！持續關注 iPlayground 社群，讓 Apple 開發者的對話延續下去。",
+      "en": "iPlayground 2026 comes to a close. Thank you to speakers, sponsors, and every attendee who made it great. Raffle draws follow — keep your entry ticket ready. See you next year, and stay connected with the iPlayground community."
+    },
+    "hackmd": ""
   }
 ]

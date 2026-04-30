@@ -768,7 +768,7 @@
     /* About — stat blocks (craft port: 1px-gap grid that reads as cells) */
     .about-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1px;
       background: var(--rule-2);
       border: 1px solid var(--rule-2);
@@ -776,12 +776,35 @@
       margin: 48px auto 0;
       text-align: left;
     }
+    @media (max-width: 1080px) {
+      .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
     .about-stats .stat {
       display: flex;
       flex-direction: column;
       gap: 12px;
       padding: clamp(28px, 4vh, 48px) clamp(20px, 2.4vw, 32px);
       background: var(--bg);
+    }
+    .about-stats .stat--link {
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 180ms ease;
+    }
+    .about-stats .stat--link:hover {
+      background: color-mix(in oklab, var(--accent) 8%, var(--bg));
+    }
+    .about-stats .stat--link:hover .stat-value--on-sale {
+      color: var(--accent);
+    }
+    .about-stats .stat-value--on-sale {
+      color: #D2FF00;
+      transition: color 180ms ease;
+    }
+    html[data-mode="light"] .about-stats .stat-value--on-sale {
+      color: var(--accent);
     }
     .about-stats .stat-label {
       font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
@@ -999,7 +1022,7 @@
       font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
       font-size: 12px;
       letter-spacing: 0.08em;
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     .agenda-search input::placeholder {
@@ -1122,6 +1145,32 @@
       color: var(--ink-2);
       letter-spacing: 0.06em;
       text-transform: uppercase;
+    }
+
+    .session.is-break {
+      cursor: default;
+      opacity: 0.45;
+      grid-template-columns: 80px 1fr;
+    }
+    .session.is-break:hover {
+      background: transparent;
+      padding-left: 0;
+    }
+    .session.is-break .session-title {
+      font-size: 13px;
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      font-weight: 400;
+    }
+
+    .session.is-special .session-title {
+      color: var(--accent);
+    }
+    .session.is-special .session-time {
+      color: var(--accent);
+      opacity: 0.7;
     }
 
     .agenda-empty {

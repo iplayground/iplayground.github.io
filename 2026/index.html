@@ -107,16 +107,6 @@
     <div class="wordmark-banner">
       <svg class="dot-field" id="dotField" preserveAspectRatio="none" viewBox="0 0 1200 400" aria-hidden="true"></svg>
 
-      <div class="hero-brand-row">
-        <a class="hero-brand-mark" href="#hero" aria-label="iPlayground 2026">
-          <img src="img/svg/logo_header_light.svg" alt="iPlayground" class="hero-brand-img hero-brand-img--light">
-          <img src="img/svg/logo_header_dark.svg" alt="iPlayground" class="hero-brand-img hero-brand-img--dark">
-        </a>
-        <span class="status-pill" role="status">
-          <span class="dot" aria-hidden="true"></span>
-          <span data-i18n="hero_status_pill">開放投稿中</span>
-        </span>
-      </div>
 
       <div class="eyebrow">
         <span class="eyebrow-bracket">[</span>
@@ -244,16 +234,16 @@
           <span class="stat-value" data-i18n="stat_venue_value">CPBAE</span>
           <span class="stat-sub" data-i18n="stat_venue_sub">政大公企中心 · 台北</span>
         </div>
-        <div class="stat">
-          <span class="stat-label">// FORMAT</span>
-          <span class="stat-value" data-i18n="stat_format_value">2 DAYS</span>
-          <span class="stat-sub" data-i18n="stat_format_sub">MULTI-TRACK · IOS / SWIFT / UX</span>
-        </div>
-        <div class="stat">
+        <a class="stat stat--link" href="#" data-link="cfp_form" target="_blank" rel="noopener">
+          <span class="stat-label">// SUBMIT</span>
+          <span class="stat-value" data-i18n="stat_cfp_value">徵稿中</span>
+          <span class="stat-sub" data-i18n="stat_cfp_sub">立即投稿 →</span>
+        </a>
+        <a class="stat stat--link" href="https://iplayground.kktix.cc/events/2026" target="_blank" rel="noopener">
           <span class="stat-label">// TICKETS</span>
-          <span class="stat-value" data-i18n="stat_tickets_value">SOON</span>
-          <span class="stat-sub" data-i18n="stat_tickets_sub">早鳥票即將開賣</span>
-        </div>
+          <span class="stat-value stat-value--on-sale" data-i18n="stat_tickets_value">立即購票</span>
+          <span class="stat-sub" data-i18n="stat_tickets_sub">早鳥票開賣中</span>
+        </a>
       </div>
 
       <div class="venue-wrap" style="margin-top: 100px;">
@@ -394,7 +384,7 @@
           </div>
           <div class="agenda-controls">
             <label class="agenda-search" aria-label="搜尋議程">
-              <input id="agendaSearchInput" type="search" autocomplete="off" placeholder="搜尋議題或標籤" aria-label="搜尋議程">
+              <input id="agendaSearchInput" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="搜尋議題或標籤" aria-label="搜尋議程">
             </label>
             <button class="agenda-sort-btn" id="agendaSortBtn" type="button" aria-label="切換議程排序" title="切換議程排序">
               <svg class="sort-icon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
@@ -1108,8 +1098,13 @@
         const startTime = (r.time || "").split(/[–\-]/)[0].trim();
         const desc = localized(r.description) || "";
 
+        const trackType = (r.track || "").toLowerCase();
+        const isBreak = trackType === "break";
+        const isSpecial = trackType === "special";
+        const cardClass = isBreak ? "session is-break" : isSpecial ? "session is-special" : "session";
+
         return `
-        <div class="session" data-agenda-idx="${sourceIdx}" data-agenda-day="${activeDay}">
+        <div class="${cardClass}" data-agenda-idx="${sourceIdx}" data-agenda-day="${activeDay}" data-track="${trackType}">
           <span class="session-time">${startTime}</span>
           <div class="session-body">
             <h3 class="session-title">${localized(r.title)}</h3>
@@ -1117,7 +1112,7 @@
           </div>
           <div class="session-meta">
             ${tagHTML}
-            <span class="session-speaker">${speakerName}</span>
+            ${!isBreak ? `<span class="session-speaker">${speakerName}</span>` : ""}
           </div>
         </div>`;
       }).join("");
@@ -1125,10 +1120,9 @@
       // 綁定點擊事件
       list.querySelectorAll(".session").forEach(card => {
         card.addEventListener("click", () => {
-          const day = parseInt(card.dataset.agendaDay);
           const idx = parseInt(card.dataset.agendaIdx);
           const item = AGENDA[idx];
-          if (item) showAgendaModal(item);
+          if (item && !item.noModal) showAgendaModal(item);
         });
       });
       syncAgendaControls();
@@ -1267,25 +1261,34 @@
     });
 
     // ===== Links — 從 data/iplayground_links.json 注入所有連結 =====
+    let _linksMap = {};
+
     function applyLinks(links) {
       if (!links) return;
 
-      // 建立查找表：data-link 值 → URL
-      const map = {};
+      // 建立查找表：data-link 值 → URL (字串或 {zh,en} 物件)
+      _linksMap = {};
 
       // important links
-      Object.entries(links.important || {}).forEach(([k, v]) => { map[k] = v; });
+      Object.entries(links.important || {}).forEach(([k, v]) => { _linksMap[k] = v; });
 
       // contact links
-      Object.entries(links.contact || {}).forEach(([k, v]) => { map[`contact_${k}`] = v; });
+      Object.entries(links.contact || {}).forEach(([k, v]) => { _linksMap[`contact_${k}`] = v; });
 
       // social links（個別 id）
-      (links.social || []).forEach(s => { map[`social_${s.id}`] = s.url; });
+      (links.social || []).forEach(s => { _linksMap[`social_${s.id}`] = s.url; });
 
+      applyLinksForLang(currentLang);
+    }
+
+    function applyLinksForLang(lang) {
+      const l = lang || currentLang || "zh";
       // 注入所有 [data-link] 元素的 href
       document.querySelectorAll("[data-link]").forEach(el => {
         const key = el.dataset.link;
-        if (map[key]) el.href = map[key];
+        const val = _linksMap[key];
+        if (!val) return;
+        el.href = (val && typeof val === "object") ? (val[l] || val.zh || val.en) : val;
       });
 
       // 渲染 hero 社群按鈕
@@ -1658,6 +1661,7 @@
         renderAgenda(agendaCurrentDay);
       }
       renderSpeakers(lang);
+      applyLinksForLang(lang);
       applyTweaks(state);
       try { localStorage.setItem("lang", lang); } catch (e) { }
     }

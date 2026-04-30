@@ -26,7 +26,7 @@
     }
   ],
   "important": {
-    "cfp_form": "https://forms.gle/rocYKo7zQuKiGvTx9",
+    "cfp_form": { "zh": "https://forms.gle/GfDT4xm5EKq7d84i9", "en": "https://forms.gle/UJgyMUniX4f7EHvN8" },
     "sponsor_referral": "https://discord.com/channels/1256984270346649702/1492056108901204058/1497859375203614750",
     "venue_traffic": "https://cpbae.nccu.edu.tw/cpbae-service-nx2/traffic?random=1751004674691",
     "coc": "https://github.com/iplayground/code_of_conduct"
