@@ -17,7 +17,7 @@
   "hero_sponsor_cta":    { "zh": "尋找贊助商",                        "en": "Find a Sponsor" },
   "hero_status_pill":    { "zh": "開放投稿中",                        "en": "NOW OPEN" },
   "hero_eyebrow_taipei": { "zh": "TAIPEI",                            "en": "TAIPEI" },
-  "hero_eyebrow_dates":  { "zh": "2026.07.25–26",                     "en": "2026.07.25–26" },
+  "hero_eyebrow_dates":  { "zh": "07.25–26",                          "en": "07.25–26" },
   "hero_eyebrow_cfp":    { "zh": "政大公企中心",                        "en": "NCCU Business Building" },
   "hero_lede":           { "zh": "為 Apple 開發者準備的兩天，由社群志工策劃。技術分享、深度交流、與一群在乎品質的人。", "en": "Two days for Apple-platform developers, organised by volunteers. Talks, conversations, and a room full of people who care about craft." },
   "cta_submit":          { "zh": "投稿議程",                          "en": "Submit a talk" },

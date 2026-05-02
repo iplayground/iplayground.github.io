@@ -21,8 +21,8 @@
     }/*EDITMODE-END*/;
   </script>
 
-  <link rel="stylesheet" href="css/shared.css">
-  <link rel="stylesheet" href="css/main.css?v=agenda-search-20260429">
+  <link rel="stylesheet" href="css/shared.css?v=20260502-swift-placeholder">
+  <link rel="stylesheet" href="css/main.css?v=20260502-swift-placeholder">
 </head>
 
 <body>
@@ -89,7 +89,7 @@
     </ul>
   </div>
 
-  <link rel="stylesheet" href="css/confetti.css">
+  <link rel="stylesheet" href="css/confetti.css?v=20260502-swift-placeholder">
   <!-- Hero -->
   <header class="hero" id="hero" data-screen-label="01 Hero" data-state="open">
 
@@ -107,16 +107,6 @@
     <div class="wordmark-banner">
       <svg class="dot-field" id="dotField" preserveAspectRatio="none" viewBox="0 0 1200 400" aria-hidden="true"></svg>
 
-
-      <div class="eyebrow">
-        <span class="eyebrow-bracket">[</span>
-        <span data-i18n="hero_eyebrow_taipei">TAIPEI</span>
-        <span class="eyebrow-sep">·</span>
-        <span data-i18n="hero_eyebrow_dates">2026.07.25–26</span>
-        <span class="eyebrow-sep">·</span>
-        <span data-i18n="hero_eyebrow_cfp">徵稿中</span>
-        <span class="eyebrow-bracket">]</span>
-      </div>
 
       <div class="brand-crest" aria-label="iPlayground brand mark">
         <svg class="crest-cir" viewBox="0 0 24 24" aria-hidden="true" style="--i:0">
@@ -139,6 +129,15 @@
     <div class="hero-grid">
 
       <div class="hero-main">
+        <div class="eyebrow">
+          <span class="eyebrow-bracket">[</span>
+          <span data-i18n="hero_eyebrow_taipei">TAIPEI</span>
+          <span class="eyebrow-sep">·</span>
+          <span data-i18n="hero_eyebrow_dates">07.25–26</span>
+          <span class="eyebrow-sep">·</span>
+          <span data-i18n="hero_eyebrow_cfp">徵稿中</span>
+          <span class="eyebrow-bracket">]</span>
+        </div>
         <p class="lede" data-i18n="hero_lede">為 Apple 開發者準備的兩天，由社群志工策劃。技術分享、深度交流、與一群在乎品質的人。</p>
 
         <div class="cta-stack">
@@ -1226,9 +1225,15 @@
       const modal = document.getElementById("speakerModal");
       if (!modal) return;
 
-      const FALLBACK = 'img/speaker/speaker_sample.png';
-      document.getElementById("smPhoto").src = speaker.photo || FALLBACK;
-      document.getElementById("smPhoto").onerror = function() { this.src = FALLBACK; };
+      const FALLBACK = 'img/svg/swift.svg';
+      const smPhoto = document.getElementById("smPhoto");
+      const setPlaceholderPhoto = () => {
+        smPhoto.classList.add("is-placeholder");
+        smPhoto.src = FALLBACK;
+      };
+      smPhoto.classList.toggle("is-placeholder", !speaker.photo);
+      smPhoto.src = speaker.photo || FALLBACK;
+      smPhoto.onerror = setPlaceholderPhoto;
       document.getElementById("smName").textContent = speaker.name || "";
       document.getElementById("smRole").textContent = speaker.role || "";
       document.getElementById("smCompany").textContent = speaker.company || "";
@@ -2112,7 +2117,7 @@
         fetch("data/iplayground_cfp_steps.json").then(r => r.json()),
         fetch("data/iplayground_config.json").then(r => r.json()),
         fetch("data/iplayground_links.json").then(r => r.json()),
-        fetch("data/iplayground_i18n.json").then(r => r.json()),
+        fetch("data/iplayground_i18n.json?v=20260502-date").then(r => r.json()),
       ]).then(([newsZh, newsEn, agenda, cfpSteps, config, links, i18n]) => {
         NEWS_DATA_BY_LANG = { zh: newsZh, en: newsEn };
         AGENDA = agenda;
@@ -2177,7 +2182,7 @@
     </button>
   </div>
 
-  <link rel="stylesheet" href="css/fab.css">
+  <link rel="stylesheet" href="css/fab.css?v=20260502-swift-placeholder">
   <script>
     // ===== FAB: Mode cycle (auto → light → dark → auto) =====
     const modeOrder = ["auto", "light", "dark"];
@@ -2585,7 +2590,7 @@
 
     let speakers = [];
     try {
-      const res = await fetch('data/iplayground_speakers.json');
+      const res = await fetch('data/iplayground_speakers.json?v=20260502-swift-placeholder');
       speakers = await res.json();
     } catch (e) {
       console.warn('無法載入 data/iplayground_speakers.json', e);

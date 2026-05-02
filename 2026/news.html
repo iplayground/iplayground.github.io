@@ -19,9 +19,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Michroma&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/shared.css">
-  <link rel="stylesheet" href="css/news.css?v=news-eyebrow-20260429">
-  <link rel="stylesheet" href="css/fab.css">
+  <link rel="stylesheet" href="css/shared.css?v=20260502-swift-placeholder">
+  <link rel="stylesheet" href="css/news.css?v=20260502-swift-placeholder">
+  <link rel="stylesheet" href="css/fab.css?v=20260502-swift-placeholder">
 </head>
 <body>
 
@@ -374,7 +374,7 @@ document.documentElement.style.setProperty("--hue", savedHue);
 applyAppearance(savedAppearance);
 
 Promise.all([
-  fetch("data/iplayground_i18n.json").then(r => r.json()),
+  fetch("data/iplayground_i18n.json?v=20260502-date").then(r => r.json()),
   fetch(NEWS_DATA_URLS.zh).then(r => r.json()),
   fetch(NEWS_DATA_URLS.en).then(r => r.json()),
   fetch("data/iplayground_config.json").then(r => r.json()),
