@@ -21,8 +21,8 @@
     }/*EDITMODE-END*/;
   </script>
 
-  <link rel="stylesheet" href="css/shared.css?v=20260502-swift-placeholder">
-  <link rel="stylesheet" href="css/main.css?v=20260502-swift-placeholder">
+  <link rel="stylesheet" href="css/shared.css?v=20260502-news-gutter">
+  <link rel="stylesheet" href="css/main.css?v=20260502-news-gutter">
 </head>
 
 <body>
@@ -89,7 +89,7 @@
     </ul>
   </div>
 
-  <link rel="stylesheet" href="css/confetti.css?v=20260502-swift-placeholder">
+  <link rel="stylesheet" href="css/confetti.css?v=20260502-news-gutter">
   <!-- Hero -->
   <header class="hero" id="hero" data-screen-label="01 Hero" data-state="open">
 
@@ -598,7 +598,9 @@
 
       <!-- 方案 B：左右分欄 header -->
       <div class="sm-header">
-        <img class="sm-photo" id="smPhoto" src="" alt="">
+        <span class="sm-photo-wrap" id="smPhotoWrap">
+          <img class="sm-photo" id="smPhoto" src="" alt="">
+        </span>
         <div class="sm-info">
           <h2 class="sm-name" id="smName"></h2>
           <p class="sm-role" id="smRole"></p>
@@ -1226,11 +1228,14 @@
       if (!modal) return;
 
       const FALLBACK = 'img/svg/swift.svg';
+      const smPhotoWrap = document.getElementById("smPhotoWrap");
       const smPhoto = document.getElementById("smPhoto");
       const setPlaceholderPhoto = () => {
+        smPhotoWrap.classList.add("is-placeholder");
         smPhoto.classList.add("is-placeholder");
         smPhoto.src = FALLBACK;
       };
+      smPhotoWrap.classList.toggle("is-placeholder", !speaker.photo);
       smPhoto.classList.toggle("is-placeholder", !speaker.photo);
       smPhoto.src = speaker.photo || FALLBACK;
       smPhoto.onerror = setPlaceholderPhoto;
@@ -2182,7 +2187,7 @@
     </button>
   </div>
 
-  <link rel="stylesheet" href="css/fab.css?v=20260502-swift-placeholder">
+  <link rel="stylesheet" href="css/fab.css?v=20260502-news-gutter">
   <script>
     // ===== FAB: Mode cycle (auto → light → dark → auto) =====
     const modeOrder = ["auto", "light", "dark"];

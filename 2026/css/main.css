@@ -300,7 +300,7 @@
     .hero .eyebrow {
       display: inline-flex;
       align-items: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: var(--s-2);
       font-family: var(--f-mono);
       font-size: var(--fs-eyebrow);
@@ -312,11 +312,23 @@
       transform: translateY(8px);
       animation: hero-in 560ms var(--ease-out) 80ms forwards;
     }
+    .hero .eyebrow > span {
+      white-space: nowrap;
+    }
     .hero .eyebrow .eyebrow-bracket { color: var(--c-accent); }
     .hero .eyebrow .eyebrow-sep     { color: var(--c-accent); padding: 0 2px; }
     .hero .hero-main .eyebrow {
-      font-size: calc(var(--fs-eyebrow) * 2);
+      font-size: clamp(11px, 2.05vw, calc(var(--fs-eyebrow) * 2));
       max-width: 100%;
+    }
+    @media (max-width: 640px) {
+      .hero .hero-main .eyebrow {
+        gap: 5px;
+        letter-spacing: 0.08em;
+      }
+      .hero .eyebrow .eyebrow-sep {
+        padding: 0;
+      }
     }
 
     .hero .brand-crest {
@@ -742,6 +754,13 @@
     /* News section sits on a slight secondary surface to lift it from the page */
     .section-news {
       background: #14160F;
+    }
+    .section-news .section-inner {
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      position: relative;
+      z-index: 1;
     }
     html[data-mode="light"] .section-news {
       background: var(--surface-2);
@@ -1522,20 +1541,38 @@
       padding-right: var(--ios-space-8);
     }
 
-    .sm-photo {
+    .sm-photo-wrap {
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      object-fit: cover;
       flex-shrink: 0;
       border: 3px solid var(--rule-2);
+      background: var(--surface);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .sm-photo-wrap.is-placeholder {
+      background:
+        linear-gradient(var(--c-bg, #000000), var(--c-bg, #000000)) padding-box,
+        linear-gradient(135deg, #d2ff00, color-mix(in oklab, #d2ff00 42%, #8b5cf6)) border-box;
+      border-color: transparent;
+    }
+
+    .sm-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
     }
     .sm-photo.is-placeholder {
       object-fit: contain;
-      padding: 18px;
-      background: var(--surface);
+      width: 52%;
+      height: 52%;
+      border-radius: 0;
       filter: brightness(0) saturate(100%) invert(89%) sepia(100%) saturate(822%) hue-rotate(17deg) brightness(105%) contrast(106%);
-      border-color: color-mix(in oklab, #d2ff00 45%, transparent);
     }
 
     .sm-info {
@@ -2263,9 +2300,9 @@
     /* ============ Section head (craft port — eyebrow / title / meta + rule) ============ */
     .section-head {
       display: grid;
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: minmax(112px, auto) minmax(0, 1fr) auto;
       align-items: baseline;
-      gap: clamp(16px, 3vw, 32px);
+      gap: clamp(24px, 3vw, 40px);
       margin-bottom: clamp(40px, 6vh, 72px);
       padding-bottom: 24px;
       border-bottom: 1px solid var(--rule-2);
@@ -2304,8 +2341,8 @@
     }
     @media (max-width: 720px) {
       .section-head {
-        grid-template-columns: auto 1fr;
-        gap: 12px 16px;
+        grid-template-columns: minmax(88px, auto) minmax(0, 1fr);
+        gap: 12px 20px;
       }
       .section-meta { grid-column: 1 / -1; opacity: 0.7; }
     }
