@@ -973,11 +973,11 @@
     let currentLang = "zh";
 
     // ===== Data =====
-    const NEWS_DATA_URLS = {
-      zh: "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/develop/news.json",
-      en: "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/develop/news_en.json",
-    };
     const DATA_VERSION = "20260503-sessiondata-2025";
+    const NEWS_DATA_URLS = {
+      zh: `data/iplayground_news.json?v=${DATA_VERSION}`,
+      en: `data/iplayground_news.json?v=${DATA_VERSION}`,
+    };
     const SESSION_DATA_BASE = "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1";
     const SESSION_DATA_URLS = {
       schedule: `${SESSION_DATA_BASE}/schedule.json`,

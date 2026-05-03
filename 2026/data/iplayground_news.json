@@ -1,48 +1,37 @@
 [
   {
+    "date": "2026.05.03",
+    "title": {
+      "zh": "Workshop 活動介紹：從想法到可上線作品的一日實戰",
+      "en": "Workshop Spotlight: From Idea to Shippable Prototype in One Day"
+    },
+    "content": {
+      "zh": "<p>今年 iPlayground 2026 將新增 Workshop 專場，為想把「聽懂」進一步變成「做得出來」的開發者設計。這場活動以小班制進行，從需求拆解、介面規劃、資料流設計，到實作與測試，帶你完整走過一次產品開發流程。內容會聚焦在 Apple 生態系常見的開發情境，包含 SwiftUI 畫面組裝、狀態管理、API 串接、錯誤處理與效能基本檢查，並安排導師與助教即時協作，協助你在現場排除卡關問題。無論你是剛入門、準備轉職，或希望把 side project 推進到可展示版本，都能在這個工作坊獲得可直接帶回團隊的實作經驗。名額有限，後續將公布報名方式、適合對象與建議先備條件，歡迎先把時間保留下來。</p>",
+      "en": "<p>iPlayground 2026 is introducing a hands-on workshop track designed for developers who want to move from understanding concepts to actually shipping. In a small-group format, participants will walk through the full product cycle: requirement breakdown, UI planning, data flow design, implementation, and testing. The session focuses on practical Apple-platform scenarios, including SwiftUI composition, state management, API integration, error handling, and baseline performance checks. Mentors and assistants will provide live guidance so blockers can be resolved on the spot. Whether you're just getting started, preparing for a career switch, or pushing a side project to a demo-ready state, this workshop is built to deliver practical output you can bring back to your team. Registration details, prerequisites, and target audience will be announced soon.</p>"
+    },
+    "url": "#"
+  },
+  {
     "date": "2026.04.26",
     "title": {
       "zh": "推薦贊助商，免費拿 iPlayground 門票！",
       "en": "Recommend a Sponsor and Get a Free iPlayground Ticket!"
     },
     "content": {
-      "zh": "<p>iPlayground 2026 將於 7/25–26 在政大公企中心舉辦，預計聚集 300+ 位 iOS 工程師、產品人與設計師。身為台灣 iOS 社群一年一度的成果發表會，今年除了邀請多位台灣知名開發者與 KOL，也將帶來國外研討會中的熱門議程講者，並規劃一系列凝聚社群的活動。為了讓這些期待成真，我們需要一點贊助的力量。</p><p>我們知道社群夥伴來自不同公司與領域，誠摯邀請大家協助引薦相關窗口。即日起至 5/22，只要你願意推薦公司窗口，並順利促成洽談與贊助合作，我們將送上一份感謝小禮：iPlayground 2026 兩日門票一張，價值 4000 元，並含紀念衣服一件。舉辦活動需要大家一起努力，若你對贊助合作有任何想法，也歡迎留下資訊，我們會盡快與你聯繫。</p>",
-      "en": "<p>iPlayground 2026 will take place on July 25–26 at NCCU CPBAE, bringing together 300+ iOS engineers, product builders, and designers. As Taiwan's annual showcase for the iOS community, this year's event will feature well-known local developers, KOLs, invited speakers from international conferences, and community activities designed to bring people together.</p><p>To make all of this happen, we are looking for sponsor referrals from friends across the community. From now until May 22, if you recommend a company contact and the introduction leads to a sponsorship conversation and partnership, we will thank you with one two-day iPlayground 2026 ticket, valued at NT$4,000, including one commemorative shirt. If you have ideas for sponsorship collaboration, please leave your information and we will get in touch soon.</p>"
-    }
+      "zh": "<p>iPlayground 2026 將於 7/25–7/26 在政大公企中心舉辦，預計匯聚超過 300 位 iOS 工程師、產品開發者與設計師。為了讓活動內容更完整，我們正在徵求社群夥伴協助引薦潛在贊助商。即日起至 5/22，若引薦成功並進入合作流程，我們將致贈 iPlayground 2026 兩日票一張與紀念 T-shirt。</p>",
+      "en": "<p>iPlayground 2026 will take place on July 25-26 at NCCU CPBAE, bringing together 300+ iOS engineers, product builders, and designers. We are looking for sponsor referrals from the community. If your referral leads to a sponsorship conversation and partnership by May 22, we will thank you with one two-day iPlayground 2026 ticket and a commemorative shirt.</p>"
+    },
+    "url": "#"
   },
   {
     "date": "2026.04.22",
     "title": {
-      "zh": "iPlayground 2026 徵稿正式開啟！",
+      "zh": "iPlayground 2026 徵稿正式開放！",
       "en": "iPlayground 2026 Call for Proposals is Now Open!"
     },
     "content": {
-      "zh": "我們誠摯邀請對 iOS、AI、產品開發或任何熱門技術有熱情的講者。不論您是資深專家還是新銳開發者，iPlayground 都是您分享知識、交流經驗的最佳舞台。",
-      "en": "We warmly invite speakers passionate about iOS, AI, product development, or any exciting technology. Whether you're a seasoned expert or an emerging developer, iPlayground is the best stage to share your knowledge."
-    },
-    "url": "#"
-  },
-  {
-    "date": "2026.04.15",
-    "title": {
-      "zh": "大會官網正式上線，更多精彩內容陸續揭曉中。",
-      "en": "Conference Website Officially Launched — More Updates Coming Soon."
-    },
-    "content": {
-      "zh": "籌備多時的 iPlayground 2026 官網今天正式與大家見面了！今年我們採用了全新的視覺語言，象徵著技術與創意的碰撞。接下來幾週，我們將陸續公布議程訊息、合辦團隊以及令人驚喜的贊助商名單，敬請密切關注。",
-      "en": "The long-awaited iPlayground 2026 website is live! This year we've embraced a fresh visual language representing the collision of technology and creativity. Stay tuned as we reveal the agenda, co-organizers, and sponsors in the coming weeks."
-    },
-    "url": "#"
-  },
-  {
-    "date": "2026.04.10",
-    "title": {
-      "zh": "iPlayground 工作夥伴招募中",
-      "en": "We're Recruiting iPlayground Volunteers"
-    },
-    "content": {
-      "zh": "熱愛 Apple 技術、開發者社群與大型活動的你，歡迎加入 iPlayground 2026 工作夥伴行列！這不只是協助活動進行，更是一起打造台灣 iOS 社群年度舞台的機會。無論你擅長議程規劃、講者聯繫、行銷宣傳、社群經營、設計攝影、現場接待、動線安排或活動執行，都能在這裡找到適合發揮的位置。我們期待願意主動溝通、喜歡解決問題、享受團隊合作的夥伴，一起把兩天活動變成讓參與者記得很久的美好體驗。即使你沒有籌辦研討會經驗，只要有熱情與責任感，我們都很歡迎。來和我們一起認識更多開發者，參與幕後決策，親手完成一場屬於社群的技術盛會。",
-      "en": "If you love Apple technologies, developer communities, and meaningful events, join the iPlayground 2026 volunteer team! This is more than helping on event day — it is a chance to build the annual stage for Taiwan's iOS community. Whether you are interested in program planning, speaker coordination, marketing, community management, design, photography, reception, venue flow, or on-site operations, there is a place for you to contribute. We are looking for teammates who communicate proactively, enjoy solving problems, and value collaboration. No conference organizing experience is required; passion and reliability matter most. Come meet more developers, take part behind the scenes, and help us create a two-day experience the community will remember."
+      "zh": "<p>我們誠摯邀請對 iOS、AI、產品開發或任何有趣技術主題有熱情的講者投稿。無論你是資深開發者或新生代工程師，都歡迎在 iPlayground 舞台分享你的實戰經驗與觀點。</p>",
+      "en": "<p>We warmly invite speakers passionate about iOS, AI, product development, or any exciting technology. Whether you're a seasoned expert or an emerging developer, iPlayground is the best stage to share your knowledge.</p>"
     },
     "url": "#"
   }

@@ -701,7 +701,24 @@
       .hero .cd-grid { grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; }
       .hero .corner { width: 20px; height: 20px; }
       .hero .cta-stack { width: 100%; }
-      .hero .cta-signal { width: 100%; justify-content: space-between; }
+      .hero .cta-signal {
+        width: 100%;
+        justify-content: center;
+        position: relative;
+        font-size: 22px;
+      }
+      .hero .cta-signal > span:first-child {
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+      .hero .cta-signal .cta-arrow {
+        position: absolute;
+        right: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.95em;
+      }
     }
     @media (max-width: 540px) {
       .hero .status-pill { display: none; }
@@ -2951,9 +2968,9 @@
       ::view-transition-new(root) { animation: none; }
     }
 
-    /* Temporarily hide agenda/speakers/staff content blocks */
-    #agendaList,
-    #speakerGrid,
-    #staffGrid {
+    /* Hide full sections per request */
+    #agenda,
+    #speakers,
+    #staff {
       display: none !important;
     }
