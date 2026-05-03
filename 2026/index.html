@@ -21,8 +21,8 @@
     }/*EDITMODE-END*/;
   </script>
 
-  <link rel="stylesheet" href="css/shared.css?v=20260502-news-gutter">
-  <link rel="stylesheet" href="css/main.css?v=20260502-news-gutter">
+  <link rel="stylesheet" href="css/shared.css?v=20260503-speaker-size-fix-5">
+  <link rel="stylesheet" href="css/main.css?v=20260503-speaker-size-fix-5">
 </head>
 
 <body>
@@ -89,7 +89,7 @@
     </ul>
   </div>
 
-  <link rel="stylesheet" href="css/confetti.css?v=20260502-news-gutter">
+  <link rel="stylesheet" href="css/confetti.css?v=20260503-speaker-size-fix-5">
   <!-- Hero -->
   <header class="hero" id="hero" data-screen-label="01 Hero" data-state="open">
 
@@ -977,6 +977,14 @@
       zh: "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/develop/news.json",
       en: "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/develop/news_en.json",
     };
+    const DATA_VERSION = "20260503-sessiondata-2025";
+    const SESSION_DATA_BASE = "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1";
+    const SESSION_DATA_URLS = {
+      schedule: `${SESSION_DATA_BASE}/schedule.json`,
+      scheduleEn: `${SESSION_DATA_BASE}/schedule_en.json`,
+      speakers: `${SESSION_DATA_BASE}/speakers.json`,
+      speakersEn: `${SESSION_DATA_BASE}/speakers_en.json`,
+    };
     let NEWS_DATA_BY_LANG = { zh: [], en: [] };
     let NEWS_DATA = [];
     let AGENDA = [];
@@ -1016,6 +1024,106 @@
       if (Array.isArray(value)) return value.map(item => localized(item, lang));
       if (value && typeof value === "object") return value[lang] || value.zh || value.en || "";
       return value || "";
+    }
+
+    async function fetchJson(url) {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`${response.status} ${url}`);
+      return response.json();
+    }
+
+    async function fetchJsonWithFallback(primaryUrl, fallbackUrl) {
+      try {
+        return await fetchJson(primaryUrl);
+      } catch (error) {
+        console.warn(`使用本機資料 fallback：${fallbackUrl}`, error);
+        return fetchJson(fallbackUrl);
+      }
+    }
+
+    function normalizeScheduleData(zhData, enData, speakers = []) {
+      if (Array.isArray(zhData)) return zhData;
+
+      const normalized = [];
+      const speakerMap = new Map((speakers || []).map(speaker => [String(speaker.id), speaker]));
+
+      [1, 2].forEach(day => {
+        const zhRows = zhData?.[`day${day}`] || [];
+        const enRows = enData?.[`day${day}`] || [];
+
+        zhRows.forEach((row, index) => {
+          const enRow = enRows[index] || {};
+          const matchedSpeaker = row.speakerID ? speakerMap.get(String(row.speakerID)) : null;
+          const speakerName = row.speaker || matchedSpeaker?.name || "";
+          const title = { zh: row.title || "", en: enRow.title || row.title || "" };
+          const description = { zh: row.description || "", en: enRow.description || row.description || "" };
+          const tags = { zh: row.tags || [], en: enRow.tags || row.tags || [] };
+          const isBreak = /休息|午餐|break|lunch/i.test(`${row.title || ""} ${enRow.title || ""}`);
+          const isSpecial = !row.speakerID && !row.speaker && !isBreak;
+
+          normalized.push({
+            day,
+            time: row.time || "",
+            track: isBreak ? "break" : isSpecial ? "special" : "ios",
+            noModal: isBreak,
+            title,
+            tags,
+            speaker: speakerName
+              ? {
+                  name: { zh: speakerName, en: enRow.speaker || speakerName },
+                  avatar: matchedSpeaker?.photo || "",
+                  social: []
+                }
+              : null,
+            description,
+            hackmd: row.hackMD || enRow.hackMD || ""
+          });
+        });
+      });
+
+      return normalized;
+    }
+
+    async function loadAgendaData() {
+      try {
+        const [scheduleZh, scheduleEn] = await Promise.all([
+          fetchJson(SESSION_DATA_URLS.schedule),
+          fetchJson(SESSION_DATA_URLS.scheduleEn).catch(() => null),
+        ]);
+        const speakers = await fetchJson(SESSION_DATA_URLS.speakers).catch(() => []);
+        return normalizeScheduleData(scheduleZh, scheduleEn, speakers);
+      } catch (error) {
+        console.warn("使用本機議程資料 fallback", error);
+        return fetchJson(`data/iplayground_agenda.json?v=${DATA_VERSION}`);
+      }
+    }
+
+    function normalizeSpeakerData(speakers) {
+      return (speakers || []).map(speaker => ({
+        name: speaker.name || "",
+        role: speaker.role || speaker.title || "",
+        company: speaker.company || "",
+        bio: speaker.bio || speaker.intro || "",
+        photo: speaker.photo || "",
+        social: speaker.social || {
+          facebook: speaker.fb || "",
+          twitter: speaker.x || speaker.twitter || "",
+          instagram: speaker.instagram || "",
+          github: speaker.github || "",
+          linkedin: speaker.linkedin || "",
+          threads: speaker.threads || "",
+          url: speaker.url || "",
+        }
+      }));
+    }
+
+    async function loadSpeakerData() {
+      try {
+        return normalizeSpeakerData(await fetchJson(SESSION_DATA_URLS.speakers));
+      } catch (error) {
+        console.warn("使用本機講者資料 fallback", error);
+        return normalizeSpeakerData(await fetchJson(`data/iplayground_speakers.json?v=${DATA_VERSION}`));
+      }
     }
 
     function parseTime(timeStr) {
@@ -2118,11 +2226,11 @@
       Promise.all([
         fetch(NEWS_DATA_URLS.zh).then(r => r.json()),
         fetch(NEWS_DATA_URLS.en).then(r => r.json()),
-        fetch("data/iplayground_agenda.json").then(r => r.json()),
+        loadAgendaData(),
         fetch("data/iplayground_cfp_steps.json").then(r => r.json()),
         fetch("data/iplayground_config.json").then(r => r.json()),
         fetch("data/iplayground_links.json").then(r => r.json()),
-        fetch("data/iplayground_i18n.json?v=20260502-date").then(r => r.json()),
+        fetch(`data/iplayground_i18n.json?v=${DATA_VERSION}`).then(r => r.json()),
       ]).then(([newsZh, newsEn, agenda, cfpSteps, config, links, i18n]) => {
         NEWS_DATA_BY_LANG = { zh: newsZh, en: newsEn };
         AGENDA = agenda;
@@ -2187,7 +2295,7 @@
     </button>
   </div>
 
-  <link rel="stylesheet" href="css/fab.css?v=20260502-news-gutter">
+  <link rel="stylesheet" href="css/fab.css?v=20260503-speaker-size-fix-5">
   <script>
     // ===== FAB: Mode cycle (auto → light → dark → auto) =====
     const modeOrder = ["auto", "light", "dark"];
@@ -2588,17 +2696,16 @@
 </script>
 
 <script>
-  // ============ Speaker Grid — 從 data/iplayground_speakers.json 動態渲染 ============
+  // ============ Speaker Grid — 優先從 SessionData GitHub Raw 載入 ============
   (async function () {
     const grid = document.getElementById('speakerGrid');
     if (!grid) return;
 
     let speakers = [];
     try {
-      const res = await fetch('data/iplayground_speakers.json?v=20260502-swift-placeholder');
-      speakers = await res.json();
+      speakers = await loadSpeakerData();
     } catch (e) {
-      console.warn('無法載入 data/iplayground_speakers.json', e);
+      console.warn('無法載入講者資料', e);
       return;
     }
 
