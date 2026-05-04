@@ -19,9 +19,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Michroma&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/shared.css?v=20260503-speaker-fixed-size">
-  <link rel="stylesheet" href="css/news.css?v=20260503-speaker-fixed-size">
-  <link rel="stylesheet" href="css/fab.css?v=20260503-speaker-fixed-size">
+  <link rel="stylesheet" href="css/shared.css?v=20260504-news-only">
+  <link rel="stylesheet" href="css/news.css?v=20260504-news-only">
+  <link rel="stylesheet" href="css/fab.css?v=20260504-news-only">
 </head>
 <body>
 
@@ -111,17 +111,23 @@ let NEWS_DATA = [];   // 從 GitHub raw HTTPS 來源載入
 let CONFIG    = {};   // 從 data/iplayground_config.json 載入
 let LINKS     = {};
 
+function normalizeLang(lang) {
+  return lang === "en" ? "en" : "zh";
+}
+
 // ===== i18n helpers =====
 function t(key) {
+  const lang = normalizeLang(currentLang);
   const entry = I18N_DATA[key];
   if (!entry) return key;
-  if (key === 'footer_tagline') return CONFIG.footerTagline ? CONFIG.footerTagline[currentLang] : '';
-  return entry[currentLang] || entry['zh'] || key;
+  if (key === 'footer_tagline') return CONFIG.footerTagline ? CONFIG.footerTagline[lang] : '';
+  return entry[lang] || entry['zh'] || key;
 }
 
 function getVal(obj) {
+  const lang = normalizeLang(currentLang);
   if (typeof obj === 'string') return obj;
-  return obj[currentLang] || obj.zh || "";
+  return obj[lang] || obj.zh || "";
 }
 
 function getContentHtml(content) {
@@ -238,11 +244,12 @@ mql.addEventListener("change", () => {
 
 // ===== i18n apply =====
 function applyLang(lang) {
-  currentLang = lang;
-  NEWS_DATA = NEWS_DATA_BY_LANG[lang] || NEWS_DATA_BY_LANG.zh || [];
-  document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
+  const l = normalizeLang(lang);
+  currentLang = l;
+  NEWS_DATA = NEWS_DATA_BY_LANG[l] || NEWS_DATA_BY_LANG.zh || [];
+  document.documentElement.lang = l === "zh" ? "zh-Hant" : "en";
   document.querySelectorAll("#langSwitch button").forEach(b =>
-    b.classList.toggle("active", b.dataset.lang === lang)
+    b.classList.toggle("active", b.dataset.lang === l)
   );
   document.getElementById("backLink").textContent = t("news_back");
   document.querySelectorAll("[data-i18n]").forEach(el => {
@@ -250,8 +257,8 @@ function applyLang(lang) {
   });
   const footerTagline = document.getElementById("footerTagline");
   if (footerTagline) footerTagline.textContent = t("footer_tagline");
-  if (typeof syncFabLang === "function") syncFabLang(lang);
-  try { localStorage.setItem("lang", lang); } catch(e) {}
+  if (typeof syncFabLang === "function") syncFabLang(l);
+  try { localStorage.setItem("lang", l); } catch(e) {}
   renderPage();
 }
 document.getElementById("langSwitch").addEventListener("click", (e) => {
@@ -368,7 +375,7 @@ function renderPage() {
 
 // ===== Init — 並行載入所有資料後初始化 =====
 const savedLang = (() => { try { return localStorage.getItem("lang"); } catch(e) { return null; } })() || "zh";
-const savedAppearance = (() => { try { return localStorage.getItem("appearance"); } catch(e) { return null; } })() || "auto";
+const savedAppearance = "dark";
 const savedHue = (() => { try { return localStorage.getItem("hue"); } catch(e) { return null; } })() || 230;
 document.documentElement.style.setProperty("--hue", savedHue);
 applyAppearance(savedAppearance);

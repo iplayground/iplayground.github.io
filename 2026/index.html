@@ -15,14 +15,14 @@
   <script>
     const TWEAKS = /*EDITMODE-BEGIN*/{
       "hue": 230,
-      "mode": "light",
+      "mode": "dark",
       "keyArt": "grid",
       "wordmarkStyle": "inline"
     }/*EDITMODE-END*/;
   </script>
 
-  <link rel="stylesheet" href="css/shared.css?v=20260503-speaker-size-fix-5">
-  <link rel="stylesheet" href="css/main.css?v=20260503-speaker-size-fix-5">
+  <link rel="stylesheet" href="css/shared.css?v=20260504-news-only">
+  <link rel="stylesheet" href="css/main.css?v=20260504-news-only">
 </head>
 
 <body>
@@ -89,7 +89,7 @@
     </ul>
   </div>
 
-  <link rel="stylesheet" href="css/confetti.css?v=20260503-speaker-size-fix-5">
+  <link rel="stylesheet" href="css/confetti.css?v=20260504-news-only">
   <!-- Hero -->
   <header class="hero" id="hero" data-screen-label="01 Hero" data-state="open">
 
@@ -1020,9 +1020,14 @@
     let agendaSortAsc = true; // true = 由近到遠（預設）
     let agendaSearchQuery = "";
 
+    function normalizeLang(lang) {
+      return lang === "en" ? "en" : "zh";
+    }
+
     function localized(value, lang = currentLang) {
+      const l = normalizeLang(lang);
       if (Array.isArray(value)) return value.map(item => localized(item, lang));
-      if (value && typeof value === "object") return value[lang] || value.zh || value.en || "";
+      if (value && typeof value === "object") return value[l] || value.zh || value.en || "";
       return value || "";
     }
 
@@ -1708,7 +1713,7 @@
     // ===== i18n =====
     // ===== I18N — 從 data/iplayground_i18n.json 載入，key → { zh, en } =====
     function getDict(lang) {
-      const l = lang || 'zh';
+      const l = normalizeLang(lang);
       const dict = {};
       Object.entries(I18N_DATA).forEach(([k, v]) => {
         // footer_tagline 特殊處理：從 CONFIG 取值
@@ -1740,9 +1745,10 @@
     }
 
     function applyLang(lang) {
-      currentLang = lang;
-      NEWS_DATA = NEWS_DATA_BY_LANG[lang] || NEWS_DATA_BY_LANG.zh || [];
-      const dict = getDict(lang);
+      const l = normalizeLang(lang);
+      currentLang = l;
+      NEWS_DATA = NEWS_DATA_BY_LANG[l] || NEWS_DATA_BY_LANG.zh || [];
+      const dict = getDict(l);
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const k = el.dataset.i18n;
         if (dict[k]) el.innerHTML = dict[k];
@@ -1761,27 +1767,27 @@
       });
       const agendaModalContent = document.getElementById("agendaModalContent");
       if (agendaModalContent) {
-        agendaModalContent.setAttribute("data-modal-label", lang === "en" ? "// SESSION" : "// 議程");
+        agendaModalContent.setAttribute("data-modal-label", l === "en" ? "// SESSION" : "// 議程");
       }
       const newsEyebrow = document.getElementById("newsEyebrow");
       if (newsEyebrow) {
         newsEyebrow.textContent = "// 01";
       }
       syncCountdownUnits(dict);
-      document.documentElement.lang = lang === "zh" ? "zh-Hant" : lang;
-      document.documentElement.dataset.lang = lang;
-      syncLangButtons(lang);
-      renderNews(lang);
+      document.documentElement.lang = l === "zh" ? "zh-Hant" : "en";
+      document.documentElement.dataset.lang = l;
+      syncLangButtons(l);
+      renderNews(l);
       const agendaSearchInput = document.getElementById("agendaSearchInput");
       if (agendaSearchInput?.value.trim()) {
         agendaSearchInput.dispatchEvent(new Event("input"));
       } else {
         renderAgenda(agendaCurrentDay);
       }
-      renderSpeakers(lang);
-      applyLinksForLang(lang);
+      renderSpeakers(l);
+      applyLinksForLang(l);
       applyTweaks(state);
-      try { localStorage.setItem("lang", lang); } catch (e) { }
+      try { localStorage.setItem("lang", l); } catch (e) { }
     }
 
     function syncCountdownUnits(dict) {
@@ -2220,7 +2226,7 @@
     // ===== Init =====
     window.addEventListener("DOMContentLoaded", () => {
       const savedLang = (() => { try { return localStorage.getItem("lang"); } catch (e) { return null; } })() || "zh";
-      const savedPref = (() => { try { return localStorage.getItem("appearance"); } catch (e) { return null; } })() || "auto";
+      const savedPref = "dark";
 
       // 並行載入所有 data/ 資料後再初始化
       Promise.all([
@@ -2295,7 +2301,7 @@
     </button>
   </div>
 
-  <link rel="stylesheet" href="css/fab.css?v=20260503-speaker-size-fix-5">
+  <link rel="stylesheet" href="css/fab.css?v=20260504-news-only">
   <script>
     // ===== FAB: Mode cycle (auto → light → dark → auto) =====
     const modeOrder = ["auto", "light", "dark"];
