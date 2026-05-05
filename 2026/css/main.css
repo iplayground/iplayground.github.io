@@ -3015,8 +3015,10 @@
       min-width: 18px;
     }
 
-    /* Floating "?" button mini-affordance */
+    /* Floating "?" button mini-affordance — hidden */
     .fab-kbd {
+      display: none !important;
+    }
       position: fixed;
       left: max(18px, env(safe-area-inset-left));
       bottom: max(22px, env(safe-area-inset-bottom));
