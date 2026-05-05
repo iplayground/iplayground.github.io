@@ -101,7 +101,12 @@
       font-size: 32px;
       font-weight: 700;
       margin-bottom: 24px;
-      color: var(--signal);
+      color: var(--ink);
+    }
+
+    /* 深色模式才用品牌信號色 */
+    html:not([data-mode="light"]) .content h1 {
+      color: #D2FF00;
     }
 
     .content h2 {
@@ -174,11 +179,18 @@
     }
 
     .content a {
-      color: var(--signal);
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    html:not([data-mode="light"]) .content a {
+      color: #D2FF00;
       text-decoration: none;
     }
 
     .content a:hover {
+      opacity: 0.75;
       text-decoration: underline;
     }
 
