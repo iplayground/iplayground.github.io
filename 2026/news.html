@@ -19,9 +19,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Michroma&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/shared.css?v=20260504-news-only">
-  <link rel="stylesheet" href="css/news.css?v=20260504-news-only">
-  <link rel="stylesheet" href="css/fab.css?v=20260504-news-only">
+  <link rel="stylesheet" href="css/shared.css?v=20260503-speaker-fixed-size">
+  <link rel="stylesheet" href="css/news.css?v=20260503-speaker-fixed-size">
+  <link rel="stylesheet" href="css/fab.css?v=20260503-speaker-fixed-size">
 </head>
 <body>
 
@@ -102,32 +102,47 @@
 // ===== State =====
 let currentLang = "zh";
 let I18N_DATA = {};   // 從 data/iplayground_i18n.json 載入
+const FOOTER_TAGLINE_LOCAL = {
+  zh: "iPlayground 是從 2018 年開始專為蘋果軟體開發者設計的研討會，主題涵蓋 iOS 和 macOS 開發、Swift 和 Objective-C、以及 app 軟體開發與 UI/UX 設計的經驗分享。這個活動由一群資深工程師創辦，目的是彌補台灣在 iOS 開發領域的研討會不足，並為開發者們提供更深入且多樣化的議程。",
+  en: "iPlayground is a conference designed for Apple software developers since 2018, covering iOS and macOS development, Swift and Objective-C, as well as app development and UI/UX design. Founded by a group of senior engineers to fill the gap in iOS-focused conferences in Taiwan."
+};
+const DATA_VERSION = "20260504-sessiondata-develop";
+const SESSION_DATA_BASE = "https://raw.githubusercontent.com/iplayground/SessionData/develop";
+const SESSION_DATA_URLS = {
+  news: `${SESSION_DATA_BASE}/news.json`,
+  newsEn: `${SESSION_DATA_BASE}/news_en.json`,
+  i18n: `data/iplayground_i18n.json`,
+  config: `data/iplayground_config.json`,
+  links: `${SESSION_DATA_BASE}/links.json`,
+};
+function withVersion(url) {
+  return `${url}${url.includes("?") ? "&" : "?"}v=${DATA_VERSION}`;
+}
+async function fetchJson(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`${response.status} ${url}`);
+  return response.json();
+}
 const NEWS_DATA_URLS = {
-  zh: "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/develop/news.json",
-  en: "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/develop/news_en.json",
+  zh: SESSION_DATA_URLS.news,
+  en: SESSION_DATA_URLS.newsEn,
 };
 let NEWS_DATA_BY_LANG = { zh: [], en: [] };
 let NEWS_DATA = [];   // 從 GitHub raw HTTPS 來源載入
 let CONFIG    = {};   // 從 data/iplayground_config.json 載入
 let LINKS     = {};
 
-function normalizeLang(lang) {
-  return lang === "en" ? "en" : "zh";
-}
-
 // ===== i18n helpers =====
 function t(key) {
-  const lang = normalizeLang(currentLang);
   const entry = I18N_DATA[key];
   if (!entry) return key;
-  if (key === 'footer_tagline') return CONFIG.footerTagline ? CONFIG.footerTagline[lang] : '';
-  return entry[lang] || entry['zh'] || key;
+  if (key === 'footer_tagline') return FOOTER_TAGLINE_LOCAL[currentLang] || FOOTER_TAGLINE_LOCAL.zh;
+  return entry[currentLang] || entry['zh'] || key;
 }
 
 function getVal(obj) {
-  const lang = normalizeLang(currentLang);
   if (typeof obj === 'string') return obj;
-  return obj[lang] || obj.zh || "";
+  return obj[currentLang] || obj.zh || "";
 }
 
 function getContentHtml(content) {
@@ -230,26 +245,22 @@ function updateArticleMeta(id, title, article) {
 // ===== Appearance =====
 const mql = window.matchMedia("(prefers-color-scheme: dark)");
 function resolveMode(pref) {
-  return (pref === "light" || pref === "dark") ? pref : (mql.matches ? "dark" : "light");
+  return "dark";
 }
 function applyAppearance(pref) {
   document.documentElement.dataset.mode = resolveMode(pref);
   if (typeof syncFabMode === "function") syncFabMode(pref);
   try { localStorage.setItem("appearance", pref); } catch(e) {}
 }
-mql.addEventListener("change", () => {
-  const saved = (() => { try { return localStorage.getItem("appearance"); } catch(e) { return null; } })() || "auto";
-  if (saved === "auto") applyAppearance("auto");
-});
+mql.addEventListener("change", () => {});
 
 // ===== i18n apply =====
 function applyLang(lang) {
-  const l = normalizeLang(lang);
-  currentLang = l;
-  NEWS_DATA = NEWS_DATA_BY_LANG[l] || NEWS_DATA_BY_LANG.zh || [];
-  document.documentElement.lang = l === "zh" ? "zh-Hant" : "en";
+  currentLang = lang;
+  NEWS_DATA = NEWS_DATA_BY_LANG[lang] || NEWS_DATA_BY_LANG.zh || [];
+  document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
   document.querySelectorAll("#langSwitch button").forEach(b =>
-    b.classList.toggle("active", b.dataset.lang === l)
+    b.classList.toggle("active", b.dataset.lang === lang)
   );
   document.getElementById("backLink").textContent = t("news_back");
   document.querySelectorAll("[data-i18n]").forEach(el => {
@@ -257,8 +268,8 @@ function applyLang(lang) {
   });
   const footerTagline = document.getElementById("footerTagline");
   if (footerTagline) footerTagline.textContent = t("footer_tagline");
-  if (typeof syncFabLang === "function") syncFabLang(l);
-  try { localStorage.setItem("lang", l); } catch(e) {}
+  if (typeof syncFabLang === "function") syncFabLang(lang);
+  try { localStorage.setItem("lang", lang); } catch(e) {}
   renderPage();
 }
 document.getElementById("langSwitch").addEventListener("click", (e) => {
@@ -381,11 +392,11 @@ document.documentElement.style.setProperty("--hue", savedHue);
 applyAppearance(savedAppearance);
 
 Promise.all([
-  fetch("data/iplayground_i18n.json?v=20260502-date").then(r => r.json()),
-  fetch(NEWS_DATA_URLS.zh).then(r => r.json()),
-  fetch(NEWS_DATA_URLS.en).then(r => r.json()),
-  fetch("data/iplayground_config.json").then(r => r.json()),
-  fetch("data/iplayground_links.json").then(r => r.json()),
+  fetchJson(withVersion(SESSION_DATA_URLS.i18n)).catch(() => ({})),
+  fetchJson(withVersion(NEWS_DATA_URLS.zh)),
+  fetchJson(withVersion(NEWS_DATA_URLS.en)),
+  fetchJson(withVersion(SESSION_DATA_URLS.config)).catch(() => ({})),
+  fetchJson(withVersion(SESSION_DATA_URLS.links)).catch(() => ({})),
 ]).then(([i18n, newsZh, newsEn, config, links]) => {
   I18N_DATA = i18n;
   NEWS_DATA_BY_LANG = { zh: newsZh, en: newsEn };
@@ -394,7 +405,8 @@ Promise.all([
   applyLinks(LINKS);
   applyLang(savedLang);
 }).catch(e => {
-  console.warn("資料載入失敗", e);
+  console.warn("遠端資料載入失敗", e);
+  NEWS_DATA_BY_LANG = { zh: [], en: [] };
   applyLang(savedLang);
 });
 </script>

@@ -16,7 +16,7 @@ yarn dev            # Vite dev server at http://localhost:1234 (--strictPort)
 yarn preview        # Same port, preview mode
 ```
 
-There are no tests, lint, or typecheck scripts. The CHANGELOG occasionally mentions a `5567` port to avoid conflicts with another project on `5566` — `package.json` is the source of truth for the actual port currently in use.
+There are no tests, lint, or typecheck scripts. The docs occasionally mention a `5567` port to avoid conflicts with another project on `5566` — `package.json` is the source of truth for the actual port currently in use.
 
 ## Architecture
 
@@ -29,7 +29,7 @@ Both pages **fetch the same JSON files from `data/`** in parallel on `DOMContent
 
 ### Data layer (`data/*.json`)
 
-All content lives in JSON. **To update copy, edit JSON — do not edit HTML strings.** See `data/README.md` for the full schema. Key files:
+All content lives in JSON. **To update copy, edit JSON — do not edit HTML strings.** See `docs/data/README.md` for the full schema. Key files:
 
 | File | Used by |
 |------|---------|
@@ -73,10 +73,13 @@ CSS is split (recently modularised) — do not put new styles back in `index.htm
 - `css/news.css` — news.html only
 - `css/fab.css` — floating action buttons (mode/lang/top), used by both
 - `css/confetti.css` — index easter egg
+- `css/tokens.css` — optional exported token sheet (referenced by `Design System.html`; not the main site bundle)
 
 `shared-content.js` is a deprecated empty shell kept only to avoid 404s from old references — do not put new shared logic there; share via `data/*.json` instead.
 
 ### Static images
+
+See `docs/assets.md` for path rules and folder conventions. Summary:
 
 - `img/svg/logo_header_light.svg` / `logo_header_dark.svg` — nav logo, swapped via CSS based on theme
 - `img/staff/`, `img/speaker/`, `img/slider/` — referenced by JSON `photo` paths
@@ -84,7 +87,6 @@ CSS is split (recently modularised) — do not put new styles back in `index.htm
 
 ## Workflow notes
 
-- `.kiro/hooks/changelog-commit-push.kiro.hook` is a Kiro user-triggered automation that summarises diffs into `CHANGELOG.md`, then commits + pushes. The CHANGELOG follows a strict format: `### \`<short-sha>\` · YYYY.MM.DD\n\n<title>\n\n- bullet\n- bullet\n\n---`. When asked to "update the changelog", insert a new block after the first `---` and keep the format consistent. The top-most block can be `pending` if the change is uncommitted.
 - Commit messages on this repo are written in **Traditional Chinese**, title ≤ 50 chars, bullets below — match the existing style in `git log`.
 - Parent repo (`iplayground.github.io/`) deploys directly from `master` via GitHub Pages; there is no separate build/deploy step beyond `git push`.
 - The site is opened by users via `https://iplayground.io/2026/` (CNAME), so all asset paths must be relative (`img/...`, `data/...`, `css/...`) — never absolute (`/img/...`).
