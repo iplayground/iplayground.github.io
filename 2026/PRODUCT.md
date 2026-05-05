@@ -1,151 +1,83 @@
-## Design Context
+## 設計脈絡
 
-### Users
+### 使用者
 
-iPlayground 2026 is the official site for an annual Apple-platform developer
-conference run by iOS Taipei community volunteers since 2018. It is
-**not affiliated with Apple Inc.** (legal disclaimer is load-bearing).
+iPlayground 2026 是 iOS Taipei 社群志工自 2018 年起舉辦的年度 Apple 平台開發者大會官方網站。本活動**與 Apple Inc. 無關**（法律免責聲明是必要的）。
 
-Primary audiences, in priority order:
+主要受眾，依優先順序排列：
 
-1. **CFP submitters** — Mandarin-speaking iOS / macOS / Swift / SwiftUI
-   developers in Taiwan deciding whether to submit a talk. They need to feel
-   that this conference is technically credible and that "people like me run
-   this". Read on desktop while at work.
-2. **Attendees** — same demographic as #1 plus students and Apple-curious
-   developers from other stacks. Browse on phones during commutes / breaks.
-   Need: dates, agenda, venue, sense of vibe.
-3. **Sponsors / sponsor-referrers** — companies and individual referrers
-   evaluating whether iPlayground reaches their target hires. Need: clear
-   sponsor CTA, evidence of community weight, contact path.
+1. **CFP 投稿者** — 台灣繁體中文 iOS / macOS / Swift / SwiftUI 開發者，正在評估是否投稿。他們需要感受到這場大會在技術上是可信的，且「跟我一樣的人在辦這件事」。通常在工作時用桌機瀏覽。
+2. **與會者** — 與第 1 類受眾相同，加上學生及來自其他技術棧的 Apple 愛好者。在通勤或休息時用手機瀏覽。需要：日期、議程、場地、活動氛圍。
+3. **贊助商 / 贊助引薦人** — 評估 iPlayground 是否能觸及目標招募對象的企業與個人。需要：清楚的贊助 CTA、社群份量的佐證、聯絡管道。
 
-The site is **bilingual zh-Hant + en** (zh-Hant is primary). Every visible
-string flows through `data/iplayground_i18n.json`.
+網站為**繁體中文 + 英文雙語**（繁中為主）。所有可見字串均透過 `data/iplayground_i18n.json` 管理。
 
-### Brand Personality
+### 品牌個性
 
-**Crafted · Technical · Communal.**
+**精工 · 技術 · 社群。**
 
-- **Crafted.** Apple-developer audience expects HIG-grade restraint, optical
-  alignment, intentional spacing, and a dev-literate eye for detail.
-  Sloppy = disqualifying.
-- **Technical.** Copy reads like a developer wrote it. Dates are precise.
-  Code-adjacent moments (mono labels, monospaced timestamps, monospaced
-  countdown digits) are welcome — they earn their place.
-- **Communal.** Volunteer-run, not corporate. Warmth peeks through in the
-  margins: confetti, photo wall, flip-card countdown, easter eggs. The
-  conference is for developers, by developers — not a vendor stage.
+- **精工。** Apple 開發者受眾期待 HIG 等級的克制、光學對齊、刻意的間距，以及開發者視角的細節眼光。粗糙 = 出局。
+- **技術。** 文案讀起來像開發者寫的。日期精確。與程式碼相鄰的時刻（等寬標籤、等寬時間戳、等寬倒數數字）是受歡迎的，它們有其存在的理由。
+- **社群。** 志工自辦，非企業主導。溫度從邊角透出：彩帶、照片牆、翻牌倒數、彩蛋。這場大會是開發者為開發者辦的，不是廠商舞台。
 
-Voice: precise but not stiff. Avoid corporate marketing register. Avoid
-Apple's "we" voice (legally and tonally, this is not Apple).
+語氣：精準但不生硬。避免企業行銷腔。避免 Apple 的「我們」語氣（法律上和語調上，這都不是 Apple 的活動）。
 
-Emotional goals:
-- For developers: *"this is for me, by people like me"*
-- For first-timers: *"approachable, not gatekeeping"*
-- For sponsors: *"this community has real weight"*
+情感目標：
+- 對開發者：*「這是為我辦的，由跟我一樣的人辦的」*
+- 對初次參加者：*「親切，不設門檻」*
+- 對贊助商：*「這個社群有真實的份量」*
 
-### Aesthetic Direction
+### 美學方向
 
-**Theme.** Dark is primary. Light mode is a respectful adaptation, not the
-hero presentation. Marketing screenshots ship in dark. Runtime default
-stays `auto` (existing `applyAppearance()` flow respects
-`prefers-color-scheme`).
+**主題。** 深色為主。淺色模式是尊重性的適配，不是主要呈現方式。行銷截圖以深色為準。執行時預設維持 `auto`（現有的 `applyAppearance()` 流程遵循 `prefers-color-scheme`）。
 
-**Color palette** (user-specified, exact hex values are load-bearing — do
-**not** auto-tint or shift these):
+**調色盤**（使用者指定，精確 hex 值是必要的，**不可**自動調色或偏移）：
 
-| Hex / Color                | Token role                  | Usage                                                              |
-|----------------------------|-----------------------------|--------------------------------------------------------------------|
-| `#000000`                  | `--c-bg` (dark mode anchor) | Page canvas in dark mode. Pure black is intentional here.          |
-| `#282C20`                  | `--c-surface` / depth       | Cards, countdown panel, sticky surfaces, footer wells.             |
-| `oklch(0.60 0.03 130)`     | `--c-accent` / quiet support| Hairlines, ghost-CTA borders, secondary marks. No chromatic pop.   |
-| `#D2FF00`                  | `--c-signal` / brand signal | Primary CTA, year `2026`, deadline tick — the only colorful note.  |
+| Hex / 色彩 | Token 角色 | 用途 |
+|-----------|-----------|------|
+| `#000000` | `--c-bg`（深色模式錨點） | 深色模式頁面底色。純黑是刻意的。 |
+| `#282C20` | `--c-surface` / 深度 | 卡片、倒數面板、sticky 表面、footer 底色。 |
+| `oklch(0.60 0.03 130)` | `--c-accent` / 靜默輔助 | 細線、ghost CTA 邊框、次要標記。無彩度跳躍。 |
+| `#D2FF00` | `--c-signal` / 品牌信號 | 主要 CTA、年份 `2026`、截止倒數，唯一的彩色亮點。 |
 
-In OKLCH for derivations only (do not replace the source hex):
+僅用於衍生的 OKLCH 值（不要替換原始 hex）：
 - `#000000` → `oklch(0 0 0)`
 - `#282C20` → `oklch(0.255 0.014 130)`
-- `#D2FF00` → `oklch(0.945 0.235 119)` (~hue 130°, the warm-lime end)
+- `#D2FF00` → `oklch(0.945 0.235 119)`（色相約 130°，暖黃綠端）
 
-The hue family is ~130° (warm yellow-green). Tint neutrals toward this hue
-(chroma ≤ 0.01) for cohesion. Greys must NOT be hue-zero — they read cold
-against the lime signal.
+色相家族約 130°（暖黃綠）。中性色向此色相偏移（chroma ≤ 0.01）以保持整體感。灰色**不可**為零色相，在萊姆信號色旁邊會顯得冷。
 
-**Light mode** derivation (when needed): keep `#D2FF00` as signal, raise
-canvas to a warm off-white (`oklch(0.985 0.005 130)` ≈ `#f6f7f1`), surfaces
-to `oklch(0.96 0.008 130)`. `#D2FF00` stays as the signal color but loses
-its glow; never glow lime in light mode (drop year/crest fills to
-`--c-accent` instead — see the hero CSS).
+**淺色模式**衍生（需要時）：保留 `#D2FF00` 作為信號色，將底色提升為暖白（`oklch(0.985 0.005 130)` ≈ `#f6f7f1`），表面色為 `oklch(0.96 0.008 130)`。`#D2FF00` 維持信號色但失去發光效果；淺色模式下萊姆色不發光（改用 `--c-accent` 填充年份/徽章，見 hero CSS）。
 
-**Typography.**
+**字型。**
 
-- **Display: Michroma** (Google Fonts, geometric/wide-caps, tech-editorial).
-  Reserved for: hero wordmark, section eyebrows, agenda day tabs, FAB
-  labels. Caps-only at display sizes. Never used for paragraphs or
-  long-form copy. Letter-spacing should be **tightened** (-0.02 to -0.04em)
-  at very large sizes to avoid the default Michroma "too wide" feel.
-- **Body Latin: Geist** (free, neutral grotesk, NOT in impeccable's
-  reflex-reject list). Loads from `https://fonts.cdnfonts.com/css/geist` or
-  the official `vercel/geist-font` GitHub release.
-- **Body CJK: PingFang TC** (Apple system font, premium fallback for
-  Apple-platform readers) → **Noto Sans TC** (Google Fonts) when PingFang
-  is unavailable. Stack:
-  `'Geist', 'PingFang TC', 'Noto Sans TC', system-ui, sans-serif`.
-- **Mono: Geist Mono** (pairs with Geist; replaces the previous JetBrains
-  Mono — banned by impeccable). Stack:
-  `'Geist Mono', ui-monospace, 'SF Mono', monospace`.
+- **Display：Michroma**（Google Fonts，幾何寬字幕，技術編輯風格）。保留用於：hero 字標、section eyebrow、議程日期 tab、FAB 標籤。僅在 display 尺寸下全大寫使用。不用於段落或長篇文字。超大尺寸時字距應**收緊**（-0.02 到 -0.04em），避免預設 Michroma「太寬」的感覺。
+- **Body 拉丁：Geist**（免費，中性 grotesk）。從 `https://fonts.cdnfonts.com/css/geist` 或官方 `vercel/geist-font` GitHub release 載入。
+- **Body CJK：PingFang TC**（Apple 系統字型，Apple 平台讀者的優質 fallback）→ **Noto Sans TC**（Google Fonts，PingFang 不可用時）。字型堆疊：`'Geist', 'PingFang TC', 'Noto Sans TC', system-ui, sans-serif`。
+- **等寬：Geist Mono**（與 Geist 搭配；取代先前的 JetBrains Mono）。堆疊：`'Geist Mono', ui-monospace, 'SF Mono', monospace`。
 
-CJK readability is non-negotiable: body text must hit 16–17px with
-`line-height: 1.7` for zh-Hant passages (CJK glyphs are visually denser
-than Latin). For mixed zh-Hant + en lines, `font-feature-settings:
-'palt' 1` to tighten Mandarin punctuation.
+CJK 可讀性不可妥協：繁中段落的 body 文字必須達到 16–17px，`line-height: 1.7`（CJK 字形視覺上比拉丁更密）。中英混排行使用 `font-feature-settings: 'palt' 1` 收緊中文標點。
 
-**Decorative grammar.**
+**裝飾語法。**
 
-- A single saturated lime on near-black is the signature. Use it where it counts.
-- HIG-borrowed structure: backdrop-filter blur on the sticky nav (already
-  in place), grouped-layout sections with generous gutters
-  (`--gutter: 48px`), 8/12/16/24/32/48/64/96 spacing scale.
-- Existing easter eggs (confetti on logo click, photo wall, flip-card
-  countdown) are part of the brand. **Do not remove.** They live in the
-  margins and never break the technical-credibility surface above the
-  fold.
-- Hard limits from impeccable that bind here:
-  - No `border-left` / `border-right` > 1px as decorative stripe on cards,
-    callouts, or list items.
-  - No `background-clip: text` gradient text fills. Solid color only.
-  - No glow-on-dark cyan/purple AI-startup palette (the lime-on-black
-    signature already pushes us away from this).
+- 近黑底上的單一飽和萊姆色是品牌簽名。用在值得的地方。
+- 借用 HIG 結構：sticky nav 的 backdrop-filter blur（已就位）、有充裕 gutter 的分組版面（`--gutter: 48px`）、8/12/16/24/32/48/64/96 間距比例。
+- 現有彩蛋（點擊 logo 的彩帶、照片牆、翻牌倒數）是品牌表面的一部分。**不可移除。** 它們存在於邊角，不破壞 above-the-fold 的技術可信度。
+- 來自 impeccable 的硬性限制：
+  - 卡片、callout 或列表項目上不可用 `border-left` / `border-right` > 1px 作為裝飾條。
+  - 不可用 `background-clip: text` 漸層文字填充。只用純色。
+  - 不可用深色發光 cyan/purple AI 新創調色盤（萊姆黑簽名已讓我們遠離這個方向）。
 
-**Anti-references.** None explicitly specified by the user. Implicit
-guard-rails (from the brief, not extra): the site must not feel like a
-SaaS landing page, an Apple imitator, or an AI-startup launch page.
+**反面參考。** 使用者未明確指定。隱性護欄（來自簡報，非額外要求）：網站不可感覺像 SaaS 登陸頁、Apple 模仿者或 AI 新創發布頁。
 
-### Design Principles
+### 設計原則
 
-1. **Reserved signal.** `#D2FF00` is rare and reserved — treat it as a
-   signal flag. Most surfaces sit in `#000000` / `#282C20` and the warm
-   off-white inks. Apply the 60-30-10 rule tightly: 60% black canvas,
-   30% surface / hairline / ink, ≤10% signal lime.
+1. **信號色克制。** `#D2FF00` 稀少且保留，視為信號旗。大多數表面停留在 `#000000` / `#282C20` 和暖白墨色。嚴格套用 60-30-10 法則：60% 黑色底色，30% 表面/細線/墨色，≤10% 信號萊姆色。
 
-2. **Wide caps for display, neutral grotesk for body.** Michroma carries
-   the headlines and eyebrow labels; Geist + PingFang TC / Noto Sans TC
-   carry every paragraph and UI string. Never set a paragraph in Michroma
-   "for vibe" — readability beats novelty.
+2. **寬字幕用於 display，中性 grotesk 用於內文。** Michroma 承載標題和 eyebrow 標籤；Geist + PingFang TC / Noto Sans TC 承載每個段落和 UI 字串。不要「為了氛圍」把段落設成 Michroma，可讀性優先於新奇感。
 
-3. **Bilingual without compromise.** Every visible string flows through
-   `iplayground_i18n.json` as `{ zh, en }`. Layouts must accommodate both
-   languages: Mandarin needs tighter line-height with denser glyphs;
-   English needs longer line-length tolerance. Test new components in both
-   languages before declaring them done.
+3. **雙語不妥協。** 所有可見字串以 `{ zh, en }` 格式流經 `iplayground_i18n.json`。版面必須同時容納兩種語言：繁中需要更緊的行高搭配更密的字形；英文需要更長的行長容忍度。新元件在宣告完成前必須在兩種語言下測試。
 
-4. **Volunteer warmth in the margins.** Easter eggs and micro-delight
-   moments (confetti, photo wall, flip countdown, hover micro-interactions
-   on staff cards) are intentional brand surface. Keep them. Never let
-   them dominate the above-the-fold information layer.
+4. **志工溫度在邊角。** 彩蛋和微互動時刻（彩帶、照片牆、翻牌倒數、工作人員卡片的 hover 微互動）是刻意的品牌表面。保留它們。不讓它們主導 above-the-fold 的資訊層。
 
-5. **HIG structure, not HIG color.** Borrow Apple's grouped-layout
-   discipline (rhythm, generous gutters, sticky nav with backdrop-filter
-   blur, optical alignment) but reject Apple's neutral-grey palette. The
-   warm-black surface + saturated lime signal is what makes this
-   *clearly not an Apple-affiliated event* — and the disclaimer requires
-   that distance.
+5. **HIG 結構，非 HIG 色彩。** 借用 Apple 的分組版面紀律（節奏、充裕 gutter、sticky nav 的 backdrop-filter blur、光學對齊），但拒絕 Apple 的中性灰調色盤。暖黑表面 + 飽和萊姆信號色，正是讓這個活動*明顯不是 Apple 附屬活動*的原因，而免責聲明也需要這種距離感。
