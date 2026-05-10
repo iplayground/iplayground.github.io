@@ -20,6 +20,8 @@
   "hero_eyebrow_dates":  { "zh": "07.25–26",                          "en": "07.25–26" },
   "hero_eyebrow_cfp":    { "zh": "政大公企中心",                        "en": "NCCU Business Building" },
   "hero_lede":           { "zh": "為 Apple 開發者準備的兩天，由社群志工策劃。技術分享、深度交流、與一群在乎品質的人。", "en": "Two days for Apple-platform developers, organised by volunteers. Talks, conversations, and a room full of people who care about craft." },
+  "trust_bar_label":     { "zh": "Trusted by Apple",                  "en": "Trusted by Apple" },
+  "trust_bar_desc":      { "zh": "iPlayground 2026 已收錄於蘋果開發者社群活動日曆", "en": "iPlayground 2026 is featured on Apple's developer community calendar" },
   "cta_submit":          { "zh": "投稿議程",                          "en": "Submit a talk" },
   "cta_sponsor":         { "zh": "推薦贊助商",                        "en": "Refer a sponsor" },
   "cta_topics":          { "zh": "看看主題範圍",                      "en": "Browse Topics" },

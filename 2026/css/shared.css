@@ -105,10 +105,94 @@
     }
 
 
+    /* ============ Trust bar (top strip — Apple community calendar listing) ============ */
+    :root {
+      --trust-bar-h: 36px;
+    }
+
+    .trust-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      min-height: var(--trust-bar-h);
+      padding: 6px 16px;
+      background: color-mix(in srgb, var(--bg) 58%, transparent);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--rule-2);
+      text-decoration: none;
+      transition: background 180ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .trust-bar:hover {
+      background: color-mix(in srgb, var(--bg) 72%, transparent);
+    }
+    .trust-bar:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+
+    .trust-bar-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: oklch(0.80 0.13 55);
+      filter: drop-shadow(0 0 6px color-mix(in oklab, oklch(0.80 0.13 55) 50%, transparent));
+      line-height: 0;
+    }
+    html[data-mode="light"] .trust-bar-mark {
+      color: oklch(0.62 0.14 50);
+      filter: none;
+    }
+
+    .trust-bar-label {
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .trust-bar-sep {
+      color: var(--ink-3);
+      opacity: 0.5;
+      padding: 0 2px;
+    }
+
+    .trust-bar-desc {
+      font-family: 'Geist', 'PingFang TC', 'Noto Sans TC', system-ui, sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--ink-2);
+      font-feature-settings: 'palt' 1;
+    }
+
+    @media (max-width: 640px) {
+      :root { --trust-bar-h: 32px; }
+      .trust-bar {
+        padding: 6px 12px;
+        gap: 8px;
+      }
+      .trust-bar-label {
+        font-size: 10.5px;
+        letter-spacing: 0.12em;
+      }
+      .trust-bar-sep { display: none; }
+      .trust-bar-desc { font-size: 11px; }
+    }
+
     /* ============ Nav ============ */
     nav.top {
       position: fixed;
-      top: 0;
+      top: var(--trust-bar-h, 36px);
       left: 0;
       right: 0;
       z-index: 50;
@@ -214,7 +298,7 @@
     .mobile-menu {
       display: none;
       position: fixed;
-      top: 52px;
+      top: calc(var(--trust-bar-h, 36px) + 52px);
       left: 0;
       right: 0;
       bottom: 0;

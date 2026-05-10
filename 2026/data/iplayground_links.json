@@ -29,7 +29,8 @@
     "cfp_form": { "zh": "https://forms.gle/GfDT4xm5EKq7d84i9", "en": "https://forms.gle/UJgyMUniX4f7EHvN8" },
     "sponsor_referral": "https://forms.gle/vwhkGFFQ8M4bbXUY9",
     "venue_traffic": "https://cpbae.nccu.edu.tw/cpbae-service-nx2/traffic?random=1751004674691",
-    "coc": "https://github.com/iplayground/code_of_conduct"
+    "coc": "https://github.com/iplayground/code_of_conduct",
+    "apple_event_calendar": "https://developer.apple.com/community/events/"
   },
   "contact": {
     "support": "mailto:support@iplayground.io",
