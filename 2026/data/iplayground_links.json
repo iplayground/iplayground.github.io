@@ -23,6 +23,12 @@
       "label": "YouTube",
       "url": "https://youtube.com/@iplaygroundtaiwan",
       "icon": "img/svg/media/youtube.svg"
+    },
+    {
+      "id": "threads",
+      "label": "Threads",
+      "url": "https://www.threads.com/@iplayground.tw",
+      "icon": "img/svg/media/Threads-Logo-1.png"
     }
   ],
   "important": {

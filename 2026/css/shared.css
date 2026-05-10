@@ -892,14 +892,6 @@
       color: #ffffff;
     }
 
-    .hero-social-btn {
-      width: 52px;
-      height: 52px;
-      background: rgba(118, 118, 128, 0.28);
-      border-color: rgba(255, 255, 255, 0.18);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
-    }
-
     section {
       background: var(--ios-grouped-bg);
       border-top: 0;
@@ -1503,10 +1495,6 @@
         width: min(100%, 340px);
       }
 
-      .hero-social-row {
-        width: min(100%, 340px);
-      }
-
       .fc-card {
         width: 58px;
         height: 70px;
@@ -1599,11 +1587,6 @@
 
     .hero-cta-row {
       gap: var(--ios-space-3);
-      margin-top: var(--ios-space-6);
-    }
-
-    .hero-social-row {
-      gap: var(--ios-space-4);
       margin-top: var(--ios-space-6);
     }
 
