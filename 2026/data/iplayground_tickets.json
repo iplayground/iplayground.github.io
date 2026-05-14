@@ -1,8 +1,8 @@
 {
   "tickets": [
     {
-      "id": "early-bird",
-      "tier": { "zh": "盲鳥票", "en": "Early Bird" },
+      "id": "blind-bird",
+      "tier": { "zh": "盲鳥票", "en": "Blind Bird" },
       "subtitle": { "zh": "限量開賣中", "en": "On sale now" },
       "price": { "amount": 3600, "displayZh": "NT$3,600", "displayEn": "NT$3,600" },
       "badge": { "zh": "限量 50 張", "en": "Limit 50" },
@@ -16,8 +16,8 @@
       "patron": false
     },
     {
-      "id": "standard",
-      "tier": { "zh": "一般票種", "en": "Standard" },
+      "id": "general",
+      "tier": { "zh": "一般票種", "en": "General" },
       "subtitle": { "zh": "正式票", "en": "Regular pass" },
       "price": { "amount": 4000, "displayZh": "NT$4,000", "displayEn": "NT$4,000" },
       "perks": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "patron",
-      "tier": { "zh": "個人贊助票", "en": "Individual Patron" },
+      "tier": { "zh": "個人贊助票", "en": "Individual Sponsor" },
       "subtitle": { "zh": "支持社群", "en": "Support the community" },
       "price": { "amount": 8888, "displayZh": "NT$8,888", "displayEn": "NT$8,888" },
       "badge": { "zh": "贊助", "en": "PATRON" },
