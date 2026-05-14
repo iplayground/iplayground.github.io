@@ -318,7 +318,7 @@
     .hero .eyebrow .eyebrow-bracket { color: var(--c-accent); }
     .hero .eyebrow .eyebrow-sep     { color: var(--c-accent); padding: 0 2px; }
     .hero .hero-main .eyebrow {
-      font-size: clamp(11px, 2.05vw, calc(var(--fs-eyebrow) * 2));
+      font-size: clamp(15px, 3vw, calc(var(--fs-eyebrow) * 2.4));
       max-width: 100%;
     }
     @media (max-width: 640px) {
