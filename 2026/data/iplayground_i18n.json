@@ -119,6 +119,7 @@
   "footer_cfp":          { "zh": "講者投稿",                          "en": "Speaker Submissions" },
   "footer_sponsor":      { "zh": "贊助合作",                          "en": "Sponsorship" },
   "footer_coc":          { "zh": "行為準則",                          "en": "Code of Conduct" },
+  "footer_previous_years": { "zh": "歷年活動",                        "en": "Previous Years" },
 
   "control_appearance":  { "zh": "主題",                              "en": "Appearance" },
   "control_lang":        { "zh": "語言",                              "en": "Language" },

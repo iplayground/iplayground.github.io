@@ -3031,10 +3031,11 @@
     @media (max-width: 640px)  { .tickets-grid { grid-template-columns: minmax(0, 1fr); } }
 
     .tickets-aux {
+      max-width: var(--maxw, 1280px);
       width: 100%;
-      margin: 0;
-      padding: 12px clamp(16px, 2vw, 28px);
-      background: var(--bg);
+      margin: 12px auto 0;
+      padding: 0 clamp(4px, 0.8vw, 12px);
+      box-sizing: border-box;
       display: flex;
       justify-content: flex-end;
       text-align: right;
