@@ -1,0 +1,62 @@
+{
+  "tickets": [
+    {
+      "id": "early-bird",
+      "tier": { "zh": "盲鳥票", "en": "Early Bird" },
+      "subtitle": { "zh": "限量開賣中", "en": "On sale now" },
+      "price": { "amount": 3600, "displayZh": "NT$3,600", "displayEn": "NT$3,600" },
+      "badge": { "zh": "限量 50 張", "en": "Limit 50" },
+      "perks": {
+        "zh": ["最早入手 · 數量有限", "完整議程通行", "場內網路與茶點"],
+        "en": ["First wave, limited stock", "Full agenda access", "Wi-Fi & refreshments"]
+      },
+      "cta": { "zh": "前往購票", "en": "Buy ticket" },
+      "ctaUrl": "https://iplayground.kktix.cc/events/2026",
+      "highlight": false,
+      "patron": false
+    },
+    {
+      "id": "standard",
+      "tier": { "zh": "一般票種", "en": "Standard" },
+      "subtitle": { "zh": "正式票", "en": "Regular pass" },
+      "price": { "amount": 4000, "displayZh": "NT$4,000", "displayEn": "NT$4,000" },
+      "perks": {
+        "zh": ["包含盲鳥票所有權益", "完整議程通行", "場內網路與茶點"],
+        "en": ["Includes early bird benefits", "Full agenda access", "Wi-Fi & refreshments"]
+      },
+      "cta": { "zh": "前往購票", "en": "Buy ticket" },
+      "ctaUrl": "https://iplayground.kktix.cc/events/2026",
+      "highlight": false,
+      "patron": false
+    },
+    {
+      "id": "premium",
+      "tier": { "zh": "尊享票", "en": "Premium" },
+      "subtitle": { "zh": "完整體驗", "en": "Full experience" },
+      "price": { "amount": 6666, "displayZh": "NT$6,666", "displayEn": "NT$6,666" },
+      "perks": {
+        "zh": ["包含一般票所有權益", "完整議程通行", "所有周邊", "Workshop 保證名額", " Workshop 優先通行券"],
+        "en": ["Includes standard benefits", "Full agenda access", "All swag", "Priority workshop sign-up", "Priority workshop entry"]
+      },
+      "cta": { "zh": "前往購票", "en": "Buy ticket" },
+      "ctaUrl": "https://iplayground.kktix.cc/events/2026",
+      "highlight": false,
+      "patron": false
+    },
+    {
+      "id": "patron",
+      "tier": { "zh": "個人贊助票", "en": "Individual Patron" },
+      "subtitle": { "zh": "支持社群", "en": "Support the community" },
+      "price": { "amount": 8888, "displayZh": "NT$8,888", "displayEn": "NT$8,888" },
+      "badge": { "zh": "贊助", "en": "PATRON" },
+      "perks": {
+        "zh": ["包含尊享票所有權益", "完整議程通行", "所有周邊", "Workshop 保證名額", " Workshop 優先通行券", "個人贊助專區曝光"],
+        "en": ["Includes premium benefits", "Full agenda access", "All swag", "Priority workshop sign-up", "Priority workshop entry", "Patron-section credit & exposure"]
+      },
+      "cta": { "zh": "成為贊助者", "en": "Become a patron" },
+      "ctaUrl": "https://iplayground.kktix.cc/events/2026",
+      "highlight": false,
+      "patron": true
+    }
+  ]
+}

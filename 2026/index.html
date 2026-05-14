@@ -43,8 +43,8 @@
     }/*EDITMODE-END*/;
   </script>
 
-  <link rel="stylesheet" href="css/shared.css?v=20260510-cd-social">
-  <link rel="stylesheet" href="css/main.css?v=20260510-cd-social">
+  <link rel="stylesheet" href="css/shared.css?v=20260510-tickets-align4">
+  <link rel="stylesheet" href="css/main.css?v=20260510-tickets-align4">
 </head>
 
 <body>
@@ -87,6 +87,7 @@
       </button>
       <ul class="nav-menu">
         <li><a href="#news" data-i18n="nav_news">最新消息</a></li>
+        <li><a href="#tickets" data-i18n="nav_tickets">票種</a></li>
         <li><a href="#about" data-i18n="nav_about">活動資訊</a></li>
         <li><a href="#agenda" data-i18n="nav_agenda">議程</a></li>
       </ul>
@@ -130,6 +131,7 @@
   <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="#news" data-i18n="nav_news">最新消息</a></li>
+      <li><a href="#tickets" data-i18n="nav_tickets">票種</a></li>
       <li><a href="#about" data-i18n="nav_about">活動資訊</a></li>
       <li><a href="#agenda" data-i18n="nav_agenda">議程</a></li>
     </ul>
@@ -262,11 +264,34 @@
     </div>
   </section>
 
-  <!-- About -->
-  <section class="section section-about" id="about" data-screen-label="02 About">
+  <!-- Tickets -->
+  <section class="section section-tickets" id="tickets" data-screen-label="02 Tickets">
     <div class="wrap center">
       <header class="section-head">
         <span class="section-eyebrow">// 02</span>
+        <h2 class="section-title section-title--zh" data-i18n="tickets_title">票種資訊</h2>
+        <span class="section-meta" data-i18n="tickets_meta">完整議程 · 各票種一次看</span>
+      </header>
+      <div class="tickets-box">
+        <ol class="tickets-grid" id="ticketsGrid"></ol>
+        <div class="tickets-aux">
+          <button type="button" class="workshop-info-trigger" onclick="openWorkshopModal()" aria-haspopup="dialog" aria-controls="workshopModal">
+            <span data-i18n="workshop_info_trigger">Workshop 說明</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section section-about" id="about" data-screen-label="03 About">
+    <div class="wrap center">
+      <header class="section-head">
+        <span class="section-eyebrow">// 03</span>
         <h2 class="section-title section-title--zh" data-i18n="nav_about">活動資訊</h2>
         <span class="section-meta"></span>
       </header>
@@ -290,7 +315,7 @@
           <span class="stat-value" data-i18n="stat_cfp_value">徵稿中</span>
           <span class="stat-sub" data-i18n="stat_cfp_sub">立即投稿 →</span>
         </a>
-        <a class="stat stat--link" href="https://iplayground.kktix.cc/events/2026" target="_blank" rel="noopener">
+        <a class="stat stat--link" href="#tickets">
           <span class="stat-label">// TICKETS</span>
           <span class="stat-value stat-value--on-sale" data-i18n="stat_tickets_value">立即購票</span>
           <span class="stat-sub" data-i18n="stat_tickets_sub">早鳥票開賣中</span>
@@ -412,10 +437,10 @@
 
 
   <!-- Agenda -->
-  <section class="section section-agenda" id="agenda" data-screen-label="03 Agenda">
+  <section class="section section-agenda" id="agenda" data-screen-label="04 Agenda">
     <div class="wrap center">
       <header class="section-head">
-        <span class="section-eyebrow">// 03</span>
+        <span class="section-eyebrow">// 04</span>
         <h2 class="section-title section-title--zh" data-i18n="agenda_title">議程</h2>
         <span class="section-meta" data-i18n="agenda_meta">議程公布後即時更新</span>
       </header>
@@ -456,10 +481,10 @@
 
 
   <!-- Speakers -->
-  <section class="section section-speakers" id="speakers" data-screen-label="04 Speakers">
+  <section class="section section-speakers" id="speakers" data-screen-label="05 Speakers">
     <div class="wrap center">
       <header class="section-head">
-        <span class="section-eyebrow">// 04</span>
+        <span class="section-eyebrow">// 05</span>
         <h2 class="section-title section-title--zh" data-i18n="speakers_title">講者群</h2>
         <span class="section-meta"></span>
       </header>
@@ -472,10 +497,10 @@
   </section>
 
   <!-- Staff -->
-  <section class="section section-staff" id="staff" data-screen-label="05 Staff">
+  <section class="section section-staff" id="staff" data-screen-label="06 Staff">
     <div class="wrap center">
       <header class="section-head">
-        <span class="section-eyebrow">// 05</span>
+        <span class="section-eyebrow">// 06</span>
         <h2 class="section-title section-title--zh" data-i18n="staff_title">工作人員</h2>
         <span class="section-meta"></span>
       </header>
@@ -488,10 +513,10 @@
   </section>
 
   <!-- Sponsors -->
-  <section class="section section-sponsors" id="sponsors" data-screen-label="06 Sponsors" hidden>
+  <section class="section section-sponsors" id="sponsors" data-screen-label="07 Sponsors" hidden>
     <div class="wrap center">
       <header class="section-head">
-        <span class="section-eyebrow">// 06</span>
+        <span class="section-eyebrow">// 07</span>
         <h2 class="section-title section-title--zh" data-i18n="sponsors_title">贊助廠商</h2>
         <span class="section-meta"></span>
       </header>
@@ -601,6 +626,23 @@
       <div class="modal-body">
         <div id="modalDesc" style="font-size: 16px; line-height: 1.8; color: var(--ink-2);"></div>
         <div id="modalAction" style="margin-top: 32px; display: flex; justify-content: center;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workshop Modal -->
+  <div id="workshopModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="workshopModalTitle" onclick="closeWorkshopModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 id="workshopModalTitle" data-i18n="workshop_modal_title" style="margin: 0; font-size: 22px; font-weight: 800; color: var(--ink);">Workshop 說明</h3>
+        <div class="modal-close-btn" onclick="closeWorkshopModal()" role="button" tabindex="0" aria-label="關閉">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div id="workshopModalBody" data-i18n="workshop_modal_body" style="font-size: 16px; line-height: 1.8; color: var(--ink-2);"></div>
       </div>
     </div>
   </div>
@@ -861,6 +903,19 @@
       document.body.style.overflow = '';
     }
 
+    function openWorkshopModal() {
+      const modal = document.getElementById('workshopModal');
+      if (!modal) return;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeWorkshopModal() {
+      const modal = document.getElementById('workshopModal');
+      if (modal) modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
     // ===== Code Rain Animation =====
     (function initCodeRain() {
       const canvas = document.getElementById('waveCanvas');
@@ -1042,6 +1097,7 @@
     let NEWS_DATA = [];
     let AGENDA = [];
     let SPEAKERS = [];
+    let TICKETS_DATA = null;
     let CONFIG = {};
     let I18N_DATA = {};  // key → { zh, en }
 
@@ -1433,7 +1489,7 @@
 
     // ESC 關閉彈窗
     document.addEventListener("keydown", e => {
-      if (e.key === "Escape") { closeAgendaModal(); closeSpeakerModal(); }
+      if (e.key === "Escape") { closeAgendaModal(); closeSpeakerModal(); closeWorkshopModal(); }
     });
 
     // ===== Links — 從 data/iplayground_links.json 注入所有連結 =====
@@ -1531,6 +1587,48 @@
           meta.textContent = '';
         }
       }
+    }
+
+    function renderTickets(lang) {
+      const mount = document.getElementById("ticketsGrid");
+      if (!mount || !TICKETS_DATA) return;
+      const l = (lang || currentLang || "zh") === "en" ? "en" : "zh";
+      const tiers = TICKETS_DATA.tickets || [];
+      const escAttr = (s) => String(s).replace(/"/g, "&quot;");
+
+      mount.innerHTML = tiers.map(card => {
+        const name    = card.tier[l]      || card.tier.zh;
+        const sub     = card.subtitle[l]  || card.subtitle.zh;
+        const price   = (l === "en" ? card.price.displayEn : card.price.displayZh) || "";
+        const isTba   = card.price.amount == null;
+        const perks   = (card.perks[l] || card.perks.zh).map(p => `<li>${p}</li>`).join("");
+        const ctaText = card.cta[l]       || card.cta.zh;
+        const ctaAttrs = card.ctaUrl
+          ? `href="${escAttr(card.ctaUrl)}" target="_blank" rel="noopener"`
+          : `href="#" aria-disabled="true" tabindex="-1"`;
+        const cardCls = `ticket-card ticket-card--${card.id}${card.patron ? " ticket-card--patron" : ""}`;
+        const eyebrow = String(card.id || "").replace(/-/g, " ").toUpperCase();
+        const badge   = card.badge
+          ? `<span class="ticket-badge">${card.badge[l] || card.badge.zh}</span>`
+          : "";
+        return `
+          <li class="${cardCls}" data-tier="${escAttr(card.id)}">
+            <header class="ticket-top">
+              <span class="ticket-eyebrow">// ${eyebrow}</span>
+              ${badge}
+            </header>
+            <div class="ticket-heading">
+              <div class="ticket-name">${name}</div>
+              <div class="ticket-subtitle">${sub}</div>
+            </div>
+            <div class="ticket-price${isTba ? " ticket-price--tba" : ""}">${price}</div>
+            <ul class="ticket-perks">${perks}</ul>
+            <a class="ticket-cta" ${ctaAttrs}>
+              <span>${ctaText}</span>
+              <span class="ticket-cta-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>`;
+      }).join("");
     }
 
     function renderSpeakers(lang) {
@@ -1833,6 +1931,7 @@
       document.documentElement.dataset.lang = l;
       syncLangButtons(l);
       renderNews(l);
+      renderTickets(l);
       const agendaSearchInput = document.getElementById("agendaSearchInput");
       if (agendaSearchInput?.value.trim()) {
         agendaSearchInput.dispatchEvent(new Event("input"));
@@ -2292,18 +2391,21 @@
         fetch("data/iplayground_config.json").then(r => r.json()),
         fetch("data/iplayground_links.json").then(r => r.json()),
         fetch(`data/iplayground_i18n.json?v=${DATA_VERSION}`).then(r => r.json()),
-      ]).then(([newsZh, newsEn, agenda, cfpSteps, config, links, i18n]) => {
+        fetch(`data/iplayground_tickets.json?v=${DATA_VERSION}`).then(r => r.json()),
+      ]).then(([newsZh, newsEn, agenda, cfpSteps, config, links, i18n, tickets]) => {
         NEWS_DATA_BY_LANG = { zh: newsZh, en: newsEn };
         AGENDA = agenda;
         SPEAKERS = cfpSteps;
         CONFIG = config;
         I18N_DATA = i18n;
+        TICKETS_DATA = tickets;
         VENUE_MAP = config.venue?.mapUrl || "";
         PARKING_MAP = config.venue?.parkingMapUrl || "";
 
         applyLinks(links);
 
         renderNews(savedLang);
+        renderTickets(savedLang);
         renderAgenda(1);
         renderSpeakers();
 

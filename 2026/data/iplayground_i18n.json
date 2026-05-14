@@ -1,5 +1,6 @@
 {
   "nav_news":            { "zh": "最新消息",                          "en": "Latest News" },
+  "nav_tickets":         { "zh": "票種",                              "en": "Tickets" },
   "nav_about":           { "zh": "活動資訊",                          "en": "Event Info" },
   "nav_agenda":          { "zh": "議程",                              "en": "Agenda" },
   "nav_speakers":        { "zh": "講者群",                            "en": "Speakers" },
@@ -82,6 +83,16 @@
   "stat_cfp_sub":        { "zh": "立即投稿 →",                        "en": "Submit Now →" },
   "stat_tickets_value":  { "zh": "立即購票",                          "en": "LINK" },
   "stat_tickets_sub":    { "zh": "早鳥票開賣中",                      "en": "Early-bird on sale" },
+
+  "tickets_title":       { "zh": "票種資訊",                          "en": "Tickets" },
+  "tickets_meta":        { "zh": "完整議程 · 各票種一次看",           "en": "All four tiers, side by side" },
+
+  "workshop_info_trigger": { "zh": "Workshop 說明",                     "en": "About workshops" },
+  "workshop_modal_title":  { "zh": "Workshop 說明",                     "en": "About workshops" },
+  "workshop_modal_body":   {
+    "zh": "<p>Workshop 將採限額報名制。Workshop 包含實作、互動與現場交流，每場席次有限，以維持良好的體驗品質。</p><p>若想參加 Workshop，需於活動前完成事前報名，每人最多可登記兩場。若登記人數超過名額限制，將以亂數抽籤方式決定入場名單，並以 Email 通知結果。</p><p>持有指定票種者可享 Workshop 保證名額，並於可登記場次內免參與抽籤。</p><p>活動當天將於 Workshop 開始前 15 分鐘開放現場候補登記。事前報名中籤者可於開始前 10 分鐘入場；未於開始前 5 分鐘到場者，將視同放棄資格，剩餘名額將依序開放給現場候補者。</p><p>詳細登記時間與方式將於後續公告，請留意官網資訊。</p>",
+    "en": "<p>Workshops use a limited-capacity registration system. Each session combines hands-on practice, interaction and live discussion, with limited seats to preserve a high-quality experience.</p><p>To attend a workshop you must pre-register before the event. Each attendee may register for up to two sessions. If demand exceeds capacity, seats are allocated by random draw and results are notified by email.</p><p>Holders of designated ticket tiers receive guaranteed workshop seats and skip the draw for eligible sessions.</p><p>On the event day, on-site standby registration opens 15 minutes before each workshop. Pre-registered winners may enter from 10 minutes before; anyone not present 5 minutes before start time forfeits their seat, and remaining capacity is released to standby attendees in order.</p><p>Detailed registration timing and procedure will be announced later — please watch the official site for updates.</p>"
+  },
 
   "speakers_eyebrow":    { "zh": "— 講者群 Speakers",                "en": "— Speakers" },
   "speakers_title":      { "zh": "講者群",                            "en": "Speakers" },
