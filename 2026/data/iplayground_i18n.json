@@ -1,5 +1,6 @@
 {
   "nav_news":            { "zh": "最新消息",                          "en": "Latest News" },
+  "nav_tickets":         { "zh": "票種",                              "en": "Tickets" },
   "nav_about":           { "zh": "活動資訊",                          "en": "Event Info" },
   "nav_agenda":          { "zh": "議程",                              "en": "Agenda" },
   "nav_speakers":        { "zh": "講者群",                            "en": "Speakers" },
@@ -20,6 +21,8 @@
   "hero_eyebrow_dates":  { "zh": "07.25–26",                          "en": "07.25–26" },
   "hero_eyebrow_cfp":    { "zh": "政大公企中心",                        "en": "NCCU Business Building" },
   "hero_lede":           { "zh": "為 Apple 開發者準備的兩天，由社群志工策劃。技術分享、深度交流、與一群在乎品質的人。", "en": "Two days for Apple-platform developers, organised by volunteers. Talks, conversations, and a room full of people who care about craft." },
+  "trust_bar_label":     { "zh": "Trusted by Apple",                  "en": "Trusted by Apple" },
+  "trust_bar_desc":      { "zh": "iPlayground 2026 已收錄於蘋果開發者社群活動日曆", "en": "iPlayground 2026 is featured on Apple's developer community calendar" },
   "cta_submit":          { "zh": "投稿議程",                          "en": "Submit a talk" },
   "cta_sponsor":         { "zh": "推薦贊助商",                        "en": "Refer a sponsor" },
   "cta_topics":          { "zh": "看看主題範圍",                      "en": "Browse Topics" },
@@ -81,6 +84,16 @@
   "stat_tickets_value":  { "zh": "立即購票",                          "en": "LINK" },
   "stat_tickets_sub":    { "zh": "早鳥票開賣中",                      "en": "Early-bird on sale" },
 
+  "tickets_title":       { "zh": "票種資訊",                          "en": "Tickets" },
+  "tickets_meta":        { "zh": "完整議程 · 各票種一次看",           "en": "All four tiers, side by side" },
+
+  "workshop_info_trigger": { "zh": "Workshop 說明",                     "en": "About workshops" },
+  "workshop_modal_title":  { "zh": "Workshop 說明",                     "en": "About workshops" },
+  "workshop_modal_body":   {
+    "zh": "<p>Workshop 將採限額報名制。Workshop 包含實作、互動與現場交流，每場席次有限，以維持良好的體驗品質。</p><p>若想參加 Workshop，需於活動前完成事前報名，每人最多可登記兩場。若登記人數超過名額限制，將以亂數抽籤方式決定入場名單，並以 Email 通知結果。</p><p>持有指定票種者可享 Workshop 保證名額，並於可登記場次內免參與抽籤。</p><p>活動當天將於 Workshop 開始前 15 分鐘開放現場候補登記。事前報名中籤者可於開始前 10 分鐘入場；未於開始前 5 分鐘到場者，將視同放棄資格，剩餘名額將依序開放給現場候補者。</p><p>詳細登記時間與方式將於後續公告，請留意官網資訊。</p>",
+    "en": "<p>Workshops use a limited-capacity registration system. Each session combines hands-on practice, interaction and live discussion, with limited seats to preserve a high-quality experience.</p><p>To attend a workshop you must pre-register before the event. Each attendee may register for up to two sessions. If demand exceeds capacity, seats are allocated by random draw and results are notified by email.</p><p>Holders of designated ticket tiers receive guaranteed workshop seats and skip the draw for eligible sessions.</p><p>On the event day, on-site standby registration opens 15 minutes before each workshop. Pre-registered winners may enter from 10 minutes before; anyone not present 5 minutes before start time forfeits their seat, and remaining capacity is released to standby attendees in order.</p><p>Detailed registration timing and procedure will be announced later — please watch the official site for updates.</p>"
+  },
+
   "speakers_eyebrow":    { "zh": "— 講者群 Speakers",                "en": "— Speakers" },
   "speakers_title":      { "zh": "講者群",                            "en": "Speakers" },
   "speakers_wip":        { "zh": "講者陣容確認後即將公布，敬請期待",  "en": "Speaker lineup will be announced once confirmed — stay tuned" },
@@ -106,6 +119,7 @@
   "footer_cfp":          { "zh": "講者投稿",                          "en": "Speaker Submissions" },
   "footer_sponsor":      { "zh": "贊助合作",                          "en": "Sponsorship" },
   "footer_coc":          { "zh": "行為準則",                          "en": "Code of Conduct" },
+  "footer_previous_years": { "zh": "歷年活動",                        "en": "Previous Years" },
 
   "control_appearance":  { "zh": "主題",                              "en": "Appearance" },
   "control_lang":        { "zh": "語言",                              "en": "Language" },

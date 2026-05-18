@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>iPlayground · iOS Taipei Meetup 2026</title>
+  <title>iPlayground · iOS Conference Taiwan 2026</title>
 
   <meta name="description" content="iPlayground 2026 · iOS Taipei 社群年度大會。Apple 平台開發者的精工 · 技術 · 社群。2026.07.25-26 政大公企中心。" />
   <meta name="author" content="iPlayground.io" />
@@ -14,7 +14,7 @@
   <meta property="og:locale" content="zh_TW" />
   <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:url" content="https://iplayground.io/2026/" />
-  <meta property="og:title" content="iPlayground · iOS Taipei Meetup 2026" />
+  <meta property="og:title" content="iPlayground · iOS Conference Taiwan 2026" />
   <meta property="og:description" content="iOS Taipei 社群年度大會。2026.07.25-26 政大公企中心。" />
   <meta property="og:image" content="https://iplayground.io/2026/img/iplayground-banner.png" />
   <meta property="og:image:width" content="1869" />
@@ -22,7 +22,7 @@
   <meta property="og:image:alt" content="iPlayground 2026 — 政大公企中心 · 2026.07.25-26" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="iPlayground · iOS Taipei Meetup 2026" />
+  <meta name="twitter:title" content="iPlayground · iOS Conference Taiwan 2026" />
   <meta name="twitter:description" content="iOS Taipei 社群年度大會。2026.07.25-26 政大公企中心。" />
   <meta name="twitter:image" content="https://iplayground.io/2026/img/iplayground-banner.png" />
   <meta name="twitter:image:alt" content="iPlayground 2026 — 政大公企中心 · 2026.07.25-26" />
@@ -33,20 +33,45 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Michroma&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap"
     rel="stylesheet">
 
+  <script src="shared-content.js"></script>
   <script>
     const TWEAKS = /*EDITMODE-BEGIN*/{
       "hue": 230,
-      "mode": "light",
+      "mode": "dark",
       "keyArt": "grid",
       "wordmarkStyle": "inline"
     }/*EDITMODE-END*/;
   </script>
 
-  <link rel="stylesheet" href="css/shared.css?v=20260504-tag-case-fix-3">
-  <link rel="stylesheet" href="css/main.css?v=20260504-tag-case-fix-3">
+  <link rel="stylesheet" href="css/shared.css?v=20260510-tickets-align5">
+  <link rel="stylesheet" href="css/main.css?v=20260510-tickets-align5">
 </head>
 
 <body>
+
+  <!-- Trust bar — Apple Let's Vision 2026 community calendar listing -->
+  <a
+    class="trust-bar"
+    href="#"
+    data-link="apple_event_calendar"
+    target="_blank"
+    rel="noopener"
+    aria-label="Trusted by Apple — featured on Apple's developer community calendar"
+  >
+    <span class="trust-bar-mark" aria-hidden="true">
+      <svg viewBox="0 0 12 12" width="11" height="11" focusable="false" aria-hidden="true">
+        <path d="M6 0 L7.05 4.95 L12 6 L7.05 7.05 L6 12 L4.95 7.05 L0 6 L4.95 4.95 Z" fill="currentColor"/>
+      </svg>
+    </span>
+    <span class="trust-bar-label" data-i18n="trust_bar_label">Trusted by Apple</span>
+    <span class="trust-bar-mark" aria-hidden="true">
+      <svg viewBox="0 0 12 12" width="11" height="11" focusable="false" aria-hidden="true">
+        <path d="M6 0 L7.05 4.95 L12 6 L7.05 7.05 L6 12 L4.95 7.05 L0 6 L4.95 4.95 Z" fill="currentColor"/>
+      </svg>
+    </span>
+    <span class="trust-bar-sep" aria-hidden="true">·</span>
+    <span class="trust-bar-desc" data-i18n="trust_bar_desc">iPlayground 2026 已收錄於蘋果開發者社群活動日曆</span>
+  </a>
 
   <!-- Nav -->
   <nav class="top">
@@ -62,10 +87,9 @@
       </button>
       <ul class="nav-menu">
         <li><a href="#news" data-i18n="nav_news">最新消息</a></li>
+        <li><a href="#tickets" data-i18n="nav_tickets">票種</a></li>
         <li><a href="#about" data-i18n="nav_about">活動資訊</a></li>
         <li><a href="#agenda" data-i18n="nav_agenda">議程</a></li>
-        <li><a href="#speakers" data-i18n="nav_speakers">講者</a></li>
-        <li><a href="#staff" data-i18n="nav_staff">工作人員</a></li>
       </ul>
       <div class="nav-actions">
         <div class="lang-switch nav-switch" id="modeSwitch" title="Appearance">
@@ -107,14 +131,13 @@
   <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="#news" data-i18n="nav_news">最新消息</a></li>
+      <li><a href="#tickets" data-i18n="nav_tickets">票種</a></li>
       <li><a href="#about" data-i18n="nav_about">活動資訊</a></li>
       <li><a href="#agenda" data-i18n="nav_agenda">議程</a></li>
-      <li><a href="#speakers" data-i18n="nav_speakers">講者</a></li>
-      <li><a href="#staff" data-i18n="nav_staff">工作人員</a></li>
     </ul>
   </div>
 
-  <link rel="stylesheet" href="css/confetti.css?v=20260503-speaker-size-fix-8">
+  <link rel="stylesheet" href="css/confetti.css?v=20260504-news-only">
   <!-- Hero -->
   <header class="hero" id="hero" data-screen-label="01 Hero" data-state="open">
 
@@ -170,62 +193,66 @@
             <span data-i18n="cta_submit">投稿議程</span>
             <span class="cta-arrow" aria-hidden="true">→</span>
           </a>
-          <a class="cta cta-signal" id="ctaSponsor" href="#" data-link="sponsor_referral" target="_blank"
-            rel="noopener">
+          <a class="cta cta-signal" id="ctaSponsor" href="#" data-link="sponsor_referral" target="_blank" rel="noopener">
             <span data-i18n="cta_sponsor">推薦贊助商</span>
             <span class="cta-arrow" aria-hidden="true">→</span>
           </a>
-        </div>
-
-        <div class="hero-social-row" id="heroSocialRow">
-          <!-- 由 data/iplayground_links.json 動態產生 -->
+          <a class="cta cta-signal" id="ctaTickets" href="https://iplayground.kktix.cc/events/2026" target="_blank" rel="noopener">
+            <span data-i18n="stat_tickets_value">立即購票</span>
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
 
-      <aside class="countdown-panel" aria-label="CFP deadline countdown">
-        <div class="cd-meta">
-          <span class="cd-mono" data-i18n="cd_meta_label">// 投稿截止</span>
-          <span class="cd-mono cd-zh" data-i18n="cd_meta_zh">投稿截止</span>
-        </div>
+      <div class="countdown-col">
+        <aside class="countdown-panel" aria-label="CFP deadline countdown">
+          <div class="cd-meta">
+            <span class="cd-mono" data-i18n="cd_meta_label">// 投稿截止</span>
+            <span class="cd-mono cd-zh" data-i18n="cd_meta_zh">投稿截止</span>
+          </div>
 
-        <div class="cd-grid" id="cdGrid">
-          <div class="cd-cell" data-unit="d">
-            <div class="cd-digits" id="cdD">00</div>
-            <div class="cd-label" data-i18n="cd_unit_d">天</div>
+          <div class="cd-grid" id="cdGrid">
+            <div class="cd-cell" data-unit="d">
+              <div class="cd-digits" id="cdD">00</div>
+              <div class="cd-label" data-i18n="cd_unit_d">天</div>
+            </div>
+            <div class="cd-sep" aria-hidden="true">:</div>
+            <div class="cd-cell" data-unit="h">
+              <div class="cd-digits" id="cdH">00</div>
+              <div class="cd-label" data-i18n="cd_unit_h">時</div>
+            </div>
+            <div class="cd-sep" aria-hidden="true">:</div>
+            <div class="cd-cell" data-unit="m">
+              <div class="cd-digits" id="cdM">00</div>
+              <div class="cd-label" data-i18n="cd_unit_m">分</div>
+            </div>
+            <div class="cd-sep" aria-hidden="true">:</div>
+            <div class="cd-cell" data-unit="s">
+              <div class="cd-digits" id="cdS">00</div>
+              <div class="cd-label" data-i18n="cd_unit_s">秒</div>
+            </div>
           </div>
-          <div class="cd-sep" aria-hidden="true">:</div>
-          <div class="cd-cell" data-unit="h">
-            <div class="cd-digits" id="cdH">00</div>
-            <div class="cd-label" data-i18n="cd_unit_h">時</div>
-          </div>
-          <div class="cd-sep" aria-hidden="true">:</div>
-          <div class="cd-cell" data-unit="m">
-            <div class="cd-digits" id="cdM">00</div>
-            <div class="cd-label" data-i18n="cd_unit_m">分</div>
-          </div>
-          <div class="cd-sep" aria-hidden="true">:</div>
-          <div class="cd-cell" data-unit="s">
-            <div class="cd-digits" id="cdS">00</div>
-            <div class="cd-label" data-i18n="cd_unit_s">秒</div>
-          </div>
-        </div>
 
-        <div class="cd-deadline">
-          <span class="cd-mono" data-i18n="cd_deadline_stamp">2026-06-19 · 23:59 UTC+8</span>
-          <span class="cd-deadline-meta">
-            <span class="cd-mono cd-ms" id="cdMs" aria-hidden="true">.000</span>
-            <span class="cd-deadline-arrow" aria-hidden="true">↗</span>
-          </span>
-        </div>
-      </aside>
+          <div class="cd-deadline">
+            <span class="cd-mono" data-i18n="cd_deadline_stamp">2026-06-19 · 23:59 UTC+8</span>
+            <span class="cd-deadline-meta">
+              <span class="cd-mono cd-ms" id="cdMs" aria-hidden="true">.000</span>
+              <span class="cd-deadline-arrow" aria-hidden="true">↗</span>
+            </span>
+          </div>
+        </aside>
+
+        <nav class="cd-social-row" id="cdSocialRow" aria-label="Social links">
+          <!-- 由 data/iplayground_links.json 動態產生 -->
+        </nav>
+      </div>
 
     </div>
   </header>
 
   <!-- Latest News -->
   <section class="section section-news" id="news" data-screen-label="01.5 News" style="position:relative;">
-    <canvas id="newsConfettiCanvas"
-      style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+    <canvas id="newsConfettiCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
     <div class="section-inner">
       <header class="section-head">
         <span class="section-eyebrow" id="newsEyebrow">// 01</span>
@@ -237,11 +264,34 @@
     </div>
   </section>
 
-  <!-- About -->
-  <section class="section section-about" id="about" data-screen-label="02 About">
+  <!-- Tickets -->
+  <section class="section section-tickets" id="tickets" data-screen-label="02 Tickets">
     <div class="wrap center">
       <header class="section-head">
         <span class="section-eyebrow">// 02</span>
+        <h2 class="section-title section-title--zh" data-i18n="tickets_title">票種資訊</h2>
+        <span class="section-meta" data-i18n="tickets_meta">完整議程 · 各票種一次看</span>
+      </header>
+      <div class="tickets-box">
+        <ol class="tickets-grid" id="ticketsGrid"></ol>
+      </div>
+      <div class="tickets-aux">
+        <button type="button" class="workshop-info-trigger" onclick="openWorkshopModal()" aria-haspopup="dialog" aria-controls="workshopModal">
+          <span data-i18n="workshop_info_trigger">Workshop 說明</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section section-about" id="about" data-screen-label="03 About">
+    <div class="wrap center">
+      <header class="section-head">
+        <span class="section-eyebrow">// 03</span>
         <h2 class="section-title section-title--zh" data-i18n="nav_about">活動資訊</h2>
         <span class="section-meta"></span>
       </header>
@@ -257,15 +307,15 @@
         </div>
         <div class="stat">
           <span class="stat-label">// VENUE</span>
-          <span class="stat-value" data-i18n="stat_venue_value">公企中心</span>
-          <span class="stat-sub" data-i18n="stat_venue_sub">大安區 台北</span>
+          <span class="stat-value" data-i18n="stat_venue_value">CPBAE</span>
+          <span class="stat-sub" data-i18n="stat_venue_sub">政大公企中心 · 台北</span>
         </div>
         <a class="stat stat--link" href="#" data-link="cfp_form" target="_blank" rel="noopener">
           <span class="stat-label">// SUBMIT</span>
           <span class="stat-value" data-i18n="stat_cfp_value">徵稿中</span>
           <span class="stat-sub" data-i18n="stat_cfp_sub">立即投稿 →</span>
         </a>
-        <a class="stat stat--link" href="https://iplayground.kktix.cc/events/2026" target="_blank" rel="noopener">
+        <a class="stat stat--link" href="#tickets">
           <span class="stat-label">// TICKETS</span>
           <span class="stat-value stat-value--on-sale" data-i18n="stat_tickets_value">立即購票</span>
           <span class="stat-sub" data-i18n="stat_tickets_sub">早鳥票開賣中</span>
@@ -289,92 +339,95 @@
         </div>
 
         <div class="transport-grid"
-          style="margin-top: 104px; display: grid; grid-template-columns: 1fr; gap: 32px; text-align: left;">
-          <div class="transport-card transport-card--commute transport-card--merged">
-            <div class="transport-merged-main">
-              <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-                <div class="transport-icon">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="m15.5 7h-7a.50034.50034 0 0 0 -.5.5v3.091a22.81158 22.81158 0 0 0 4 .409 22.81158 22.81158 0 0 0 4-.409v-3.091a.50034.50034 0 0 0 -.5-.5z" />
-                    <circle cx="14" cy="14" r="1" />
-                    <circle cx="10" cy="14" r="1" />
-                    <path
-                      d="m12 0a12 12 0 1 0 12 12 12.01375 12.01375 0 0 0 -12-12zm6 10.5a.5.5 0 0 1 -1 0v5a1.49758 1.49758 0 0 1 -1 1.4079v.5921a.49971.49971 0 0 1 -.5.5h-1a.49971.49971 0 0 1 -.5-.5v-.5h-4v.5a.49971.49971 0 0 1 -.5.5h-1a.49971.49971 0 0 1 -.5-.5v-.5921a1.49758 1.49758 0 0 1 -1-1.4079v-5a.5.5 0 0 1 -1 0v-1a.49971.49971 0 0 1 .5-.5h.5v-1.5a1.50164 1.50164 0 0 1 1.5-1.5h7a1.50164 1.50164 0 0 1 1.5 1.5v1.5h.5a.49971.49971 0 0 1 .5.5z" />
-                  </svg>
-                </div>
-                <h3 style="font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em;">
-                  交通資訊</h3>
+          style="margin-top: 104px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; text-align: left;">
+          <div class="transport-card">
+            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
+              <div class="transport-icon">
+                <svg viewBox="0 0 152 152" xmlns="http://www.w3.org/2000/svg">
+                  <g id="Layer_2" data-name="Layer 2">
+                    <g id="_18.train" data-name="18.train">
+                      <path
+                        d="m65.59 44.27h10.41 10.48c1.84 0 3-1 2.94-2.61s-1.14-2.5-2.93-2.51h-20.89c-1.88 0-3 1-3 2.57s1.12 2.55 2.99 2.55z" />
+                      <path d="m56.89 79.8a5.06 5.06 0 0 0 -5 5 5 5 0 0 0 4.9 4.86 4.89 4.89 0 0 0 4.94-4.93 5 5 0 0 0 -4.84-4.93z" />
+                      <path
+                        d="m97.91 69c-1-5.36-2.1-10.7-3.22-16-.46-2.2-1.28-2.9-3.51-2.95-3.92-.09-7.84-.1-11.76-.1-6.23 0-12.45 0-18.68.1-2.23 0-3 .79-3.47 3-.72 3.38-1.39 6.76-2.07 10.14-.4 2-.86 4-1.18 6-.48 3.11.79 4.71 3.9 5 .93.09 1.87.13 2.81.13h15.35 4c4.61 0 9.22 0 13.81-.13 3.3-.1 4.64-1.88 4.02-5.19z" />
+                      <path
+                        d="m76 0a76 76 0 1 0 76 76 76 76 0 0 0 -76-76zm31 117.92v.43c-.32 0-.65.12-1 .12-3.58 0-7.16 0-10.74 0a1.34 1.34 0 0 1 -.88-.25l-6.19-16.63-.07-.2-1.43-4-10.69.03c-3.57 0-7.15-.06-10.73-.06-.51 1.45-1 2.82-1.49 4.22l-.05.1-6.26 16.72h-12.76l4.13-8.35c2.09-4.21 4.2-8.41 6.26-12.65a.54.54 0 0 1 .07-.13c-8.08-1.27-13.52-8.44-11.64-17.84 2.47-12.11 4.63-24.27 6.89-36.43a11.17 11.17 0 0 1 10.95-9.46q14.58-.12 29.16 0a11.08 11.08 0 0 1 11 9.13q3.55 18.7 7 37.42c.9 4.84 0 9.24-3.47 12.94a13.22 13.22 0 0 1 -8.29 4.22q5.15 10.31 10.23 20.67z" />
+                      <path d="m95.21 79.81a4.95 4.95 0 1 0 4.89 5 5 5 0 0 0 -4.89-5z" />
+                    </g>
+                  </g>
+                </svg>
               </div>
-              <div class="commute-tabs" id="commuteTabs" role="tablist" aria-label="交通方式">
-                <button class="commute-tab is-active" type="button" data-commute-tab="mrt" role="tab"
-                  aria-selected="true">捷運</button>
-                <button class="commute-tab" type="button" data-commute-tab="bus" role="tab"
-                  aria-selected="false">公車</button>
+              <h3 style="font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em;"
+                data-i18n="trans_mrt_title">捷運資訊</h3>
+            </div>
+            <div style="font-size: 15px; line-height: 1.8; color: var(--ink-2);" data-i18n="trans_mrt_desc">
+              <button class="transport-link-btn" onclick="openNavigation('東門站 3 號出口', '政大公企中心')">
+                從東門站步行
+              </button>
+              <button class="transport-link-btn" onclick="openBusSearch('214')">
+                從古亭站 4 號出口搭乘 214 公車
+              </button>
+              <button class="transport-link-btn" onclick="openBusSearch('606')">
+                從古亭站 4 號出口搭乘 606 公車
+              </button>
+            </div>
+          </div>
+          <div class="transport-card">
+            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
+              <div class="transport-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="m15.5 7h-7a.50034.50034 0 0 0 -.5.5v3.091a22.81158 22.81158 0 0 0 4 .409 22.81158 22.81158 0 0 0 4-.409v-3.091a.50034.50034 0 0 0 -.5-.5z" />
+                  <circle cx="14" cy="14" r="1" />
+                  <circle cx="10" cy="14" r="1" />
+                  <path d="m12 0a12 12 0 1 0 12 12 12.01375 12.01375 0 0 0 -12-12zm6 10.5a.5.5 0 0 1 -1 0v5a1.49758 1.49758 0 0 1 -1 1.4079v.5921a.49971.49971 0 0 1 -.5.5h-1a.49971.49971 0 0 1 -.5-.5v-.5h-4v.5a.49971.49971 0 0 1 -.5.5h-1a.49971.49971 0 0 1 -.5-.5v-.5921a1.49758 1.49758 0 0 1 -1-1.4079v-5a.5.5 0 0 1 -1 0v-1a.49971.49971 0 0 1 .5-.5h.5v-1.5a1.50164 1.50164 0 0 1 1.5-1.5h7a1.50164 1.50164 0 0 1 1.5 1.5v1.5h.5a.49971.49971 0 0 1 .5.5z" />
+                </svg>
               </div>
-
-              <div id="commutePaneMrt" data-commute-pane="mrt">
-                <div style="font-size: 15px; line-height: 1.8; color: var(--ink-2);" data-i18n="trans_mrt_desc">
-                  <button class="transport-link-btn" onclick="openNavigation('東門站 3 號出口', '政大公企中心')">
-                    從東門站步行
-                  </button>
-                  <button class="transport-link-btn" onclick="openBusSearch('214')">
-                    從古亭站 4 號出口搭乘 214 公車
-                  </button>
-                  <button class="transport-link-btn" onclick="openBusSearch('0南')">
-                    從古亭站 4 號出口搭乘 0南 公車
-                  </button>
-                  <button class="transport-link-btn" onclick="openBusSearch('606')">
-                    從古亭站 4 號出口搭乘 606 公車
-                  </button>
-                </div>
-              </div>
-
-              <div id="commutePaneBus" data-commute-pane="bus" hidden>
-                <div style="font-size: 15px; line-height: 1.8; color: var(--ink-2);" data-i18n="trans_bus_desc">
-                  <div class="bus-tags">
-                    <button class="bus-tag" type="button" onclick="showBusModal('0南');">0南</button>
-                    <button class="bus-tag" type="button" onclick="showBusModal('214');">214</button>
-                    <button class="bus-tag" type="button" onclick="showBusModal('214直');">214直</button>
-                    <button class="bus-tag" type="button" onclick="showBusModal('237');">237</button>
-                    <button class="bus-tag" type="button" onclick="showBusModal('253');">253</button>
-                    <button class="bus-tag" type="button" onclick="showBusModal('606');">606</button>
-                    <button class="bus-tag" type="button" onclick="showBusModal('670');">670</button>
-                    <button class="bus-tag" type="button" onclick="showBusModal('671');">671</button>
-                  </div>
-                </div>
+              <h3 style="font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em;"
+                data-i18n="trans_bus_title">公車資訊</h3>
+            </div>
+            <div style="font-size: 15px; line-height: 1.8; color: var(--ink-2);" data-i18n="trans_bus_desc">
+              <div class="bus-tags">
+                <span class="bus-tag">0南</span>
+                <span class="bus-tag">214</span>
+                <span class="bus-tag">214直</span>
+                <span class="bus-tag">237</span>
+                <span class="bus-tag">253</span>
+                <span class="bus-tag">606</span>
+                <span class="bus-tag">670</span>
+                <span class="bus-tag">671</span>
               </div>
             </div>
-            <aside class="transport-merged-side">
-              <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
-                <div class="transport-icon">
-                  <svg clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality"
-                    shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254000 254000"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <g id="图层_x0020_1">
-                      <path
-                        d="m127000 254000c-70129 0-127000-56871-127000-127000s56871-127000 127000-127000 127000 56871 127000 127000-56871 127000-127000 127000zm0-209606c34742 0 62905 28163 62905 62905 0 34741-62905 102306-62905 102306s-62905-67565-62905-102306c0-34742 28163-62905 62905-62905zm0 37912c13172 0 23854 10682 23854 23855 0 13172-10682 23854-23854 23854s-23854-10682-23854-23854c0-13173 10682-23855 23854-23855z" />
-                    </g>
-                  </svg>
-                </div>
-                <h3 style="font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em;"
-                  data-i18n="trans_other_title">其他資訊</h3>
+          </div>
+          <div class="transport-card">
+            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
+              <div class="transport-icon">
+                <svg clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality"
+                  shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254000 254000"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <g id="图层_x0020_1">
+                    <path
+                      d="m127000 254000c-70129 0-127000-56871-127000-127000s56871-127000 127000-127000 127000 56871 127000 127000-56871 127000-127000 127000zm0-209606c34742 0 62905 28163 62905 62905 0 34741-62905 102306-62905 102306s-62905-67565-62905-102306c0-34742 28163-62905 62905-62905zm0 37912c13172 0 23854 10682 23854 23855 0 13172-10682 23854-23854 23854s-23854-10682-23854-23854c0-13173 10682-23855 23854-23855z" />
+                  </g>
+                </svg>
               </div>
-              <div style="font-size: 15px; line-height: 1.8; color: var(--ink-2);">
-                <p><strong style="color: var(--ink);" data-i18n="trans_addr_label">地址：</strong><span
-                    data-i18n="venue_address">106 台北市大安區金華街 187 號</span></p>
-                <p><strong style="color: var(--ink);" data-i18n="trans_phone_label">電話：</strong>02-23419151</p>
-                <p style="margin-top: 24px !important;"><a href="#" data-link="venue_traffic" target="_blank"
-                    rel="noopener"
-                    style="color: var(--accent); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; border-bottom: 1px solid transparent; transition: border-color .3s;"
-                    onmouseover="this.style.borderColor='var(--accent)'"
-                    onmouseout="this.style.borderColor='transparent'" data-i18n="trans_link">交通詳細網址 <svg
-                      style="margin-left:6px;" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2.5">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg></a></p>
-              </div>
-            </aside>
+              <h3 style="font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em;"
+                data-i18n="trans_other_title">其他資訊</h3>
+            </div>
+            <div style="font-size: 15px; line-height: 1.8; color: var(--ink-2);">
+              <p><strong style="color: var(--ink);" data-i18n="trans_addr_label">地址：</strong><span
+                  data-i18n="venue_address">106 台北市大安區金華街 187 號</span></p>
+              <p><strong style="color: var(--ink);" data-i18n="trans_phone_label">電話：</strong>02-23419151</p>
+              <p style="margin-top: 24px !important;"><a
+                  href="#" data-link="venue_traffic" target="_blank"
+                  rel="noopener"
+                  style="color: var(--accent); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; border-bottom: 1px solid transparent; transition: border-color .3s;"
+                  onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='transparent'"
+                  data-i18n="trans_link">交通詳細網址 <svg style="margin-left:6px;" width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg></a></p>
+            </div>
           </div>
         </div>
       </div>
@@ -384,10 +437,10 @@
 
 
   <!-- Agenda -->
-  <section class="section section-agenda" id="agenda" data-screen-label="03 Agenda">
+  <section class="section section-agenda" id="agenda" data-screen-label="04 Agenda">
     <div class="wrap center">
       <header class="section-head">
-        <span class="section-eyebrow">// 03</span>
+        <span class="section-eyebrow">// 04</span>
         <h2 class="section-title section-title--zh" data-i18n="agenda_title">議程</h2>
         <span class="section-meta" data-i18n="agenda_meta">議程公布後即時更新</span>
       </header>
@@ -405,24 +458,12 @@
               <span class="tab-date">07.26</span>
             </button>
           </div>
-          <div class="agenda-tabs" role="tablist" id="agendaKindTabs" aria-label="Agenda Type">
-            <button class="agenda-tab is-active" data-kind="session" role="tab" aria-selected="true">
-              <span class="tab-label">SESSIONS</span>
-              <span class="tab-date">議程</span>
-            </button>
-            <button class="agenda-tab" data-kind="workshop" role="tab" aria-selected="false">
-              <span class="tab-label">WORKSHOPS</span>
-              <span class="tab-date">工作坊</span>
-            </button>
-          </div>
           <div class="agenda-controls">
             <label class="agenda-search" aria-label="搜尋議程">
-              <input id="agendaSearchInput" type="text" autocomplete="off" autocapitalize="none" autocorrect="off"
-                spellcheck="false" placeholder="搜尋議題或標籤" aria-label="搜尋議程">
+              <input id="agendaSearchInput" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="搜尋議題或標籤" aria-label="搜尋議程">
             </label>
             <button class="agenda-sort-btn" id="agendaSortBtn" type="button" aria-label="切換議程排序" title="切換議程排序">
-              <svg class="sort-icon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="sort-icon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M7 5v14"></path>
                 <path d="M4 8l3-3 3 3"></path>
                 <path d="M14 19h6"></path>
@@ -440,44 +481,42 @@
 
 
   <!-- Speakers -->
-  <section class="section section-speakers" id="speakers" data-screen-label="04 Speakers">
+  <section class="section section-speakers" id="speakers" data-screen-label="05 Speakers">
     <div class="wrap center">
       <header class="section-head">
-        <span class="section-eyebrow">// 04</span>
+        <span class="section-eyebrow">// 05</span>
         <h2 class="section-title section-title--zh" data-i18n="speakers_title">講者群</h2>
         <span class="section-meta"></span>
       </header>
 
       <div class="speaker-grid" id="speakerGrid">
-        <p class="agenda-empty" id="speakerFallback">講者資料載入中...</p>
+        <!-- 由 data/iplayground_speakers.json 動態產生 -->
       </div>
 
     </div>
   </section>
 
   <!-- Staff -->
-  <section class="section section-staff" id="staff" data-screen-label="05 Staff">
-    <div class="photo-wall" id="staffPhotoWall" aria-hidden="true"></div>
-    <div class="staff-curtain" aria-hidden="true"></div>
+  <section class="section section-staff" id="staff" data-screen-label="06 Staff">
     <div class="wrap center">
       <header class="section-head">
-        <span class="section-eyebrow">// 05</span>
+        <span class="section-eyebrow">// 06</span>
         <h2 class="section-title section-title--zh" data-i18n="staff_title">工作人員</h2>
         <span class="section-meta"></span>
       </header>
 
       <div class="staff-grid" id="staffGrid">
-        <p class="agenda-empty" id="staffFallback">工作人員資料載入中...</p>
+        <!-- 由 data/staff.json 動態產生 -->
       </div>
 
     </div>
   </section>
 
   <!-- Sponsors -->
-  <section class="section section-sponsors" id="sponsors" data-screen-label="06 Sponsors" hidden>
+  <section class="section section-sponsors" id="sponsors" data-screen-label="07 Sponsors" hidden>
     <div class="wrap center">
       <header class="section-head">
-        <span class="section-eyebrow">// 06</span>
+        <span class="section-eyebrow">// 07</span>
         <h2 class="section-title section-title--zh" data-i18n="sponsors_title">贊助廠商</h2>
         <span class="section-meta"></span>
       </header>
@@ -497,21 +536,19 @@
     <div class="wrap">
       <div class="footer-grid">
         <div>
-          <div class="footer-lock">
-            <img src="img/svg/logo_header_dark.svg" alt="iPlayground" class="footer-logo footer-logo--light"
-              style="height:32px;width:auto;">
-            <img src="img/svg/logo_header_light.svg" alt="iPlayground" class="footer-logo footer-logo--dark"
-              style="height:32px;width:auto;">
-          </div>
+        <div class="footer-lock">
+          <img src="img/svg/logo_header_dark.svg" alt="iPlayground" class="footer-logo footer-logo--light" style="height:32px;width:auto;">
+          <img src="img/svg/logo_header_light.svg" alt="iPlayground" class="footer-logo footer-logo--dark" style="height:32px;width:auto;">
+        </div>
           <p class="footer-tagline" data-i18n="footer_tagline"></p>
         </div>
         <div>
-          <h4 data-i18n="footer_event">活動</h4>
-          <ul>
-            <li><a href="#news" data-i18n="footer_news">最新消息</a></li>
-            <li><a href="#about" data-i18n="nav_about">活動資訊</a></li>
-            <li><a href="#agenda" data-i18n="nav_agenda">議程</a></li>
-          </ul>
+            <h4 data-i18n="footer_event">活動</h4>
+            <ul>
+              <li><a href="#news" data-i18n="footer_news">最新消息</a></li>
+              <li><a href="#about" data-i18n="nav_about">活動資訊</a></li>
+              <!-- <li><a href="#agenda" data-i18n="nav_agenda">議程</a></li> -->
+            </ul>
         </div>
         <div>
           <h4 data-i18n="footer_community">社群</h4>
@@ -520,6 +557,7 @@
             <li><a href="#" data-link="social_facebook" target="_blank" rel="noopener">Facebook</a></li>
             <li><a href="#" data-link="social_twitter" target="_blank" rel="noopener">Twitter / X</a></li>
             <li><a href="#" data-link="social_youtube" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="#" data-link="social_threads" target="_blank" rel="noopener">Threads</a></li>
           </ul>
         </div>
         <div>
@@ -528,14 +566,21 @@
             <li><a href="#" data-link="contact_support" data-i18n="footer_support">一般支援</a></li>
             <li><a href="#" data-link="contact_cfp" data-i18n="footer_cfp">講者投稿</a></li>
             <li><a href="#" data-link="contact_sponsor" data-i18n="footer_sponsor">贊助合作</a></li>
-            <li><a href="#" data-link="coc" target="_blank" rel="noopener" data-i18n="footer_coc">行為準則</a></li>
+            <li><a href="#" data-link="coc" target="_blank" rel="noopener"
+                data-i18n="footer_coc">行為準則</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer_previous_years">歷年活動</h4>
+          <ul>
+            <li><a href="#" data-link="iplayground_2025" target="_blank" rel="noopener">iPlayground 2025</a></li>
+            <li><a href="#" data-link="iplayground_2024" target="_blank" rel="noopener">iPlayground 2024</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
       </div>
-      <div
-        style="padding-top:16px;text-align:center;font-family:var(--f-mono);font-size:11px;color:color-mix(in srgb, var(--bg) 35%, transparent);letter-spacing:0.02em;">
+      <div style="padding-top:16px;text-align:center;font-family:var(--f-mono);font-size:11px;color:color-mix(in srgb, var(--bg) 35%, transparent);letter-spacing:0.02em;">
         iPlayground 2026 is organized by Taipei Elite Software Developer Association (77212283). All rights reserved.
       </div>
     </div>
@@ -592,13 +637,29 @@
     </div>
   </div>
 
+  <!-- Workshop Modal -->
+  <div id="workshopModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="workshopModalTitle" onclick="closeWorkshopModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 id="workshopModalTitle" data-i18n="workshop_modal_title" style="margin: 0; font-size: 22px; font-weight: 800; color: var(--ink);">Workshop 說明</h3>
+        <div class="modal-close-btn" onclick="closeWorkshopModal()" role="button" tabindex="0" aria-label="關閉">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div id="workshopModalBody" data-i18n="workshop_modal_body" style="font-size: 16px; line-height: 1.8; color: var(--ink-2);"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Agenda Modal -->
   <div id="agendaModal" class="modal-overlay" onclick="closeAgendaModal()">
-    <div class="agenda-modal-content" id="agendaModalContent" data-modal-label="// 議程"
-      onclick="event.stopPropagation()">
+    <div class="agenda-modal-content" id="agendaModalContent" data-modal-label="// 議程" onclick="event.stopPropagation()">
       <button class="agenda-modal-close" onclick="closeAgendaModal()" aria-label="關閉">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M18 6L6 18M6 6l12 12" />
+          <path d="M18 6L6 18M6 6l12 12"/>
         </svg>
       </button>
 
@@ -619,14 +680,7 @@
 
       <!-- HackMD -->
       <a class="am-hackmd" id="amHackmd" href="#" target="_blank" rel="noopener" style="display:none;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <polyline points="14 2 14 8 20 8" />
-          <line x1="16" y1="13" x2="8" y2="13" />
-          <line x1="16" y1="17" x2="8" y2="17" />
-          <polyline points="10 9 9 9 8 9" />
-        </svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         HackMD 共筆
       </a>
 
@@ -640,7 +694,7 @@
     <div class="speaker-modal-content" onclick="event.stopPropagation()">
       <button class="agenda-modal-close" onclick="closeSpeakerModal()" aria-label="關閉">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M18 6L6 18M6 6l12 12" />
+          <path d="M18 6L6 18M6 6l12 12"/>
         </svg>
       </button>
 
@@ -743,20 +797,91 @@
       if (!data) return;
 
       title.innerText = l === 'en' ? `${busNum} Bus Guide` : `${busNum} 公車搭乘指引`;
-      const unifiedGuide = l === 'en'
-        ? `Take bus <strong>${busNum}</strong> and get off at <strong>${data.dest[l]}</strong> stop.`
-        : `搭乘 <strong>${busNum}</strong> 公車，於 <strong>${data.dest[l]}</strong> 站下車。`;
-      desc.innerHTML = `
-        <div style="background: var(--surface-2); padding: 20px; border-radius: 6px;">
-          <p style="margin: 0; font-size: 16px; line-height: 1.8; color: var(--ink);">${unifiedGuide}</p>
+      const labelSteps = l === 'en' ? 'Directions:' : '乘車步驟：';
+      const labelTip = l === 'en' ? 'Tips:' : '溫馨提示：';
+
+      let content = `
+        <div id="smartGuidance" style="background: var(--surface-2); padding: 20px; border-radius: 6px; margin-bottom: 0px;">
+          <p style="font-weight: 700; color: var(--accent); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            ${labelSteps}
+          </p>
+          <ul id="stepList" style="margin: 0; padding-left: 0; list-style: none;">
+            <li style="display: flex; gap: 12px; margin-bottom: 12px;">
+              <span style="background: var(--accent); color: #000; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">1</span>
+              <span id="step1">${l === 'en' ? 'Take ' : '從'} <strong>${data.from[l]}</strong> ${l === 'en' ? 'and walk straight.' : '出站後直行。'}</span>
+            </li>
+            <li style="display: flex; gap: 12px; margin-bottom: 12px;">
+              <span style="background: var(--accent); color: #000; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">2</span>
+              <span id="step2">${l === 'en' ? 'Board the bus at ' : '至'} <strong>${data.stop[l]}</strong> ${l === 'en' ? 'stop.' : '站牌搭車。'}</span>
+            </li>
+            <li style="display: flex; gap: 12px;">
+              <span style="background: var(--accent); color: #000; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">3</span>
+              <span>${l === 'en' ? 'Get off at ' : '在'} <strong>${data.dest[l]}</strong> ${l === 'en' ? 'stop.' : '站下車，下車後即抵達活動場地。'}</span>
+            </li>
+          </ul>
         </div>
+        <p style="font-size: 14px; color: var(--ink-3); margin-top: 16px;">※ ${labelTip}${data.desc[l]}</p>
       `;
 
+      desc.innerHTML = content;
+
+      // Smart Detection for 0 South
+      if (busNum === '0南' && navigator.geolocation) {
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const originalStep1 = step1.innerHTML;
+        const originalStep2 = step2.innerHTML;
+        
+        step1.innerHTML = l === 'en' ? '🔍 Detecting nearest stop...' : '🔍 正在偵測距離您最近的 0南 站牌...';
+        step2.style.opacity = '0.5';
+
+        navigator.geolocation.getCurrentPosition((pos) => {
+          const uLat = pos.coords.latitude;
+          const uLon = pos.coords.longitude;
+          const stops = BUS_STOPS_DB['0南'];
+          let nearest = stops[0];
+          let minDist = calculateDistance(uLat, uLon, nearest.lat, nearest.lon);
+
+          stops.forEach(s => {
+            const d = calculateDistance(uLat, uLon, s.lat, s.lon);
+            if (d < minDist) {
+              minDist = d;
+              nearest = s;
+            }
+          });
+
+          // Update UI with nearest stop
+          step1.innerHTML = l === 'en' ? `Board the <strong>0 South</strong> bus from <strong>${nearest.name[l]}</strong> stop.` : `從 <strong>${nearest.name[l]}</strong> 搭乘 <strong>0南</strong> 公車。`;
+          step2.innerHTML = l === 'en' ? `Get off at <strong>NCCU CPBAE</strong> stop.` : `在 <strong>「政大公企中心」</strong> 站下車，下車後即抵達活動場地。`;
+          step2.style.opacity = '1';
+          // Since we found a specific stop, we remove the "walk to stop" step and replace with direct boarding info
+          // Actually let's just make it simpler as per user request: "從 OO站搭成0南公車。在 「政大公企中心」 站下車"
+          const list = document.getElementById('stepList');
+          list.innerHTML = `
+            <li style="display: flex; gap: 12px; margin-bottom: 12px;">
+              <span style="background: var(--accent); color: #000; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">1</span>
+              <span>${l === 'en' ? `Board <strong>0 South</strong> from <strong>${nearest.name[l]}</strong>.` : `從 <strong>${nearest.name[l]}</strong> 搭乘 <strong>0南</strong> 公車。`}</span>
+            </li>
+            <li style="display: flex; gap: 12px;">
+              <span style="background: var(--accent); color: #000; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">2</span>
+              <span>${l === 'en' ? `Get off at <strong>NCCU CPBAE</strong> stop.` : `在 <strong>「政大公企中心」</strong> 站下車，下車後即抵達活動場地。`}</span>
+            </li>
+          `;
+        }, (err) => {
+          step1.innerHTML = originalStep1;
+          step2.style.opacity = '1';
+        });
+      }
+
       const navLabel = l === 'en' ? 'View Navigation' : '查看導航';
+      const statusLabel = l === 'en' ? 'Live Status' : '即時動態';
       const dest = encodeURIComponent("政大公企中心");
       const navUrl = `https://www.google.com/maps/dir/?api=1&destination=${dest}&travelmode=transit`;
+      const statusUrl = `https://ebus.gov.taipei/EBus/Route/RouteByRouteName?routeName=${encodeURIComponent(busNum)}`;
+      
       action.innerHTML = `
-        <div style="display: grid; grid-template-columns: 1fr; gap: 12px; width: 100%;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%;">
           <a href="${navUrl}" target="_blank" class="btn-primary" style="padding: 14px 20px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-weight: 700; justify-content: center; background: var(--surface); color: var(--accent); border: 2.5px solid var(--accent); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
@@ -765,11 +890,13 @@
             </svg>
             <span style="font-size: 15px;">${navLabel}</span>
           </a>
-          <p style="margin: 0; font-size: 13px; line-height: 1.7; color: var(--ink-3);">
-            ${l === 'en'
-          ? 'Google Maps transit suggestions are dynamic and based on your current location and real-time traffic, so Bus 0 South may not always appear in the top results.'
-          : 'Google 地圖的大眾運輸建議會依你目前位置與即時交通動態排序，因此 0南 不一定會出現在前幾個建議路線中。'}
-          </p>
+          <a href="${statusUrl}" target="_blank" class="btn-primary" style="padding: 14px 20px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-weight: 700; justify-content: center; background: var(--surface); color: var(--accent); border: 2.5px solid var(--accent); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="M12 8v4l3 3"></path>
+            </svg>
+            <span style="font-size: 15px;">${statusLabel}</span>
+          </a>
         </div>
       `;
 
@@ -783,40 +910,18 @@
       document.body.style.overflow = '';
     }
 
-    function switchCommuteTab(kind) {
-      const mrtPane = document.getElementById("commutePaneMrt");
-      const busPane = document.getElementById("commutePaneBus");
-      const tabs = document.querySelectorAll("#commuteTabs .commute-tab");
-      const isMrt = kind === "mrt";
-      if (mrtPane) mrtPane.hidden = !isMrt;
-      if (busPane) busPane.hidden = isMrt;
-      tabs.forEach(tab => {
-        const active = tab.dataset.commuteTab === kind;
-        tab.classList.toggle("is-active", active);
-        tab.setAttribute("aria-selected", String(active));
-      });
+    function openWorkshopModal() {
+      const modal = document.getElementById('workshopModal');
+      if (!modal) return;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     }
-    function stabilizeCommutePaneHeight() {
-      const mrtPane = document.getElementById("commutePaneMrt");
-      const busPane = document.getElementById("commutePaneBus");
-      const card = document.querySelector(".transport-card--commute");
-      if (!mrtPane || !busPane || !card) return;
-      const prevMrtHidden = mrtPane.hidden;
-      const prevBusHidden = busPane.hidden;
-      mrtPane.hidden = false;
-      busPane.hidden = false;
-      const target = Math.max(mrtPane.scrollHeight, busPane.scrollHeight);
-      card.style.setProperty("--commute-pane-h", `${target}px`);
-      mrtPane.hidden = prevMrtHidden;
-      busPane.hidden = prevBusHidden;
+
+    function closeWorkshopModal() {
+      const modal = document.getElementById('workshopModal');
+      if (modal) modal.style.display = 'none';
+      document.body.style.overflow = '';
     }
-    document.getElementById("commuteTabs")?.addEventListener("click", (e) => {
-      const btn = e.target.closest("button[data-commute-tab]");
-      if (!btn) return;
-      switchCommuteTab(btn.dataset.commuteTab);
-    });
-    window.addEventListener("load", stabilizeCommutePaneHeight);
-    window.addEventListener("resize", stabilizeCommutePaneHeight);
 
     // ===== Code Rain Animation =====
     (function initCodeRain() {
@@ -984,29 +1089,22 @@
 
     // ===== Data =====
     const DATA_VERSION = "20260503-sessiondata-2025";
-    const SESSION_DATA_BASE = "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1";
+    const NEWS_DATA_URLS = {
+      zh: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news.json",
+      en: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news_en.json",
+    };
+    const SESSION_DATA_BASE = "https://raw.githubusercontent.com/iplayground/SessionData/2025/v1";
     const SESSION_DATA_URLS = {
-      news: `${SESSION_DATA_BASE}/news.json`,
-      newsEn: `${SESSION_DATA_BASE}/news_en.json`,
       schedule: `${SESSION_DATA_BASE}/schedule.json`,
       scheduleEn: `${SESSION_DATA_BASE}/schedule_en.json`,
       speakers: `${SESSION_DATA_BASE}/speakers.json`,
-      links: `${SESSION_DATA_BASE}/links.json`,
-      staff: `${SESSION_DATA_BASE}/staffs.json`,
-      sponsors: `${SESSION_DATA_BASE}/sponsors.json`,
-      cfpSteps: `data/iplayground_cfp_steps.json`,
-      config: `data/iplayground_config.json`,
-      i18n: `data/iplayground_i18n.json`,
-    };
-    const NEWS_DATA_URLS = {
-      zh: `${SESSION_DATA_URLS.news}?v=${DATA_VERSION}`,
-      en: `${SESSION_DATA_URLS.newsEn}?v=${DATA_VERSION}`,
+      speakersEn: `${SESSION_DATA_BASE}/speakers_en.json`,
     };
     let NEWS_DATA_BY_LANG = { zh: [], en: [] };
     let NEWS_DATA = [];
     let AGENDA = [];
     let SPEAKERS = [];
-    let SPONSORS = [];
+    let TICKETS_DATA = null;
     let CONFIG = {};
     let I18N_DATA = {};  // key → { zh, en }
 
@@ -1037,11 +1135,15 @@
     let agendaCurrentDay = 1;
     let agendaSortAsc = true; // true = 由近到遠（預設）
     let agendaSearchQuery = "";
-    let agendaKindFilter = "session";
+
+    function normalizeLang(lang) {
+      return lang === "en" ? "en" : "zh";
+    }
 
     function localized(value, lang = currentLang) {
+      const l = normalizeLang(lang);
       if (Array.isArray(value)) return value.map(item => localized(item, lang));
-      if (value && typeof value === "object") return value[lang] || value.zh || value.en || "";
+      if (value && typeof value === "object") return value[l] || value.zh || value.en || "";
       return value || "";
     }
 
@@ -1049,6 +1151,15 @@
       const response = await fetch(url);
       if (!response.ok) throw new Error(`${response.status} ${url}`);
       return response.json();
+    }
+
+    async function fetchJsonWithFallback(primaryUrl, fallbackUrl) {
+      try {
+        return await fetchJson(primaryUrl);
+      } catch (error) {
+        console.warn(`使用本機資料 fallback：${fallbackUrl}`, error);
+        return fetchJson(fallbackUrl);
+      }
     }
 
     function normalizeScheduleData(zhData, enData, speakers = []) {
@@ -1080,10 +1191,10 @@
             tags,
             speaker: speakerName
               ? {
-                name: { zh: speakerName, en: enRow.speaker || speakerName },
-                avatar: matchedSpeaker?.photo || "",
-                social: []
-              }
+                  name: { zh: speakerName, en: enRow.speaker || speakerName },
+                  avatar: matchedSpeaker?.photo || "",
+                  social: []
+                }
               : null,
             description,
             hackmd: row.hackMD || enRow.hackMD || ""
@@ -1095,30 +1206,17 @@
     }
 
     async function loadAgendaData() {
-      let workshops = [];
-      try {
-        workshops = await fetchJson(`data/iplayground_workshops.json?v=${DATA_VERSION}`);
-      } catch (error) {
-        console.warn("workshop 本地假資料載入失敗，將只顯示 session agenda", error);
-      }
-
       try {
         const [scheduleZh, scheduleEn] = await Promise.all([
-          fetchJson(`${SESSION_DATA_URLS.schedule}?v=${DATA_VERSION}`),
-          fetchJson(`${SESSION_DATA_URLS.scheduleEn}?v=${DATA_VERSION}`).catch(() => null),
+          fetchJson(SESSION_DATA_URLS.schedule),
+          fetchJson(SESSION_DATA_URLS.scheduleEn).catch(() => null),
         ]);
-        const speakers = await fetchJson(`${SESSION_DATA_URLS.speakers}?v=${DATA_VERSION}`).catch(() => []);
-        return mergeWorkshops(normalizeScheduleData(scheduleZh, scheduleEn, speakers), workshops);
+        const speakers = await fetchJson(SESSION_DATA_URLS.speakers).catch(() => []);
+        return normalizeScheduleData(scheduleZh, scheduleEn, speakers);
       } catch (error) {
-        console.warn("遠端議程資料載入失敗，將不顯示議程", error);
-        return [];
+        console.warn("使用本機議程資料 fallback", error);
+        return fetchJson(`data/iplayground_agenda.json?v=${DATA_VERSION}`);
       }
-    }
-
-    function mergeWorkshops(agendaRows, workshops) {
-      const agenda = Array.isArray(agendaRows) ? agendaRows.filter(item => (item.track || "").toLowerCase() !== "workshop") : [];
-      const workshopRows = Array.isArray(workshops) ? workshops : [];
-      return [...agenda, ...workshopRows];
     }
 
     function normalizeSpeakerData(speakers) {
@@ -1142,43 +1240,11 @@
 
     async function loadSpeakerData() {
       try {
-        return normalizeSpeakerData(await fetchJson(`${SESSION_DATA_URLS.speakers}?v=${DATA_VERSION}`));
+        return normalizeSpeakerData(await fetchJson(SESSION_DATA_URLS.speakers));
       } catch (error) {
-        console.warn("遠端講者資料載入失敗，將不顯示講者", error);
-        return [];
+        console.warn("使用本機講者資料 fallback", error);
+        return normalizeSpeakerData(await fetchJson(`data/iplayground_speakers.json?v=${DATA_VERSION}`));
       }
-    }
-
-    function renderSponsors() {
-      const section = document.getElementById("sponsors");
-      if (!section) return;
-      if (!Array.isArray(SPONSORS) || SPONSORS.length === 0) {
-        section.setAttribute("hidden", "");
-        return;
-      }
-
-      section.removeAttribute("hidden");
-      const wrap = section.querySelector(".construction");
-      if (!wrap) return;
-
-      const cards = SPONSORS.map((s) => {
-        const name = localized(s.name) || s.name || "";
-        const logo = s.logo || "";
-        const link = s.website || s.url || "#";
-        const tier = localized(s.tier) || s.tier || "";
-        return `
-          <a href="${link}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;padding:18px 12px;border:1px solid var(--rule);border-radius:14px;background:var(--surface);text-decoration:none;">
-            ${logo ? `<img src="${logo}" alt="${name}" style="max-width:160px;max-height:56px;width:auto;height:auto;object-fit:contain;">` : `<strong style="font-size:16px;">${name}</strong>`}
-            ${tier ? `<span style="font-size:12px;color:var(--ink-2);">${tier}</span>` : ""}
-          </a>
-        `;
-      }).join("");
-
-      wrap.innerHTML = `
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;">
-          ${cards}
-        </div>
-      `;
     }
 
     function parseTime(timeStr) {
@@ -1204,15 +1270,7 @@
       const input = document.getElementById("agendaSearchInput");
       if (input) {
         if (input.value !== agendaSearchQuery) input.value = agendaSearchQuery;
-        if (agendaKindFilter === "workshop") {
-          input.placeholder = currentLang === "en"
-            ? "Search workshop topic, speaker, or room"
-            : "搜尋工作坊主題、講者或場地";
-        } else {
-          input.placeholder = currentLang === "en"
-            ? "Search session topic, speaker, or tags"
-            : "搜尋議程主題、講者或標籤";
-        }
+        input.placeholder = currentLang === "en" ? "Search title or tags" : "搜尋議題或標籤";
       }
 
       const sortBtn = document.getElementById("agendaSortBtn");
@@ -1226,67 +1284,56 @@
     }
 
     function renderAgenda(day) {
-      try {
-        const list = document.getElementById("agendaList");
-        if (!list) return;
-        const activeDay = day || 1;
-        agendaCurrentDay = activeDay;
+      const list = document.getElementById("agendaList");
+      if (!list) return;
+      const activeDay = day || 1;
+      agendaCurrentDay = activeDay;
 
-        // 更新 tab 狀態
-        document.querySelectorAll("#agendaTabs .agenda-tab").forEach(btn => {
-          const isActive = parseInt(btn.dataset.day) === activeDay;
-          btn.classList.toggle("is-active", isActive);
-          btn.setAttribute("aria-selected", String(isActive));
+      // 更新 tab 狀態
+      document.querySelectorAll("#agendaTabs .agenda-tab").forEach(btn => {
+        const isActive = parseInt(btn.dataset.day) === activeDay;
+        btn.classList.toggle("is-active", isActive);
+        btn.setAttribute("aria-selected", String(isActive));
+      });
+
+      const query = normalizeSearchText(agendaSearchQuery);
+      const rows = AGENDA
+        .map((item, sourceIdx) => ({ item, sourceIdx }))
+        .filter(({ item }) => item.day === activeDay)
+        .filter(({ item }) => agendaMatchesSearch(item, query))
+        .slice()
+        .sort((a, b) => {
+          const delta = parseTime(a.item.time) - parseTime(b.item.time);
+          return agendaSortAsc ? delta : -delta;
         });
-        document.querySelectorAll("#agendaKindTabs .agenda-tab").forEach(btn => {
-          const isActive = btn.dataset.kind === agendaKindFilter;
-          btn.classList.toggle("is-active", isActive);
-          btn.setAttribute("aria-selected", String(isActive));
-        });
-        const query = normalizeSearchText(agendaSearchQuery);
-        const rows = AGENDA
-          .map((item, sourceIdx) => ({ item, sourceIdx }))
-          .filter(({ item }) => item.day === activeDay)
-          .filter(({ item }) => {
-            const track = (item.track || "").toLowerCase();
-            if (agendaKindFilter === "workshop") return track === "workshop";
-            return track !== "workshop";
-          })
-          .filter(({ item }) => agendaMatchesSearch(item, query))
-          .slice()
-          .sort((a, b) => {
-            const delta = parseTime(a.item.time) - parseTime(b.item.time);
-            return agendaSortAsc ? delta : -delta;
-          });
 
-        if (rows.length === 0) {
-          list.innerHTML = `<div class="agenda-empty">${query
-            ? (currentLang === "en" ? "No matching sessions" : "沒有符合的議題")
-            : (currentLang === "en" ? "Agenda will be announced soon" : "議程公布後即將顯示")}</div>`;
-          syncAgendaControls();
-          return;
-        }
+      if (rows.length === 0) {
+        list.innerHTML = `<div class="agenda-empty">${query
+          ? (currentLang === "en" ? "No matching sessions" : "沒有符合的議題")
+          : (currentLang === "en" ? "Agenda will be announced soon" : "議程公布後即將顯示")}</div>`;
+        syncAgendaControls();
+        return;
+      }
 
-        const tbaLabel = currentLang === "en" ? "TBA" : "TBA";
-        const speakerPrefix = currentLang === "en" ? "SPEAKER" : "講者";
+      const tbaLabel = currentLang === "en" ? "TBA" : "TBA";
 
-        list.innerHTML = rows.map(({ item: r, sourceIdx }) => {
-          const tags = localized(r.tags || []);
-          const tagHTML = tags.map(tag => {
-            const isKeynote = String(tag).toUpperCase() === "KEYNOTE" || (r.track || "").toLowerCase() === "keynote";
-            const isRoom = /room\s*[a-z0-9]/i.test(String(tag));
-            return `<span class="session-tag${isKeynote ? " is-keynote" : ""}${isRoom ? " is-room" : ""}">${String(tag)}</span>`;
-          }).join("");
-          const speakerName = localized(r.speaker?.name) || tbaLabel;
-          const startTime = (r.time || "").split(/[–\-]/)[0].trim();
-          const desc = localized(r.description) || "";
+      list.innerHTML = rows.map(({ item: r, sourceIdx }) => {
+        const tags = localized(r.tags || []);
+        const primaryTag = tags[0] || "";
+        const isKeynote = primaryTag.toUpperCase() === "KEYNOTE" || (r.track || "").toLowerCase() === "keynote";
+        const tagHTML = primaryTag
+          ? `<span class="session-tag${isKeynote ? " is-keynote" : ""}">${primaryTag.toUpperCase()}</span>`
+          : "";
+        const speakerName = localized(r.speaker?.name) || tbaLabel;
+        const startTime = (r.time || "").split(/[–\-]/)[0].trim();
+        const desc = localized(r.description) || "";
 
-          const trackType = (r.track || "").toLowerCase();
-          const isBreak = trackType === "break";
-          const isSpecial = trackType === "special";
-          const cardClass = isBreak ? "session is-break" : isSpecial ? "session is-special" : "session";
+        const trackType = (r.track || "").toLowerCase();
+        const isBreak = trackType === "break";
+        const isSpecial = trackType === "special";
+        const cardClass = isBreak ? "session is-break" : isSpecial ? "session is-special" : "session";
 
-          return `
+        return `
         <div class="${cardClass}" data-agenda-idx="${sourceIdx}" data-agenda-day="${activeDay}" data-track="${trackType}">
           <span class="session-time">${startTime}</span>
           <div class="session-body">
@@ -1294,40 +1341,27 @@
             ${desc ? `<p class="session-desc">${desc}</p>` : ""}
           </div>
           <div class="session-meta">
-            ${!isBreak ? `<span class="session-speaker"><span class="session-speaker-label">${speakerPrefix}</span><span>${speakerName}</span></span>` : ""}
-            <span class="session-tags">${tagHTML}</span>
+            ${tagHTML}
+            ${!isBreak ? `<span class="session-speaker">${speakerName}</span>` : ""}
           </div>
         </div>`;
-        }).join("");
+      }).join("");
 
-        // 綁定點擊事件
-        list.querySelectorAll(".session").forEach(card => {
-          card.addEventListener("click", () => {
-            const idx = parseInt(card.dataset.agendaIdx);
-            const item = AGENDA[idx];
-            if (item && !item.noModal) showAgendaModal(item);
-          });
+      // 綁定點擊事件
+      list.querySelectorAll(".session").forEach(card => {
+        card.addEventListener("click", () => {
+          const idx = parseInt(card.dataset.agendaIdx);
+          const item = AGENDA[idx];
+          if (item && !item.noModal) showAgendaModal(item);
         });
-        syncAgendaControls();
-      } catch (error) {
-        console.error("renderAgenda failed", error);
-        const list = document.getElementById("agendaList");
-        if (list) {
-          list.innerHTML = `<div class="agenda-empty">${currentLang === "en" ? "Agenda is temporarily unavailable" : "議程暫時無法顯示"}</div>`;
-        }
-      }
+      });
+      syncAgendaControls();
     }
 
     // tab 點擊事件
     document.getElementById("agendaTabs")?.addEventListener("click", e => {
       const btn = e.target.closest("button[data-day]");
       if (btn) renderAgenda(parseInt(btn.dataset.day));
-    });
-    document.getElementById("agendaKindTabs")?.addEventListener("click", e => {
-      const btn = e.target.closest("button[data-kind]");
-      if (!btn) return;
-      agendaKindFilter = btn.dataset.kind || "session";
-      renderAgenda(agendaCurrentDay);
     });
 
     document.getElementById("agendaSearchInput")?.addEventListener("input", e => {
@@ -1359,13 +1393,8 @@
       document.getElementById("amTitle").textContent = localized(item.title);
 
       // 標籤
-      const itemTags = localized(item.tags || []);
-      document.getElementById("amTags").innerHTML = itemTags
-        .map(tag => {
-          const isKeynote = String(tag).toUpperCase() === "KEYNOTE" || (item.track || "").toLowerCase() === "keynote";
-          const isRoom = /room\s*[a-z0-9]/i.test(String(tag));
-          return `<span class="session-tag${isKeynote ? " is-keynote" : ""}${isRoom ? " is-room" : ""}">${String(tag)}</span>`;
-        }).join("");
+      document.getElementById("amTags").innerHTML = localized(item.tags || [])
+        .map(tag => `<span class="agenda-tag">${tag}</span>`).join("");
 
       // 講者
       const sp = item.speaker || {};
@@ -1411,15 +1440,11 @@
 
     // ===== Speaker Modal =====
     const SPEAKER_SOCIAL_ICONS = {
-      facebook: 'img/svg/media/facebook.svg',
-      twitter: 'img/svg/media/twitter.svg',
-      x: 'img/svg/media/twitter.svg',
+      facebook:  'img/svg/media/facebook.svg',
+      twitter:   'img/svg/media/twitter.svg',
       instagram: 'img/svg/media/instagram.svg',
-      discord: 'img/svg/media/discord.svg',
-      youtube: 'img/svg/media/youtube.svg',
-      github: 'img/svg/media/github.svg',
-      threads: 'img/svg/media/threads.svg',
-      linkedin: 'img/svg/media/linkedin.svg',
+      discord:   'img/svg/media/discord.svg',
+      youtube:   'img/svg/media/youtube.svg',
     };
     const SPEAKER_SOCIAL_FALLBACK = 'img/svg/media/web.svg';
 
@@ -1471,19 +1496,19 @@
 
     // ESC 關閉彈窗
     document.addEventListener("keydown", e => {
-      if (e.key === "Escape") { closeAgendaModal(); closeSpeakerModal(); }
+      if (e.key === "Escape") { closeAgendaModal(); closeSpeakerModal(); closeWorkshopModal(); }
     });
 
     // ===== Links — 從 data/iplayground_links.json 注入所有連結 =====
     let _linksMap = {};
-    let _socialLinks = null;
+    let LINKS_DATA = null;
 
     function applyLinks(links) {
       if (!links) return;
+      LINKS_DATA = links;
 
       // 建立查找表：data-link 值 → URL (字串或 {zh,en} 物件)
       _linksMap = {};
-      _socialLinks = links.social || null;
 
       // important links
       Object.entries(links.important || {}).forEach(([k, v]) => { _linksMap[k] = v; });
@@ -1507,12 +1532,12 @@
         el.href = (val && typeof val === "object") ? (val[l] || val.zh || val.en) : val;
       });
 
-      // 渲染 hero 社群按鈕
-      const socialRow = document.getElementById("heroSocialRow");
-      if (socialRow && _socialLinks) {
-        socialRow.innerHTML = _socialLinks.map(s => `
-          <a class="hero-social-btn" href="${s.url}" target="_blank" rel="noopener" aria-label="${s.label}">
-            <img src="${s.icon}" alt="${s.label}" width="22" height="22">
+      // 渲染倒數面板下方的社群按鈕
+      const socialRow = document.getElementById("cdSocialRow");
+      if (socialRow && LINKS_DATA && LINKS_DATA.social) {
+        socialRow.innerHTML = LINKS_DATA.social.map(s => `
+          <a class="cd-social-btn" href="${s.url}" target="_blank" rel="noopener" aria-label="${s.label}">
+            <img src="${s.icon}" alt="" aria-hidden="true" width="18" height="18">
           </a>`).join("");
       }
     }
@@ -1569,6 +1594,48 @@
           meta.textContent = '';
         }
       }
+    }
+
+    function renderTickets(lang) {
+      const mount = document.getElementById("ticketsGrid");
+      if (!mount || !TICKETS_DATA) return;
+      const l = (lang || currentLang || "zh") === "en" ? "en" : "zh";
+      const tiers = TICKETS_DATA.tickets || [];
+      const escAttr = (s) => String(s).replace(/"/g, "&quot;");
+
+      mount.innerHTML = tiers.map(card => {
+        const name    = card.tier[l]      || card.tier.zh;
+        const sub     = card.subtitle[l]  || card.subtitle.zh;
+        const price   = (l === "en" ? card.price.displayEn : card.price.displayZh) || "";
+        const isTba   = card.price.amount == null;
+        const perks   = (card.perks[l] || card.perks.zh).map(p => `<li>${p}</li>`).join("");
+        const ctaText = card.cta[l]       || card.cta.zh;
+        const ctaAttrs = card.ctaUrl
+          ? `href="${escAttr(card.ctaUrl)}" target="_blank" rel="noopener"`
+          : `href="#" aria-disabled="true" tabindex="-1"`;
+        const cardCls = `ticket-card ticket-card--${card.id}${card.patron ? " ticket-card--patron" : ""}`;
+        const eyebrow = String(card.id || "").replace(/-/g, " ").toUpperCase();
+        const badge   = card.badge
+          ? `<span class="ticket-badge">${card.badge[l] || card.badge.zh}</span>`
+          : "";
+        return `
+          <li class="${cardCls}" data-tier="${escAttr(card.id)}">
+            <header class="ticket-top">
+              <span class="ticket-eyebrow">// ${eyebrow}</span>
+              ${badge}
+            </header>
+            <div class="ticket-heading">
+              <div class="ticket-name">${name}</div>
+              <div class="ticket-subtitle">${sub}</div>
+            </div>
+            <div class="ticket-price${isTba ? " ticket-price--tba" : ""}">${price}</div>
+            <ul class="ticket-perks">${perks}</ul>
+            <a class="ticket-cta" ${ctaAttrs}>
+              <span>${ctaText}</span>
+              <span class="ticket-cta-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>`;
+      }).join("");
     }
 
     function renderSpeakers(lang) {
@@ -1803,32 +1870,23 @@
       }
     });
 
-    const FOOTER_TAGLINE_LOCAL = {
-      zh: "iPlayground 是從 2018 年開始專為蘋果軟體開發者設計的研討會，主題涵蓋 iOS 和 macOS 開發、Swift 和 Objective-C、以及 app 軟體開發與 UI/UX 設計的經驗分享。這個活動由一群資深工程師創辦，目的是彌補台灣在 iOS 開發領域的研討會不足，並為開發者們提供更深入且多樣化的議程。",
-      en: "iPlayground is a conference designed for Apple software developers since 2018, covering iOS and macOS development, Swift and Objective-C, as well as app development and UI/UX design. Founded by a group of senior engineers to fill the gap in iOS-focused conferences in Taiwan."
-    };
-
     // ===== i18n =====
     // ===== I18N — 從 data/iplayground_i18n.json 載入，key → { zh, en } =====
     function getDict(lang) {
-      const l = lang || 'zh';
+      const l = normalizeLang(lang);
       const dict = {};
       Object.entries(I18N_DATA).forEach(([k, v]) => {
-        // footer_tagline 固定使用本地文案
+        // footer_tagline 特殊處理：從 CONFIG 取值
         if (k === 'footer_tagline') {
-          dict[k] = FOOTER_TAGLINE_LOCAL[l] || FOOTER_TAGLINE_LOCAL.zh;
+          dict[k] = CONFIG.footerTagline ? CONFIG.footerTagline[l] : '';
         } else {
           dict[k] = (v && v[l]) || (v && v['zh']) || '';
         }
       });
-      // 若遠端 i18n 缺少 footer_tagline，才回退本地文案
-      if (!dict.footer_tagline) {
-        dict.footer_tagline = FOOTER_TAGLINE_LOCAL[l] || FOOTER_TAGLINE_LOCAL.zh;
-      }
       // countdown_units 組合成舊格式供 syncCountdownUnits 使用
       dict.countdown_units = {
-        days: (I18N_DATA.countdown_days && I18N_DATA.countdown_days[l]) || '天',
-        hours: (I18N_DATA.countdown_hours && I18N_DATA.countdown_hours[l]) || '時',
+        days:    (I18N_DATA.countdown_days    && I18N_DATA.countdown_days[l])    || '天',
+        hours:   (I18N_DATA.countdown_hours   && I18N_DATA.countdown_hours[l])   || '時',
         minutes: (I18N_DATA.countdown_minutes && I18N_DATA.countdown_minutes[l]) || '分',
         seconds: (I18N_DATA.countdown_seconds && I18N_DATA.countdown_seconds[l]) || '秒',
       };
@@ -1836,7 +1894,9 @@
     }
 
     function openBusSearch(bus) {
-      showBusModal(bus);
+      const query = encodeURIComponent(bus + '公車 路線');
+      const webUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
+      window.open(webUrl, '_blank');
     }
 
     function openNavigation(origin, destination) {
@@ -1845,9 +1905,10 @@
     }
 
     function applyLang(lang) {
-      currentLang = lang;
-      NEWS_DATA = NEWS_DATA_BY_LANG[lang] || NEWS_DATA_BY_LANG.zh || [];
-      const dict = getDict(lang);
+      const l = normalizeLang(lang);
+      currentLang = l;
+      NEWS_DATA = NEWS_DATA_BY_LANG[l] || NEWS_DATA_BY_LANG.zh || [];
+      const dict = getDict(l);
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const k = el.dataset.i18n;
         if (dict[k]) el.innerHTML = dict[k];
@@ -1864,32 +1925,30 @@
         const k = el.dataset.i18nTitle;
         if (dict[k]) el.setAttribute("title", dict[k]);
       });
-      document.querySelectorAll(".bus-tag").forEach(tag => {
-        tag.onclick = () => showBusModal((tag.textContent || "").trim());
-      });
       const agendaModalContent = document.getElementById("agendaModalContent");
       if (agendaModalContent) {
-        agendaModalContent.setAttribute("data-modal-label", lang === "en" ? "// SESSION" : "// 議程");
+        agendaModalContent.setAttribute("data-modal-label", l === "en" ? "// SESSION" : "// 議程");
       }
       const newsEyebrow = document.getElementById("newsEyebrow");
       if (newsEyebrow) {
         newsEyebrow.textContent = "// 01";
       }
       syncCountdownUnits(dict);
-      document.documentElement.lang = lang === "zh" ? "zh-Hant" : lang;
-      document.documentElement.dataset.lang = lang;
-      syncLangButtons(lang);
-      renderNews(lang);
+      document.documentElement.lang = l === "zh" ? "zh-Hant" : "en";
+      document.documentElement.dataset.lang = l;
+      syncLangButtons(l);
+      renderNews(l);
+      renderTickets(l);
       const agendaSearchInput = document.getElementById("agendaSearchInput");
       if (agendaSearchInput?.value.trim()) {
         agendaSearchInput.dispatchEvent(new Event("input"));
       } else {
         renderAgenda(agendaCurrentDay);
       }
-      renderSpeakers(lang);
-      applyLinksForLang(lang);
+      renderSpeakers(l);
+      applyLinksForLang(l);
       applyTweaks(state);
-      try { localStorage.setItem("lang", lang); } catch (e) { }
+      try { localStorage.setItem("lang", l); } catch (e) { }
     }
 
     function syncCountdownUnits(dict) {
@@ -1917,7 +1976,8 @@
 
     const mql = window.matchMedia("(prefers-color-scheme: dark)");
     function resolveMode(pref) {
-      return "dark";
+      if (pref === "light" || pref === "dark") return pref;
+      return mql.matches ? "dark" : "light";
     }
 
     function applyAppearance(pref) {
@@ -1951,23 +2011,15 @@
       if (btn) applyAppearance(btn.dataset.mode);
     });
 
-    // Bus tag click (works even after i18n re-renders trans_bus_desc)
-    document.addEventListener("click", (e) => {
-      const tag = e.target.closest(".bus-tag");
-      if (!tag) return;
-      const busNum = (tag.textContent || "").trim();
-      if (busNum) showBusModal(busNum);
-    });
-
     // ===== Hero Pixel Logo =====
     (function initPixelLogo() {
       const sourceImg = document.getElementById('heroLogoImg');
       const container = document.getElementById('heroPixelLogo');
       if (!sourceImg || !container) return;
 
-      const ICONS = ['❤️', '💎', '💡', '😄', '⚡', '��', '🚀', '🌟'];
+      const ICONS = ['❤️','💎','💡','😄','⚡','��','🚀','🌟'];
       let iconIdx = 0;
-      const DOT = 5;
+      const DOT  = 5;
       const STEP = 6;
       const LEFT_OFFSET = 0.08;
 
@@ -1986,7 +2038,7 @@
         const SAMPLE_W = 400;
         const SAMPLE_H = Math.round(SAMPLE_W * img.naturalHeight / img.naturalWidth);
         const oc = document.createElement('canvas');
-        oc.width = SAMPLE_W;
+        oc.width  = SAMPLE_W;
         oc.height = SAMPLE_H;
         const ctx = oc.getContext('2d');
         ctx.drawImage(img, 0, 0, SAMPLE_W, SAMPLE_H);
@@ -2011,13 +2063,13 @@
             const dy = Math.round(yRatio * dispH);
             if (dx < 0 || dx > dispW) continue;
             const dot = document.createElement('div');
-            dot.style.cssText = `position:absolute;left:${dx}px;top:${dy}px;width:${DOT}px;height:${DOT}px;border-radius:1px;background:${colColor(xRatio)};animation:pxFloat ${(2.5 + Math.random()).toFixed(2)}s ease-in-out ${(Math.random() * 2).toFixed(2)}s infinite;`;
+            dot.style.cssText = `position:absolute;left:${dx}px;top:${dy}px;width:${DOT}px;height:${DOT}px;border-radius:1px;background:${colColor(xRatio)};animation:pxFloat ${(2.5+Math.random()).toFixed(2)}s ease-in-out ${(Math.random()*2).toFixed(2)}s infinite;`;
             wrap.appendChild(dot);
           }
         }
 
         const iconEl = document.createElement('div');
-        iconEl.style.cssText = `position:absolute;left:2px;top:2px;font-size:${Math.round(dispH * 0.30)}px;line-height:1;cursor:pointer;user-select:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));transition:transform .2s;z-index:2;`;
+        iconEl.style.cssText = `position:absolute;left:2px;top:2px;font-size:${Math.round(dispH*0.30)}px;line-height:1;cursor:pointer;user-select:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));transition:transform .2s;z-index:2;`;
         iconEl.textContent = ICONS[iconIdx];
         iconEl.title = '點擊切換圖示';
         iconEl.addEventListener('click', () => {
@@ -2044,104 +2096,94 @@
 
       // 11×10 heart bitmap
       const HEART = [
-        [0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
-        [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
-        [0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
-        [0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-        [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+        [0,1,1,0,0,0,1,1,0,0,0],
+        [1,1,1,1,0,1,1,1,1,0,0],
+        [1,1,1,1,1,1,1,1,1,0,0],
+        [1,1,1,1,1,1,1,1,1,0,0],
+        [0,1,1,1,1,1,1,1,0,0,0],
+        [0,0,1,1,1,1,1,0,0,0,0],
+        [0,0,0,1,1,1,0,0,0,0,0],
+        [0,0,0,0,1,0,0,0,0,0,0],
       ];
 
       const ICONS = [
         { bitmap: HEART, color: '#ff5080' },
-        {
-          bitmap: [
-            // Diamond outline — top crown + girdle + pavilion
-            [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
-            [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0],
-            [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
-            [0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-          ], color: '#60a5fa'
-        },  // diamond outline
-        {
-          bitmap: [
-            // Bulb with rays — 15×15
-            [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-            [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-            [0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0],
-            [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
-            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-            [1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1],
-            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-            [0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0],
-            [0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-            [0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0],
-            [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          ], color: '#fbbf24', scale: 1.21
-        },  // bulb with rays
-        {
-          bitmap: [
-            [0, 1, 1, 0, 0, 0, 1, 1, 0],
-            [0, 1, 1, 0, 0, 0, 1, 1, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0, 0, 0, 0, 1],
-            [0, 1, 0, 0, 0, 0, 0, 1, 0],
-            [0, 0, 1, 1, 1, 1, 1, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          ], color: '#facc15'
-        },  // smile
-        {
-          bitmap: [
-            // Daisy — 5 petals + yellow center
-            [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0],
-            [0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0],
-            [1, 1, 1, 0, 2, 2, 0, 0, 1, 1, 1],
-            [1, 1, 0, 2, 2, 2, 2, 0, 0, 1, 1],
-            [0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0],
-            [1, 1, 0, 2, 2, 2, 2, 0, 0, 1, 1],
-            [1, 1, 1, 0, 2, 2, 0, 0, 1, 1, 1],
-            [0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0],
-            [0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
-          ], colorMap: { 1: '#ffffff', 2: '#f59e0b' }, color: '#ffffff'
-        },  // daisy 5 petals
-        {
-          bitmap: [
-            // Crown — three-point silhouette with separated base
-            [0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0],
-            [0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0],
-            [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-            [1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-            [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-          ], colorMap: { 1: '#f59e0b', 2: '#fde68a' }, color: '#f59e0b', scale: 0.85, anim: 'sweep'
-        },  // crown
+        { bitmap: [
+          // Diamond outline — top crown + girdle + pavilion
+          [0,0,1,1,1,1,1,1,1,1,1,0,0],
+          [0,1,0,0,1,0,1,0,1,0,0,1,0],
+          [1,0,0,0,0,0,0,0,0,0,0,0,1],
+          [1,1,1,1,1,1,1,1,1,1,1,1,1],
+          [0,1,0,0,0,1,0,1,0,0,0,1,0],
+          [0,0,1,0,0,0,1,0,0,0,1,0,0],
+          [0,0,0,1,0,0,1,0,0,1,0,0,0],
+          [0,0,0,0,1,0,1,0,1,0,0,0,0],
+          [0,0,0,0,0,1,1,1,0,0,0,0,0],
+          [0,0,0,0,0,0,1,0,0,0,0,0,0],
+        ], color: '#60a5fa' },  // diamond outline
+        { bitmap: [
+          // Bulb with rays — 15×15
+          [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
+          [0,0,1,0,0,0,0,1,0,0,0,0,1,0,0],
+          [0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+          [0,0,0,0,1,1,1,1,1,1,1,0,0,0,0],
+          [0,1,0,1,1,0,0,0,0,0,1,1,0,1,0],
+          [0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
+          [0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+          [1,1,0,1,0,0,0,0,0,0,0,1,0,1,1],
+          [0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+          [0,1,0,1,1,0,0,0,0,0,1,1,0,1,0],
+          [0,0,0,0,1,1,0,0,0,1,1,0,0,0,0],
+          [0,0,1,0,0,1,1,1,1,1,0,0,1,0,0],
+          [0,0,0,0,0,0,1,1,1,0,0,0,0,0,0],
+          [0,0,0,0,0,0,1,1,1,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        ], color: '#fbbf24', scale: 1.21 },  // bulb with rays
+        { bitmap: [
+          [0,1,1,0,0,0,1,1,0],
+          [0,1,1,0,0,0,1,1,0],
+          [0,0,0,0,0,0,0,0,0],
+          [1,0,0,0,0,0,0,0,1],
+          [0,1,0,0,0,0,0,1,0],
+          [0,0,1,1,1,1,1,0,0],
+          [0,0,0,0,0,0,0,0,0],
+        ], color: '#facc15' },  // smile
+        { bitmap: [
+          // Daisy — 5 petals + yellow center
+          [0,0,0,0,1,1,0,0,0,0,0],
+          [0,0,0,1,1,1,1,0,0,0,0],
+          [0,1,1,0,1,1,0,0,1,1,0],
+          [1,1,1,0,2,2,0,0,1,1,1],
+          [1,1,0,2,2,2,2,0,0,1,1],
+          [0,0,0,2,2,2,2,0,0,0,0],
+          [1,1,0,2,2,2,2,0,0,1,1],
+          [1,1,1,0,2,2,0,0,1,1,1],
+          [0,1,1,0,0,0,0,0,1,1,0],
+          [0,0,0,1,1,1,1,0,0,0,0],
+          [0,0,0,0,1,1,0,0,0,0,0],
+        ], colorMap: { 1: '#ffffff', 2: '#f59e0b' }, color: '#ffffff' },  // daisy 5 petals
+        { bitmap: [
+          // Crown — three-point silhouette with separated base
+          [0,1,0,0,0,1,0,0,0,1,0],
+          [0,1,1,0,1,1,1,0,1,1,0],
+          [0,1,1,1,1,1,1,1,1,1,0],
+          [1,1,1,1,2,1,2,1,1,1,1],
+          [1,1,1,1,1,1,1,1,1,1,1],
+          [0,0,0,0,0,0,0,0,0,0,0],
+          [0,1,1,1,1,1,1,1,1,1,0],
+          [0,1,1,1,1,1,1,1,1,1,0],
+        ], colorMap: { 1: '#f59e0b', 2: '#fde68a' }, color: '#f59e0b', scale: 0.85, anim: 'sweep' },  // crown
       ];
 
       // Smile squint bitmap
       const SMILE_SQUINT = [
-        [0, 1, 0, 0, 0, 0, 0, 1, 0],
-        [1, 1, 1, 0, 0, 0, 1, 1, 1],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [1, 0, 0, 0, 0, 0, 0, 0, 1],
-        [0, 1, 0, 0, 0, 0, 0, 1, 0],
-        [0, 0, 1, 1, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0,1,0,0,0,0,0,1,0],
+        [1,1,1,0,0,0,1,1,1],
+        [0,0,0,0,0,0,0,0,0],
+        [1,0,0,0,0,0,0,0,1],
+        [0,1,0,0,0,0,0,1,0],
+        [0,0,1,1,1,1,1,0,0],
+        [0,0,0,0,0,0,0,0,0],
       ];
 
       const TARGET_ROWS = 8;
@@ -2151,14 +2193,14 @@
       function getDotBase() {
         const w = window.innerWidth;
         if (w >= 1024) return 7;
-        if (w >= 768) return 5;
+        if (w >= 768)  return 5;
         return 4;
       }
 
       function getScale() {
         const w = window.innerWidth;
         if (w >= 1024) return 0.68;
-        if (w >= 768) return 0.55;
+        if (w >= 768)  return 0.55;
         return 0.45;
       }
 
@@ -2259,7 +2301,7 @@
             dot.className = 'ph-dot';
             dot.dataset.on = val ? '1' : '0';
             dot.dataset.col = colIdx;
-            dot.style.width = dotSize + 'px';
+            dot.style.width  = dotSize + 'px';
             dot.style.height = dotSize + 'px';
             let c = 'transparent';
             if (val) {
@@ -2304,10 +2346,43 @@
     })();
 
     // ===== Photo Wall =====
-    // (Handled by initPhotoWalls at bottom of page)
+    (function buildPhotoWall() {
+      const imgs = [
+        "1","2","3","4","5","6","7","8","9","10",
+        "11","12","13","14","15","16","17","18","19","20",
+        "24","25","26","27","28","30"
+      ].map(n => `img/slider/LINE_ALBUM_23042026_260424_${n}.jpg`);
 
-    // ===== Staff Photo Wall =====
-    // (Handled by initPhotoWalls at bottom of page)
+      // Fisher-Yates shuffle
+      for (let i = imgs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [imgs[i], imgs[j]] = [imgs[j], imgs[i]];
+      }
+
+      const wall = document.getElementById("photoWall");
+      if (!wall) return;
+      const COLS = 4;
+      const perCol = Math.ceil(imgs.length / COLS);
+
+      for (let c = 0; c < COLS; c++) {
+        const col = document.createElement("div");
+        col.className = "pw-col";
+        // Each column gets a slice, then duplicated for seamless loop
+        const slice = [];
+        for (let r = 0; r < perCol + 2; r++) {
+          slice.push(imgs[(c * perCol + r) % imgs.length]);
+        }
+        // Duplicate for seamless infinite scroll
+        [...slice, ...slice].forEach(src => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = "";
+          img.loading = "lazy";
+          col.appendChild(img);
+        });
+        wall.appendChild(col);
+      }
+    })();
 
     // ===== Init =====
     window.addEventListener("DOMContentLoaded", () => {
@@ -2316,30 +2391,30 @@
 
       // 並行載入所有 data/ 資料後再初始化
       Promise.all([
-        fetchJson(NEWS_DATA_URLS.zh),
-        fetchJson(NEWS_DATA_URLS.en),
+        fetch(NEWS_DATA_URLS.zh).then(r => r.json()),
+        fetch(NEWS_DATA_URLS.en).then(r => r.json()),
         loadAgendaData(),
-        fetchJson(`${SESSION_DATA_URLS.cfpSteps}?v=${DATA_VERSION}`).catch(() => []),
-        fetchJson(`${SESSION_DATA_URLS.config}?v=${DATA_VERSION}`).catch(() => ({})),
-        fetchJson(`${SESSION_DATA_URLS.links}?v=${DATA_VERSION}`).catch(() => ({})),
-        fetchJson(`${SESSION_DATA_URLS.i18n}?v=${DATA_VERSION}`).catch(() => ({})),
-        fetchJson(`${SESSION_DATA_URLS.sponsors}?v=${DATA_VERSION}`).catch(() => []),
-      ]).then(([newsZh, newsEn, agenda, cfpSteps, config, links, i18n, sponsors]) => {
+        fetch("data/iplayground_cfp_steps.json").then(r => r.json()),
+        fetch("data/iplayground_config.json").then(r => r.json()),
+        fetch("data/iplayground_links.json").then(r => r.json()),
+        fetch(`data/iplayground_i18n.json?v=${DATA_VERSION}`).then(r => r.json()),
+        fetch(`data/iplayground_tickets.json?v=${DATA_VERSION}`).then(r => r.json()),
+      ]).then(([newsZh, newsEn, agenda, cfpSteps, config, links, i18n, tickets]) => {
         NEWS_DATA_BY_LANG = { zh: newsZh, en: newsEn };
         AGENDA = agenda;
         SPEAKERS = cfpSteps;
         CONFIG = config;
         I18N_DATA = i18n;
-        SPONSORS = sponsors;
+        TICKETS_DATA = tickets;
         VENUE_MAP = config.venue?.mapUrl || "";
         PARKING_MAP = config.venue?.parkingMapUrl || "";
 
         applyLinks(links);
 
         renderNews(savedLang);
+        renderTickets(savedLang);
         renderAgenda(1);
         renderSpeakers();
-        renderSponsors();
 
         requestAnimationFrame(() => {
           applyLang(savedLang);
@@ -2369,47 +2444,34 @@
       });
     });
 
-    mql.addEventListener("change", () => { });
+    mql.addEventListener("change", () => {
+      const cur = (() => { try { return localStorage.getItem("appearance"); } catch (e) { return "auto"; } })() || "auto";
+      if (cur === "auto") applyAppearance("auto");
+    });
   </script>
 
   <!-- Floating Action Buttons -->
   <div class="fab-group" id="fabGroup">
     <button class="fab" id="fabMode" aria-label="Toggle appearance" hidden>
-      <svg class="fab-icon fab-icon--auto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 3v18" />
-        <path d="M12 3a9 9 0 0 1 0 18" />
-      </svg>
-      <svg class="fab-icon fab-icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="4" />
-        <path
-          d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-      </svg>
-      <svg class="fab-icon fab-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-      </svg>
+      <svg class="fab-icon fab-icon--auto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 3a9 9 0 0 1 0 18"/></svg>
+      <svg class="fab-icon fab-icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="fab-icon fab-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
     <button class="fab" id="fabLang" aria-label="Toggle language">
       <span class="fab-lang-label">中</span>
     </button>
     <button class="fab fab--top" id="fabTop" aria-label="Back to top">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 15l-6-6-6 6" />
-      </svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
     </button>
   </div>
 
-  <link rel="stylesheet" href="css/fab.css?v=20260503-speaker-size-fix-8">
+  <link rel="stylesheet" href="css/fab.css?v=20260504-news-only">
   <script>
     // ===== FAB: Mode cycle (auto → light → dark → auto) =====
     const modeOrder = ["auto", "light", "dark"];
     const fabMode = document.getElementById("fabMode");
     const fabLang = document.getElementById("fabLang");
-    const fabTop = document.getElementById("fabTop");
+    const fabTop  = document.getElementById("fabTop");
     const fabGroup = document.getElementById("fabGroup");
 
     function updateFabMode(pref) {
@@ -2417,7 +2479,7 @@
     }
 
     fabMode.addEventListener("click", () => {
-      const cur = (() => { try { return localStorage.getItem("appearance"); } catch (e) { return "auto"; } })() || "auto";
+      const cur = (() => { try { return localStorage.getItem("appearance"); } catch(e) { return "auto"; } })() || "auto";
       const next = modeOrder[(modeOrder.indexOf(cur) + 1) % modeOrder.length];
       applyAppearance(next);
       updateFabMode(next);
@@ -2444,63 +2506,63 @@
     }
   </script>
 
-  <!-- ===== Confetti / Party Popper ===== -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<!-- ===== Confetti / Party Popper ===== -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-  <!-- ===== Hero: wave grid · dot field · wordmark letters · ms ticker · confetti ===== -->
-  <script>
-    (function heroFx() {
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+<!-- ===== Hero: wave grid · dot field · wordmark letters · ms ticker · confetti ===== -->
+<script>
+(function heroFx() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // ---- Wave + perspective grid ----
-      (function buildWaveGrid() {
-        const svg = document.getElementById('waveGrid');
-        if (!svg) return;
-        const W = 1600, H = 900;
-        const horizon = 460;
-        const vpX = 800, vpY = horizon;
-        const amp = 95;
-        const xs = [0, W * 0.27, W * 0.52, W * 0.78, W];
-        const baseAmps = [-0.10, -0.85, 0.40, -0.55, 0.18];
-        const phases = [0, 1.20, 2.55, 4.10, 5.70];
+  // ---- Wave + perspective grid ----
+  (function buildWaveGrid() {
+    const svg = document.getElementById('waveGrid');
+    if (!svg) return;
+    const W = 1600, H = 900;
+    const horizon = 460;
+    const vpX = 800, vpY = horizon;
+    const amp = 95;
+    const xs = [0, W * 0.27, W * 0.52, W * 0.78, W];
+    const baseAmps = [-0.10, -0.85, 0.40, -0.55, 0.18];
+    const phases = [0, 1.20, 2.55, 4.10, 5.70];
 
-        function buildWavePath(t) {
-          const ys = baseAmps.map((b, i) => {
-            const wobble = Math.sin(t * 0.00038 + phases[i]) * 0.18;
-            return horizon + amp * (b + wobble);
-          });
-          let d = `M${xs[0]},${ys[0].toFixed(1)}`;
-          for (let i = 1; i < xs.length; i++) {
-            const dx = xs[i] - xs[i - 1];
-            const c1x = xs[i - 1] + dx * 0.5;
-            const c1y = ys[i - 1];
-            const c2x = xs[i] - dx * 0.5;
-            const c2y = ys[i];
-            d += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${xs[i].toFixed(1)},${ys[i].toFixed(1)}`;
-          }
-          return d;
-        }
+    function buildWavePath(t) {
+      const ys = baseAmps.map((b, i) => {
+        const wobble = Math.sin(t * 0.00038 + phases[i]) * 0.18;
+        return horizon + amp * (b + wobble);
+      });
+      let d = `M${xs[0]},${ys[0].toFixed(1)}`;
+      for (let i = 1; i < xs.length; i++) {
+        const dx = xs[i] - xs[i - 1];
+        const c1x = xs[i - 1] + dx * 0.5;
+        const c1y = ys[i - 1];
+        const c2x = xs[i] - dx * 0.5;
+        const c2y = ys[i];
+        d += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${xs[i].toFixed(1)},${ys[i].toFixed(1)}`;
+      }
+      return d;
+    }
 
-        const initialWave = buildWavePath(reduceMotion ? 0 : performance.now());
-        const initialClip = `${initialWave} L${W},${H} L0,${H} Z`;
+    const initialWave = buildWavePath(reduceMotion ? 0 : performance.now());
+    const initialClip = `${initialWave} L${W},${H} L0,${H} Z`;
 
-        const NUM_VERT = 26;
-        const vertLines = [];
-        for (let i = 0; i <= NUM_VERT; i++) {
-          const t = i / NUM_VERT;
-          const exitX = -W * 0.45 + t * W * 1.9;
-          vertLines.push(`<line x1="${vpX}" y1="${vpY}" x2="${exitX.toFixed(1)}" y2="${H}"/>`);
-        }
-        const NUM_HORZ = 14;
-        const horzLineMarkup = [];
-        for (let i = 0; i < NUM_HORZ; i++) {
-          horzLineMarkup.push(`<line data-h-i="${i}" x1="0" y1="${horizon}" x2="${W}" y2="${horizon}"/>`);
-        }
-        function horzY(localT) {
-          return horizon + Math.pow(localT, 1.7) * (H - horizon);
-        }
+    const NUM_VERT = 26;
+    const vertLines = [];
+    for (let i = 0; i <= NUM_VERT; i++) {
+      const t = i / NUM_VERT;
+      const exitX = -W * 0.45 + t * W * 1.9;
+      vertLines.push(`<line x1="${vpX}" y1="${vpY}" x2="${exitX.toFixed(1)}" y2="${H}"/>`);
+    }
+    const NUM_HORZ = 14;
+    const horzLineMarkup = [];
+    for (let i = 0; i < NUM_HORZ; i++) {
+      horzLineMarkup.push(`<line data-h-i="${i}" x1="0" y1="${horizon}" x2="${W}" y2="${horizon}"/>`);
+    }
+    function horzY(localT) {
+      return horizon + Math.pow(localT, 1.7) * (H - horizon);
+    }
 
-        svg.innerHTML = `
+    svg.innerHTML = `
       <defs>
         <clipPath id="wgUnder"><path id="wgClipPath" d="${initialClip}"/></clipPath>
         <linearGradient id="wgFade" x1="0" y1="0" x2="0" y2="1">
@@ -2524,263 +2586,263 @@
       <rect x="0" y="0" width="${W}" height="${H}" filter="url(#wgGrain)" opacity="0.045"/>
     `;
 
-        const horzLineEls = [...svg.querySelectorAll('.wg-horizontal line')];
-        function setHorzPositions(t) {
-          for (let i = 0; i < NUM_HORZ; i++) {
-            const localT = ((i + t) % NUM_HORZ) / NUM_HORZ;
-            const safeT = localT < 0.001 ? 0.001 : localT;
-            const y = horzY(safeT);
-            const el = horzLineEls[i];
-            el.setAttribute('y1', y.toFixed(1));
-            el.setAttribute('y2', y.toFixed(1));
-            const fadeIn = Math.min(1, safeT * 18);
-            const fadeOut = Math.min(1, (1 - safeT) * 6);
-            el.setAttribute('stroke-opacity', (fadeIn * fadeOut).toFixed(3));
-          }
-        }
-        setHorzPositions(0);
-
-        if (!reduceMotion) {
-          const wavePathEl = svg.querySelector('#wgWaveLine');
-          const clipPathEl = svg.querySelector('#wgClipPath');
-          let lastWave = 0, lastGrid = 0;
-          function tick(now) {
-            if (now - lastWave >= 33) {
-              const d = buildWavePath(now);
-              wavePathEl.setAttribute('d', d);
-              clipPathEl.setAttribute('d', `${d} L${W},${H} L0,${H} Z`);
-              lastWave = now;
-            }
-            if (now - lastGrid >= 33) {
-              const t = (now * 0.0004) % NUM_HORZ;
-              setHorzPositions(t);
-              lastGrid = now;
-            }
-            requestAnimationFrame(tick);
-          }
-          requestAnimationFrame(tick);
-        }
-      })();
-
-      // ---- Wordmark letter-by-letter reveal ----
-      (function setupWordmarkLetters() {
-        const wmMark = document.querySelector('.wm-mark');
-        if (!wmMark) return;
-        const text = wmMark.dataset.text || wmMark.textContent.trim();
-        wmMark.textContent = '';
-        [...text].forEach((char, i) => {
-          const span = document.createElement('span');
-          span.className = 'wm-letter';
-          span.style.setProperty('--i', i);
-          span.textContent = char;
-          span.setAttribute('aria-hidden', 'true');
-          wmMark.appendChild(span);
-        });
-      })();
-
-      // ---- Dot field — twinkling backdrop behind the wordmark ----
-      (function buildDotField() {
-        const field = document.getElementById('dotField');
-        if (!field) return;
-        const W = 1200, H = 400;
-        const SVG_NS = 'http://www.w3.org/2000/svg';
-        const layers = [
-          { cls: 'dot-layer dot-layer--far', count: 72, rMin: 0.45, rMax: 1.05, opMin: 0.08, opMax: 0.26, dMin: 6.5, dMax: 11.5, signalRate: 0.02 },
-          { cls: 'dot-layer dot-layer--mid', count: 52, rMin: 0.7, rMax: 1.5, opMin: 0.14, opMax: 0.42, dMin: 4.8, dMax: 8.2, signalRate: 0.06 },
-          { cls: 'dot-layer dot-layer--near', count: 34, rMin: 0.95, rMax: 2.2, opMin: 0.2, opMax: 0.58, dMin: 3.4, dMax: 6.2, signalRate: 0.1 },
-        ];
-
-        layers.forEach(layerConf => {
-          const layer = document.createElementNS(SVG_NS, 'g');
-          layer.setAttribute('class', layerConf.cls);
-
-          for (let i = 0; i < layerConf.count; i++) {
-            const c = document.createElementNS(SVG_NS, 'circle');
-            c.setAttribute('cx', (Math.random() * W).toFixed(1));
-            c.setAttribute('cy', (Math.random() * H).toFixed(1));
-            c.setAttribute('r', (layerConf.rMin + Math.random() * (layerConf.rMax - layerConf.rMin)).toFixed(2));
-            const baseOp = (layerConf.opMin + Math.random() * (layerConf.opMax - layerConf.opMin)).toFixed(3);
-            const delay = (-Math.random() * 11).toFixed(2);
-            const dur = (layerConf.dMin + Math.random() * (layerConf.dMax - layerConf.dMin)).toFixed(2);
-            c.style.setProperty('--base-op', baseOp);
-            c.style.setProperty('--delay', delay + 's');
-            c.style.setProperty('--dur', dur + 's');
-            c.style.opacity = baseOp;
-            if (Math.random() < layerConf.signalRate) c.classList.add('dot-signal');
-            layer.appendChild(c);
-          }
-          field.appendChild(layer);
-        });
-      })();
-
-      // ---- Millisecond ticker ----
-      (function setupMsTicker() {
-        const cdMs = document.getElementById('cdMs');
-        if (!cdMs) return;
-        if (reduceMotion) { cdMs.textContent = '.000'; return; }
-        let lastUpdate = 0;
-        function tickMs(now) {
-          if (now - lastUpdate >= 33) {
-            const ms = Date.now() % 1000;
-            cdMs.textContent = '.' + String(ms).padStart(3, '0');
-            lastUpdate = now;
-          }
-          requestAnimationFrame(tickMs);
-        }
-        requestAnimationFrame(tickMs);
-      })();
-
-      // ---- Wordmark click → confetti ----
-      const wordmark = document.getElementById('wordmark');
-      if (wordmark) {
-        function fireWordmarkConfetti() {
-          if (typeof window.confetti !== 'function') return;
-          window.confetti({
-            particleCount: 80,
-            spread: 70,
-            origin: { y: 0.5 },
-            colors: ['#D2FF00', '#282C20', '#000000', '#F5E8E8'],
-            scalar: 0.9,
-          });
-        }
-        wordmark.addEventListener('click', fireWordmarkConfetti);
-        wordmark.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fireWordmarkConfetti(); }
-        });
+    const horzLineEls = [...svg.querySelectorAll('.wg-horizontal line')];
+    function setHorzPositions(t) {
+      for (let i = 0; i < NUM_HORZ; i++) {
+        const localT = ((i + t) % NUM_HORZ) / NUM_HORZ;
+        const safeT = localT < 0.001 ? 0.001 : localT;
+        const y = horzY(safeT);
+        const el = horzLineEls[i];
+        el.setAttribute('y1', y.toFixed(1));
+        el.setAttribute('y2', y.toFixed(1));
+        const fadeIn = Math.min(1, safeT * 18);
+        const fadeOut = Math.min(1, (1 - safeT) * 6);
+        el.setAttribute('stroke-opacity', (fadeIn * fadeOut).toFixed(3));
       }
-    })();
-  </script>
-  <script>
-    (function () {
-      const COLORS = ['#D2FF00', '#FFD700', '#FF6B35', '#FF3D8B', '#34C759', '#FF9F0A', '#FF453A', '#FFFFFF', '#F5E8E8', '#A8C800'];
-      let confettiEnabled = true;
+    }
+    setHorzPositions(0);
 
-      function normalizeSwitchValue(v) {
-        return String(v || '').trim().toLowerCase() === 'on' ? 'on' : 'off';
-      }
-
-      function playLaunchConfetti() {
-        if (!confettiEnabled) return;
-        setTimeout(function () {
-          confetti({
-            particleCount: 320,
-            spread: 200,
-            startVelocity: 78,
-            decay: 0.87,
-            gravity: 0.75,
-            ticks: 420,
-            scalar: 1.4,
-            colors: COLORS,
-            shapes: ['square', 'circle'],
-            origin: { x: 0.5, y: 0.78 }
-          });
-        }, 250);
-
-        setTimeout(function () {
-          confetti({
-            particleCount: 180,
-            spread: 160,
-            startVelocity: 65,
-            decay: 0.88,
-            gravity: 0.8,
-            ticks: 380,
-            scalar: 1.2,
-            colors: COLORS,
-            shapes: ['square', 'circle'],
-            origin: { x: 0.3, y: 0.82 }
-          });
-          confetti({
-            particleCount: 180,
-            spread: 160,
-            startVelocity: 65,
-            decay: 0.88,
-            gravity: 0.8,
-            ticks: 380,
-            scalar: 1.2,
-            colors: COLORS,
-            shapes: ['square', 'circle'],
-            origin: { x: 0.7, y: 0.82 }
-          });
-        }, 500);
-      }
-
-      function setupNewsConfetti(newsDriftEnabled) {
-        const newsCanvas = document.getElementById('newsConfettiCanvas');
-        if (!newsCanvas || !newsDriftEnabled) return;
-
-        const newsConfetti = confetti.create(newsCanvas, { resize: true, useWorker: false });
-        let driftTimer = null;
-        let isVisible = false;
-
-        // Subtle drift palette: lime + warm whites/blacks. No saturated rainbow.
-        const DRIFT_COLORS = ['#D2FF00', '#F5E8E8', '#FFFFFF', '#888888'];
-
-        function drift() {
-          if (!isVisible || !confettiEnabled) return;
-          newsConfetti({
-            particleCount: 1,
-            spread: 60,
-            startVelocity: 5,
-            decay: 0.95,
-            gravity: 0.5,
-            ticks: 200,
-            scalar: window.innerWidth < 600 ? 0.35 : 0.55,
-            colors: DRIFT_COLORS,
-            shapes: ['square', 'circle'],
-            origin: { x: Math.random(), y: 0 }
-          });
-          // Cadenced drop instead of every-frame — about ~5 particles/sec
-          driftTimer = setTimeout(drift, 200);
+    if (!reduceMotion) {
+      const wavePathEl = svg.querySelector('#wgWaveLine');
+      const clipPathEl = svg.querySelector('#wgClipPath');
+      let lastWave = 0, lastGrid = 0;
+      function tick(now) {
+        if (now - lastWave >= 33) {
+          const d = buildWavePath(now);
+          wavePathEl.setAttribute('d', d);
+          clipPathEl.setAttribute('d', `${d} L${W},${H} L0,${H} Z`);
+          lastWave = now;
         }
-
-        const observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              isVisible = true;
-              drift();
-            } else {
-              isVisible = false;
-              if (driftTimer) clearTimeout(driftTimer);
-            }
-          });
-        }, { threshold: 0.1 });
-
-        const newsSection = document.getElementById('news');
-        if (newsSection) observer.observe(newsSection);
+        if (now - lastGrid >= 33) {
+          const t = (now * 0.0004) % NUM_HORZ;
+          setHorzPositions(t);
+          lastGrid = now;
+        }
+        requestAnimationFrame(tick);
       }
+      requestAnimationFrame(tick);
+    }
+  })();
 
-      fetch('data/confetti-control.json')
-        .then(function (r) { return r.json(); })
-        .then(function (confettiConfig) {
-          confettiEnabled = normalizeSwitchValue(confettiConfig.launchConfetti) === 'on';
-          setupNewsConfetti(normalizeSwitchValue(confettiConfig.newsDrift) === 'on');
-        })
-        .catch(function () {
-          confettiEnabled = true;
-          setupNewsConfetti(true);
-        });
-    })();
-  </script>
+  // ---- Wordmark letter-by-letter reveal ----
+  (function setupWordmarkLetters() {
+    const wmMark = document.querySelector('.wm-mark');
+    if (!wmMark) return;
+    const text = wmMark.dataset.text || wmMark.textContent.trim();
+    wmMark.textContent = '';
+    [...text].forEach((char, i) => {
+      const span = document.createElement('span');
+      span.className = 'wm-letter';
+      span.style.setProperty('--i', i);
+      span.textContent = char;
+      span.setAttribute('aria-hidden', 'true');
+      wmMark.appendChild(span);
+    });
+  })();
 
-  <script>
-    // ============ Staff Grid — 優先從 SessionData GitHub Raw 載入 ============
-    (async function () {
-      const FALLBACK_PHOTO = 'img/staff/staff_sample.png';
-      const grid = document.getElementById('staffGrid');
-      if (!grid) return;
+  // ---- Dot field — twinkling backdrop behind the wordmark ----
+  (function buildDotField() {
+    const field = document.getElementById('dotField');
+    if (!field) return;
+    const W = 1200, H = 400;
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const layers = [
+      { cls: 'dot-layer dot-layer--far', count: 72, rMin: 0.45, rMax: 1.05, opMin: 0.08, opMax: 0.26, dMin: 6.5, dMax: 11.5, signalRate: 0.02 },
+      { cls: 'dot-layer dot-layer--mid', count: 52, rMin: 0.7,  rMax: 1.5,  opMin: 0.14, opMax: 0.42, dMin: 4.8, dMax: 8.2,  signalRate: 0.06 },
+      { cls: 'dot-layer dot-layer--near', count: 34, rMin: 0.95, rMax: 2.2,  opMin: 0.2,  opMax: 0.58, dMin: 3.4, dMax: 6.2,  signalRate: 0.1  },
+    ];
 
-      let staff = [];
-      try {
-        staff = await fetchJson(`${SESSION_DATA_URLS.staff}?v=${DATA_VERSION}`);
-      } catch (e) {
-        console.warn('無法載入遠端工作人員資料', e);
-        grid.innerHTML = `<p class="agenda-empty">工作人員資料暫時無法載入</p>`;
-        return;
+    layers.forEach(layerConf => {
+      const layer = document.createElementNS(SVG_NS, 'g');
+      layer.setAttribute('class', layerConf.cls);
+
+      for (let i = 0; i < layerConf.count; i++) {
+        const c = document.createElementNS(SVG_NS, 'circle');
+        c.setAttribute('cx', (Math.random() * W).toFixed(1));
+        c.setAttribute('cy', (Math.random() * H).toFixed(1));
+        c.setAttribute('r', (layerConf.rMin + Math.random() * (layerConf.rMax - layerConf.rMin)).toFixed(2));
+        const baseOp = (layerConf.opMin + Math.random() * (layerConf.opMax - layerConf.opMin)).toFixed(3);
+        const delay = (-Math.random() * 11).toFixed(2);
+        const dur = (layerConf.dMin + Math.random() * (layerConf.dMax - layerConf.dMin)).toFixed(2);
+        c.style.setProperty('--base-op', baseOp);
+        c.style.setProperty('--delay', delay + 's');
+        c.style.setProperty('--dur', dur + 's');
+        c.style.opacity = baseOp;
+        if (Math.random() < layerConf.signalRate) c.classList.add('dot-signal');
+        layer.appendChild(c);
       }
+      field.appendChild(layer);
+    });
+  })();
 
-      grid.innerHTML = staff.map(({ name, role, photo, link }) => {
-        const src = photo || FALLBACK_PHOTO;
-        const avatar = `
+  // ---- Millisecond ticker ----
+  (function setupMsTicker() {
+    const cdMs = document.getElementById('cdMs');
+    if (!cdMs) return;
+    if (reduceMotion) { cdMs.textContent = '.000'; return; }
+    let lastUpdate = 0;
+    function tickMs(now) {
+      if (now - lastUpdate >= 33) {
+        const ms = Date.now() % 1000;
+        cdMs.textContent = '.' + String(ms).padStart(3, '0');
+        lastUpdate = now;
+      }
+      requestAnimationFrame(tickMs);
+    }
+    requestAnimationFrame(tickMs);
+  })();
+
+  // ---- Wordmark click → confetti ----
+  const wordmark = document.getElementById('wordmark');
+  if (wordmark) {
+    function fireWordmarkConfetti() {
+      if (typeof window.confetti !== 'function') return;
+      window.confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.5 },
+        colors: ['#D2FF00', '#282C20', '#000000', '#F5E8E8'],
+        scalar: 0.9,
+      });
+    }
+    wordmark.addEventListener('click', fireWordmarkConfetti);
+    wordmark.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fireWordmarkConfetti(); }
+    });
+  }
+})();
+</script>
+<script>
+(function() {
+  const COLORS = ['#D2FF00','#FFD700','#FF6B35','#FF3D8B','#34C759','#FF9F0A','#FF453A','#FFFFFF','#F5E8E8','#A8C800'];
+  let confettiEnabled = true;
+
+  function normalizeSwitchValue(v) {
+    return String(v || '').trim().toLowerCase() === 'on' ? 'on' : 'off';
+  }
+
+  function playLaunchConfetti() {
+    if (!confettiEnabled) return;
+    setTimeout(function() {
+      confetti({
+        particleCount: 320,
+        spread: 200,
+        startVelocity: 78,
+        decay: 0.87,
+        gravity: 0.75,
+        ticks: 420,
+        scalar: 1.4,
+        colors: COLORS,
+        shapes: ['square', 'circle'],
+        origin: { x: 0.5, y: 0.78 }
+      });
+    }, 250);
+
+    setTimeout(function() {
+      confetti({
+        particleCount: 180,
+        spread: 160,
+        startVelocity: 65,
+        decay: 0.88,
+        gravity: 0.8,
+        ticks: 380,
+        scalar: 1.2,
+        colors: COLORS,
+        shapes: ['square', 'circle'],
+        origin: { x: 0.3, y: 0.82 }
+      });
+      confetti({
+        particleCount: 180,
+        spread: 160,
+        startVelocity: 65,
+        decay: 0.88,
+        gravity: 0.8,
+        ticks: 380,
+        scalar: 1.2,
+        colors: COLORS,
+        shapes: ['square', 'circle'],
+        origin: { x: 0.7, y: 0.82 }
+      });
+    }, 500);
+  }
+
+  function setupNewsConfetti(newsDriftEnabled) {
+    const newsCanvas = document.getElementById('newsConfettiCanvas');
+    if (!newsCanvas || !newsDriftEnabled) return;
+
+    const newsConfetti = confetti.create(newsCanvas, { resize: true, useWorker: false });
+    let driftTimer = null;
+    let isVisible = false;
+
+    // Subtle drift palette: lime + warm whites/blacks. No saturated rainbow.
+    const DRIFT_COLORS = ['#D2FF00', '#F5E8E8', '#FFFFFF', '#888888'];
+
+    function drift() {
+      if (!isVisible || !confettiEnabled) return;
+      newsConfetti({
+        particleCount: 1,
+        spread: 60,
+        startVelocity: 5,
+        decay: 0.95,
+        gravity: 0.5,
+        ticks: 200,
+        scalar: window.innerWidth < 600 ? 0.35 : 0.55,
+        colors: DRIFT_COLORS,
+        shapes: ['square', 'circle'],
+        origin: { x: Math.random(), y: 0 }
+      });
+      // Cadenced drop instead of every-frame — about ~5 particles/sec
+      driftTimer = setTimeout(drift, 200);
+    }
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          isVisible = true;
+          drift();
+        } else {
+          isVisible = false;
+          if (driftTimer) clearTimeout(driftTimer);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const newsSection = document.getElementById('news');
+    if (newsSection) observer.observe(newsSection);
+  }
+
+  fetch('data/confetti-control.json')
+    .then(function(r) { return r.json(); })
+    .then(function(confettiConfig) {
+      confettiEnabled = normalizeSwitchValue(confettiConfig.launchConfetti) === 'on';
+      setupNewsConfetti(normalizeSwitchValue(confettiConfig.newsDrift) === 'on');
+    })
+    .catch(function() {
+      confettiEnabled = true;
+      setupNewsConfetti(true);
+    });
+})();
+</script>
+
+<script>
+  // ============ Staff Grid — 從 data/iplayground_staff.json 動態渲染 ============
+  (async function () {
+    const FALLBACK_PHOTO = 'img/staff/staff_sample.png';
+    const grid = document.getElementById('staffGrid');
+    if (!grid) return;
+
+    let staff = [];
+    try {
+      const res = await fetch('data/iplayground_staff.json');
+      staff = await res.json();
+    } catch (e) {
+      console.warn('無法載入 data/iplayground_staff.json', e);
+      return;
+    }
+
+    grid.innerHTML = staff.map(({ name, role, photo, link }) => {
+      const src = photo || FALLBACK_PHOTO;
+      const avatar = `
         <div class="staff-avatar-wrap">
           <div class="staff-avatar-inner">
             <img src="${src}" alt="${name}" loading="lazy"
@@ -2788,55 +2850,54 @@
           </div>
         </div>`;
 
-        // 有 link 就包 <a>，沒有就用 <div>
-        const inner = link
-          ? `<a class="staff-card-link" href="${link}" target="_blank" rel="noopener noreferrer">${avatar}</a>`
-          : avatar;
+      // 有 link 就包 <a>，沒有就用 <div>
+      const inner = link
+        ? `<a class="staff-card-link" href="${link}" target="_blank" rel="noopener noreferrer">${avatar}</a>`
+        : avatar;
 
-        return `
+      return `
         <div class="staff-card">
           ${inner}
-          <p class="staff-name">${name || ''}</p>
-          <p class="staff-role">${role || ''}</p>
+          <p class="staff-name">${name}</p>
+          <p class="staff-role">${role}</p>
         </div>`;
-      }).join('');
-    })();
-  </script>
+    }).join('');
+  })();
+</script>
 
-  <script>
-    // ============ Speaker Grid — 優先從 SessionData GitHub Raw 載入 ============
-    (async function () {
-      const grid = document.getElementById('speakerGrid');
-      if (!grid) return;
+<script>
+  // ============ Speaker Grid — 優先從 SessionData GitHub Raw 載入 ============
+  (async function () {
+    const grid = document.getElementById('speakerGrid');
+    if (!grid) return;
 
-      let speakers = [];
-      try {
-        speakers = await loadSpeakerData();
-      } catch (e) {
-        console.warn('無法載入講者資料', e);
-        grid.innerHTML = `<p class="agenda-empty">講者資料暫時無法載入</p>`;
-        return;
-      }
+    let speakers = [];
+    try {
+      speakers = await loadSpeakerData();
+    } catch (e) {
+      console.warn('無法載入講者資料', e);
+      return;
+    }
 
-      const swapToPlaceholder = (img) => {
-        const card = img.closest('.speaker-card');
-        if (card) card.classList.add('speaker-card--placeholder');
-        const ph = document.createElement('div');
-        ph.className = 'speaker-photo-placeholder';
-        ph.setAttribute('aria-hidden', 'true');
-        img.replaceWith(ph);
-      };
-      window.__speakerPhotoFallback = swapToPlaceholder;
+    const swapToPlaceholder = (img) => {
+      const card = img.closest('.speaker-card');
+      if (card) card.classList.add('speaker-card--placeholder');
+      const ph = document.createElement('div');
+      ph.className = 'speaker-photo-placeholder';
+      ph.setAttribute('aria-hidden', 'true');
+      img.replaceWith(ph);
+    };
+    window.__speakerPhotoFallback = swapToPlaceholder;
 
-      grid.innerHTML = speakers.map((speaker, i) => {
-        const { name, role, photo } = speaker;
-        const isPlaceholder = !photo;
-        const inner = isPlaceholder
-          ? `<div class="speaker-photo-placeholder" aria-hidden="true"></div>`
-          : `<img src="${photo}" alt="" loading="lazy"
+    grid.innerHTML = speakers.map((speaker, i) => {
+      const { name, role, photo } = speaker;
+      const isPlaceholder = !photo;
+      const inner = isPlaceholder
+        ? `<div class="speaker-photo-placeholder" aria-hidden="true"></div>`
+        : `<img src="${photo}" alt="" loading="lazy"
               onerror="window.__speakerPhotoFallback(this);">`;
 
-        return `
+      return `
         <article class="speaker-card${isPlaceholder ? ' speaker-card--placeholder' : ''}" data-speaker-idx="${i}">
           <div class="speaker-photo">
             ${inner}
@@ -2846,100 +2907,100 @@
             <p class="speaker-role">${role}</p>
           </div>
         </article>`;
-      }).join('');
+    }).join('');
 
-      // 點擊開啟彈窗
-      grid.querySelectorAll('.speaker-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const idx = parseInt(card.dataset.speakerIdx);
-          if (typeof showSpeakerModal === 'function') showSpeakerModal(speakers[idx]);
-        });
+    // 點擊開啟彈窗
+    grid.querySelectorAll('.speaker-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = parseInt(card.dataset.speakerIdx);
+        if (typeof showSpeakerModal === 'function') showSpeakerModal(speakers[idx]);
       });
-    })();
-  </script>
+    });
+  })();
+</script>
 
-  <!-- ===== Margin-level delight: console hello · keyboard shortcuts · Konami · tab-blur title ===== -->
-  <script>
-    (function () {
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const lang = () => (typeof currentLang === 'string' ? currentLang : (document.documentElement.dataset.lang || 'zh'));
-      const t = (key, fallbackZh, fallbackEn) => {
-        const dict = (typeof I18N_DATA === 'object' && I18N_DATA) || {};
-        const entry = dict[key];
-        if (entry && entry[lang()]) return entry[lang()];
-        return lang() === 'en' ? fallbackEn : fallbackZh;
-      };
-      const isTypingTarget = (el) => {
-        if (!el) return false;
-        const tag = el.tagName;
-        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return true;
-        if (el.isContentEditable) return true;
-        return false;
-      };
+<!-- ===== Margin-level delight: console hello · keyboard shortcuts · Konami · tab-blur title ===== -->
+<script>
+(function () {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lang = () => (typeof currentLang === 'string' ? currentLang : (document.documentElement.dataset.lang || 'zh'));
+  const t = (key, fallbackZh, fallbackEn) => {
+    const dict = (typeof I18N_DATA === 'object' && I18N_DATA) || {};
+    const entry = dict[key];
+    if (entry && entry[lang()]) return entry[lang()];
+    return lang() === 'en' ? fallbackEn : fallbackZh;
+  };
+  const isTypingTarget = (el) => {
+    if (!el) return false;
+    const tag = el.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return true;
+    if (el.isContentEditable) return true;
+    return false;
+  };
 
-      // ---- 1. DevTools console message (one-time per load) ----
-      // The audience inspects everything; reward the curious.
-      try {
-        const lime = '#D2FF00';
-        const surface = '#282C20';
-        const ink = '#F5E8E8';
-        console.log(
-          '%c iPlayground 2026 ',
-          `background:${lime};color:#000;font-family:Michroma,sans-serif;font-size:13px;padding:6px 10px;border-radius:4px;letter-spacing:0.06em;`
-        );
-        console.log(
-          `%c你好，正在 inspect 的開發者 👋\nHi developer — we see you. Apple-platform conf, run by volunteers.\n\n• CFP: 2026-06-19 · 23:59 UTC+8\n• Site source: https://github.com/iPlayground/iplayground.github.io\n• Like the lime? It's #D2FF00 on #000.\n\nP.S. ${lang() === 'en' ? 'press ?' : '網頁上按 ?'} for keyboard shortcuts.`,
-          `background:${surface};color:${ink};font-family:ui-monospace,monospace;font-size:12px;padding:8px 12px;line-height:1.6;border-left:2px solid ${lime};`
-        );
-      } catch (_) { /* no-op */ }
+  // ---- 1. DevTools console message (one-time per load) ----
+  // The audience inspects everything; reward the curious.
+  try {
+    const lime = '#D2FF00';
+    const surface = '#282C20';
+    const ink = '#F5E8E8';
+    console.log(
+      '%c iPlayground 2026 ',
+      `background:${lime};color:#000;font-family:Michroma,sans-serif;font-size:13px;padding:6px 10px;border-radius:4px;letter-spacing:0.06em;`
+    );
+    console.log(
+      `%c你好，正在 inspect 的開發者 👋\nHi developer — we see you. Apple-platform conf, run by volunteers.\n\n• CFP: 2026-06-19 · 23:59 UTC+8\n• Site source: https://github.com/iPlayground/iplayground.github.io\n• Like the lime? It's #D2FF00 on #000.\n\nP.S. ${lang() === 'en' ? 'press ?' : '網頁上按 ?'} for keyboard shortcuts.`,
+      `background:${surface};color:${ink};font-family:ui-monospace,monospace;font-size:12px;padding:8px 12px;line-height:1.6;border-left:2px solid ${lime};`
+    );
+  } catch (_) { /* no-op */ }
 
-      // ---- 2. Keyboard shortcuts ----
-      const SECTIONS = {
-        h: 'hero',
-        1: 'news',
-        2: 'about',
-        3: 'agenda',
-        4: 'speakers',
-        5: 'staff',
-      };
-      let gPrefix = false;
-      let gPrefixTimer = null;
-      const clearGPrefix = () => {
-        gPrefix = false;
-        if (gPrefixTimer) { clearTimeout(gPrefixTimer); gPrefixTimer = null; }
-      };
+  // ---- 2. Keyboard shortcuts ----
+  const SECTIONS = {
+    h: 'hero',
+    1: 'news',
+    2: 'about',
+    3: 'agenda',
+    4: 'speakers',
+    5: 'staff',
+  };
+  let gPrefix = false;
+  let gPrefixTimer = null;
+  const clearGPrefix = () => {
+    gPrefix = false;
+    if (gPrefixTimer) { clearTimeout(gPrefixTimer); gPrefixTimer = null; }
+  };
 
-      function scrollToId(id) {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-      }
+  function scrollToId(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+  }
 
-      function fireQuickConfetti() {
-        if (reduceMotion) return;
-        if (typeof window.confetti !== 'function') return;
-        window.confetti({
-          particleCount: 60,
-          spread: 65,
-          startVelocity: 38,
-          origin: { y: 0.6 },
-          colors: ['#D2FF00', '#F5E8E8', '#FFFFFF', '#282C20'],
-          scalar: 0.85,
-        });
-      }
+  function fireQuickConfetti() {
+    if (reduceMotion) return;
+    if (typeof window.confetti !== 'function') return;
+    window.confetti({
+      particleCount: 60,
+      spread: 65,
+      startVelocity: 38,
+      origin: { y: 0.6 },
+      colors: ['#D2FF00', '#F5E8E8', '#FFFFFF', '#282C20'],
+      scalar: 0.85,
+    });
+  }
 
-      function openCfpForm() {
-        const cta = document.getElementById('ctaSubmit');
-        if (cta && cta.href) window.open(cta.href, '_blank', 'noopener');
-      }
+  function openCfpForm() {
+    const cta = document.getElementById('ctaSubmit');
+    if (cta && cta.href) window.open(cta.href, '_blank', 'noopener');
+  }
 
-      // ---- 3. Shortcuts overlay ----
-      const overlay = document.createElement('div');
-      overlay.className = 'kbd-overlay';
-      overlay.setAttribute('role', 'dialog');
-      overlay.setAttribute('aria-modal', 'true');
-      overlay.setAttribute('aria-labelledby', 'kbdOverlayTitle');
-      overlay.innerHTML = `
+  // ---- 3. Shortcuts overlay ----
+  const overlay = document.createElement('div');
+  overlay.className = 'kbd-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-labelledby', 'kbdOverlayTitle');
+  overlay.innerHTML = `
     <div class="kbd-card" role="document">
       <div class="kbd-head">
         <div class="kbd-head-text">
@@ -2981,368 +3042,309 @@
           <span class="kbd-row-label" data-i18n="kbd_nav_about">活動資訊</span>
           <span class="kbd-keys"><kbd>g</kbd><span class="kbd-plus">→</span><kbd>2</kbd></span>
         </div>
-        <div class="kbd-row">
-          <span class="kbd-row-label" data-i18n="kbd_nav_agenda">議程</span>
-          <span class="kbd-keys"><kbd>g</kbd><span class="kbd-plus">→</span><kbd>3</kbd></span>
-        </div>
-        <div class="kbd-row">
-          <span class="kbd-row-label" data-i18n="kbd_nav_speakers">講者</span>
-          <span class="kbd-keys"><kbd>g</kbd><span class="kbd-plus">→</span><kbd>4</kbd></span>
-        </div>
-        <div class="kbd-row">
-          <span class="kbd-row-label" data-i18n="kbd_nav_staff">工作人員</span>
-          <span class="kbd-keys"><kbd>g</kbd><span class="kbd-plus">→</span><kbd>5</kbd></span>
-        </div>
       </div>
       <p class="kbd-foot" data-i18n="kbd_hint">提示：先按 <kbd>g</kbd>，再按下方數字或 <kbd>h</kbd>。</p>
     </div>
   `;
-      document.body.appendChild(overlay);
+  document.body.appendChild(overlay);
 
-      // re-apply i18n to the freshly injected nodes (the language dictionary may already be loaded)
-      if (typeof applyLang === 'function' && typeof currentLang === 'string') {
-        try { applyLang(currentLang); } catch (_) { /* no-op */ }
-      }
+  // re-apply i18n to the freshly injected nodes (the language dictionary may already be loaded)
+  if (typeof applyLang === 'function' && typeof currentLang === 'string') {
+    try { applyLang(currentLang); } catch (_) { /* no-op */ }
+  }
 
-      let lastFocused = null;
-      function openOverlay() {
-        if (overlay.dataset.open === 'true') return;
-        lastFocused = document.activeElement;
-        overlay.dataset.open = 'true';
-        const closeBtn = overlay.querySelector('[data-kbd-close]');
-        if (closeBtn) closeBtn.focus({ preventScroll: true });
-      }
-      function closeOverlay() {
-        if (overlay.dataset.open !== 'true') return;
-        overlay.dataset.open = 'false';
-        if (lastFocused && typeof lastFocused.focus === 'function') {
-          try { lastFocused.focus({ preventScroll: true }); } catch (_) { }
+  let lastFocused = null;
+  function openOverlay() {
+    if (overlay.dataset.open === 'true') return;
+    lastFocused = document.activeElement;
+    overlay.dataset.open = 'true';
+    const closeBtn = overlay.querySelector('[data-kbd-close]');
+    if (closeBtn) closeBtn.focus({ preventScroll: true });
+  }
+  function closeOverlay() {
+    if (overlay.dataset.open !== 'true') return;
+    overlay.dataset.open = 'false';
+    if (lastFocused && typeof lastFocused.focus === 'function') {
+      try { lastFocused.focus({ preventScroll: true }); } catch (_) {}
+    }
+  }
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeOverlay();
+  });
+  overlay.querySelector('[data-kbd-close]')?.addEventListener('click', closeOverlay);
+
+  // Optional desktop "?" affordance — hidden on touch / small screens via CSS.
+  const fabKbd = document.createElement('button');
+  fabKbd.type = 'button';
+  fabKbd.className = 'fab-kbd';
+  fabKbd.setAttribute('aria-label', 'Keyboard Shortcuts');
+  fabKbd.setAttribute('data-i18n-aria', 'kbd_fab_label');
+  fabKbd.textContent = '?';
+  fabKbd.addEventListener('click', openOverlay);
+  document.body.appendChild(fabKbd);
+  // Reveal after first scroll, like the back-to-top FAB
+  let revealed = false;
+  window.addEventListener('scroll', () => {
+    if (!revealed && window.scrollY > 80) {
+      revealed = true;
+      fabKbd.dataset.visible = 'true';
+    }
+  }, { passive: true });
+
+  // ---- 4. Konami code ----
+  const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let konamiIdx = 0;
+  let konamiFired = false;
+
+  const toast = document.createElement('div');
+  toast.className = 'easter-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  document.body.appendChild(toast);
+  let toastTimer = null;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.dataset.show = 'true';
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.dataset.show = 'false'; }, 2400);
+  }
+
+  function fireKonamiBurst() {
+    if (typeof window.confetti !== 'function' || reduceMotion) return;
+    const colors = ['#D2FF00', '#F5E8E8', '#FFFFFF', '#282C20'];
+    window.confetti({ particleCount: 140, spread: 90, startVelocity: 55, origin: { y: 0.7, x: 0.5 }, colors, scalar: 1.1 });
+    setTimeout(() => window.confetti({ particleCount: 80, spread: 120, startVelocity: 35, origin: { y: 0.9, x: 0.2 }, colors, scalar: 0.9 }), 220);
+    setTimeout(() => window.confetti({ particleCount: 80, spread: 120, startVelocity: 35, origin: { y: 0.9, x: 0.8 }, colors, scalar: 0.9 }), 280);
+  }
+
+  // ---- Master keydown handler ----
+  document.addEventListener('keydown', (e) => {
+    // Konami: track regardless of typing target (uses arrows + plain letters)
+    const expected = KONAMI[konamiIdx];
+    const matches = e.key === expected || (expected.length === 1 && e.key.toLowerCase() === expected);
+    if (matches) {
+      konamiIdx += 1;
+      if (konamiIdx === KONAMI.length) {
+        konamiIdx = 0;
+        if (!konamiFired) {
+          konamiFired = true;
+          fireKonamiBurst();
+          showToast(t('konami_toast', '🎉 你找到了 — Up Up Down Down …', '🎉 Up Up Down Down — you found it.'));
         }
       }
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeOverlay();
+    } else {
+      konamiIdx = 0;
+    }
+
+    // Skip remaining shortcuts when typing or with modifier keys
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (isTypingTarget(e.target)) return;
+
+    // Esc closes overlay
+    if (e.key === 'Escape') {
+      if (overlay.dataset.open === 'true') {
+        e.preventDefault();
+        closeOverlay();
+      }
+      clearGPrefix();
+      return;
+    }
+
+    // ? or / opens overlay
+    if (e.key === '?' || e.key === '/') {
+      e.preventDefault();
+      if (overlay.dataset.open === 'true') closeOverlay();
+      else openOverlay();
+      return;
+    }
+
+    // g-prefix navigation (vim-style)
+    if (gPrefix && SECTIONS[e.key]) {
+      e.preventDefault();
+      scrollToId(SECTIONS[e.key]);
+      clearGPrefix();
+      return;
+    }
+
+    if (e.key === 'g') {
+      gPrefix = true;
+      if (gPrefixTimer) clearTimeout(gPrefixTimer);
+      gPrefixTimer = setTimeout(clearGPrefix, 1200);
+      return;
+    }
+
+    if (gPrefix) {
+      // any non-matching key cancels the prefix
+      clearGPrefix();
+    }
+
+    // Single-key actions
+    if (e.key === 'l') {
+      e.preventDefault();
+      if (typeof applyLang === 'function') applyLang(lang() === 'zh' ? 'en' : 'zh');
+      return;
+    }
+    if (e.key === 'c') {
+      e.preventDefault();
+      fireQuickConfetti();
+      return;
+    }
+    if (e.key === 's') {
+      e.preventDefault();
+      openCfpForm();
+      return;
+    }
+  });
+
+  // ---- 5. Tab-blur title personality ----
+  // CFP deadline 2026-06-19 23:59 UTC+8 — match the visible countdown anchor.
+  const DEADLINE = new Date('2026-06-19T23:59:00+08:00').getTime();
+  const ORIGINAL_TITLE = document.title;
+  let focusedAt = Date.now();
+  let blurTimer = null;
+
+  function daysToDeadline() {
+    return Math.ceil((DEADLINE - Date.now()) / (24 * 60 * 60 * 1000));
+  }
+  function blurTitleString() {
+    const n = daysToDeadline();
+    if (n > 0) {
+      return t('blur_title', `← 投稿截止剩 ${n} 天 · iPlayground 2026`, `← ${n} days left to submit · iPlayground 2026`)
+        .replace('{n}', String(n));
+    }
+    if (n === 0) {
+      return t('blur_title_zero', '← 今天是投稿截止日 · iPlayground 2026', '← CFP closes today · iPlayground 2026');
+    }
+    return t('blur_title_past', '← iPlayground 2026 · 7/25–26 見', '← See you 7/25–26 · iPlayground 2026');
+  }
+
+  function onBlur() {
+    if (Date.now() - focusedAt < 8000) return; // ignore quick alt-tabs
+    if (blurTimer) clearTimeout(blurTimer);
+    blurTimer = setTimeout(() => {
+      if (document.hidden || !document.hasFocus()) {
+        document.title = blurTitleString();
+      }
+    }, 6000);
+  }
+  function onFocus() {
+    focusedAt = Date.now();
+    if (blurTimer) { clearTimeout(blurTimer); blurTimer = null; }
+    document.title = ORIGINAL_TITLE;
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) onBlur(); else onFocus();
+  });
+  window.addEventListener('blur', onBlur);
+  window.addEventListener('focus', onFocus);
+
+  // ---- 6. Reveal-on-scroll (one orchestrated rhythm for below-the-fold sections) ----
+  // Brand register: motion is part of the voice; below-the-fold sections enter as a unit
+  // with a small stagger. Hero already owns its own choreography — don't touch it.
+  if (!reduceMotion) {
+    const REVEAL_GROUPS = [
+      { container: '.section-head', child: ':scope > *',     stagger: 80,  soft: true },
+      { container: '.about-stats',  child: ':scope > .stat', stagger: 90 },
+      { container: '.transport-grid', child: ':scope > .transport-card', stagger: 110 },
+      { container: '#newsList',     child: ':scope > .news-row',         stagger: 60 },
+      { container: '#speakerGrid',  child: ':scope > .speaker-card',     stagger: 60 },
+      { container: '#staffGrid',    child: ':scope > .staff-card',       stagger: 50 },
+    ];
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          revealObserver.unobserve(entry.target);
+        }
       });
-      overlay.querySelector('[data-kbd-close]')?.addEventListener('click', closeOverlay);
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
 
-      // Optional desktop "?" affordance — hidden on touch / small screens via CSS.
-      const fabKbd = document.createElement('button');
-      fabKbd.type = 'button';
-      fabKbd.className = 'fab-kbd';
-      fabKbd.setAttribute('aria-label', 'Keyboard Shortcuts');
-      fabKbd.setAttribute('data-i18n-aria', 'kbd_fab_label');
-      fabKbd.textContent = '?';
-      fabKbd.addEventListener('click', openOverlay);
-      document.body.appendChild(fabKbd);
-      // Reveal after first scroll, like the back-to-top FAB
-      let revealed = false;
-      window.addEventListener('scroll', () => {
-        if (!revealed && window.scrollY > 80) {
-          revealed = true;
-          fabKbd.dataset.visible = 'true';
-        }
-      }, { passive: true });
+    const inViewport = (el) => {
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      return r.top < vh * 0.94 && r.bottom > 0;
+    };
 
-      // ---- 4. Konami code ----
-      const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-      let konamiIdx = 0;
-      let konamiFired = false;
-
-      const toast = document.createElement('div');
-      toast.className = 'easter-toast';
-      toast.setAttribute('role', 'status');
-      toast.setAttribute('aria-live', 'polite');
-      document.body.appendChild(toast);
-      let toastTimer = null;
-      function showToast(msg) {
-        toast.textContent = msg;
-        toast.dataset.show = 'true';
-        if (toastTimer) clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => { toast.dataset.show = 'false'; }, 2400);
-      }
-
-      function fireKonamiBurst() {
-        if (typeof window.confetti !== 'function' || reduceMotion) return;
-        const colors = ['#D2FF00', '#F5E8E8', '#FFFFFF', '#282C20'];
-        window.confetti({ particleCount: 140, spread: 90, startVelocity: 55, origin: { y: 0.7, x: 0.5 }, colors, scalar: 1.1 });
-        setTimeout(() => window.confetti({ particleCount: 80, spread: 120, startVelocity: 35, origin: { y: 0.9, x: 0.2 }, colors, scalar: 0.9 }), 220);
-        setTimeout(() => window.confetti({ particleCount: 80, spread: 120, startVelocity: 35, origin: { y: 0.9, x: 0.8 }, colors, scalar: 0.9 }), 280);
-      }
-
-      // ---- Master keydown handler ----
-      document.addEventListener('keydown', (e) => {
-        // Konami: track regardless of typing target (uses arrows + plain letters)
-        const expected = KONAMI[konamiIdx];
-        const matches = e.key === expected || (expected.length === 1 && e.key.toLowerCase() === expected);
-        if (matches) {
-          konamiIdx += 1;
-          if (konamiIdx === KONAMI.length) {
-            konamiIdx = 0;
-            if (!konamiFired) {
-              konamiFired = true;
-              fireKonamiBurst();
-              showToast(t('konami_toast', '🎉 你找到了 — Up Up Down Down …', '🎉 Up Up Down Down — you found it.'));
+    function rescanReveal() {
+      REVEAL_GROUPS.forEach(group => {
+        document.querySelectorAll(group.container).forEach(container => {
+          let kids;
+          try { kids = container.querySelectorAll(group.child); }
+          catch (_) { return; }
+          let i = 0;
+          kids.forEach(el => {
+            if (el.dataset.revealInit === '1') return;
+            el.classList.add('reveal');
+            if (group.soft) el.classList.add('reveal--soft');
+            const delay = i * group.stagger;
+            if (delay) el.style.setProperty('--reveal-delay', `${delay}ms`);
+            el.dataset.revealInit = '1';
+            // If it's already in viewport (e.g. above-the-fold news section on first paint),
+            // reveal it on the next frame so the CSS transition can kick in.
+            if (inViewport(el)) {
+              requestAnimationFrame(() => el.classList.add('is-in'));
+            } else {
+              revealObserver.observe(el);
             }
-          }
-        } else {
-          konamiIdx = 0;
-        }
-
-        // Skip remaining shortcuts when typing or with modifier keys
-        if (e.metaKey || e.ctrlKey || e.altKey) return;
-        if (isTypingTarget(e.target)) return;
-
-        // Esc closes overlay
-        if (e.key === 'Escape') {
-          if (overlay.dataset.open === 'true') {
-            e.preventDefault();
-            closeOverlay();
-          }
-          clearGPrefix();
-          return;
-        }
-
-        // ? or / opens overlay
-        if (e.key === '?' || e.key === '/') {
-          e.preventDefault();
-          if (overlay.dataset.open === 'true') closeOverlay();
-          else openOverlay();
-          return;
-        }
-
-        // g-prefix navigation (vim-style)
-        if (gPrefix && SECTIONS[e.key]) {
-          e.preventDefault();
-          scrollToId(SECTIONS[e.key]);
-          clearGPrefix();
-          return;
-        }
-
-        if (e.key === 'g') {
-          gPrefix = true;
-          if (gPrefixTimer) clearTimeout(gPrefixTimer);
-          gPrefixTimer = setTimeout(clearGPrefix, 1200);
-          return;
-        }
-
-        if (gPrefix) {
-          // any non-matching key cancels the prefix
-          clearGPrefix();
-        }
-
-        // Single-key actions
-        if (e.key === 'l') {
-          e.preventDefault();
-          if (typeof applyLang === 'function') applyLang(lang() === 'zh' ? 'en' : 'zh');
-          return;
-        }
-        if (e.key === 'c') {
-          e.preventDefault();
-          fireQuickConfetti();
-          return;
-        }
-        if (e.key === 's') {
-          e.preventDefault();
-          openCfpForm();
-          return;
-        }
-      });
-
-      // ---- 5. Tab-blur title personality ----
-      // CFP deadline 2026-06-19 23:59 UTC+8 — match the visible countdown anchor.
-      const DEADLINE = new Date('2026-06-19T23:59:00+08:00').getTime();
-      const ORIGINAL_TITLE = document.title;
-      let focusedAt = Date.now();
-      let blurTimer = null;
-
-      function daysToDeadline() {
-        return Math.ceil((DEADLINE - Date.now()) / (24 * 60 * 60 * 1000));
-      }
-      function blurTitleString() {
-        const n = daysToDeadline();
-        if (n > 0) {
-          return t('blur_title', `← 投稿截止剩 ${n} 天 · iPlayground 2026`, `← ${n} days left to submit · iPlayground 2026`)
-            .replace('{n}', String(n));
-        }
-        if (n === 0) {
-          return t('blur_title_zero', '← 今天是投稿截止日 · iPlayground 2026', '← CFP closes today · iPlayground 2026');
-        }
-        return t('blur_title_past', '← iPlayground 2026 · 7/25–26 見', '← See you 7/25–26 · iPlayground 2026');
-      }
-
-      function onBlur() {
-        if (Date.now() - focusedAt < 8000) return; // ignore quick alt-tabs
-        if (blurTimer) clearTimeout(blurTimer);
-        blurTimer = setTimeout(() => {
-          if (document.hidden || !document.hasFocus()) {
-            document.title = blurTitleString();
-          }
-        }, 6000);
-      }
-      function onFocus() {
-        focusedAt = Date.now();
-        if (blurTimer) { clearTimeout(blurTimer); blurTimer = null; }
-        document.title = ORIGINAL_TITLE;
-      }
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) onBlur(); else onFocus();
-      });
-      window.addEventListener('blur', onBlur);
-      window.addEventListener('focus', onFocus);
-
-      // ---- 6. Reveal-on-scroll (one orchestrated rhythm for below-the-fold sections) ----
-      // Brand register: motion is part of the voice; below-the-fold sections enter as a unit
-      // with a small stagger. Hero already owns its own choreography — don't touch it.
-      if (!reduceMotion) {
-        const REVEAL_GROUPS = [
-          { container: '.section-head', child: ':scope > *', stagger: 80, soft: true },
-          { container: '.about-stats', child: ':scope > .stat', stagger: 90 },
-          { container: '.transport-grid', child: ':scope > .transport-card', stagger: 110 },
-          { container: '#newsList', child: ':scope > .news-row', stagger: 60 },
-          { container: '#speakerGrid', child: ':scope > .speaker-card', stagger: 60 },
-          { container: '#staffGrid', child: ':scope > .staff-card', stagger: 50 },
-        ];
-        const revealObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-in');
-              revealObserver.unobserve(entry.target);
-            }
+            i += 1;
           });
-        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-
-        const inViewport = (el) => {
-          const r = el.getBoundingClientRect();
-          const vh = window.innerHeight || document.documentElement.clientHeight;
-          return r.top < vh * 0.94 && r.bottom > 0;
-        };
-
-        function rescanReveal() {
-          REVEAL_GROUPS.forEach(group => {
-            document.querySelectorAll(group.container).forEach(container => {
-              let kids;
-              try { kids = container.querySelectorAll(group.child); }
-              catch (_) { return; }
-              let i = 0;
-              kids.forEach(el => {
-                if (el.dataset.revealInit === '1') return;
-                el.classList.add('reveal');
-                if (group.soft) el.classList.add('reveal--soft');
-                const delay = i * group.stagger;
-                if (delay) el.style.setProperty('--reveal-delay', `${delay}ms`);
-                el.dataset.revealInit = '1';
-                // If it's already in viewport (e.g. above-the-fold news section on first paint),
-                // reveal it on the next frame so the CSS transition can kick in.
-                if (inViewport(el)) {
-                  requestAnimationFrame(() => el.classList.add('is-in'));
-                } else {
-                  revealObserver.observe(el);
-                }
-                i += 1;
-              });
-            });
-          });
-        }
-
-        // Initial scan + re-scan whenever dynamic containers change
-        const dynamicIds = ['newsList', 'agendaList', 'speakerGrid', 'staffGrid'];
-        let rescanScheduled = false;
-        function scheduleRescan() {
-          if (rescanScheduled) return;
-          rescanScheduled = true;
-          requestAnimationFrame(() => {
-            rescanScheduled = false;
-            rescanReveal();
-          });
-        }
-        dynamicIds.forEach(id => {
-          const el = document.getElementById(id);
-          if (!el) return;
-          new MutationObserver(scheduleRescan).observe(el, { childList: true });
         });
+      });
+    }
 
-        // Also run after DOMContentLoaded data fetch settles (renders happen inside that promise)
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', () => setTimeout(rescanReveal, 0));
-        } else {
-          setTimeout(rescanReveal, 0);
-        }
-        // Catch the first wave of renders triggered by data fetches
-        setTimeout(rescanReveal, 400);
-        setTimeout(rescanReveal, 1200);
-      }
+    // Initial scan + re-scan whenever dynamic containers change
+    const dynamicIds = ['newsList', 'agendaList', 'speakerGrid', 'staffGrid'];
+    let rescanScheduled = false;
+    function scheduleRescan() {
+      if (rescanScheduled) return;
+      rescanScheduled = true;
+      requestAnimationFrame(() => {
+        rescanScheduled = false;
+        rescanReveal();
+      });
+    }
+    dynamicIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      new MutationObserver(scheduleRescan).observe(el, { childList: true });
+    });
 
-      // ---- 7. Theme + language crossfade via View Transitions API ----
-      // Wraps the global applyAppearance / applyLang in document.startViewTransition().
-      // Browsers without support get the original instant call; reduced-motion bypasses entirely.
-      function withViewTransition(fn) {
-        if (reduceMotion) return fn();
-        if (typeof document.startViewTransition !== 'function') return fn();
-        try { document.startViewTransition(fn); }
-        catch (_) { fn(); }
-      }
-      if (typeof window.applyAppearance === 'function' && !window.__vtAppearancePatched) {
-        const _origAppearance = window.applyAppearance;
-        window.applyAppearance = function (pref) {
-          withViewTransition(() => _origAppearance(pref));
-        };
-        window.__vtAppearancePatched = true;
-      }
-      if (typeof window.applyLang === 'function' && !window.__vtLangPatched) {
-        const _origLang = window.applyLang;
-        window.applyLang = function (lang) {
-          withViewTransition(() => _origLang(lang));
-        };
-        window.__vtLangPatched = true;
-      }
-    })();
-  </script>
+    // Also run after DOMContentLoaded data fetch settles (renders happen inside that promise)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => setTimeout(rescanReveal, 0));
+    } else {
+      setTimeout(rescanReveal, 0);
+    }
+    // Catch the first wave of renders triggered by data fetches
+    setTimeout(rescanReveal, 400);
+    setTimeout(rescanReveal, 1200);
+  }
 
-  <!-- Photo Walls Background -->
-  <script>
-    (function initPhotoWalls() {
-      function populate(photos, id, cols) {
-        const wall = document.getElementById(id);
-        if (!wall) return;
-        wall.innerHTML = '';
-
-        // Shuffle
-        const shuffled = photos.slice().sort(() => Math.random() - 0.5);
-
-        // perCol: enough to fill 2x the viewport height at minimum
-        const imgHeight = Math.max(window.innerWidth / cols, 160);
-        const perCol = Math.max(Math.ceil((window.innerHeight * 2) / imgHeight), shuffled.length);
-
-        for (let c = 0; c < cols; c++) {
-          const col = document.createElement('div');
-          col.className = 'pw-col';
-          col.style.animationDelay = `-${Math.random() * 240}s`;
-          col.style.animationDuration = `${240 + Math.random() * 160}s`;
-
-          // Generate perCol images, then duplicate for seamless loop
-          for (let i = 0; i < perCol * 2; i++) {
-            const idx = (c * perCol + (i % perCol)) % shuffled.length;
-            const img = document.createElement('img');
-            img.src = `img/slider/${shuffled[idx]}`;
-            img.loading = 'lazy';
-            img.alt = '';
-            col.appendChild(img);
-          }
-          wall.appendChild(col);
-        }
-      }
-
-      // Fetch photo list from JSON, then populate both walls
-      fetch('data/iplayground_slider.json')
-        .then(r => r.json())
-        .then(photos => {
-          populate(photos, 'photoWall', 4);
-          populate(photos, 'staffPhotoWall', 5);
-        })
-        .catch(() => {
-          console.warn('iplayground_slider.json failed to load');
-        });
-    })();
-  </script>
+  // ---- 7. Theme + language crossfade via View Transitions API ----
+  // Wraps the global applyAppearance / applyLang in document.startViewTransition().
+  // Browsers without support get the original instant call; reduced-motion bypasses entirely.
+  function withViewTransition(fn) {
+    if (reduceMotion) return fn();
+    if (typeof document.startViewTransition !== 'function') return fn();
+    try { document.startViewTransition(fn); }
+    catch (_) { fn(); }
+  }
+  if (typeof window.applyAppearance === 'function' && !window.__vtAppearancePatched) {
+    const _origAppearance = window.applyAppearance;
+    window.applyAppearance = function (pref) {
+      withViewTransition(() => _origAppearance(pref));
+    };
+    window.__vtAppearancePatched = true;
+  }
+  if (typeof window.applyLang === 'function' && !window.__vtLangPatched) {
+    const _origLang = window.applyLang;
+    window.applyLang = function (lang) {
+      withViewTransition(() => _origLang(lang));
+    };
+    window.__vtLangPatched = true;
+  }
+})();
+</script>
 
 </body>
 

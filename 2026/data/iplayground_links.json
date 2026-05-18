@@ -23,13 +23,22 @@
       "label": "YouTube",
       "url": "https://youtube.com/@iplaygroundtaiwan",
       "icon": "img/svg/media/youtube.svg"
+    },
+    {
+      "id": "threads",
+      "label": "Threads",
+      "url": "https://www.threads.com/@iplayground.tw",
+      "icon": "img/svg/media/Threads-Logo-1.png"
     }
   ],
   "important": {
     "cfp_form": { "zh": "https://forms.gle/GfDT4xm5EKq7d84i9", "en": "https://forms.gle/UJgyMUniX4f7EHvN8" },
     "sponsor_referral": "https://discord.com/channels/1256984270346649702/1492056108901204058/1497859375203614750",
     "venue_traffic": "https://cpbae.nccu.edu.tw/cpbae-service-nx2/traffic?random=1751004674691",
-    "coc": "https://github.com/iplayground/code_of_conduct"
+    "coc": "https://github.com/iplayground/code_of_conduct",
+    "apple_event_calendar": "https://developer.apple.com/community/events/",
+    "iplayground_2024": "https://iplayground.io/2024",
+    "iplayground_2025": "https://iplayground.io/2025"
   },
   "contact": {
     "support": "mailto:support@iplayground.io",

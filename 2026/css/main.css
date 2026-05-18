@@ -367,7 +367,7 @@
     .hero .eyebrow .eyebrow-bracket { color: var(--c-accent); }
     .hero .eyebrow .eyebrow-sep     { color: var(--c-accent); padding: 0 2px; }
     .hero .hero-main .eyebrow {
-      font-size: clamp(11px, 2.05vw, calc(var(--fs-eyebrow) * 2));
+      font-size: clamp(15px, 3vw, calc(var(--fs-eyebrow) * 2.4));
       max-width: 100%;
     }
     @media (max-width: 640px) {
@@ -521,25 +521,38 @@
     .hero .cta:focus-visible { outline: 2px solid var(--c-signal); outline-offset: 3px; }
 
     .hero .cta-signal {
-      background: var(--c-signal);
+      position: relative;
+      isolation: isolate;
+      background: transparent;
       color: var(--c-bg);
+      box-shadow: none;
+    }
+    .hero .cta-signal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: var(--c-signal);
       box-shadow: 0 0 0 1px var(--c-signal),
                   0 8px 24px -8px color-mix(in oklab, var(--c-signal) 80%, transparent);
+      transform-origin: left center;
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow var(--t-fast) var(--ease-out);
     }
-    html[data-mode="light"] .hero .cta-signal {
+    html[data-mode="light"] .hero .cta-signal::before {
       box-shadow: 0 0 0 1px var(--c-signal);
+    }
+    .hero .cta-signal:hover::before,
+    .hero .cta-signal:focus-visible::before {
+      transform: scaleX(1.16);
     }
     .hero .cta-signal:hover {
       transform: translateY(-1px);
-      box-shadow: 0 0 0 1px var(--c-signal),
-                  0 12px 32px -8px color-mix(in oklab, var(--c-signal) 90%, transparent);
-    }
-    html[data-mode="light"] .hero .cta-signal:hover {
-      box-shadow: 0 0 0 1px var(--c-signal),
-                  0 4px 12px -4px color-mix(in oklab, var(--c-signal) 25%, transparent);
     }
     .hero .cta-signal .cta-arrow { transition: transform var(--t-mid) var(--ease-out); }
-    .hero .cta-signal:hover .cta-arrow { transform: translateX(4px); }
+    .hero .cta-signal:hover .cta-arrow,
+    .hero .cta-signal:focus-visible .cta-arrow { transform: translateX(32px); }
 
     .hero .cta-ghost {
       background: transparent;
@@ -552,45 +565,6 @@
       color: var(--c-ink);
       box-shadow: inset 0 0 0 1px var(--c-accent);
       background: color-mix(in oklab, var(--c-accent) 12%, transparent);
-    }
-
-    /* Hero social row — small mono-flavoured icon row, fits the new aesthetic */
-    .hero .hero-social-row {
-      display: flex;
-      align-items: center;
-      gap: var(--s-3);
-      margin-top: var(--s-4);
-      opacity: 0;
-      animation: hero-in 700ms var(--ease-out) 1700ms forwards;
-    }
-    .hero .hero-social-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 6px;
-      border: 1px solid var(--rule-2);
-      color: var(--c-ink-2);
-      background: transparent;
-      transition: color var(--t-fast) var(--ease-out),
-                  border-color var(--t-fast) var(--ease-out),
-                  transform var(--t-fast) var(--ease-out);
-    }
-    .hero .hero-social-btn:hover {
-      color: var(--c-ink);
-      border-color: var(--c-ink);
-      transform: translateY(-1px);
-    }
-    .hero .hero-social-btn img {
-      width: 16px;
-      height: 16px;
-      display: block;
-      filter: brightness(0) invert(1) opacity(0.85);
-    }
-    html[data-mode="light"] .hero .hero-social-btn img {
-      filter: none;
-      opacity: 0.7;
     }
 
     /* Countdown panel */
@@ -727,6 +701,73 @@
     }
     html[data-mode="light"] .hero .cd-ms { color: var(--c-accent); opacity: 0.9; }
 
+    /* Countdown column — wraps the panel and the social row underneath */
+    .hero .countdown-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
+      min-width: 0;
+    }
+
+    /* Social row — sits outside the countdown rectangle, FAB-styled circles */
+    .hero .cd-social-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: hero-in 700ms var(--ease-out) 1820ms forwards;
+    }
+    .hero .cd-social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(44, 44, 46, 0.72);
+      backdrop-filter: saturate(180%) blur(22px);
+      -webkit-backdrop-filter: saturate(180%) blur(22px);
+      color: #fff;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+      transition: transform .18s ease,
+                  background .18s ease,
+                  border-color .18s ease,
+                  box-shadow .18s ease;
+    }
+    .hero .cd-social-btn:hover {
+      background: var(--c-signal);
+      border-color: rgba(255, 255, 255, 0.24);
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(210, 255, 0, 0.34);
+    }
+    .hero .cd-social-btn img {
+      width: 18px;
+      height: 18px;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+    .hero .cd-social-btn:hover img { filter: none; }
+
+    html[data-mode="light"] .hero .cd-social-btn {
+      background: rgba(255, 255, 255, 0.86);
+      border-color: rgba(60, 60, 67, 0.18);
+      color: #1d1d1f;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    }
+    html[data-mode="light"] .hero .cd-social-btn img { filter: none; opacity: 0.78; }
+    html[data-mode="light"] .hero .cd-social-btn:hover {
+      background: var(--c-accent);
+      color: #fff;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+    }
+    html[data-mode="light"] .hero .cd-social-btn:hover img {
+      filter: brightness(0) invert(1);
+      opacity: 1;
+    }
+
     /* CFP closed state */
     .hero[data-state="closed"] .cd-cell { border-bottom-color: var(--c-accent); }
     .hero[data-state="closed"] .cd-cell.tick { border-bottom-color: var(--c-accent); }
@@ -746,7 +787,9 @@
       }
       .hero .hero-main { max-width: none; }
       .hero .wordmark .wm-year { transform: none; align-self: flex-start; }
-      .hero .countdown-panel { order: -1; padding: var(--s-5) var(--s-4); }
+      .hero .countdown-col { order: -1; }
+      .hero .countdown-panel { padding: var(--s-5) var(--s-4); }
+      .hero .cd-social-row { justify-content: center; }
       .hero .cd-grid { grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; }
       .hero .corner { width: 20px; height: 20px; }
       .hero .cta-stack { width: 100%; }
@@ -768,6 +811,8 @@
         transform: translateY(-50%);
         font-size: 0.95em;
       }
+      .hero .cta-signal:hover .cta-arrow,
+      .hero .cta-signal:focus-visible .cta-arrow { transform: translate(48px, -50%); }
     }
     @media (max-width: 540px) {
       .hero .status-pill { display: none; }
@@ -788,13 +833,16 @@
       .hero .lede,
       .hero .cta-stack,
       .hero .countdown-panel,
-      .hero .brand-crest svg,
-      .hero .hero-social-row {
+      .hero .cd-social-row,
+      .hero .brand-crest svg {
         opacity: 1 !important;
         transform: none !important;
         filter: none !important;
         animation: none !important;
       }
+      .hero .cta-signal::before { transition: none; }
+      .hero .cta-signal:hover::before,
+      .hero .cta-signal:focus-visible::before { transform: none; }
     }
 
     .hero *:focus-visible {
@@ -2057,21 +2105,6 @@
       color: #000;
     }
 
-    .ticket-badge {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: var(--accent);
-      color: #000;
-      font-family: var(--f-mono);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-weight: 500;
-    }
-
     /* ============ Transport Cards ============ */
     .transport-card {
       padding: 40px;
@@ -3153,4 +3186,267 @@
     @media (prefers-reduced-motion: reduce) {
       ::view-transition-old(root),
       ::view-transition-new(root) { animation: none; }
+    }
+
+    /* ============ Tickets section ============ */
+    .section-tickets {
+      padding: clamp(72px, 9vh, 120px) 0;
+    }
+    .section-tickets .section-head { text-align: left; }
+
+    .tickets-box {
+      max-width: var(--maxw, 1280px);
+      width: 100%;
+      margin: 48px auto 0;
+      background: var(--rule-2);
+      border: 1px solid var(--rule-2);
+      text-align: left;
+    }
+
+    .tickets-grid {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--rule-2);
+      width: 100%;
+      text-align: left;
+    }
+    @media (max-width: 1180px) { .tickets-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 640px)  { .tickets-grid { grid-template-columns: minmax(0, 1fr); } }
+
+    .tickets-aux {
+      max-width: var(--maxw, 1280px);
+      width: 100%;
+      margin: 12px auto 0;
+      padding: 0 clamp(4px, 0.8vw, 12px);
+      box-sizing: border-box;
+      display: flex;
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    .workshop-info-trigger {
+      appearance: none;
+      background: transparent;
+      border: 0;
+      padding: 10px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink-2);
+      font: inherit;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease, gap 0.2s ease;
+    }
+
+    .workshop-info-trigger:hover,
+    .workshop-info-trigger:focus-visible {
+      color: var(--ink);
+      border-bottom-color: var(--rule);
+      gap: 12px;
+      outline: none;
+    }
+
+    .workshop-info-trigger svg {
+      flex-shrink: 0;
+    }
+
+    .ticket-card {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(18px, 2vh, 24px);
+      padding: clamp(24px, 3vh, 36px) clamp(18px, 2vw, 28px);
+      background: var(--bg);
+      position: relative;
+      min-height: 360px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .ticket-eyebrow {
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .ticket-heading { display: flex; flex-direction: column; gap: 6px; }
+    .ticket-name {
+      font-family: 'Geist', 'PingFang TC', 'Noto Sans TC', system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.25;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+    }
+    .ticket-subtitle {
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .ticket-price {
+      font-family: 'Michroma', ui-monospace, 'SF Mono', monospace;
+      font-size: clamp(20px, 1.8vw, 28px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      min-width: 0;
+      white-space: nowrap;
+    }
+    .ticket-price--tba {
+      color: var(--ink-3);
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: clamp(13px, 1vw, 15px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .ticket-perks {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+    .ticket-perks li {
+      font-family: 'Geist', 'PingFang TC', 'Noto Sans TC', system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-2);
+      display: grid;
+      grid-template-columns: 14px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+    .ticket-perks li::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      margin-top: 0.55em;
+      background: var(--ink-3);
+      border-radius: 50%;
+    }
+
+    /* ----- CTA — clean white pill with lime aura ------------------ */
+    .ticket-cta {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      margin-top: auto;
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 8px;
+      color: oklch(0.20 0.005 130);
+      text-decoration: none;
+      background: oklch(0.96 0.005 130);
+      box-shadow:
+        inset 0 1px 0 oklch(1 0 0 / 0.6),
+        inset 0 0 14px -4px color-mix(in oklab, var(--accent) 18%, transparent);
+
+      filter:
+        drop-shadow(0 6px 18px color-mix(in oklab, var(--accent) 55%, transparent))
+        drop-shadow(0 1px 4px  color-mix(in oklab, var(--accent) 35%, transparent));
+
+      transition:
+        transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+        filter    280ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .ticket-cta:hover {
+      transform: translateY(-1px);
+      filter:
+        drop-shadow(0 9px 22px color-mix(in oklab, var(--accent) 60%, transparent))
+        drop-shadow(0 2px 6px  color-mix(in oklab, var(--accent) 38%, transparent));
+    }
+    .ticket-cta:active { transform: translateY(0); transition-duration: 80ms; }
+
+    .ticket-cta-arrow {
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .ticket-cta:hover .ticket-cta-arrow { transform: translate(3px, -3px); }
+
+    .ticket-cta[aria-disabled="true"] {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ticket-cta:hover { transform: none; }
+    }
+
+    /* Top row: eyebrow on the left, badge (if any) on the right. */
+    .ticket-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 24px;
+    }
+
+    .ticket-top .ticket-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+      margin: 0;
+    }
+
+    /* Pill badge — generic, used by tiers that ship a `badge` field. */
+    .ticket-badge {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 10px;
+      line-height: 1;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 8px 11px;
+      border: 1px solid color-mix(in oklab, var(--accent) 50%, transparent);
+      border-radius: 999px;
+      background: color-mix(in oklab, var(--accent) 6%, transparent);
+      white-space: nowrap;
+    }
+
+    /* Early-bird's badge has urgency — denser fill + brighter glyph. */
+    .ticket-card--early-bird .ticket-badge {
+      color: oklch(0.20 0.005 130);
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 18px -4px color-mix(in oklab, var(--accent) 60%, transparent);
+    }
+
+    /* First perk in each card = the "this includes / starting from"
+       hierarchy anchor. Lime so the upgrade ladder reads at a glance. */
+    .ticket-perks li:first-child {
+      color: var(--accent);
+    }
+    .ticket-perks li:first-child::before {
+      background: var(--accent);
+    }
+
+    /* Hide full sections per request */
+    #agenda,
+    #speakers,
+    #staff {
+      display: none !important;
     }

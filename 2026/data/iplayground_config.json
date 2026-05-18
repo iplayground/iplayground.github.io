@@ -1,7 +1,7 @@
 {
   "footerTagline": {
-    "zh": "iPlayground 是從 2018 年開始專為蘋果軟體開發者設計的研討會，主題涵蓋 iOS 和 macOS 開發、Swift 和 Objective-C 、以及 app 軟體開發與 UI/UX 設計的經驗分享。這個活動由一群資深工程師創辦，目的是彌補台灣在 iOS 開發領域的研討會不足，並為開發者們提供更深入且多樣化的議程。",
-    "en": "iPlayground is a conference designed for Apple software developers since 2018, covering iOS and macOS development, Swift and Objective-C, as well as app development and UI/UX design. Founded by a group of senior engineers to fill the gap in iOS-focused conferences in Taiwan."
+    "zh": "iPlayground 是從 2018 年開始專為蘋果軟體開發者設計的研討會，主題涵蓋 iOS 和 macOS 開發、Swift 和 Objective-C 、以及 app 軟體開發與 UI/UX 設計的經驗分享。這個活動由一群資深工程師發起，希望為台灣的 Apple 開發者社群，打造一個深入且多元的交流舞台。",
+    "en": "iPlayground is a conference designed for Apple software developers since 2018, covering iOS and macOS development, Swift and Objective-C, as well as app development and UI/UX design. Founded by a group of senior engineers to build a deep, diverse stage for Taiwan's Apple developer community."
   },
   "venue": {
     "name": { "zh": "政大公企中心", "en": "NCCU CPBAE" },
