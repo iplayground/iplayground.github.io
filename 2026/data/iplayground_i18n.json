@@ -48,6 +48,9 @@
   "venue_title":         { "zh": "活動地點",                          "en": "Venue" },
   "venue_address":       { "zh": "106 台北市大安區金華街 187 號",      "en": "No. 187, Jinhua St., Da'an Dist., Taipei City 106" },
 
+  "trans_traffic_title": { "zh": "交通資訊",                          "en": "Traffic Info" },
+  "trans_mrt_tab":       { "zh": "捷運",                              "en": "MRT" },
+  "trans_bus_tab":       { "zh": "公車",                              "en": "Bus" },
   "trans_mrt_title":     { "zh": "捷運資訊",                          "en": "MRT Info" },
   "trans_mrt_desc":      { "zh": "<button class='transport-link-btn' onclick='openNavigation(\"東門站 3 號出口\", \"政大公企中心\")'>從東門站步行</button><button class='transport-link-btn' onclick='openBusSearch(\"214\")'>從古亭站 4 號出口搭乘 214 公車</button><button class='transport-link-btn' onclick='openBusSearch(\"0南\")'>從古亭站 4 號出口搭乘 0南 公車</button><button class='transport-link-btn' onclick='openBusSearch(\"606\")'>從古亭站 4 號出口搭乘 606 公車</button>", "en": "<button class='transport-link-btn' onclick='openNavigation(\"Dongmen Station Exit 3\", \"NCCU CPBAE\")'>Walk from Dongmen Station</button><button class='transport-link-btn' onclick='openBusSearch(\"214\")'>Take Bus 214 from Guting Exit 4</button><button class='transport-link-btn' onclick='openBusSearch(\"0南\")'>Take Bus 0 South from Guting Exit 4</button><button class='transport-link-btn' onclick='openBusSearch(\"606\")'>Take Bus 606 from Guting Exit 4</button>" },
   "trans_bus_title":     { "zh": "公車資訊",                          "en": "Bus Info" },

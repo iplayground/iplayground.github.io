@@ -2106,6 +2106,42 @@
     }
 
     /* ============ Transport Cards ============ */
+    .transport-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
+      text-align: left;
+    }
+
+    .transport-grid--merged {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .transport-card--section {
+      border: 0;
+      border-right: 1px solid var(--rule);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      transform: none;
+      transition: background .3s ease, border-color .3s ease;
+    }
+    .transport-card--section:last-child {
+      border-right: 0;
+    }
+    .transport-card--section:hover {
+      transform: none;
+      border-color: var(--rule);
+      box-shadow: none;
+      background: color-mix(in oklab, var(--surface-2) 45%, transparent);
+    }
+
+
     .transport-card {
       padding: 40px;
       border-radius: 6px;
@@ -2364,6 +2400,19 @@
       min-height: var(--commute-pane-h, auto);
     }
     @media (max-width: 980px) {
+      .transport-grid {
+        grid-template-columns: 1fr;
+      }
+      .transport-grid--merged {
+        grid-template-columns: 1fr;
+      }
+      .transport-card--section {
+        border-right: 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      .transport-card--section:last-child {
+        border-bottom: 0;
+      }
       .transport-card--merged {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -3448,5 +3497,5 @@
     #agenda,
     #speakers,
     #staff {
-      display: none !important;
+      /* display: none !important; */
     }

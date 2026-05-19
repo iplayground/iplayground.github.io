@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-Hant">
 
 <head>
@@ -338,42 +338,8 @@
           </button>
         </div>
 
-        <div class="transport-grid"
-          style="margin-top: 104px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; text-align: left;">
-          <div class="transport-card">
-            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
-              <div class="transport-icon">
-                <svg viewBox="0 0 152 152" xmlns="http://www.w3.org/2000/svg">
-                  <g id="Layer_2" data-name="Layer 2">
-                    <g id="_18.train" data-name="18.train">
-                      <path
-                        d="m65.59 44.27h10.41 10.48c1.84 0 3-1 2.94-2.61s-1.14-2.5-2.93-2.51h-20.89c-1.88 0-3 1-3 2.57s1.12 2.55 2.99 2.55z" />
-                      <path d="m56.89 79.8a5.06 5.06 0 0 0 -5 5 5 5 0 0 0 4.9 4.86 4.89 4.89 0 0 0 4.94-4.93 5 5 0 0 0 -4.84-4.93z" />
-                      <path
-                        d="m97.91 69c-1-5.36-2.1-10.7-3.22-16-.46-2.2-1.28-2.9-3.51-2.95-3.92-.09-7.84-.1-11.76-.1-6.23 0-12.45 0-18.68.1-2.23 0-3 .79-3.47 3-.72 3.38-1.39 6.76-2.07 10.14-.4 2-.86 4-1.18 6-.48 3.11.79 4.71 3.9 5 .93.09 1.87.13 2.81.13h15.35 4c4.61 0 9.22 0 13.81-.13 3.3-.1 4.64-1.88 4.02-5.19z" />
-                      <path
-                        d="m76 0a76 76 0 1 0 76 76 76 76 0 0 0 -76-76zm31 117.92v.43c-.32 0-.65.12-1 .12-3.58 0-7.16 0-10.74 0a1.34 1.34 0 0 1 -.88-.25l-6.19-16.63-.07-.2-1.43-4-10.69.03c-3.57 0-7.15-.06-10.73-.06-.51 1.45-1 2.82-1.49 4.22l-.05.1-6.26 16.72h-12.76l4.13-8.35c2.09-4.21 4.2-8.41 6.26-12.65a.54.54 0 0 1 .07-.13c-8.08-1.27-13.52-8.44-11.64-17.84 2.47-12.11 4.63-24.27 6.89-36.43a11.17 11.17 0 0 1 10.95-9.46q14.58-.12 29.16 0a11.08 11.08 0 0 1 11 9.13q3.55 18.7 7 37.42c.9 4.84 0 9.24-3.47 12.94a13.22 13.22 0 0 1 -8.29 4.22q5.15 10.31 10.23 20.67z" />
-                      <path d="m95.21 79.81a4.95 4.95 0 1 0 4.89 5 5 5 0 0 0 -4.89-5z" />
-                    </g>
-                  </g>
-                </svg>
-              </div>
-              <h3 style="font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em;"
-                data-i18n="trans_mrt_title">捷運資訊</h3>
-            </div>
-            <div style="font-size: 15px; line-height: 1.8; color: var(--ink-2);" data-i18n="trans_mrt_desc">
-              <button class="transport-link-btn" onclick="openNavigation('東門站 3 號出口', '政大公企中心')">
-                從東門站步行
-              </button>
-              <button class="transport-link-btn" onclick="openBusSearch('214')">
-                從古亭站 4 號出口搭乘 214 公車
-              </button>
-              <button class="transport-link-btn" onclick="openBusSearch('606')">
-                從古亭站 4 號出口搭乘 606 公車
-              </button>
-            </div>
-          </div>
-          <div class="transport-card">
+        <div class="transport-card transport-card--merged" style="margin-top: 104px;">
+          <div class="transport-merged-main transport-card--commute">
             <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
               <div class="transport-icon">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -383,10 +349,21 @@
                   <path d="m12 0a12 12 0 1 0 12 12 12.01375 12.01375 0 0 0 -12-12zm6 10.5a.5.5 0 0 1 -1 0v5a1.49758 1.49758 0 0 1 -1 1.4079v.5921a.49971.49971 0 0 1 -.5.5h-1a.49971.49971 0 0 1 -.5-.5v-.5h-4v.5a.49971.49971 0 0 1 -.5.5h-1a.49971.49971 0 0 1 -.5-.5v-.5921a1.49758 1.49758 0 0 1 -1-1.4079v-5a.5.5 0 0 1 -1 0v-1a.49971.49971 0 0 1 .5-.5h.5v-1.5a1.50164 1.50164 0 0 1 1.5-1.5h7a1.50164 1.50164 0 0 1 1.5 1.5v1.5h.5a.49971.49971 0 0 1 .5.5z" />
                 </svg>
               </div>
-              <h3 style="font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em;"
-                data-i18n="trans_bus_title">公車資訊</h3>
+              <h3 style="font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em;" data-i18n="trans_traffic_title">交通資訊</h3>
             </div>
-            <div style="font-size: 15px; line-height: 1.8; color: var(--ink-2);" data-i18n="trans_bus_desc">
+
+            <div class="commute-tabs">
+              <button class="commute-tab is-active" data-pane="commutePaneMrt" onclick="switchCommutePane('commutePaneMrt', this)" data-i18n="trans_mrt_tab">捷運</button>
+              <button class="commute-tab" data-pane="commutePaneBus" onclick="switchCommutePane('commutePaneBus', this)" data-i18n="trans_bus_tab">公車</button>
+            </div>
+
+            <div id="commutePaneMrt" data-commute-pane data-i18n="trans_mrt_desc">
+              <button class="transport-link-btn" onclick="openNavigation('東門站 3 號出口', '政大公企中心')">從東門站步行</button>
+              <button class="transport-link-btn" onclick="openBusSearch('214')">從古亭站 4 號出口搭乘 214 公車</button>
+              <button class="transport-link-btn" onclick="openBusSearch('0南')">從古亭站 4 號出口搭乘 0南 公車</button>
+              <button class="transport-link-btn" onclick="openBusSearch('606')">從古亭站 4 號出口搭乘 606 公車</button>
+            </div>
+            <div id="commutePaneBus" data-commute-pane style="display:none;" data-i18n="trans_bus_desc">
               <div class="bus-tags">
                 <span class="bus-tag">0南</span>
                 <span class="bus-tag">214</span>
@@ -399,34 +376,21 @@
               </div>
             </div>
           </div>
-          <div class="transport-card">
+          <div class="transport-merged-side">
             <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
               <div class="transport-icon">
-                <svg clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality"
-                  shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254000 254000"
-                  xmlns="http://www.w3.org/2000/svg">
+                <svg clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254000 254000" xmlns="http://www.w3.org/2000/svg">
                   <g id="图层_x0020_1">
-                    <path
-                      d="m127000 254000c-70129 0-127000-56871-127000-127000s56871-127000 127000-127000 127000 56871 127000 127000-56871 127000-127000 127000zm0-209606c34742 0 62905 28163 62905 62905 0 34741-62905 102306-62905 102306s-62905-67565-62905-102306c0-34742 28163-62905 62905-62905zm0 37912c13172 0 23854 10682 23854 23855 0 13172-10682 23854-23854 23854s-23854-10682-23854-23854c0-13173 10682-23855 23854-23855z" />
+                    <path d="m127000 254000c-70129 0-127000-56871-127000-127000s56871-127000 127000-127000 127000 56871 127000 127000-56871 127000-127000 127000zm0-209606c34742 0 62905 28163 62905 62905 0 34741-62905 102306-62905 102306s-62905-67565-62905-102306c0-34742 28163-62905 62905-62905zm0 37912c13172 0 23854 10682 23854 23855 0 13172-10682 23854-23854 23854s-23854-10682-23854-23854c0-13173 10682-23855 23854-23855z" />
                   </g>
                 </svg>
               </div>
-              <h3 style="font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em;"
-                data-i18n="trans_other_title">其他資訊</h3>
+              <h3 style="font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em;" data-i18n="trans_other_title">其他資訊</h3>
             </div>
             <div style="font-size: 15px; line-height: 1.8; color: var(--ink-2);">
-              <p><strong style="color: var(--ink);" data-i18n="trans_addr_label">地址：</strong><span
-                  data-i18n="venue_address">106 台北市大安區金華街 187 號</span></p>
+              <p><strong style="color: var(--ink);" data-i18n="trans_addr_label">地址：</strong><span data-i18n="venue_address">106 台北市大安區金華街 187 號</span></p>
               <p><strong style="color: var(--ink);" data-i18n="trans_phone_label">電話：</strong>02-23419151</p>
-              <p style="margin-top: 24px !important;"><a
-                  href="#" data-link="venue_traffic" target="_blank"
-                  rel="noopener"
-                  style="color: var(--accent); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; border-bottom: 1px solid transparent; transition: border-color .3s;"
-                  onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='transparent'"
-                  data-i18n="trans_link">交通詳細網址 <svg style="margin-left:6px;" width="16" height="16" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg></a></p>
+              <p style="margin-top: 24px !important;"><a href="#" data-link="venue_traffic" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; border-bottom: 1px solid transparent; transition: border-color .3s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='transparent'" data-i18n="trans_link">交通詳細網址 <svg style="margin-left:6px;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg></a></p>
             </div>
           </div>
         </div>
@@ -547,7 +511,7 @@
             <ul>
               <li><a href="#news" data-i18n="footer_news">最新消息</a></li>
               <li><a href="#about" data-i18n="nav_about">活動資訊</a></li>
-              <!-- <li><a href="#agenda" data-i18n="nav_agenda">議程</a></li> -->
+              <li><a href="#agenda" data-i18n="nav_agenda">議程</a></li>
             </ul>
         </div>
         <div>
@@ -878,7 +842,19 @@
       const statusLabel = l === 'en' ? 'Live Status' : '即時動態';
       const dest = encodeURIComponent("政大公企中心");
       const navUrl = `https://www.google.com/maps/dir/?api=1&destination=${dest}&travelmode=transit`;
-      const statusUrl = `https://ebus.gov.taipei/EBus/Route/RouteByRouteName?routeName=${encodeURIComponent(busNum)}`;
+      const routeMap = {
+        '0南': '0100000B00',
+        '214': '0100021400',
+        '214直': '0100021401',
+        '237': '0100023700',
+        '253': '0100025300',
+        '606': '0100060600',
+        '670': '0100067000',
+        '671': '0100067100'
+      };
+      const statusUrl = routeMap[busNum] 
+        ? `https://ebus.gov.taipei/EBus/VsSimpleMap?routeid=${routeMap[busNum]}&gb=0`
+        : `https://ebus.gov.taipei/Map/RouteSearch?routeName=${encodeURIComponent(busNum)}`;
       
       action.innerHTML = `
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%;">
@@ -1988,6 +1964,16 @@
       document.querySelectorAll("#segMode button").forEach(b => b.classList.toggle("active", b.dataset.m === effective));
       try { localStorage.setItem("appearance", pref); } catch (e) { }
       applyTweaks(state);
+    }
+
+    function switchCommutePane(paneId, btn) {
+      const card = btn.closest('.transport-card--commute');
+      if (!card) return;
+      card.querySelectorAll('.commute-tab').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      card.querySelectorAll('[data-commute-pane]').forEach(p => {
+        p.style.display = p.id === paneId ? '' : 'none';
+      });
     }
 
     // ===== Event Listeners =====
