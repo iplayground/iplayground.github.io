@@ -102,6 +102,7 @@
           <li><a href="#" data-link="social_facebook" target="_blank" rel="noopener">Facebook</a></li>
           <li><a href="#" data-link="social_twitter" target="_blank" rel="noopener">Twitter / X</a></li>
           <li><a href="#" data-link="social_youtube" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="#" data-link="social_instagram" target="_blank" rel="noopener">Instagram</a></li>
         </ul>
       </div>
       <div>
@@ -196,6 +197,14 @@ function applyLinks(links) {
   Object.entries(links.important || {}).forEach(([key, value]) => { map[key] = value; });
   Object.entries(links.contact || {}).forEach(([key, value]) => { map[`contact_${key}`] = value; });
   (links.social || []).forEach(item => { map[`social_${item.id}`] = item.url; });
+
+  // Fallbacks to keep footer contact links valid even when upstream keys are missing.
+  if (!map.contact_support) map.contact_support = "mailto:support@iplayground.io";
+  if (!map.contact_cfp) map.contact_cfp = "mailto:session@iplayground.io";
+  if (!map.contact_sponsor) map.contact_sponsor = "mailto:support@iplayground.io";
+  if (!map.coc) map.coc = "https://github.com/iplayground/code_of_conduct";
+  if (!map.iplayground_2025) map.iplayground_2025 = "https://iplayground.io/2025";
+  if (!map.iplayground_2024) map.iplayground_2024 = "https://iplayground.io/2024";
 
   document.querySelectorAll("[data-link]").forEach(el => {
     const url = map[el.dataset.link];

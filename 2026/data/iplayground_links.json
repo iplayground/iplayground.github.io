@@ -29,6 +29,12 @@
       "label": "Threads",
       "url": "https://www.threads.com/@iplayground.tw",
       "icon": "img/svg/media/Threads-Logo-1.png"
+    },
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/iplayground.tw/",
+      "icon": "img/ig.png"
     }
   ],
   "important": {

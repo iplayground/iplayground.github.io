@@ -750,6 +750,9 @@
       filter: brightness(0) invert(1);
     }
     .hero .cd-social-btn:hover img { filter: none; }
+    .hero .cd-social-btn[aria-label="Instagram"]:hover img {
+      filter: brightness(0);
+    }
 
     html[data-mode="light"] .hero .cd-social-btn {
       background: rgba(255, 255, 255, 0.86);
@@ -765,6 +768,10 @@
     }
     html[data-mode="light"] .hero .cd-social-btn:hover img {
       filter: brightness(0) invert(1);
+      opacity: 1;
+    }
+    html[data-mode="light"] .hero .cd-social-btn[aria-label="Instagram"]:hover img {
+      filter: brightness(0);
       opacity: 1;
     }
 
@@ -1343,6 +1350,18 @@
       border-color: color-mix(in oklab, #64D2FF 42%, transparent);
       background: color-mix(in oklab, #64D2FF 11%, transparent);
     }
+    .session-tag.is-no-photo {
+      color: #fff;
+      border-color: color-mix(in oklab, #ef4444 48%, transparent);
+      background: #ef4444;
+      gap: 6px;
+      letter-spacing: 0.08em;
+      text-transform: none !important;
+    }
+    .session-tag.is-no-photo svg {
+      flex: 0 0 auto;
+      display: block;
+    }
     html[data-mode="light"] .session-tag.is-keynote {
       color: var(--accent);
       border-color: color-mix(in oklab, var(--accent) 40%, transparent);
@@ -1665,6 +1684,42 @@
     }
     .am-hackmd:hover { transform: translateY(-1px); }
     html[data-mode="light"] .am-hackmd { color: #fff; }
+    .am-actions {
+      display: flex;
+      justify-content: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .am-actions .am-hackmd {
+      margin-bottom: 0;
+    }
+    .am-actions .am-hackmd,
+    .am-actions .am-watch {
+      min-width: 168px;
+      justify-content: center;
+    }
+    .am-watch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #000;
+      background: #f59e0b;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 6px;
+      border: 1px solid color-mix(in oklab, #f59e0b 42%, transparent);
+      transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .am-watch:hover {
+      transform: translateY(-1px);
+      color: #000;
+    }
 
     .am-social {
       display: flex;
@@ -3444,9 +3499,3 @@
       background: var(--accent);
     }
 
-    /* Hide full sections per request */
-    #agenda,
-    #speakers,
-    #staff {
-      display: none !important;
-    }
