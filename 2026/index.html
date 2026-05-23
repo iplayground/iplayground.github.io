@@ -510,18 +510,28 @@
   </section>
 
   <!-- Sponsors -->
-  <section class="section section-sponsors" id="sponsors" data-screen-label="07 Sponsors" hidden>
+  <section class="section section-sponsors" id="sponsors" data-screen-label="07 Sponsors">
     <div class="wrap center">
       <header class="section-head">
         <span class="section-eyebrow">// 07</span>
         <h2 class="section-title section-title--zh" data-i18n="sponsors_title">贊助廠商</h2>
         <span class="section-meta"></span>
       </header>
-      <div class="construction">
-        <h3 data-i18n="construction">建構中</h3>
-        <p data-i18n="sponsors_wip">正在邀請優秀的夥伴加入我們</p>
-        <a class="btn-primary" href="#" data-link="sponsor_referral" target="_blank" rel="noopener"
-          data-i18n="sponsors_cta" style="display:inline-block;margin-top:28px;">🔗 徵求贊助廠商 →</a>
+
+      <div id="sponsorTierList"></div>
+    </div>
+  </section>
+
+  <!-- Individual Sponsors -->
+  <section class="section section-individual-sponsors" id="individual-sponsors" data-screen-label="08 Individual Sponsors">
+    <div class="wrap center">
+      <header class="section-head">
+        <span class="section-eyebrow">// 08</span>
+        <h2 class="section-title section-title--zh">個人贊助</h2>
+        <span class="section-meta"></span>
+      </header>
+      <div class="staff-grid" id="individualSponsorGrid">
+        <div class="staff-card"><p class="staff-name">Loading...</p></div>
       </div>
     </div>
   </section>
@@ -529,7 +539,7 @@
   <div id="register"></div>
 
   <!-- Footer -->
-  <footer data-screen-label="08 Footer">
+  <footer data-screen-label="09 Footer">
     <div class="wrap">
       <div class="footer-grid">
         <div>
@@ -2442,7 +2452,7 @@
 
       const wall = document.getElementById("staffPhotoWall");
       if (!wall) return;
-      const COLS = 4;
+      const COLS = 5;
       const perCol = Math.ceil(imgs.length / COLS);
 
       for (let c = 0; c < COLS; c++) {
@@ -2949,6 +2959,68 @@
           <p class="staff-role">${role}</p>
         </div>`;
     }).join('');
+  })();
+</script>
+
+<script>
+  (async function () {
+    const SPONSOR_DATA_URL = "data/sponsors.json";
+    const tierContainer = document.getElementById("sponsorTierList");
+    const personalGrid = document.getElementById("individualSponsorGrid");
+    if (!tierContainer || !personalGrid) return;
+
+    try {
+      const res = await fetch(SPONSOR_DATA_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error("Failed to fetch sponsors");
+      const data = await res.json();
+
+      const sponsors = Array.isArray(data.sponsors) ? data.sponsors : [];
+      const personal = Array.isArray(data.personal) ? data.personal : [];
+
+      tierContainer.innerHTML = sponsors.map((tier) => {
+        const items = Array.isArray(tier.items) ? tier.items : [];
+        const cols = Math.min(Math.max(items.length, 1), 4);
+        return `
+          <div class="sponsor-tier">
+            <div class="sponsor-tier-head"><span class="tier-star">★</span><span class="tier-label">${tier.title || ""}</span></div>
+            <div class="sponsor-tier-grid cols-${cols}">
+              ${items.map((item) => `
+                <article class="sponsor-card">
+                  <a href="${item.link || "#"}" target="_blank" rel="noopener noreferrer" aria-label="${item.name || ""}">
+                    <img src="${item.picture || ""}" alt="${item.name || ""}" loading="lazy">
+                  </a>
+                </article>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const fallbackPhoto = "img/staff/default.jpg";
+      personalGrid.innerHTML = personal.map((p) => {
+        const name = p.name || "";
+        const icon = p.icon || fallbackPhoto;
+        const link = p.link || "";
+        const avatar = `
+          <div class="staff-avatar-wrap">
+            <div class="staff-avatar-inner">
+              <img src="${icon}" alt="${name}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackPhoto}'">
+            </div>
+          </div>`;
+        const inner = link
+          ? `<a class="staff-card-link" href="${link}" target="_blank" rel="noopener noreferrer">${avatar}</a>`
+          : avatar;
+        return `
+          <div class="staff-card">
+            ${inner}
+            <p class="staff-name">${name}</p>
+          </div>
+        `;
+      }).join("") || `<div class="staff-card"><p class="staff-name">TBA</p></div>`;
+    } catch (err) {
+      tierContainer.innerHTML = `<p style="color:#555;">Sponsor data unavailable.</p>`;
+      personalGrid.innerHTML = `<div class="staff-card"><p class="staff-name">TBA</p></div>`;
+    }
   })();
 </script>
 
