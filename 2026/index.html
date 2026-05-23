@@ -44,7 +44,7 @@
   </script>
 
   <link rel="stylesheet" href="css/shared.css?v=20260510-tickets-align5">
-  <link rel="stylesheet" href="css/main.css?v=20260510-tickets-align5">
+  <link rel="stylesheet" href="css/main.css?v=20260523-sponsor-bg4">
 </head>
 
 <body>
@@ -518,7 +518,7 @@
         <span class="section-meta"></span>
       </header>
 
-      <div id="sponsorTierList"></div>
+      <div class="sponsor-board" id="sponsorTierList"></div>
     </div>
   </section>
 
@@ -530,8 +530,8 @@
         <h2 class="section-title section-title--zh">個人贊助</h2>
         <span class="section-meta"></span>
       </header>
-      <div class="staff-grid" id="individualSponsorGrid">
-        <div class="staff-card"><p class="staff-name">Loading...</p></div>
+      <div class="patron-board" id="individualSponsorGrid">
+        <div class="patron-card"><p class="patron-name">Loading...</p></div>
       </div>
     </div>
   </section>
@@ -2964,10 +2964,17 @@
 
 <script>
   (async function () {
-    const SPONSOR_DATA_URL = "data/sponsors.json";
+    const SPONSOR_DATA_URL = "data/sponsors.json?v=20260523-sponsor-rebuild";
     const tierContainer = document.getElementById("sponsorTierList");
     const personalGrid = document.getElementById("individualSponsorGrid");
     if (!tierContainer || !personalGrid) return;
+    const escapeHtml = (value) => String(value || "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[char]);
 
     try {
       const res = await fetch(SPONSOR_DATA_URL, { cache: "no-store" });
@@ -2982,12 +2989,12 @@
         const cols = Math.min(Math.max(items.length, 1), 4);
         return `
           <div class="sponsor-tier">
-            <div class="sponsor-tier-head"><span class="tier-star">★</span><span class="tier-label">${tier.title || ""}</span></div>
+            <div class="sponsor-tier-head"><span class="tier-star">★</span><span class="tier-label">${escapeHtml(tier.title)}</span></div>
             <div class="sponsor-tier-grid cols-${cols}">
               ${items.map((item) => `
                 <article class="sponsor-card">
-                  <a href="${item.link || "#"}" target="_blank" rel="noopener noreferrer" aria-label="${item.name || ""}">
-                    <img src="${item.picture || ""}" alt="${item.name || ""}" loading="lazy">
+                  <a class="sponsor-card-link" href="${escapeHtml(item.link || "#")}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.name)}">
+                    <img src="${escapeHtml(item.picture)}" alt="${escapeHtml(item.name)}" loading="lazy">
                   </a>
                 </article>
               `).join("")}
@@ -2996,30 +3003,24 @@
         `;
       }).join("");
 
-      const fallbackPhoto = "img/staff/default.jpg";
       personalGrid.innerHTML = personal.map((p) => {
         const name = p.name || "";
-        const icon = p.icon || fallbackPhoto;
         const link = p.link || "";
-        const avatar = `
-          <div class="staff-avatar-wrap">
-            <div class="staff-avatar-inner">
-              <img src="${icon}" alt="${name}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackPhoto}'">
-            </div>
-          </div>`;
-        const inner = link
-          ? `<a class="staff-card-link" href="${link}" target="_blank" rel="noopener noreferrer">${avatar}</a>`
-          : avatar;
+        const avatar = p.icon
+          ? `<img class="patron-avatar-img" src="${escapeHtml(p.icon)}" alt="${escapeHtml(name)}" loading="lazy">`
+          : `<span class="patron-avatar-fallback">${escapeHtml(name.slice(0, 1))}</span>`;
+        const body = `
+          <div class="patron-avatar">${avatar}</div>
+          <p class="patron-name">${escapeHtml(name)}</p>`;
         return `
-          <div class="staff-card">
-            ${inner}
-            <p class="staff-name">${name}</p>
-          </div>
+          ${link
+            ? `<a class="patron-card" href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">${body}</a>`
+            : `<div class="patron-card">${body}</div>`}
         `;
-      }).join("") || `<div class="staff-card"><p class="staff-name">TBA</p></div>`;
+      }).join("") || `<div class="patron-card"><p class="patron-name">TBA</p></div>`;
     } catch (err) {
       tierContainer.innerHTML = `<p style="color:#555;">Sponsor data unavailable.</p>`;
-      personalGrid.innerHTML = `<div class="staff-card"><p class="staff-name">TBA</p></div>`;
+      personalGrid.innerHTML = `<div class="patron-card"><p class="patron-name">TBA</p></div>`;
     }
   })();
 </script>
