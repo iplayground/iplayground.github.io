@@ -689,11 +689,11 @@
       <div class="am-actions">
         <a class="am-hackmd" id="amHackmd" href="#" target="_blank" rel="noopener" style="display:none;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          HackMD 共筆
+          <span id="amHackmdLabel">HackMD 共筆</span>
         </a>
         <a class="am-watch" id="amWatch" href="https://youtu.be/JS88d72ufZ4" target="_blank" rel="noopener" style="display:none;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-          線上看
+          <span id="amWatchLabel">線上看</span>
         </a>
       </div>
 
@@ -1246,7 +1246,8 @@
                 }
               : null,
             description,
-            hackmd: row.hackMD || enRow.hackMD || ""
+            hackmd: row.hackMD || enRow.hackMD || "",
+            isRecording: row.isRecording ?? enRow.isRecording ?? true
           });
         });
       });
@@ -1389,9 +1390,8 @@
           ? `<span class="session-tag${isKeynote ? " is-keynote" : ""}">${primaryTag.toUpperCase()}</span>`
           : "";
         const speakerName = localized(r.speaker?.name) || tbaLabel;
-        const isNoPhotoSpeaker = /鄭宇哲|UJ Cheng/i.test(speakerName);
-        const noPhotoTag = isNoPhotoSpeaker
-          ? `<span class="session-tag is-no-photo"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h4l2-2h4l2 2h4v12H4z"></path><path d="M9.5 9.5 14.5 14.5"></path><path d="M14.5 9.5 9.5 14.5"></path></svg><span>${currentLang === "en" ? "NO RECORDING" : "禁止攝影"}</span></span>`
+        const noPhotoTag = r.isRecording === false
+          ? `<span class="session-tag is-no-photo"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h4l2-2h4l2 2h4v12H4z"></path><path d="M9.5 9.5 14.5 14.5"></path><path d="M14.5 9.5 9.5 14.5"></path></svg><span>${currentLang === "en" ? "NO PHOTOGRAPHY" : "禁止攝影"}</span></span>`
           : "";
         const startTime = (r.time || "").split(/[–\-]/)[0].trim();
         const desc = localized(r.description) || "";
@@ -1460,6 +1460,7 @@
     function showAgendaModal(item) {
       const modal = document.getElementById("agendaModal");
       if (!modal) return;
+      syncAgendaActionLabels(currentLang);
 
       // 時間
       document.getElementById("amTime").textContent = item.time;
@@ -2007,6 +2008,7 @@
       if (agendaModalContent) {
         agendaModalContent.setAttribute("data-modal-label", l === "en" ? "// SESSION" : "// 議程");
       }
+      syncAgendaActionLabels(l);
       const newsEyebrow = document.getElementById("newsEyebrow");
       if (newsEyebrow) {
         newsEyebrow.textContent = "// 01";
@@ -2027,6 +2029,14 @@
       applyLinksForLang(l);
       applyTweaks(state);
       try { localStorage.setItem("lang", l); } catch (e) { }
+    }
+
+    function syncAgendaActionLabels(lang = currentLang) {
+      const l = normalizeLang(lang);
+      const hackmdLabel = document.getElementById("amHackmdLabel");
+      const watchLabel = document.getElementById("amWatchLabel");
+      if (hackmdLabel) hackmdLabel.textContent = l === "en" ? "HackMD Notes" : "HackMD 共筆";
+      if (watchLabel) watchLabel.textContent = l === "en" ? "Watch Online" : "線上看";
     }
 
     function syncCountdownUnits(dict) {
