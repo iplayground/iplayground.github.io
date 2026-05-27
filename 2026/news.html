@@ -177,6 +177,54 @@ function getVal(obj) {
   return obj[currentLang] || obj.zh || "";
 }
 
+function normalizeLang(lang) {
+  return lang === "en" ? "en" : "zh";
+}
+
+function getLangFromUrl() {
+  const lang = new URLSearchParams(window.location.search).get("lang");
+  return lang === "en" || lang === "zh" ? lang : null;
+}
+
+function getSavedLang() {
+  try {
+    const lang = localStorage.getItem("lang");
+    return lang === "en" || lang === "zh" ? lang : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function getBrowserLang() {
+  const langs = navigator.languages || [navigator.language || ""];
+  return langs.some(lang => String(lang).toLowerCase().startsWith("zh")) ? "zh" : "en";
+}
+
+function getInitialLang() {
+  return getLangFromUrl() || getSavedLang() || getBrowserLang();
+}
+
+function shouldPersistInitialLang() {
+  return Boolean(getLangFromUrl() || getSavedLang());
+}
+
+function updateLangUrl(lang) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", normalizeLang(lang));
+  window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+}
+
+function preserveUrlLang(url) {
+  const lang = getLangFromUrl();
+  if (lang) url.searchParams.set("lang", lang);
+  return url;
+}
+
+function applyUserLang(lang) {
+  applyLang(lang);
+  updateLangUrl(lang);
+}
+
 function getContentHtml(content) {
   return getVal(content).replace(/\\n|\r\n|\r|\n/g, "<br>");
 }
@@ -295,12 +343,14 @@ function applyAppearance(pref) {
 mql.addEventListener("change", () => {});
 
 // ===== i18n apply =====
-function applyLang(lang) {
-  currentLang = lang;
-  NEWS_DATA = NEWS_DATA_BY_LANG[lang] || NEWS_DATA_BY_LANG.zh || [];
-  document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
+function applyLang(lang, options = {}) {
+  const l = normalizeLang(lang);
+  const persist = options.persist !== false;
+  currentLang = l;
+  NEWS_DATA = NEWS_DATA_BY_LANG[l] || NEWS_DATA_BY_LANG.zh || [];
+  document.documentElement.lang = l === "zh" ? "zh-Hant" : "en";
   document.querySelectorAll("#langSwitch button").forEach(b =>
-    b.classList.toggle("active", b.dataset.lang === lang)
+    b.classList.toggle("active", b.dataset.lang === l)
   );
   document.getElementById("backLink").textContent = t("news_back");
   document.querySelectorAll("[data-i18n]").forEach(el => {
@@ -308,13 +358,15 @@ function applyLang(lang) {
   });
   const footerTagline = document.getElementById("footerTagline");
   if (footerTagline) footerTagline.textContent = t("footer_tagline");
-  if (typeof syncFabLang === "function") syncFabLang(lang);
-  try { localStorage.setItem("lang", lang); } catch(e) {}
+  if (typeof syncFabLang === "function") syncFabLang(l);
+  if (persist) {
+    try { localStorage.setItem("lang", l); } catch(e) {}
+  }
   renderPage();
 }
 document.getElementById("langSwitch").addEventListener("click", (e) => {
   const btn = e.target.closest("button[data-lang]");
-  if (btn) applyLang(btn.dataset.lang);
+  if (btn) applyUserLang(btn.dataset.lang);
 });
 
 // ===== Routing & Render =====
@@ -394,6 +446,7 @@ function renderPage() {
   document.querySelectorAll(".sidebar-item").forEach(link => {
     link.addEventListener("click", (event) => {
       const target = new URL(link.href, window.location.href);
+      preserveUrlLang(target);
       event.preventDefault();
       history.pushState(null, "", target.pathname + target.search);
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -418,14 +471,17 @@ function renderPage() {
       document.title = `${iTitle} · iPlayground 2026`;
       updateArticleMeta(newId, iTitle, item);
       bindShareButtons();
-      history.replaceState(null, "", `news.html?id=${newId}`);
+      const url = preserveUrlLang(new URL("news.html", window.location.href));
+      url.searchParams.set("id", String(newId));
+      history.replaceState(null, "", `${url.pathname}${url.search}`);
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     });
   }
 }
 
 // ===== Init — 並行載入所有資料後初始化 =====
-const savedLang = (() => { try { return localStorage.getItem("lang"); } catch(e) { return null; } })() || "zh";
+const savedLang = getInitialLang();
+const persistInitialLang = shouldPersistInitialLang();
 const savedAppearance = "dark";
 const savedHue = (() => { try { return localStorage.getItem("hue"); } catch(e) { return null; } })() || 230;
 document.documentElement.style.setProperty("--hue", savedHue);
@@ -443,11 +499,11 @@ Promise.all([
   CONFIG     = config;
   LINKS      = links;
   applyLinks(LINKS);
-  applyLang(savedLang);
+  applyLang(savedLang, { persist: persistInitialLang });
 }).catch(e => {
   console.warn("遠端資料載入失敗", e);
   NEWS_DATA_BY_LANG = { zh: [], en: [] };
-  applyLang(savedLang);
+  applyLang(savedLang, { persist: persistInitialLang });
 });
 </script>
 
@@ -497,7 +553,7 @@ fabMode?.addEventListener("click", () => {
 });
 
 fabLang?.addEventListener("click", () => {
-  applyLang(currentLang === "zh" ? "en" : "zh");
+  applyUserLang(currentLang === "zh" ? "en" : "zh");
 });
 
 fabTop?.addEventListener("click", () => {

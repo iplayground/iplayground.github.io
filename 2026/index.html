@@ -1189,6 +1189,44 @@
       return lang === "en" ? "en" : "zh";
     }
 
+    function getLangFromUrl() {
+      const lang = new URLSearchParams(window.location.search).get("lang");
+      return lang === "en" || lang === "zh" ? lang : null;
+    }
+
+    function getSavedLang() {
+      try {
+        const lang = localStorage.getItem("lang");
+        return lang === "en" || lang === "zh" ? lang : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function getBrowserLang() {
+      const langs = navigator.languages || [navigator.language || ""];
+      return langs.some(lang => String(lang).toLowerCase().startsWith("zh")) ? "zh" : "en";
+    }
+
+    function getInitialLang() {
+      return getLangFromUrl() || getSavedLang() || getBrowserLang();
+    }
+
+    function shouldPersistInitialLang() {
+      return Boolean(getLangFromUrl() || getSavedLang());
+    }
+
+    function updateLangUrl(lang) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", normalizeLang(lang));
+      window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+    }
+
+    function applyUserLang(lang) {
+      applyLang(lang);
+      updateLangUrl(lang);
+    }
+
     function localized(value, lang = currentLang) {
       const l = normalizeLang(lang);
       if (Array.isArray(value)) return value.map(item => localized(item, lang));
@@ -1992,8 +2030,9 @@
       window.open(url, '_blank');
     }
 
-    function applyLang(lang) {
+    function applyLang(lang, options = {}) {
       const l = normalizeLang(lang);
+      const persist = options.persist !== false;
       currentLang = l;
       NEWS_DATA = NEWS_DATA_BY_LANG[l] || NEWS_DATA_BY_LANG.zh || [];
       const dict = getDict(l);
@@ -2037,7 +2076,9 @@
       renderSpeakers(l);
       applyLinksForLang(l);
       applyTweaks(state);
-      try { localStorage.setItem("lang", l); } catch (e) { }
+      if (persist) {
+        try { localStorage.setItem("lang", l); } catch (e) { }
+      }
     }
 
     function syncAgendaActionLabels(lang = currentLang) {
@@ -2090,12 +2131,12 @@
     // ===== Event Listeners =====
     document.getElementById("langSwitch")?.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-lang]");
-      if (btn) applyLang(btn.dataset.lang);
+      if (btn) applyUserLang(btn.dataset.lang);
     });
 
     document.getElementById("mobileLangSwitch")?.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-lang]");
-      if (btn) applyLang(btn.dataset.lang);
+      if (btn) applyUserLang(btn.dataset.lang);
     });
 
     document.getElementById("modeSwitch")?.addEventListener("click", (e) => {
@@ -2496,7 +2537,8 @@
 
     // ===== Init =====
     window.addEventListener("DOMContentLoaded", () => {
-      const savedLang = (() => { try { return localStorage.getItem("lang"); } catch (e) { return null; } })() || "zh";
+      const savedLang = getInitialLang();
+      const persistInitialLang = shouldPersistInitialLang();
       const savedPref = "dark";
 
       // 並行載入所有 data/ 資料後再初始化
@@ -2527,7 +2569,7 @@
         renderSpeakers();
 
         requestAnimationFrame(() => {
-          applyLang(savedLang);
+          applyLang(savedLang, { persist: persistInitialLang });
           applyAppearance(savedPref);
           setTimeout(() => {
             syncLangButtons(savedLang);
@@ -2542,7 +2584,7 @@
         renderAgenda(1);
         renderSpeakers();
         requestAnimationFrame(() => {
-          applyLang(savedLang);
+          applyLang(savedLang, { persist: persistInitialLang });
           applyAppearance(savedPref);
           setTimeout(() => {
             syncLangButtons(savedLang);
@@ -2597,7 +2639,7 @@
 
     fabLang.addEventListener("click", () => {
       const next = currentLang === "zh" ? "en" : "zh";
-      applyLang(next);
+      applyUserLang(next);
     });
 
     fabTop.addEventListener("click", () => {
@@ -3360,7 +3402,7 @@
     // Single-key actions
     if (e.key === 'l') {
       e.preventDefault();
-      if (typeof applyLang === 'function') applyLang(lang() === 'zh' ? 'en' : 'zh');
+      if (typeof applyUserLang === 'function') applyUserLang(lang() === 'zh' ? 'en' : 'zh');
       return;
     }
     if (e.key === 'c') {
