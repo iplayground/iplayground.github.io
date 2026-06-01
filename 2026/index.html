@@ -1568,14 +1568,20 @@
     const SPEAKER_SOCIAL_ICONS = {
       facebook:  'img/svg/media/facebook.svg',
       twitter:   'img/svg/media/twitter.svg',
-      instagram: 'img/ig.png',
+      x:         'img/svg/media/twitter.svg',
+      instagram: 'img/svg/media/instagram.svg',
+      ig:        'img/svg/media/instagram.svg',
       discord:   'img/svg/media/discord.svg',
       youtube:   'img/svg/media/youtube.svg',
+      threads:   'img/svg/media/threads.svg',
+      linkedin:  'img/svg/media/linkedin.svg',
+      leetcode:  'img/svg/media/leetcode.svg',
+      github:    'img/svg/media/github.svg',
     };
     const SPEAKER_SOCIAL_FALLBACK = 'img/svg/media/web.svg';
 
     function getSocialIcon(type) {
-      return SPEAKER_SOCIAL_ICONS[type.toLowerCase()] || SPEAKER_SOCIAL_FALLBACK;
+      return SPEAKER_SOCIAL_ICONS[String(type).toLowerCase()] || SPEAKER_SOCIAL_FALLBACK;
     }
 
     function showSpeakerModal(speaker) {
@@ -1604,7 +1610,7 @@
         .filter(([, url]) => url)
         .map(([type, url]) => `
           <a class="sm-social-btn" href="${url}" target="_blank" rel="noopener" aria-label="${type}">
-            <img src="${getSocialIcon(type)}" alt="${type}" width="18" height="18" style="filter:brightness(0) invert(0.5);">
+            <img src="${getSocialIcon(type)}" alt="${type}" width="18" height="18">
           </a>
         `).join("");
 

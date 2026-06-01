@@ -2051,8 +2051,14 @@
       color: var(--accent);
     }
 
+    .sm-social-btn img {
+      width: 18px;
+      height: 18px;
+      filter: brightness(0) invert(0.5);
+    }
+
     .sm-social-btn:hover img {
-      filter: brightness(0) saturate(100%) invert(40%) sepia(80%) saturate(500%) hue-rotate(190deg);
+      filter: brightness(0) saturate(100%) invert(89%) sepia(100%) saturate(822%) hue-rotate(17deg) brightness(105%) contrast(106%);
     }
 
     .sm-divider {
