@@ -33,7 +33,8 @@
     "schedule": {
         "title": "スケジュール",
         "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule_jp.json",
-        "HackMDtitle": "HackMD 共同ノート"
+        "HackMDtitle": "HackMD 共同ノート",
+        "youtube": "YouTube 動画"
     },
     "speakers": {
         "title": "講演者",
