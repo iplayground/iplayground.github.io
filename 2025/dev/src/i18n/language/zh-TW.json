@@ -33,7 +33,8 @@
     "schedule": {
         "title": "行程表",
         "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule.json",
-        "HackMDtitle": "HackMD共筆"
+        "HackMDtitle": "HackMD共筆",
+        "youtube": "Youtube 影片"
     },
     "speakers": {
         "title": "講者群",
