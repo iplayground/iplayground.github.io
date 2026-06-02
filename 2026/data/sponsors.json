@@ -1,7 +1,7 @@
 {
   "sponsors": [
     {
-      "title": "鑽石級",
+      "title": { "zh": "鑽石級", "en": "Diamond" },
       "items": [
         {
           "name": "RevenueCat",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "title": "白銀級",
+      "title": { "zh": "白銀級", "en": "Silver" },
       "items": [
         {
           "name": "Dcard",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "title": "青銅級",
+      "title": { "zh": "青銅級", "en": "Bronze" },
       "items": [
         {
           "name": "9count",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "title": "特別贊助",
+      "title": { "zh": "特別贊助", "en": "Special" },
       "items": [
         {
           "name": "Flitto",

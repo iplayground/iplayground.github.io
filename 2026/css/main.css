@@ -887,14 +887,9 @@
       background: var(--surface-2);
     }
 
+    /* ============ Sponsors & Individual patrons — on-brand, follows mode ============ */
     #sponsors.section-sponsors,
     #individual-sponsors.section-individual-sponsors {
-      --sponsor-bg: #fbfcf7;
-      --ink: #171912;
-      --ink-2: #41463a;
-      --ink-3: #6c735f;
-      background: var(--sponsor-bg) !important;
-      color: var(--ink);
       overflow: hidden;
     }
 
@@ -905,19 +900,20 @@
     }
 
     .sponsor-tier + .sponsor-tier {
-      margin-top: 46px;
+      margin-top: 48px;
     }
 
     .sponsor-tier-head {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      color: #171912;
-      font-family: var(--f-mono);
+      gap: 12px;
+      margin-bottom: 18px;
+      color: var(--ink-2);
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
       font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       text-align: left;
     }
 
@@ -925,18 +921,27 @@
       content: "";
       flex: 1;
       height: 1px;
-      background: #d8ded3;
+      background: var(--rule);
     }
 
-    .tier-star {
-      color: #d4a017;
-      font-size: 12px;
-      line-height: 1;
+    /* Lime signal marker — top tier only (restrained ≤10% use) */
+    .sponsor-tier-head .tier-mark { display: none; }
+    .sponsor-tier[data-rank="0"] .sponsor-tier-head {
+      color: var(--ink);
+    }
+    .sponsor-tier[data-rank="0"] .sponsor-tier-head .tier-mark {
+      display: block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex: 0 0 auto;
     }
 
     .sponsor-tier-grid {
       display: grid;
-      gap: 12px;
+      gap: 14px;
+      margin-inline: auto;
     }
 
     .sponsor-tier-grid.cols-1 { grid-template-columns: 1fr; }
@@ -944,110 +949,189 @@
     .sponsor-tier-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .sponsor-tier-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
+    /* Rank-scaled prominence: diamond largest, descending to bronze/special */
+    .sponsor-tier[data-rank="0"] .sponsor-tier-grid { max-width: 540px; }
+    .sponsor-tier[data-rank="1"] .sponsor-tier-grid { max-width: 760px; }
+
     .sponsor-card {
-      min-height: 118px;
-      border: 1px solid #d8ded3;
+      min-height: 104px;
+      border: 1px solid var(--rule);
       border-radius: 6px;
-      background: var(--sponsor-bg);
+      /* Logo plate: sponsor logos are full-color PNGs made for light backgrounds */
+      background: oklch(0.97 0.006 130);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
-      transition: transform 180ms ease-out, border-color 180ms ease-out, box-shadow 180ms ease-out;
+      padding: 22px;
+      transition: transform 180ms ease-out, border-color 180ms ease-out, background 260ms ease-out;
     }
+
+    .sponsor-tier[data-rank="0"] .sponsor-card { min-height: 156px; padding: 34px; }
+    .sponsor-tier[data-rank="1"] .sponsor-card { min-height: 124px; padding: 26px; }
 
     .sponsor-card:hover {
       transform: translateY(-2px);
-      border-color: #c9d2c3;
-      box-shadow: 0 12px 28px rgba(23, 25, 18, 0.08);
+      border-color: var(--accent);
     }
 
     .sponsor-card-link {
       width: 100%;
-      min-height: 70px;
+      min-height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .sponsor-card img {
-      max-width: min(340px, 86%);
-      max-height: 86px;
+      max-width: 86%;
+      max-height: 60px;
       width: auto;
       height: auto;
       object-fit: contain;
       display: block;
     }
+    .sponsor-tier[data-rank="0"] .sponsor-card img { max-height: 92px; }
+    .sponsor-tier[data-rank="1"] .sponsor-card img { max-height: 72px; }
 
+    /* Individual patrons — credit wall of names with a warm gold accent */
     .patron-board {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 30px 24px;
-      align-items: start;
-    }
-
-    .patron-card {
-      min-height: 178px;
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       align-items: center;
-      justify-content: flex-start;
-      color: #171912;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    .patron-avatar {
-      width: 120px;
-      height: 120px;
-      border: 2px solid #d4a017;
-      border-radius: 999px;
-      padding: 4px;
-      background: var(--sponsor-bg);
-      box-shadow: 0 0 0 1px rgba(212, 160, 23, 0.18), 0 12px 26px rgba(212, 160, 23, 0.18);
-      overflow: hidden;
-    }
-
-    .patron-avatar-img,
-    .patron-avatar-fallback {
-      width: 100%;
-      height: 100%;
-      border-radius: inherit;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--sponsor-bg);
-    }
-
-    .patron-avatar-img {
-      max-width: 100% !important;
-      max-height: 100% !important;
-      object-fit: cover;
-    }
-
-    .patron-avatar-fallback {
-      color: #d4a017;
-      font-size: 42px;
-      font-weight: 900;
-      line-height: 1;
+      gap: 18px 16px;
     }
 
     .patron-name {
-      margin: 12px 0 0;
-      color: #171912;
-      font-size: 16px;
-      font-weight: 800;
-      line-height: 1.25;
-      letter-spacing: 0;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      min-height: 96px;
+      margin: 0;
+      padding: 8px 36px;
+      border: 1px solid var(--rule-2);
+      border-radius: 999px;
+      color: var(--ink);
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    /* Delight: a gold light-sweep that crosses the chip on hover */
+    .patron-name::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(
+        115deg,
+        transparent 36%,
+        oklch(0.96 0.10 92 / 0.55) 48%,
+        oklch(0.99 0.04 95 / 0.78) 52%,
+        transparent 64%
+      );
+      background-size: 250% 100%;
+      background-position: 150% 0;
+    }
+
+    a.patron-name:hover::after {
+      animation: patronSheen 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes patronSheen {
+      0%   { background-position: 150% 0;  opacity: 0; }
+      18%  { opacity: 1; }
+      100% { background-position: -150% 0; opacity: 0; }
+    }
+
+    /* Tuck the larger avatar toward the left edge of the pill */
+    .patron-name--avatar {
+      padding-left: 11px;
+    }
+
+    a.patron-name {
+      transition: transform 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out;
+    }
+
+    a.patron-name:hover {
+      transform: translateY(-2px);
+      border-color: oklch(0.84 0.13 88);
+      color: oklch(0.88 0.11 92);
+    }
+
+    /* Avatar with a slowly rotating metallic-gold shimmer ring */
+    @property --patron-gold-angle {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .patron-avatar {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      flex: 0 0 auto;
+      padding: 3px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from var(--patron-gold-angle, 0deg),
+        oklch(0.70 0.13 78),
+        oklch(0.93 0.13 96),
+        oklch(0.80 0.14 86),
+        oklch(0.98 0.09 100),
+        oklch(0.70 0.13 78)
+      );
+      box-shadow: 0 0 18px -4px oklch(0.84 0.14 86 / 0.55);
+      animation: patronGoldShimmer 6s linear infinite;
+      transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 260ms ease-out;
+    }
+
+    @keyframes patronGoldShimmer {
+      to { --patron-gold-angle: 360deg; }
+    }
+
+    a.patron-name:hover .patron-avatar {
+      transform: scale(1.06);
+      box-shadow: 0 0 28px -2px oklch(0.86 0.15 88 / 0.85);
+    }
+
+    .patron-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: var(--surface-2);
+    }
+
+    /* Initial-letter placeholder when a patron has no photo */
+    .patron-photo--fallback {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: oklch(0.88 0.11 92);
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    /* Respect reduced-motion: hold the ring still, drop the sheen */
+    @media (prefers-reduced-motion: reduce) {
+      .patron-avatar { animation: none; }
+      a.patron-name:hover::after { animation: none; }
     }
 
     @media (max-width: 900px) {
       .sponsor-tier-grid.cols-3,
       .sponsor-tier-grid.cols-4 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .sponsor-card img {
-        max-height: 72px;
       }
     }
 
@@ -1061,13 +1145,9 @@
       .sponsor-tier-grid.cols-4 {
         grid-template-columns: 1fr;
       }
-      .patron-board {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 24px 16px;
-      }
-      .patron-avatar {
-        width: 104px;
-        height: 104px;
+      .sponsor-tier[data-rank="0"] .sponsor-tier-grid,
+      .sponsor-tier[data-rank="1"] .sponsor-tier-grid {
+        max-width: none;
       }
     }
 

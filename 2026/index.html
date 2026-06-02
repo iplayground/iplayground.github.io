@@ -44,7 +44,7 @@
   </script>
 
   <link rel="stylesheet" href="css/shared.css?v=20260510-tickets-align5">
-  <link rel="stylesheet" href="css/main.css?v=20260523-sponsor-bg4">
+  <link rel="stylesheet" href="css/main.css?v=20260603-sponsor-delight">
 </head>
 
 <body>
@@ -527,7 +527,7 @@
     <div class="wrap center">
       <header class="section-head">
         <span class="section-eyebrow">// 08</span>
-        <h2 class="section-title section-title--zh">個人贊助</h2>
+        <h2 class="section-title section-title--zh" data-i18n="individual_sponsors_title">個人贊助</h2>
         <span class="section-meta"></span>
       </header>
       <div class="patron-board" id="individualSponsorGrid">
@@ -3031,7 +3031,7 @@
 
 <script>
   (async function () {
-    const SPONSOR_DATA_URL = "data/sponsors.json?v=20260523-sponsor-rebuild";
+    const SPONSOR_DATA_URL = "data/sponsors.json?v=20260603-sponsor-onbrand";
     const tierContainer = document.getElementById("sponsorTierList");
     const personalGrid = document.getElementById("individualSponsorGrid");
     if (!tierContainer || !personalGrid) return;
@@ -3051,17 +3051,20 @@
       const sponsors = Array.isArray(data.sponsors) ? data.sponsors : [];
       const personal = Array.isArray(data.personal) ? data.personal : [];
 
-      tierContainer.innerHTML = sponsors.map((tier) => {
+      const tierTitle = (title) =>
+        typeof title === "string" ? title : localized(title, currentLang);
+
+      tierContainer.innerHTML = sponsors.map((tier, index) => {
         const items = Array.isArray(tier.items) ? tier.items : [];
         const cols = Math.min(Math.max(items.length, 1), 4);
         return `
-          <div class="sponsor-tier">
-            <div class="sponsor-tier-head"><span class="tier-star">★</span><span class="tier-label">${escapeHtml(tier.title)}</span></div>
+          <div class="sponsor-tier" data-rank="${index}">
+            <div class="sponsor-tier-head"><span class="tier-mark" aria-hidden="true"></span><span class="tier-label">${escapeHtml(tierTitle(tier.title))}</span></div>
             <div class="sponsor-tier-grid cols-${cols}">
               ${items.map((item) => `
                 <article class="sponsor-card">
                   <a class="sponsor-card-link" href="${escapeHtml(item.link || "#")}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.name)}">
-                    <img src="${escapeHtml(item.picture)}" alt="${escapeHtml(item.name)}" loading="lazy">
+                    <img src="${escapeHtml(item.picture)}" alt="${escapeHtml(item.name)}" loading="lazy" crossorigin="anonymous">
                   </a>
                 </article>
               `).join("")}
@@ -3070,21 +3073,55 @@
         `;
       }).join("");
 
+      // Tint each logo plate toward the logo's dominant brand colour.
+      // Falls back to the default light plate on any failure (CORS, monochrome logo).
+      const tintPlateFromLogo = (img) => {
+        try {
+          const card = img.closest(".sponsor-card");
+          if (!card) return;
+          const S = 40;
+          const canvas = document.createElement("canvas");
+          canvas.width = S;
+          canvas.height = S;
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+          ctx.drawImage(img, 0, 0, S, S);
+          const { data } = ctx.getImageData(0, 0, S, S);
+          let r = 0, g = 0, b = 0, n = 0;
+          for (let i = 0; i < data.length; i += 4) {
+            if (data[i + 3] < 128) continue;                 // transparent
+            const R = data[i], G = data[i + 1], B = data[i + 2];
+            const lum = (R + G + B) / 3;
+            const sat = Math.max(R, G, B) - Math.min(R, G, B);
+            if (lum > 238 || lum < 18 || sat < 28) continue;  // skip white / black / grey
+            r += R; g += G; b += B; n++;
+          }
+          if (!n) return;                                     // monochrome logo → keep default plate
+          const rgb = `rgb(${Math.round(r / n)} ${Math.round(g / n)} ${Math.round(b / n)})`;
+          card.style.background = `color-mix(in oklab, ${rgb} 18%, oklch(0.97 0.006 130))`;
+          card.style.borderColor = `color-mix(in oklab, ${rgb} 32%, var(--rule))`;
+        } catch (e) {
+          /* tainted canvas or load failure — keep default plate */
+        }
+      };
+      tierContainer.querySelectorAll(".sponsor-card img").forEach((img) => {
+        if (img.complete && img.naturalWidth) tintPlateFromLogo(img);
+        else img.addEventListener("load", () => tintPlateFromLogo(img), { once: true });
+      });
+
       personalGrid.innerHTML = personal.map((p) => {
         const name = p.name || "";
         const link = p.link || "";
-        const avatar = p.icon
-          ? `<img class="patron-avatar-img" src="${escapeHtml(p.icon)}" alt="${escapeHtml(name)}" loading="lazy">`
-          : `<span class="patron-avatar-fallback">${escapeHtml(name.slice(0, 1))}</span>`;
-        const body = `
-          <div class="patron-avatar">${avatar}</div>
-          <p class="patron-name">${escapeHtml(name)}</p>`;
-        return `
-          ${link
-            ? `<a class="patron-card" href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">${body}</a>`
-            : `<div class="patron-card">${body}</div>`}
-        `;
-      }).join("") || `<div class="patron-card"><p class="patron-name">TBA</p></div>`;
+        const initial = escapeHtml((name.trim()[0] || "·").toUpperCase());
+        const inner = p.icon
+          ? `<img class="patron-photo" src="${escapeHtml(p.icon)}" alt="" loading="lazy">`
+          : `<span class="patron-photo patron-photo--fallback" aria-hidden="true">${initial}</span>`;
+        const avatar = `<span class="patron-avatar">${inner}</span>`;
+        const body = `${avatar}<span>${escapeHtml(name)}</span>`;
+        const cls = "patron-name patron-name--avatar";
+        return link
+          ? `<a class="${cls}" href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">${body}</a>`
+          : `<span class="${cls}">${body}</span>`;
+      }).join("") || `<span class="patron-name">TBA</span>`;
     } catch (err) {
       tierContainer.innerHTML = `<p style="color:#555;">Sponsor data unavailable.</p>`;
       personalGrid.innerHTML = `<div class="patron-card"><p class="patron-name">TBA</p></div>`;
