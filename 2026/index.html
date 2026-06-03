@@ -1184,6 +1184,8 @@
     let agendaSortAsc = true; // true = 由近到遠（預設）
     let agendaSearchQuery = "";
     let agendaKindFilter = "session";
+    let agendaExpanded = false; // 下午議程預設收合
+    let agendaJustExpanded = false; // 標記剛由使用者點擊展開，用於播放進場動畫
 
     function normalizeLang(lang) {
       return lang === "en" ? "en" : "zh";
@@ -1418,10 +1420,19 @@
         return;
       }
 
+      // 折疊：預設僅顯示中午 12:00 前的場次，其餘收合於展開鈕之後
+      const NOON = 12 * 60;
+      const isAfternoon = ({ item }) => parseTime(item.time) >= NOON;
+      const afternoon = rows.filter(isAfternoon);
+      const morning = rows.filter(r => !isAfternoon(r));
+      // 只有「上午有、下午也有」時才需要折疊；搜尋時停用折疊
+      const collapsible = !query && morning.length > 0 && afternoon.length > 0;
+      const collapsed = collapsible && !agendaExpanded;
+
       const tbaLabel = currentLang === "en" ? "TBA" : "TBA";
       const speakerPrefix = currentLang === "en" ? "SPEAKER" : "講者";
 
-      list.innerHTML = rows.map(({ item: r, sourceIdx }) => {
+      const renderCard = ({ item: r, sourceIdx }, revealIndex = -1) => {
         const tags = localized(r.tags || []);
         const primaryTag = tags[0] || "";
         const isKeynote = primaryTag.toUpperCase() === "KEYNOTE" || (r.track || "").toLowerCase() === "keynote";
@@ -1439,9 +1450,13 @@
         const isBreak = trackType === "break";
         const isSpecial = trackType === "special";
         const cardClass = isBreak ? "session is-break" : isSpecial ? "session is-special" : "session";
+        const revealing = revealIndex >= 0;
+        const revealAttr = revealing
+          ? ` is-revealing" style="animation-delay:${revealIndex * 45}ms`
+          : "";
 
         return `
-        <div class="${cardClass}" data-agenda-idx="${sourceIdx}" data-agenda-day="${activeDay}" data-track="${trackType}">
+        <div class="${cardClass}${revealAttr}" data-agenda-idx="${sourceIdx}" data-agenda-day="${activeDay}" data-track="${trackType}">
           <span class="session-time">${startTime}</span>
           <div class="session-body">
             <h3 class="session-title">${localized(r.title)}</h3>
@@ -1453,7 +1468,38 @@
             ${tagHTML}
           </div>
         </div>`;
-      }).join("");
+      };
+
+      const hiddenCount = afternoon.filter(({ item }) =>
+        (item.track || "").toLowerCase() !== "break").length;
+      const foldLabel = agendaExpanded
+        ? (currentLang === "en" ? "Hide afternoon" : "收合下午議程")
+        : (currentLang === "en" ? "Show afternoon" : "展開下午議程");
+      const foldCount = agendaExpanded
+        ? ""
+        : `<span class="fold-count">${hiddenCount}</span>`;
+      const foldToggle = collapsible ? `
+        <button type="button" class="agenda-fold-toggle${agendaExpanded ? " is-expanded" : ""}" aria-expanded="${agendaExpanded}">
+          <span>${foldLabel}</span>${foldCount}
+          <svg class="fold-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>` : "";
+
+      if (collapsed) {
+        // 收合時仍渲染下午場次，但以模糊漸層「窺視」效果暗示還有更多內容
+        const peekHTML = afternoon.map(renderCard).join("");
+        list.innerHTML = morning.map(renderCard).join("")
+          + `<div class="agenda-fold-peek" aria-hidden="true">${peekHTML}<span class="agenda-fold-veil"></span></div>`
+          + foldToggle;
+      } else {
+        // 展開：剛點擊展開時，讓下午場次依序淡入；其餘情況（排序/語系切換）不重播動畫
+        const afternoonIdx = new Set(afternoon.map(({ sourceIdx }) => sourceIdx));
+        let revIdx = 0;
+        list.innerHTML = rows.map(row => {
+          const reveal = agendaJustExpanded && afternoonIdx.has(row.sourceIdx);
+          return renderCard(row, reveal ? revIdx++ : -1);
+        }).join("") + foldToggle;
+        agendaJustExpanded = false;
+      }
 
       // 綁定點擊事件
       list.querySelectorAll(".session").forEach(card => {
@@ -1463,18 +1509,27 @@
           if (item && !item.noModal) showAgendaModal(item);
         });
       });
+      list.querySelector(".agenda-fold-toggle")?.addEventListener("click", () => {
+        agendaExpanded = !agendaExpanded;
+        agendaJustExpanded = agendaExpanded; // 僅在展開時播放進場動畫
+        renderAgenda(agendaCurrentDay);
+      });
       syncAgendaControls();
     }
 
     // tab 點擊事件
     document.getElementById("agendaTabs")?.addEventListener("click", e => {
       const btn = e.target.closest("button[data-day]");
-      if (btn) renderAgenda(parseInt(btn.dataset.day));
+      if (btn) {
+        agendaExpanded = false; // 切換日期時重新收合
+        renderAgenda(parseInt(btn.dataset.day));
+      }
     });
     document.getElementById("agendaKindTabs")?.addEventListener("click", e => {
       const btn = e.target.closest("button[data-kind]");
       if (!btn) return;
       agendaKindFilter = btn.dataset.kind || "session";
+      agendaExpanded = false; // 切換類型時重新收合
       renderAgenda(agendaCurrentDay);
     });
 
