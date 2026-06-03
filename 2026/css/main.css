@@ -949,29 +949,202 @@
     .sponsor-tier-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .sponsor-tier-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
-    /* Rank-scaled prominence: diamond largest, descending to bronze/special */
-    .sponsor-tier[data-rank="0"] .sponsor-tier-grid { max-width: 540px; }
-    .sponsor-tier[data-rank="1"] .sponsor-tier-grid { max-width: 760px; }
+    /* All tiers share the same row width; prominence comes from card height/logo scale below */
 
     .sponsor-card {
+      position: relative;
       min-height: 104px;
-      border: 1px solid var(--rule);
       border-radius: 6px;
-      /* Logo plate: sponsor logos are full-color PNGs made for light backgrounds */
-      background: oklch(0.97 0.006 130);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 22px;
-      transition: transform 180ms ease-out, border-color 180ms ease-out, background 260ms ease-out;
+      /* Per-tier knobs (overridden by data-rank below) — default = warm gold / special.
+         NOTE: the ring gradient itself lives on ::before per tier, NOT in a var —
+         a conic-gradient stored in a custom property won't re-animate the angle. */
+      --card-bg: linear-gradient(115deg,
+        oklch(0.19 0.015 90), oklch(0.27 0.035 96), oklch(0.18 0.012 80),
+        oklch(0.25 0.030 100), oklch(0.19 0.015 90));
+      --card-glow: oklch(0.84 0.14 86 / 0.2);
+      --card-glow-hover: oklch(0.86 0.15 88 / 0.42);
+      --ring-pad: 1.5px;
+      --ring-speed: 9s;
+      --bg-speed: 14s;
+      /* Subtle metallic gradient that drifts across the surface */
+      background: var(--card-bg);
+      background-size: 300% 100%;
+      box-shadow: 0 0 14px -5px var(--card-glow), inset 0 1px 0 oklch(1 0 0 / 0.05);
+      animation: sponsorBgFlow var(--bg-speed) linear infinite;
+      transition: transform 180ms ease-out, box-shadow 260ms ease-out;
     }
 
-    .sponsor-tier[data-rank="0"] .sponsor-card { min-height: 156px; padding: 34px; }
-    .sponsor-tier[data-rank="1"] .sponsor-card { min-height: 124px; padding: 26px; }
+    @keyframes sponsorBgFlow {
+      to { background-position: -300% 0; }
+    }
+
+    /* Gold gradient that flows around the 3px border ring */
+    @property --sponsor-ring-angle {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .sponsor-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: var(--ring-pad);
+      opacity: 0.5;
+      /* Default = warm gold (special tier). Angle var must stay inline here to animate. */
+      background: conic-gradient(
+        from var(--sponsor-ring-angle, 0deg),
+        oklch(0.55 0.11 76), oklch(0.72 0.13 84), oklch(0.99 0.10 100),
+        oklch(0.80 0.14 88), oklch(0.55 0.11 76), oklch(0.55 0.11 76),
+        oklch(0.99 0.10 100), oklch(0.55 0.11 76)
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      animation: sponsorRingFlow var(--ring-speed) linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sponsorRingFlow {
+      to { --sponsor-ring-angle: 360deg; }
+    }
+
+    /* Delight: a gold light-sweep that crosses the plate on hover — matches the patron chips */
+    .sponsor-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(
+        115deg,
+        transparent 36%,
+        oklch(0.96 0.10 92 / 0.55) 48%,
+        oklch(0.99 0.04 95 / 0.78) 52%,
+        transparent 64%
+      );
+      background-size: 250% 100%;
+      background-position: 150% 0;
+    }
+
+    /* Diamond — brightest: prismatic platinum, thickest & fastest ring, coolest glow */
+    .sponsor-tier[data-rank="0"] .sponsor-card {
+      min-height: 156px;
+      padding: 34px;
+      --card-bg: linear-gradient(115deg,
+        oklch(0.20 0.006 240), oklch(0.30 0.012 235), oklch(0.18 0.005 250),
+        oklch(0.28 0.010 215), oklch(0.20 0.006 240));
+      --card-glow: oklch(0.95 0.02 235 / 0.28);
+      --card-glow-hover: oklch(0.98 0.02 235 / 0.5);
+      --ring-pad: 2px;
+      --ring-speed: 7s;
+    }
+    /* Faceted icy crystal: crisp bright glints + faint spectral fire, on cool steel valleys */
+    .sponsor-tier[data-rank="0"] .sponsor-card::before {
+      opacity: 0.42;
+      background: conic-gradient(from var(--sponsor-ring-angle, 0deg),
+        oklch(0.52 0.02 255) 0deg,
+        oklch(1 0 0) 20deg,
+        oklch(0.55 0.02 255) 46deg,
+        oklch(0.93 0.05 225) 74deg,   /* icy-blue facet */
+        oklch(0.58 0.02 255) 104deg,
+        oklch(1 0 0) 132deg,
+        oklch(0.53 0.02 255) 160deg,
+        oklch(0.97 0.035 80) 190deg,  /* faint warm fire facet */
+        oklch(0.57 0.02 255) 220deg,
+        oklch(1 0 0) 250deg,
+        oklch(0.54 0.02 255) 280deg,
+        oklch(0.95 0.045 205) 312deg, /* faint cool facet */
+        oklch(0.56 0.02 255) 340deg,
+        oklch(0.52 0.02 255) 360deg);
+    }
+
+    /* Diamond shine: a crisp white specular streak sweeps across, then rests */
+    .sponsor-tier[data-rank="0"] .sponsor-card::after {
+      background: linear-gradient(
+        115deg,
+        transparent 43%,
+        oklch(1 0 0 / 0) 46%,
+        oklch(1 0 0 / 0.45) 50%,
+        oklch(1 0 0 / 0) 54%,
+        transparent 57%
+      );
+      background-size: 250% 100%;
+      background-position: 150% 0;
+      opacity: 0;
+      animation: diamondGlint 9s cubic-bezier(0.22, 1, 0.36, 1) 1.5s infinite;
+    }
+    /* On hover the glint speeds up to a lively, immediate sweep (higher specificity wins) */
+    .sponsor-tier[data-rank="0"] .sponsor-card:hover::after {
+      animation: diamondGlintHover 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0s infinite;
+    }
+
+    @keyframes diamondGlint {
+      0%   { background-position: 150% 0;  opacity: 0; }
+      4%   { opacity: 0.45; }
+      14%  { background-position: -150% 0; opacity: 0; }
+      100% { background-position: -150% 0; opacity: 0; }
+    }
+
+    @keyframes diamondGlintHover {
+      0%   { background-position: 150% 0;  opacity: 0; }
+      10%  { opacity: 0.75; }
+      45%  { background-position: -150% 0; opacity: 0; }
+      100% { background-position: -150% 0; opacity: 0; }
+    }
+
+    /* Silver — cool brushed steel */
+    .sponsor-tier[data-rank="1"] .sponsor-card {
+      min-height: 124px;
+      padding: 26px;
+      --card-bg: linear-gradient(115deg,
+        oklch(0.20 0.004 255), oklch(0.28 0.008 255), oklch(0.18 0.004 255),
+        oklch(0.26 0.006 255), oklch(0.20 0.004 255));
+      --card-glow: oklch(0.86 0.01 255 / 0.2);
+      --card-glow-hover: oklch(0.92 0.01 255 / 0.4);
+      --ring-speed: 10s;
+    }
+    .sponsor-tier[data-rank="1"] .sponsor-card::before {
+      background: conic-gradient(from var(--sponsor-ring-angle, 0deg),
+        oklch(0.50 0.006 255), oklch(0.80 0.008 255), oklch(0.97 0.004 255),
+        oklch(0.68 0.008 255), oklch(0.50 0.006 255), oklch(0.97 0.004 255),
+        oklch(0.50 0.006 255));
+    }
+
+    /* Bronze — warm copper, calmer and thinner */
+    .sponsor-tier[data-rank="2"] .sponsor-card {
+      --card-bg: linear-gradient(115deg,
+        oklch(0.19 0.02 50), oklch(0.26 0.04 55), oklch(0.17 0.018 45),
+        oklch(0.24 0.035 60), oklch(0.19 0.02 50));
+      --card-glow: oklch(0.64 0.10 55 / 0.18);
+      --card-glow-hover: oklch(0.74 0.12 58 / 0.35);
+      --ring-pad: 1.5px;
+      --ring-speed: 12s;
+    }
+    .sponsor-tier[data-rank="2"] .sponsor-card::before {
+      background: conic-gradient(from var(--sponsor-ring-angle, 0deg),
+        oklch(0.42 0.07 50), oklch(0.68 0.11 55), oklch(0.86 0.09 70),
+        oklch(0.55 0.10 45), oklch(0.42 0.07 50), oklch(0.86 0.09 70),
+        oklch(0.42 0.07 50));
+    }
+
+    /* Special (rank 3) keeps the default warm gold ::before — ties to the patron gold */
 
     .sponsor-card:hover {
       transform: translateY(-2px);
-      border-color: var(--accent);
+      box-shadow: 0 0 30px -2px var(--card-glow-hover), inset 0 1px 0 oklch(1 0 0 / 0.10);
+    }
+
+    .sponsor-card:hover::after {
+      animation: patronSheen 900ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .sponsor-card-link {
@@ -1125,7 +1298,12 @@
     /* Respect reduced-motion: hold the ring still, drop the sheen */
     @media (prefers-reduced-motion: reduce) {
       .patron-avatar { animation: none; }
-      a.patron-name:hover::after { animation: none; }
+      .sponsor-card { animation: none; }
+      .sponsor-card::before { animation: none; --sponsor-ring-angle: 135deg; }
+      .sponsor-card::after,
+      .sponsor-tier[data-rank="0"] .sponsor-card::after { animation: none; opacity: 0; }
+      a.patron-name:hover::after,
+      .sponsor-card:hover::after { animation: none; }
     }
 
     @media (max-width: 900px) {
@@ -1144,10 +1322,6 @@
       .sponsor-tier-grid.cols-3,
       .sponsor-tier-grid.cols-4 {
         grid-template-columns: 1fr;
-      }
-      .sponsor-tier[data-rank="0"] .sponsor-tier-grid,
-      .sponsor-tier[data-rank="1"] .sponsor-tier-grid {
-        max-width: none;
       }
     }
 

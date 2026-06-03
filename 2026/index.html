@@ -44,7 +44,7 @@
   </script>
 
   <link rel="stylesheet" href="css/shared.css?v=20260510-tickets-align5">
-  <link rel="stylesheet" href="css/main.css?v=20260603-sponsor-delight">
+  <link rel="stylesheet" href="css/main.css?v=20260603-sponsor-hover">
 </head>
 
 <body>
@@ -3072,41 +3072,6 @@
           </div>
         `;
       }).join("");
-
-      // Tint each logo plate toward the logo's dominant brand colour.
-      // Falls back to the default light plate on any failure (CORS, monochrome logo).
-      const tintPlateFromLogo = (img) => {
-        try {
-          const card = img.closest(".sponsor-card");
-          if (!card) return;
-          const S = 40;
-          const canvas = document.createElement("canvas");
-          canvas.width = S;
-          canvas.height = S;
-          const ctx = canvas.getContext("2d", { willReadFrequently: true });
-          ctx.drawImage(img, 0, 0, S, S);
-          const { data } = ctx.getImageData(0, 0, S, S);
-          let r = 0, g = 0, b = 0, n = 0;
-          for (let i = 0; i < data.length; i += 4) {
-            if (data[i + 3] < 128) continue;                 // transparent
-            const R = data[i], G = data[i + 1], B = data[i + 2];
-            const lum = (R + G + B) / 3;
-            const sat = Math.max(R, G, B) - Math.min(R, G, B);
-            if (lum > 238 || lum < 18 || sat < 28) continue;  // skip white / black / grey
-            r += R; g += G; b += B; n++;
-          }
-          if (!n) return;                                     // monochrome logo → keep default plate
-          const rgb = `rgb(${Math.round(r / n)} ${Math.round(g / n)} ${Math.round(b / n)})`;
-          card.style.background = `color-mix(in oklab, ${rgb} 18%, oklch(0.97 0.006 130))`;
-          card.style.borderColor = `color-mix(in oklab, ${rgb} 32%, var(--rule))`;
-        } catch (e) {
-          /* tainted canvas or load failure — keep default plate */
-        }
-      };
-      tierContainer.querySelectorAll(".sponsor-card img").forEach((img) => {
-        if (img.complete && img.naturalWidth) tintPlateFromLogo(img);
-        else img.addEventListener("load", () => tintPlateFromLogo(img), { once: true });
-      });
 
       personalGrid.innerHTML = personal.map((p) => {
         const name = p.name || "";
