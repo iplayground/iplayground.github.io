@@ -34,6 +34,7 @@
     rel="stylesheet">
 
   <script src="shared-content.js"></script>
+  <script src="env.js"></script>
   <script>
     const TWEAKS = /*EDITMODE-BEGIN*/{
       "hue": 230,
@@ -1136,18 +1137,18 @@
 
     // ===== Data =====
     const DATA_VERSION = "20260503-sessiondata-2025";
-    const BASE_URL = "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1";
+    const ORIGINAL_BASE_URL = "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1";
+    const BASE_URL = window.IPG_ENV?.baseUrl || ORIGINAL_BASE_URL;
     const NEWS_DATA_URLS = {
       zh: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news.json",
       en: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news_en.json",
     };
-    const OLD_BASE_URL = "https://raw.githubusercontent.com/iplayground/SessionData/develop";
     const SESSION_DATA_URLS = {
-      schedule: `${OLD_BASE_URL}/schedule.json`,
-      scheduleEn: `${OLD_BASE_URL}/schedule_en.json`,
+      schedule: `${BASE_URL}/schedule.json`,
+      scheduleEn: `${BASE_URL}/schedule_en.json`,
       speakers: `${BASE_URL}/speakers.json`,
       speakersEn: `${BASE_URL}/speakers_en.json`,
-      staff: `${OLD_BASE_URL}/staffs.json`,
+      staff: `${BASE_URL}/staffs.json`,
     };
     let NEWS_DATA_BY_LANG = { zh: [], en: [] };
     let NEWS_DATA = [];
