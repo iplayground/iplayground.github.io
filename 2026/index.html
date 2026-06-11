@@ -1089,16 +1089,17 @@
 
     // ===== Data =====
     const DATA_VERSION = "20260503-sessiondata-2025";
+    const BASE_URL = "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1";
     const NEWS_DATA_URLS = {
       zh: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news.json",
       en: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news_en.json",
     };
-    const SESSION_DATA_BASE = "https://raw.githubusercontent.com/iplayground/SessionData/2025/v1";
+    const OLD_BASE_URL = "https://raw.githubusercontent.com/iplayground/SessionData/2025/v1";
     const SESSION_DATA_URLS = {
-      schedule: `${SESSION_DATA_BASE}/schedule.json`,
-      scheduleEn: `${SESSION_DATA_BASE}/schedule_en.json`,
-      speakers: `${SESSION_DATA_BASE}/speakers.json`,
-      speakersEn: `${SESSION_DATA_BASE}/speakers_en.json`,
+      schedule: `${OLD_BASE_URL}/schedule.json`,
+      scheduleEn: `${OLD_BASE_URL}/schedule_en.json`,
+      speakers: `${BASE_URL}/speakers.json`,
+      speakersEn: `${BASE_URL}/speakers_en.json`,
     };
     let NEWS_DATA_BY_LANG = { zh: [], en: [] };
     let NEWS_DATA = [];
