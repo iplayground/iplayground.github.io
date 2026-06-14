@@ -82,7 +82,7 @@
   "stat_cfp_value":      { "zh": "徵稿中",                            "en": "CFP" },
   "stat_cfp_sub":        { "zh": "立即投稿 →",                        "en": "Submit Now →" },
   "stat_tickets_value":  { "zh": "立即購票",                          "en": "LINK" },
-  "stat_tickets_sub":    { "zh": "早鳥票開賣中",                      "en": "Early-bird on sale" },
+  "stat_tickets_sub":    { "zh": "",                                "en": "" },
 
   "tickets_title":       { "zh": "票種資訊",                          "en": "Tickets" },
   "tickets_meta":        { "zh": "完整議程 · 各票種一次看",           "en": "All four tiers, side by side" },

@@ -3735,6 +3735,14 @@
       }
     }
 
+    #agenda,
+    #sponsors,
+    #individual-sponsors,
+    .speaker-role,
+    .staff-role {
+      display: none !important;
+    }
+
     /* ===== Theme + language crossfade via View Transitions API =====
        Browsers without support fall through to instant snap. */
     @media (prefers-reduced-motion: no-preference) {
