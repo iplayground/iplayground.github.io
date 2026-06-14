@@ -1,0 +1,25 @@
+{
+  "_comment": "照片牆視覺參數。修改後需同步更新 css/main.css，詳見 data/PHOTOWALL.md",
+
+  "hero": {
+    "opacity_dark": 1,
+    "opacity_light": 0.28,
+    "grayscale": 0.4,
+    "saturate": 0.6,
+    "contrast": 1.05,
+    "cols": 4,
+    "gap_px": 12,
+    "animation_base_duration_s": 240,
+    "animation_random_extra_s": 160
+  },
+
+  "staff": {
+    "opacity": 0.35,
+    "grayscale": 0.5,
+    "cols": 5,
+    "gap_px": 10,
+    "animation_base_duration_s": 280,
+    "animation_random_extra_s": 160,
+    "curtain_opacity": 0.8
+  }
+}

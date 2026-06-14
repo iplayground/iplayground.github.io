@@ -102,6 +102,7 @@
           <li><a href="#" data-link="social_facebook" target="_blank" rel="noopener">Facebook</a></li>
           <li><a href="#" data-link="social_twitter" target="_blank" rel="noopener">Twitter / X</a></li>
           <li><a href="#" data-link="social_youtube" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="#" data-link="social_instagram" target="_blank" rel="noopener">Instagram</a></li>
         </ul>
       </div>
       <div>
@@ -133,6 +134,27 @@
 // ===== State =====
 let currentLang = "zh";
 let I18N_DATA = {};   // 從 data/iplayground_i18n.json 載入
+const FOOTER_TAGLINE_LOCAL = {
+  zh: "iPlayground 是從 2018 年開始專為蘋果軟體開發者設計的研討會，主題涵蓋 iOS 和 macOS 開發、Swift 和 Objective-C、以及 app 軟體開發與 UI/UX 設計的經驗分享。這個活動由一群資深工程師創辦，目的是彌補台灣在 iOS 開發領域的研討會不足，並為開發者們提供更深入且多樣化的議程。",
+  en: "iPlayground is a conference designed for Apple software developers since 2018, covering iOS and macOS development, Swift and Objective-C, as well as app development and UI/UX design. Founded by a group of senior engineers to fill the gap in iOS-focused conferences in Taiwan."
+};
+const DATA_VERSION = "20260504-sessiondata-develop";
+const SESSION_DATA_BASE = "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1";
+const SESSION_DATA_URLS = {
+  news: `${SESSION_DATA_BASE}/news.json`,
+  newsEn: `${SESSION_DATA_BASE}/news_en.json`,
+  i18n: `data/iplayground_i18n.json`,
+  config: `data/iplayground_config.json`,
+  links: `${SESSION_DATA_BASE}/links.json`,
+};
+function withVersion(url) {
+  return `${url}${url.includes("?") ? "&" : "?"}v=${DATA_VERSION}`;
+}
+async function fetchJson(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`${response.status} ${url}`);
+  return response.json();
+}
 const NEWS_DATA_URLS = {
   zh: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news.json",
   en: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news_en.json",
@@ -142,23 +164,65 @@ let NEWS_DATA = [];   // 從 GitHub raw HTTPS 來源載入
 let CONFIG    = {};   // 從 data/iplayground_config.json 載入
 let LINKS     = {};
 
+// ===== i18n helpers =====
+function t(key) {
+  const entry = I18N_DATA[key];
+  if (!entry) return key;
+  if (key === 'footer_tagline') return FOOTER_TAGLINE_LOCAL[currentLang] || FOOTER_TAGLINE_LOCAL.zh;
+  return entry[currentLang] || entry['zh'] || key;
+}
+
+function getVal(obj) {
+  if (typeof obj === 'string') return obj;
+  return obj[currentLang] || obj.zh || "";
+}
+
 function normalizeLang(lang) {
   return lang === "en" ? "en" : "zh";
 }
 
-// ===== i18n helpers =====
-function t(key) {
-  const lang = normalizeLang(currentLang);
-  const entry = I18N_DATA[key];
-  if (!entry) return key;
-  if (key === 'footer_tagline') return CONFIG.footerTagline ? CONFIG.footerTagline[lang] : '';
-  return entry[lang] || entry['zh'] || key;
+function getLangFromUrl() {
+  const lang = new URLSearchParams(window.location.search).get("lang");
+  return lang === "en" || lang === "zh" ? lang : null;
 }
 
-function getVal(obj) {
-  const lang = normalizeLang(currentLang);
-  if (typeof obj === 'string') return obj;
-  return obj[lang] || obj.zh || "";
+function getSavedLang() {
+  try {
+    const lang = localStorage.getItem("lang");
+    return lang === "en" || lang === "zh" ? lang : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function getBrowserLang() {
+  const langs = navigator.languages || [navigator.language || ""];
+  return langs.some(lang => String(lang).toLowerCase().startsWith("zh")) ? "zh" : "en";
+}
+
+function getInitialLang() {
+  return getLangFromUrl() || getSavedLang() || getBrowserLang();
+}
+
+function shouldPersistInitialLang() {
+  return Boolean(getLangFromUrl() || getSavedLang());
+}
+
+function updateLangUrl(lang) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", normalizeLang(lang));
+  window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+}
+
+function preserveUrlLang(url) {
+  const lang = getLangFromUrl();
+  if (lang) url.searchParams.set("lang", lang);
+  return url;
+}
+
+function applyUserLang(lang) {
+  applyLang(lang);
+  updateLangUrl(lang);
 }
 
 function getContentHtml(content) {
@@ -181,6 +245,14 @@ function applyLinks(links) {
   Object.entries(links.important || {}).forEach(([key, value]) => { map[key] = value; });
   Object.entries(links.contact || {}).forEach(([key, value]) => { map[`contact_${key}`] = value; });
   (links.social || []).forEach(item => { map[`social_${item.id}`] = item.url; });
+
+  // Fallbacks to keep footer contact links valid even when upstream keys are missing.
+  if (!map.contact_support) map.contact_support = "mailto:support@iplayground.io";
+  if (!map.contact_cfp) map.contact_cfp = "mailto:session@iplayground.io";
+  if (!map.contact_sponsor) map.contact_sponsor = "mailto:support@iplayground.io";
+  if (!map.coc) map.coc = "https://github.com/iplayground/code_of_conduct";
+  if (!map.iplayground_2025) map.iplayground_2025 = "https://iplayground.io/2025";
+  if (!map.iplayground_2024) map.iplayground_2024 = "https://iplayground.io/2024";
 
   document.querySelectorAll("[data-link]").forEach(el => {
     const url = map[el.dataset.link];
@@ -261,21 +333,19 @@ function updateArticleMeta(id, title, article) {
 // ===== Appearance =====
 const mql = window.matchMedia("(prefers-color-scheme: dark)");
 function resolveMode(pref) {
-  return (pref === "light" || pref === "dark") ? pref : (mql.matches ? "dark" : "light");
+  return "dark";
 }
 function applyAppearance(pref) {
   document.documentElement.dataset.mode = resolveMode(pref);
   if (typeof syncFabMode === "function") syncFabMode(pref);
   try { localStorage.setItem("appearance", pref); } catch(e) {}
 }
-mql.addEventListener("change", () => {
-  const saved = (() => { try { return localStorage.getItem("appearance"); } catch(e) { return null; } })() || "auto";
-  if (saved === "auto") applyAppearance("auto");
-});
+mql.addEventListener("change", () => {});
 
 // ===== i18n apply =====
-function applyLang(lang) {
+function applyLang(lang, options = {}) {
   const l = normalizeLang(lang);
+  const persist = options.persist !== false;
   currentLang = l;
   NEWS_DATA = NEWS_DATA_BY_LANG[l] || NEWS_DATA_BY_LANG.zh || [];
   document.documentElement.lang = l === "zh" ? "zh-Hant" : "en";
@@ -289,12 +359,14 @@ function applyLang(lang) {
   const footerTagline = document.getElementById("footerTagline");
   if (footerTagline) footerTagline.textContent = t("footer_tagline");
   if (typeof syncFabLang === "function") syncFabLang(l);
-  try { localStorage.setItem("lang", l); } catch(e) {}
+  if (persist) {
+    try { localStorage.setItem("lang", l); } catch(e) {}
+  }
   renderPage();
 }
 document.getElementById("langSwitch").addEventListener("click", (e) => {
   const btn = e.target.closest("button[data-lang]");
-  if (btn) applyLang(btn.dataset.lang);
+  if (btn) applyUserLang(btn.dataset.lang);
 });
 
 // ===== Routing & Render =====
@@ -374,6 +446,7 @@ function renderPage() {
   document.querySelectorAll(".sidebar-item").forEach(link => {
     link.addEventListener("click", (event) => {
       const target = new URL(link.href, window.location.href);
+      preserveUrlLang(target);
       event.preventDefault();
       history.pushState(null, "", target.pathname + target.search);
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -398,35 +471,39 @@ function renderPage() {
       document.title = `${iTitle} · iPlayground 2026`;
       updateArticleMeta(newId, iTitle, item);
       bindShareButtons();
-      history.replaceState(null, "", `news.html?id=${newId}`);
+      const url = preserveUrlLang(new URL("news.html", window.location.href));
+      url.searchParams.set("id", String(newId));
+      history.replaceState(null, "", `${url.pathname}${url.search}`);
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     });
   }
 }
 
 // ===== Init — 並行載入所有資料後初始化 =====
-const savedLang = (() => { try { return localStorage.getItem("lang"); } catch(e) { return null; } })() || "zh";
+const savedLang = getInitialLang();
+const persistInitialLang = shouldPersistInitialLang();
 const savedAppearance = "dark";
 const savedHue = (() => { try { return localStorage.getItem("hue"); } catch(e) { return null; } })() || 230;
 document.documentElement.style.setProperty("--hue", savedHue);
 applyAppearance(savedAppearance);
 
 Promise.all([
-  fetch("data/iplayground_i18n.json?v=20260502-date").then(r => r.json()),
-  fetch(NEWS_DATA_URLS.zh).then(r => r.json()),
-  fetch(NEWS_DATA_URLS.en).then(r => r.json()),
-  fetch("data/iplayground_config.json").then(r => r.json()),
-  fetch("data/iplayground_links.json").then(r => r.json()),
+  fetchJson(withVersion(SESSION_DATA_URLS.i18n)).catch(() => ({})),
+  fetchJson(withVersion(NEWS_DATA_URLS.zh)),
+  fetchJson(withVersion(NEWS_DATA_URLS.en)),
+  fetchJson(withVersion(SESSION_DATA_URLS.config)).catch(() => ({})),
+  fetchJson(withVersion(SESSION_DATA_URLS.links)).catch(() => ({})),
 ]).then(([i18n, newsZh, newsEn, config, links]) => {
   I18N_DATA = i18n;
   NEWS_DATA_BY_LANG = { zh: newsZh, en: newsEn };
   CONFIG     = config;
   LINKS      = links;
   applyLinks(LINKS);
-  applyLang(savedLang);
+  applyLang(savedLang, { persist: persistInitialLang });
 }).catch(e => {
-  console.warn("資料載入失敗", e);
-  applyLang(savedLang);
+  console.warn("遠端資料載入失敗", e);
+  NEWS_DATA_BY_LANG = { zh: [], en: [] };
+  applyLang(savedLang, { persist: persistInitialLang });
 });
 </script>
 
@@ -476,7 +553,7 @@ fabMode?.addEventListener("click", () => {
 });
 
 fabLang?.addEventListener("click", () => {
-  applyLang(currentLang === "zh" ? "en" : "zh");
+  applyUserLang(currentLang === "zh" ? "en" : "zh");
 });
 
 fabTop?.addEventListener("click", () => {

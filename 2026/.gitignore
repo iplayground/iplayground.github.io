@@ -1,0 +1,7 @@
+.agents/
+.claude/skills/
+.kiro/skills/
+.claude/
+.gemini/
+diff.txt
+skills-lock.json

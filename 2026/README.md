@@ -47,10 +47,12 @@ HTML5
 
 ```
 iPlayground/
-├── iOS Meetup.html          # 主頁面
-├── news.html                 # 新聞詳情頁面
-├── Design System.html        # 設計系統頁面（待完善）
-├── tokens.css               # CSS 變量定義（可選）
+├── index.html               # 主頁面
+├── news.html                # 新聞詳情頁面
+├── Design System.html       # 設計系統頁面（待完善）
+├── data/                    # JSON 資料（說明見 docs/data/）
+├── docs/                    # 說明文件索引與資料層文件
+├── css/                     # 樣式（含 tokens.css 匯出檔）
 └── README.md                # 本文檔
 ```
 

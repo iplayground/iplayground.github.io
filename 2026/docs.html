@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iPlayground 2026 文件閱讀器</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #000000;
+      --surface: #1a1a1a;
+      --border: #333;
+      --ink: #e8e8e8;
+      --ink-2: #b8b8b8;
+      --ink-3: #888;
+      --accent: #666;
+      --signal: #D2FF00;
+    }
+
+    html[data-mode="light"] {
+      --bg: #f6f7f1;
+      --surface: #ffffff;
+      --border: #ddd;
+      --ink: #1a1a1a;
+      --ink-2: #444;
+      --ink-3: #666;
+      --accent: #999;
+    }
+
+    body {
+      font-family: 'Geist', 'PingFang TC', 'Noto Sans TC', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      height: 100vh;
+    }
+
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 24px 16px;
+    }
+
+    .sidebar h2 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-3);
+      margin-bottom: 12px;
+    }
+
+    .file-list {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .file-list li {
+      margin-bottom: 4px;
+    }
+
+    .file-list a {
+      display: block;
+      padding: 8px 12px;
+      color: var(--ink-2);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .file-list a:hover {
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    .file-list a.active {
+      background: var(--signal);
+      color: #000;
+      font-weight: 500;
+    }
+
+    .content {
+      overflow-y: auto;
+      padding: 48px 64px;
+      max-width: 900px;
+    }
+
+    .content h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+
+    /* 深色模式才用品牌信號色 */
+    html:not([data-mode="light"]) .content h1 {
+      color: #D2FF00;
+    }
+
+    .content h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .content h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+
+    .content p {
+      margin-bottom: 16px;
+    }
+
+    .content ul, .content ol {
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+
+    .content li {
+      margin-bottom: 8px;
+    }
+
+    .content code {
+      background: var(--surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.9em;
+    }
+
+    .content pre {
+      background: var(--surface);
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .content pre code {
+      background: none;
+      padding: 0;
+    }
+
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+    }
+
+    .content th,
+    .content td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    .content th {
+      background: var(--surface);
+      font-weight: 600;
+    }
+
+    .content a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    html:not([data-mode="light"]) .content a {
+      color: #D2FF00;
+      text-decoration: none;
+    }
+
+    .content a:hover {
+      opacity: 0.75;
+      text-decoration: underline;
+    }
+
+    .content blockquote {
+      border-left: 4px solid var(--signal);
+      padding-left: 16px;
+      margin: 16px 0;
+      color: var(--ink-2);
+    }
+
+    .mode-toggle {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .mode-toggle:hover {
+      background: var(--bg);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        display: none;
+      }
+      .content {
+        padding: 24px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="mode-toggle" id="modeToggle">🌓</button>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h2>根目錄</h2>
+      <ul class="file-list">
+        <li><a href="#README.md" data-file="README.md">README.md</a></li>
+        <li><a href="#CLAUDE.md" data-file="CLAUDE.md">CLAUDE.md</a></li>
+        <li><a href="#PRODUCT.md" data-file="PRODUCT.md">PRODUCT.md</a></li>
+      </ul>
+
+      <h2>data/</h2>
+      <ul class="file-list">
+        <li><a href="#data/README.md" data-file="data/README.md">README.md</a></li>
+        <li><a href="#data/PHOTOWALL.md" data-file="data/PHOTOWALL.md">PHOTOWALL.md</a></li>
+      </ul>
+
+      <h2>docs/</h2>
+      <ul class="file-list">
+        <li><a href="#docs/README.md" data-file="docs/README.md">README.md</a></li>
+        <li><a href="#docs/assets.md" data-file="docs/assets.md">assets.md</a></li>
+      </ul>
+
+      <h2>docs/data/</h2>
+      <ul class="file-list">
+        <li><a href="#docs/data/README.md" data-file="docs/data/README.md">README.md</a></li>
+        <li><a href="#docs/data/JSON_DATA_STRUCTURE.md" data-file="docs/data/JSON_DATA_STRUCTURE.md">JSON_DATA_STRUCTURE.md</a></li>
+      </ul>
+    </aside>
+
+    <main class="content" id="content">
+      <h1>iPlayground 2026 文件閱讀器</h1>
+      <p>從左側選單選擇要閱讀的文件。</p>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+  <script>
+    // Mode toggle
+    const modeToggle = document.getElementById('modeToggle');
+    const savedMode = localStorage.getItem('docs-mode') || 'dark';
+    document.documentElement.dataset.mode = savedMode;
+
+    modeToggle.addEventListener('click', () => {
+      const current = document.documentElement.dataset.mode;
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.mode = next;
+      localStorage.setItem('docs-mode', next);
+    });
+
+    // Load markdown
+    const content = document.getElementById('content');
+    const links = document.querySelectorAll('.file-list a');
+
+    async function loadMarkdown(file) {
+      try {
+        const response = await fetch(file);
+        if (!response.ok) throw new Error('File not found');
+        const text = await response.text();
+        content.innerHTML = marked.parse(text);
+        
+        // Update active link
+        links.forEach(link => {
+          link.classList.toggle('active', link.dataset.file === file);
+        });
+      } catch (error) {
+        content.innerHTML = `<h1>錯誤</h1><p>無法載入檔案：${file}</p>`;
+      }
+    }
+
+    // Handle link clicks
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const file = link.dataset.file;
+        window.location.hash = file;
+        loadMarkdown(file);
+      });
+    });
+
+    // Load from hash on page load
+    if (window.location.hash) {
+      const file = window.location.hash.slice(1);
+      loadMarkdown(file);
+    }
+  </script>
+</body>
+</html>

@@ -1,113 +1,114 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+本文件提供 AI 協作工具在此 repo 工作時的指引。
 
-## Project
+## 專案說明
 
-Static marketing site for **iPlayground 2026** (an iOS Taipei community conference). Lives under the `2026/` subfolder of the parent `iplayground.github.io` repo, deployed via GitHub Pages. Earlier years (`2018/`, `2024/`, etc.) are sibling folders with their own legacy code; only edit `2026/` unless asked otherwise.
+**iPlayground 2026** 的靜態行銷網站（iOS Taipei 社群年度大會）。位於父 repo `iplayground.github.io` 的 `2026/` 子資料夾，透過 GitHub Pages 部署。舊年份（`2018/`、`2024/` 等）為同層資料夾，各有獨立的舊版程式碼；除非特別指定，只編輯 `2026/`。
 
-## Commands
+## 指令
 
-Vite is used as a dev server only — there is **no build step**, the site ships as raw HTML/CSS/JS to GitHub Pages.
+Vite 僅作為開發伺服器使用，**沒有 build 步驟**，網站以原始 HTML/CSS/JS 直接部署至 GitHub Pages。
 
 ```bash
-yarn install        # Yarn 4 with node-modules linker (.yarnrc.yml)
-yarn dev            # Vite dev server at http://localhost:1234 (--strictPort)
-yarn preview        # Same port, preview mode
+yarn install        # Yarn 4，使用 node-modules linker（.yarnrc.yml）
+yarn dev            # Vite 開發伺服器，目前 port 見 package.json
+yarn preview        # 同 port，預覽模式
 ```
 
-There are no tests, lint, or typecheck scripts. The CHANGELOG occasionally mentions a `5567` port to avoid conflicts with another project on `5566` — `package.json` is the source of truth for the actual port currently in use.
+沒有測試、lint 或型別檢查腳本。`package.json` 是目前實際 port 的唯一依據。
 
-## Architecture
+## 架構
 
-### Two entry HTML pages, one shared data layer
+### 兩個入口 HTML 頁面，共用同一資料層
 
-- `index.html` — main landing page (~2300 lines, large inline `<script>` block from line 579)
-- `news.html` — news list + article detail view (driven by `?id=N` query param)
+- `index.html` — 主頁面（約 2300 行，從第 579 行起有大型 inline `<script>`）
+- `news.html` — 新聞列表 + 文章詳情（由 `?id=N` query param 驅動）
 
-Both pages **fetch the same JSON files from `data/`** in parallel on `DOMContentLoaded` and render client-side. There is no router or framework — vanilla ES6 with template literals.
+兩個頁面在 `DOMContentLoaded` 時**並行 fetch `data/` 內的 JSON**，client-side 渲染。沒有 router 或框架，純 ES6 + template literals。
 
-### Data layer (`data/*.json`)
+### 資料層（`data/*.json`）
 
-All content lives in JSON. **To update copy, edit JSON — do not edit HTML strings.** See `data/README.md` for the full schema. Key files:
+所有內容存放於 JSON。**修改文字請編輯 JSON，不要動 HTML 字串。** 完整 schema 見 `docs/data/README.md`。主要檔案：
 
-| File | Used by |
+| 檔案 | 使用頁面 |
 |------|---------|
-| `iplayground_news.json` | both pages (news list + article body) |
-| `iplayground_agenda.json` | index (agenda cards + modal) |
-| `iplayground_speakers.json` | index (speaker grid) |
-| `iplayground_staff.json` | index (staff grid) |
-| `iplayground_cfp_steps.json` | index (CFP timeline) |
-| `iplayground_links.json` | both (social, CFP form, sponsor, COC, contact emails) |
-| `iplayground_config.json` | both (footer tagline, venue map embed URLs) |
-| `iplayground_i18n.json` | both (UI string table) |
-| `confetti-control.json` | index (toggles confetti) |
+| `iplayground_news.json` | 兩頁（新聞列表 + 文章內文） |
+| `iplayground_agenda.json` | index（議程卡片 + modal） |
+| `iplayground_speakers.json` | index（講者格狀列表） |
+| `iplayground_staff.json` | index（工作人員格狀列表） |
+| `iplayground_cfp_steps.json` | index（CFP 時間軸） |
+| `iplayground_links.json` | 兩頁（社群、CFP 表單、贊助、COC、聯絡信箱） |
+| `iplayground_config.json` | 兩頁（footer 標語、場地地圖嵌入網址） |
+| `iplayground_i18n.json` | 兩頁（UI 字串表） |
+| `confetti-control.json` | index（彩帶彩蛋開關） |
 
-Bilingual fields use the shape `{ "zh": "...", "en": "..." }`. The JS helper `localized(value, lang)` unwraps these — pass full objects through, don't pre-flatten.
+雙語欄位格式為 `{ "zh": "...", "en": "..." }`。JS helper `localized(value, lang)` 負責解包，傳入完整物件，不要預先攤平。
 
-### i18n pattern
+### i18n 模式
 
-- `iplayground_i18n.json` maps keys → `{ zh, en }`.
-- HTML elements declare `data-i18n="some_key"` (and contain a default zh value as fallback).
-- `applyLang(lang)` walks the DOM and substitutes; values may contain HTML so it sets `innerHTML`.
-- The special key `footer_tagline` is marked `__from_config__` and pulled from `iplayground_config.json`.
-- When adding a new translatable string: add the key to `iplayground_i18n.json` (zh + en), then put `data-i18n="that_key"` on the element. Do not hardcode strings in JS render functions — wrap them in `localized()` or read from `I18N_DATA`.
+- `iplayground_i18n.json` 對應 key → `{ zh, en }`。
+- HTML 元素宣告 `data-i18n="some_key"`（並包含預設中文值作為 fallback）。
+- `applyLang(lang)` 走訪 DOM 替換；值可包含 HTML，因此使用 `innerHTML` 設定。
+- 特殊 key `footer_tagline` 標記為 `__from_config__`，從 `iplayground_config.json` 取值。
+- 新增可翻譯字串時：在 `iplayground_i18n.json` 加入 key（zh + en），再在元素上加 `data-i18n="that_key"`。不要在 JS render 函數裡寫死字串，改用 `localized()` 或從 `I18N_DATA` 讀取。
 
-### External link pattern
+### 外部連結模式
 
-Links never live in HTML. Elements use `data-link="cfp_form"` / `data-link="social_discord"` / `data-link="contact_support"` etc., and `applyLinks(linksJson)` rewrites `href` at runtime from `iplayground_links.json`. Add new links there, not inline.
+連結不寫在 HTML 裡。元素使用 `data-link="cfp_form"` / `data-link="social_discord"` / `data-link="contact_support"` 等屬性，`applyLinks(linksJson)` 在執行時從 `iplayground_links.json` 注入 `href`。新連結加在 JSON，不要寫 inline。
 
-### Theming / design tokens
+### 主題 / 設計 token
 
-- CSS custom properties drive everything — primary knob is `--hue` (0–360) on `:root`, with `oklch()`-derived `--accent`, `--accent-2`, `--accent-3`.
-- Light / dark / auto mode is set via `document.documentElement.dataset.mode` (`light` | `dark` | `auto`); `auto` defers to `prefers-color-scheme`.
-- User pref persisted in `localStorage` keys: `lang`, `appearance`, `hue`.
-- `index.html` has an `EDITMODE-BEGIN` / `EDITMODE-END` block wrapping the `TWEAKS` literal (hue, mode, keyArt, wordmarkStyle) — this is a marker for an external editor that mutates the file in place. Preserve those comments.
+- CSS 自定義屬性驅動一切，主旋鈕是 `:root` 的 `--hue`（0–360），搭配 `oklch()` 衍生的 `--accent`、`--accent-2`、`--accent-3`。
+- 模式切換透過 `document.documentElement.dataset.mode`（`light` | `dark` | `auto`）；`auto` 遵循 `prefers-color-scheme`。
+- 使用者偏好存在 `localStorage`：`lang`、`appearance`、`hue`。
+- `index.html` 有 `EDITMODE-BEGIN` / `EDITMODE-END` 標記，包住 `TWEAKS` 字面值（hue、mode、keyArt、wordmarkStyle），供外部編輯器原地修改。保留這些註解。
 
-### CSS organisation
+### CSS 組織
 
-CSS is split (recently modularised) — do not put new styles back in `index.html`:
+CSS 已模組化，不要把新樣式放回 `index.html`：
 
-- `css/shared.css` — nav, footer, tokens, typography, mode/lang switches (used by both pages)
-- `css/main.css` — index-only sections (hero, agenda, FAQ, photo wall, etc.)
-- `css/news.css` — news.html only
-- `css/fab.css` — floating action buttons (mode/lang/top), used by both
-- `css/confetti.css` — index easter egg
+- `css/shared.css` — nav、footer、tokens、typography、模式/語言切換（兩頁共用）
+- `css/main.css` — index 專用區塊（hero、agenda、FAQ、照片牆等）
+- `css/news.css` — news.html 專用
+- `css/fab.css` — 浮動按鈕（模式/語言/回頂），兩頁共用
+- `css/confetti.css` — index 彩帶彩蛋
 
-`shared-content.js` is a deprecated empty shell kept only to avoid 404s from old references — do not put new shared logic there; share via `data/*.json` instead.
+`shared-content.js` 是已棄用的空殼，僅保留以避免舊參照 404，不要在此放新邏輯；共用邏輯改透過 `data/*.json` 共享。
 
-### Static images
+### 靜態圖片
 
-- `img/svg/logo_header_light.svg` / `logo_header_dark.svg` — nav logo, swapped via CSS based on theme
-- `img/staff/`, `img/speaker/`, `img/slider/` — referenced by JSON `photo` paths
-- Missing `photo` falls back to `img/staff/staff_sample.png` (handled in render JS)
+路徑規則與資料夾慣例見 `docs/assets.md`。摘要：
 
-## Workflow notes
+- `img/svg/logo_header_light.svg` / `logo_header_dark.svg` — 導覽列 logo，依主題透過 CSS 切換
+- `img/staff/`、`img/speaker/`、`img/slider/` — 由 JSON `photo` 路徑引用
+- `photo` 缺失時 fallback 至 `img/staff/staff_sample.png`（由 render JS 處理）
 
-- `.kiro/hooks/changelog-commit-push.kiro.hook` is a Kiro user-triggered automation that summarises diffs into `CHANGELOG.md`, then commits + pushes. The CHANGELOG follows a strict format: `### \`<short-sha>\` · YYYY.MM.DD\n\n<title>\n\n- bullet\n- bullet\n\n---`. When asked to "update the changelog", insert a new block after the first `---` and keep the format consistent. The top-most block can be `pending` if the change is uncommitted.
-- Commit messages on this repo are written in **Traditional Chinese**, title ≤ 50 chars, bullets below — match the existing style in `git log`.
-- Parent repo (`iplayground.github.io/`) deploys directly from `master` via GitHub Pages; there is no separate build/deploy step beyond `git push`.
-- The site is opened by users via `https://iplayground.io/2026/` (CNAME), so all asset paths must be relative (`img/...`, `data/...`, `css/...`) — never absolute (`/img/...`).
+## 工作流程注意事項
 
-## Design Context
+- 此 repo 的 commit 訊息使用**繁體中文**，標題 ≤ 50 字，細節以條列補充，請符合 `git log` 的現有風格。
+- 父 repo（`iplayground.github.io/`）直接從 `master` 透過 GitHub Pages 部署，除 `git push` 外沒有額外的 build/deploy 步驟。
+- 使用者透過 `https://iplayground.io/2026/`（CNAME）開啟網站，因此所有資源路徑必須為相對路徑（`img/...`、`data/...`、`css/...`），不可使用絕對路徑（`/img/...`）。
 
-Full version with rationale lives in `.impeccable.md` (auto-loaded by every `/impeccable …` skill). Summary for non-impeccable Claude Code sessions:
+## 設計脈絡
 
-### Users
-Apple-platform developers in Taiwan (zh-Hant primary, en supported). Three audiences: CFP submitters → attendees → sponsors. Volunteer-run, **not affiliated with Apple Inc.** — the disclaimer is load-bearing.
+完整版含設計理由見 `PRODUCT.md`。
 
-### Brand Personality
-**Crafted · Technical · Communal.** HIG-grade restraint, dev-literate detail, volunteer warmth in the margins (confetti, photo wall, flip countdown). Voice: precise but not stiff. Never use Apple's "we".
+### 使用者
+台灣 Apple 平台開發者（繁體中文為主，支援英文）。三類受眾：CFP 投稿者 → 與會者 → 贊助商。志工自辦，**與 Apple Inc. 無關**，免責聲明是必要的。
 
-### Aesthetic Direction
-- **Dark is primary**, light supported. Runtime default stays `auto`.
-- **Palette** (exact hex, do not tint): `#000000` canvas · `#3D0000` surface · `#950101` accent · `#FF0000` signal (reserved, ≤10% usage).
-- **Typography**: Michroma (display only, caps), Geist (body Latin), PingFang TC → Noto Sans TC (body CJK), Geist Mono (mono). Inter and JetBrains Mono are banned — replace if encountered.
-- Hard bans: no `border-left/right > 1px` decorative stripes, no `background-clip: text` gradient text, no AI-startup cyan/purple-glow aesthetic.
+### 品牌個性
+**精工 · 技術 · 社群。** HIG 等級的克制、開發者視角的細節、邊角的志工溫度（彩帶、照片牆、翻牌倒數）。語氣：精準但不生硬。不使用 Apple 的「我們」。
 
-### Design Principles
-1. **Earned red** — `#FF0000` is signal-only, never decoration.
-2. **Wide caps for display, neutral grotesk for body** — never Michroma in paragraphs.
-3. **Bilingual without compromise** — test every component in both zh-Hant and en.
-4. **Volunteer warmth in the margins** — keep easter eggs, never let them dominate.
-5. **HIG structure, not HIG color** — borrow Apple's spacing rhythm, reject Apple's neutral greys.
+### 美學方向
+- **深色為主**，支援淺色。執行時預設維持 `auto`。
+- **調色盤**（精確 hex，不可自動調色）：`#000000` 底色 · `#282C20` 表面 · `oklch(0.60 0.03 130)` 輔色 · `#D2FF00` 信號色（≤10% 使用）。
+- **字型**：Michroma（display 標題，全大寫）、Geist（body 拉丁）、PingFang TC → Noto Sans TC（body CJK）、Geist Mono（等寬）。Inter 和 JetBrains Mono 禁用，遇到請替換。
+- 硬性禁止：不可用 `border-left/right > 1px` 裝飾條、不可用 `background-clip: text` 漸層文字、不可用 AI 新創 cyan/purple 發光風格。
+
+### 設計原則
+1. **信號色克制** — `#D2FF00` 僅作信號旗，不作裝飾。
+2. **寬字幕用於標題，中性 grotesk 用於內文** — Michroma 不用於段落。
+3. **雙語不妥協** — 每個元件都要在繁中和英文下測試。
+4. **志工溫度在邊角** — 保留彩蛋，不讓它們主導 above-the-fold。
+5. **HIG 結構，非 HIG 色彩** — 借用 Apple 的間距節奏，拒絕 Apple 的中性灰調色盤。

@@ -1,0 +1,146 @@
+﻿[
+  {
+    "day": 1,
+    "time": "09:30 - 10:20",
+    "track": "workshop",
+    "noModal": false,
+    "title": { "zh": "Workshop A: SwiftUI 動畫互動實作", "en": "Workshop A: SwiftUI Interaction Lab" },
+    "tags": { "zh": ["Workshop", "Room A"], "en": ["Workshop", "Room A"] },
+    "speaker": {
+      "name": { "zh": "鄭宇哲 UJ Cheng", "en": "UJ Cheng" },
+      "avatar": "img/speaker/speaker_uj.jpg",
+      "social": []
+    },
+    "description": {
+      "zh": "互動式工作坊，名額有限，建議提早入場。地點：Room A",
+      "en": "Hands-on workshop with limited seats. Please arrive early. Venue: Room A"
+    },
+    "hackmd": ""
+  },
+  {
+    "day": 1,
+    "time": "11:40 - 12:30",
+    "track": "workshop",
+    "noModal": false,
+    "title": { "zh": "Workshop B: App 架構重構診療室", "en": "Workshop B: App Architecture Clinic" },
+    "tags": { "zh": ["Workshop", "Room B"], "en": ["Workshop", "Room B"] },
+    "speaker": {
+      "name": { "zh": "Daiki Matsudate", "en": "Daiki Matsudate" },
+      "avatar": "img/speaker/speaker_daiki.jpg",
+      "social": []
+    },
+    "description": {
+      "zh": "互動式工作坊，名額有限，建議提早入場。地點：Room B",
+      "en": "Hands-on workshop with limited seats. Please arrive early. Venue: Room B"
+    },
+    "hackmd": ""
+  },
+  {
+    "day": 1,
+    "time": "14:00 - 14:50",
+    "track": "workshop",
+    "noModal": false,
+    "title": { "zh": "Workshop C: iOS 效能調校工作坊", "en": "Workshop C: iOS Performance Tuning" },
+    "tags": { "zh": ["Workshop", "Room C"], "en": ["Workshop", "Room C"] },
+    "speaker": {
+      "name": { "zh": "Yc Hsu", "en": "YC Hsu" },
+      "avatar": "img/speaker/speaker_yc.jpg",
+      "social": []
+    },
+    "description": {
+      "zh": "互動式工作坊，名額有限，建議提早入場。地點：Room C",
+      "en": "Hands-on workshop with limited seats. Please arrive early. Venue: Room C"
+    },
+    "hackmd": ""
+  },
+  {
+    "day": 1,
+    "time": "16:00 - 16:50",
+    "track": "workshop",
+    "noModal": false,
+    "title": { "zh": "Workshop D: 測試策略與 CI 落地", "en": "Workshop D: Testing and CI Workshop" },
+    "tags": { "zh": ["Workshop", "Room D"], "en": ["Workshop", "Room D"] },
+    "speaker": {
+      "name": { "zh": "Joe Wang", "en": "Joe Wang" },
+      "avatar": "img/speaker/speaker_joe.jpg",
+      "social": []
+    },
+    "description": {
+      "zh": "互動式工作坊，名額有限，建議提早入場。地點：Room D",
+      "en": "Hands-on workshop with limited seats. Please arrive early. Venue: Room D"
+    },
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "09:30 - 10:20",
+    "track": "workshop",
+    "noModal": false,
+    "title": { "zh": "Workshop E: Swift 6 Concurrency 實戰", "en": "Workshop E: Swift 6 Concurrency Lab" },
+    "tags": { "zh": ["Workshop", "Room A"], "en": ["Workshop", "Room A"] },
+    "speaker": {
+      "name": { "zh": "高海峰 HAI FENG KAO", "en": "Hai Feng Kao" },
+      "avatar": "img/speaker/speaker_haifeng.jpg",
+      "social": []
+    },
+    "description": {
+      "zh": "互動式工作坊，名額有限，建議提早入場。地點：Room A",
+      "en": "Hands-on workshop with limited seats. Please arrive early. Venue: Room A"
+    },
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "11:40 - 12:30",
+    "track": "workshop",
+    "noModal": false,
+    "title": { "zh": "Workshop F: Design Token 到元件系統", "en": "Workshop F: Design Token to Components" },
+    "tags": { "zh": ["Workshop", "Room B"], "en": ["Workshop", "Room B"] },
+    "speaker": {
+      "name": { "zh": "Morris", "en": "Morris" },
+      "avatar": "img/speaker/speaker_morris.jpg",
+      "social": []
+    },
+    "description": {
+      "zh": "互動式工作坊，名額有限，建議提早入場。地點：Room B",
+      "en": "Hands-on workshop with limited seats. Please arrive early. Venue: Room B"
+    },
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "14:00 - 14:50",
+    "track": "workshop",
+    "noModal": false,
+    "title": { "zh": "Workshop G: visionOS 快速原型工作坊", "en": "Workshop G: visionOS Prototype Lab" },
+    "tags": { "zh": ["Workshop", "Room C"], "en": ["Workshop", "Room C"] },
+    "speaker": {
+      "name": { "zh": "Zonble", "en": "Zonble" },
+      "avatar": "img/speaker/speaker_zonble.jpg",
+      "social": []
+    },
+    "description": {
+      "zh": "互動式工作坊，名額有限，建議提早入場。地點：Room C",
+      "en": "Hands-on workshop with limited seats. Please arrive early. Venue: Room C"
+    },
+    "hackmd": ""
+  },
+  {
+    "day": 2,
+    "time": "16:00 - 16:50",
+    "track": "workshop",
+    "noModal": false,
+    "title": { "zh": "Workshop H: 發佈流程與監控實作", "en": "Workshop H: Release and Monitoring Workshop" },
+    "tags": { "zh": ["Workshop", "Room D"], "en": ["Workshop", "Room D"] },
+    "speaker": {
+      "name": { "zh": "Jimmy Lin", "en": "Jimmy Lin" },
+      "avatar": "img/speaker/speaker_jimmy.jpg",
+      "social": []
+    },
+    "description": {
+      "zh": "互動式工作坊，名額有限，建議提早入場。地點：Room D",
+      "en": "Hands-on workshop with limited seats. Please arrive early. Venue: Room D"
+    },
+    "hackmd": ""
+  }
+]

@@ -109,6 +109,7 @@
   .news-page-layout {
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
+    align-items: stretch;
     gap: 0;
     max-width: 1280px;
     margin: 0 auto;
@@ -118,11 +119,11 @@
   /* ---- Sidebar (hairline list, no card) ---- */
   .news-sidebar {
     border-right: 1px solid var(--rule-2);
-    padding: 56px 0 80px;
-    position: sticky;
-    top: 56px;
-    align-self: start;
-    height: calc(100vh - 56px);
+    padding: 56px 0 0;
+    position: relative;
+    top: auto;
+    align-self: stretch;
+    height: auto;
     overflow-y: auto;
   }
   .news-sidebar::-webkit-scrollbar { width: 6px; }
@@ -132,7 +133,7 @@
   }
 
   .news-sidebar .sidebar-heading {
-    padding: 0 24px 20px;
+    padding: 8px 24px 20px;
     font-family: var(--news-f-mono);
     font-size: 11px;
     color: var(--ink-3);

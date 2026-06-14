@@ -66,7 +66,7 @@
     .hero a { color: inherit; text-decoration: none; }
 
     /* Photo wall — quieted, behind a heavy curtain */
-    .hero .photo-wall {
+    .photo-wall {
       position: absolute;
       inset: 0;
       z-index: -3;
@@ -74,24 +74,24 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
       padding: 12px;
-      opacity: 0.18;
+      opacity: 1;
       filter: saturate(0.6) contrast(1.05);
       pointer-events: none;
       overflow: hidden;
     }
-    html[data-mode="light"] .hero .photo-wall {
+    html[data-mode="light"] .photo-wall {
       opacity: 0.28;
       filter: saturate(0.4) contrast(0.95);
     }
-    .hero .photo-wall .pw-col {
+    .photo-wall .pw-col {
       display: flex;
       flex-direction: column;
       gap: 12px;
       will-change: transform;
-      animation: pw-drift 60s linear infinite;
+      animation: pw-drift 240s linear infinite;
     }
-    .hero .photo-wall .pw-col:nth-child(odd) { animation-direction: reverse; }
-    .hero .photo-wall img {
+    .photo-wall .pw-col:nth-child(odd) { animation-direction: reverse; }
+    .photo-wall img {
       width: 100%;
       aspect-ratio: 4/5;
       object-fit: cover;
@@ -99,7 +99,56 @@
     }
     @keyframes pw-drift {
       from { transform: translateY(0); }
-      to   { transform: translateY(-8%); }
+      to   { transform: translateY(-50%); }
+    }
+
+    .section-staff {
+      position: relative;
+      /* Temporarily remove isolation for testing */
+    }
+    .section-staff .photo-wall {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      padding: 10px;
+      opacity: 0.35;
+      filter: grayscale(0.5);
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .section-staff .photo-wall .pw-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      will-change: transform;
+      animation: pw-drift 280s linear infinite;
+    }
+    .section-staff .photo-wall .pw-col:nth-child(odd) {
+      animation-direction: reverse;
+    }
+    .section-staff .photo-wall img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .section-staff .wrap {
+      position: relative;
+      z-index: 5; /* Ensure content is above wall */
+    }
+
+    /* Staff Curtain */
+    .section-staff .staff-curtain {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(circle at center, transparent 0%, var(--bg) 100%);
+      opacity: 0.8;
     }
 
     /* Curtain — radial vignette (not glassmorphism) */
@@ -167,7 +216,7 @@
     .hero .hero-frame {
       position: absolute;
       inset: clamp(16px, 2vh, 32px) clamp(16px, 2vw, 32px);
-      z-index: 0;
+      z-index: 10;
       pointer-events: none;
     }
     .hero .corner {
@@ -701,6 +750,9 @@
       filter: brightness(0) invert(1);
     }
     .hero .cd-social-btn:hover img { filter: none; }
+    .hero .cd-social-btn[aria-label="Instagram"]:hover img {
+      filter: brightness(0);
+    }
 
     html[data-mode="light"] .hero .cd-social-btn {
       background: rgba(255, 255, 255, 0.86);
@@ -716,6 +768,10 @@
     }
     html[data-mode="light"] .hero .cd-social-btn:hover img {
       filter: brightness(0) invert(1);
+      opacity: 1;
+    }
+    html[data-mode="light"] .hero .cd-social-btn[aria-label="Instagram"]:hover img {
+      filter: brightness(0);
       opacity: 1;
     }
 
@@ -829,6 +885,444 @@
     }
     html[data-mode="light"] .section-news {
       background: var(--surface-2);
+    }
+
+    /* ============ Sponsors & Individual patrons — on-brand, follows mode ============ */
+    #sponsors.section-sponsors,
+    #individual-sponsors.section-individual-sponsors {
+      overflow: hidden;
+    }
+
+    .sponsor-board,
+    .patron-board {
+      width: min(100%, 1180px);
+      margin: 54px auto 0;
+    }
+
+    .sponsor-tier + .sponsor-tier {
+      margin-top: 48px;
+    }
+
+    .sponsor-tier-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      color: var(--ink-2);
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .sponsor-tier-head::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* Lime signal marker — top tier only (restrained ≤10% use) */
+    .sponsor-tier-head .tier-mark { display: none; }
+    .sponsor-tier[data-rank="0"] .sponsor-tier-head {
+      color: var(--ink);
+    }
+    .sponsor-tier[data-rank="0"] .sponsor-tier-head .tier-mark {
+      display: block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .sponsor-tier-grid {
+      display: grid;
+      gap: 14px;
+      margin-inline: auto;
+    }
+
+    .sponsor-tier-grid.cols-1 { grid-template-columns: 1fr; }
+    .sponsor-tier-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .sponsor-tier-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .sponsor-tier-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    /* All tiers share the same row width; prominence comes from card height/logo scale below */
+
+    .sponsor-card {
+      position: relative;
+      min-height: 104px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      /* Per-tier knobs (overridden by data-rank below) — default = warm gold / special.
+         NOTE: the ring gradient itself lives on ::before per tier, NOT in a var —
+         a conic-gradient stored in a custom property won't re-animate the angle. */
+      --card-bg: linear-gradient(115deg,
+        oklch(0.19 0.015 90), oklch(0.27 0.035 96), oklch(0.18 0.012 80),
+        oklch(0.25 0.030 100), oklch(0.19 0.015 90));
+      --card-glow: oklch(0.84 0.14 86 / 0.2);
+      --card-glow-hover: oklch(0.86 0.15 88 / 0.42);
+      --ring-pad: 1.5px;
+      --ring-speed: 9s;
+      --bg-speed: 14s;
+      /* Subtle metallic gradient that drifts across the surface */
+      background: var(--card-bg);
+      background-size: 300% 100%;
+      box-shadow: 0 0 14px -5px var(--card-glow), inset 0 1px 0 oklch(1 0 0 / 0.05);
+      animation: sponsorBgFlow var(--bg-speed) linear infinite;
+      transition: transform 180ms ease-out, box-shadow 260ms ease-out;
+    }
+
+    @keyframes sponsorBgFlow {
+      to { background-position: -300% 0; }
+    }
+
+    /* Gold gradient that flows around the 3px border ring */
+    @property --sponsor-ring-angle {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .sponsor-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: var(--ring-pad);
+      opacity: 0.5;
+      /* Default = warm gold (special tier). Angle var must stay inline here to animate. */
+      background: conic-gradient(
+        from var(--sponsor-ring-angle, 0deg),
+        oklch(0.55 0.11 76), oklch(0.72 0.13 84), oklch(0.99 0.10 100),
+        oklch(0.80 0.14 88), oklch(0.55 0.11 76), oklch(0.55 0.11 76),
+        oklch(0.99 0.10 100), oklch(0.55 0.11 76)
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      animation: sponsorRingFlow var(--ring-speed) linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sponsorRingFlow {
+      to { --sponsor-ring-angle: 360deg; }
+    }
+
+    /* Delight: a gold light-sweep that crosses the plate on hover — matches the patron chips */
+    .sponsor-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(
+        115deg,
+        transparent 36%,
+        oklch(0.96 0.10 92 / 0.55) 48%,
+        oklch(0.99 0.04 95 / 0.78) 52%,
+        transparent 64%
+      );
+      background-size: 250% 100%;
+      background-position: 150% 0;
+    }
+
+    /* Diamond — brightest: prismatic platinum, thickest & fastest ring, coolest glow */
+    .sponsor-tier[data-rank="0"] .sponsor-card {
+      min-height: 156px;
+      padding: 34px;
+      --card-bg: linear-gradient(115deg,
+        oklch(0.20 0.006 240), oklch(0.30 0.012 235), oklch(0.18 0.005 250),
+        oklch(0.28 0.010 215), oklch(0.20 0.006 240));
+      --card-glow: oklch(0.95 0.02 235 / 0.28);
+      --card-glow-hover: oklch(0.98 0.02 235 / 0.5);
+      --ring-pad: 2px;
+      --ring-speed: 7s;
+    }
+    /* Faceted icy crystal: crisp bright glints + faint spectral fire, on cool steel valleys */
+    .sponsor-tier[data-rank="0"] .sponsor-card::before {
+      opacity: 0.42;
+      background: conic-gradient(from var(--sponsor-ring-angle, 0deg),
+        oklch(0.52 0.02 255) 0deg,
+        oklch(1 0 0) 20deg,
+        oklch(0.55 0.02 255) 46deg,
+        oklch(0.93 0.05 225) 74deg,   /* icy-blue facet */
+        oklch(0.58 0.02 255) 104deg,
+        oklch(1 0 0) 132deg,
+        oklch(0.53 0.02 255) 160deg,
+        oklch(0.97 0.035 80) 190deg,  /* faint warm fire facet */
+        oklch(0.57 0.02 255) 220deg,
+        oklch(1 0 0) 250deg,
+        oklch(0.54 0.02 255) 280deg,
+        oklch(0.95 0.045 205) 312deg, /* faint cool facet */
+        oklch(0.56 0.02 255) 340deg,
+        oklch(0.52 0.02 255) 360deg);
+    }
+
+    /* Diamond shine: a crisp white specular streak sweeps across, then rests */
+    .sponsor-tier[data-rank="0"] .sponsor-card::after {
+      background: linear-gradient(
+        115deg,
+        transparent 43%,
+        oklch(1 0 0 / 0) 46%,
+        oklch(1 0 0 / 0.45) 50%,
+        oklch(1 0 0 / 0) 54%,
+        transparent 57%
+      );
+      background-size: 250% 100%;
+      background-position: 150% 0;
+      opacity: 0;
+      animation: diamondGlint 9s cubic-bezier(0.22, 1, 0.36, 1) 1.5s infinite;
+    }
+    /* On hover the glint speeds up to a lively, immediate sweep (higher specificity wins) */
+    .sponsor-tier[data-rank="0"] .sponsor-card:hover::after {
+      animation: diamondGlintHover 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0s infinite;
+    }
+
+    @keyframes diamondGlint {
+      0%   { background-position: 150% 0;  opacity: 0; }
+      4%   { opacity: 0.45; }
+      14%  { background-position: -150% 0; opacity: 0; }
+      100% { background-position: -150% 0; opacity: 0; }
+    }
+
+    @keyframes diamondGlintHover {
+      0%   { background-position: 150% 0;  opacity: 0; }
+      10%  { opacity: 0.75; }
+      45%  { background-position: -150% 0; opacity: 0; }
+      100% { background-position: -150% 0; opacity: 0; }
+    }
+
+    /* Silver — cool brushed steel */
+    .sponsor-tier[data-rank="1"] .sponsor-card {
+      min-height: 124px;
+      padding: 26px;
+      --card-bg: linear-gradient(115deg,
+        oklch(0.20 0.004 255), oklch(0.28 0.008 255), oklch(0.18 0.004 255),
+        oklch(0.26 0.006 255), oklch(0.20 0.004 255));
+      --card-glow: oklch(0.86 0.01 255 / 0.2);
+      --card-glow-hover: oklch(0.92 0.01 255 / 0.4);
+      --ring-speed: 10s;
+    }
+    .sponsor-tier[data-rank="1"] .sponsor-card::before {
+      background: conic-gradient(from var(--sponsor-ring-angle, 0deg),
+        oklch(0.50 0.006 255), oklch(0.80 0.008 255), oklch(0.97 0.004 255),
+        oklch(0.68 0.008 255), oklch(0.50 0.006 255), oklch(0.97 0.004 255),
+        oklch(0.50 0.006 255));
+    }
+
+    /* Bronze — warm copper, calmer and thinner */
+    .sponsor-tier[data-rank="2"] .sponsor-card {
+      --card-bg: linear-gradient(115deg,
+        oklch(0.19 0.02 50), oklch(0.26 0.04 55), oklch(0.17 0.018 45),
+        oklch(0.24 0.035 60), oklch(0.19 0.02 50));
+      --card-glow: oklch(0.64 0.10 55 / 0.18);
+      --card-glow-hover: oklch(0.74 0.12 58 / 0.35);
+      --ring-pad: 1.5px;
+      --ring-speed: 12s;
+    }
+    .sponsor-tier[data-rank="2"] .sponsor-card::before {
+      background: conic-gradient(from var(--sponsor-ring-angle, 0deg),
+        oklch(0.42 0.07 50), oklch(0.68 0.11 55), oklch(0.86 0.09 70),
+        oklch(0.55 0.10 45), oklch(0.42 0.07 50), oklch(0.86 0.09 70),
+        oklch(0.42 0.07 50));
+    }
+
+    /* Special (rank 3) keeps the default warm gold ::before — ties to the patron gold */
+
+    .sponsor-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px -2px var(--card-glow-hover), inset 0 1px 0 oklch(1 0 0 / 0.10);
+    }
+
+    .sponsor-card:hover::after {
+      animation: patronSheen 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .sponsor-card-link {
+      width: 100%;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sponsor-card img {
+      max-width: 86%;
+      max-height: 60px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+    .sponsor-tier[data-rank="0"] .sponsor-card img { max-height: 92px; }
+    .sponsor-tier[data-rank="1"] .sponsor-card img { max-height: 72px; }
+
+    /* Individual patrons — credit wall of names with a warm gold accent */
+    .patron-board {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px 16px;
+    }
+
+    .patron-name {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      min-height: 96px;
+      margin: 0;
+      padding: 8px 36px;
+      border: 1px solid var(--rule-2);
+      border-radius: 999px;
+      color: var(--ink);
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    /* Delight: a gold light-sweep that crosses the chip on hover */
+    .patron-name::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(
+        115deg,
+        transparent 36%,
+        oklch(0.96 0.10 92 / 0.55) 48%,
+        oklch(0.99 0.04 95 / 0.78) 52%,
+        transparent 64%
+      );
+      background-size: 250% 100%;
+      background-position: 150% 0;
+    }
+
+    a.patron-name:hover::after {
+      animation: patronSheen 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes patronSheen {
+      0%   { background-position: 150% 0;  opacity: 0; }
+      18%  { opacity: 1; }
+      100% { background-position: -150% 0; opacity: 0; }
+    }
+
+    /* Tuck the larger avatar toward the left edge of the pill */
+    .patron-name--avatar {
+      padding-left: 11px;
+    }
+
+    a.patron-name {
+      transition: transform 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out;
+    }
+
+    a.patron-name:hover {
+      transform: translateY(-2px);
+      border-color: oklch(0.84 0.13 88);
+      color: oklch(0.88 0.11 92);
+    }
+
+    /* Avatar with a slowly rotating metallic-gold shimmer ring */
+    @property --patron-gold-angle {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .patron-avatar {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      flex: 0 0 auto;
+      padding: 3px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from var(--patron-gold-angle, 0deg),
+        oklch(0.70 0.13 78),
+        oklch(0.93 0.13 96),
+        oklch(0.80 0.14 86),
+        oklch(0.98 0.09 100),
+        oklch(0.70 0.13 78)
+      );
+      box-shadow: 0 0 18px -4px oklch(0.84 0.14 86 / 0.55);
+      animation: patronGoldShimmer 6s linear infinite;
+      transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 260ms ease-out;
+    }
+
+    @keyframes patronGoldShimmer {
+      to { --patron-gold-angle: 360deg; }
+    }
+
+    a.patron-name:hover .patron-avatar {
+      transform: scale(1.06);
+      box-shadow: 0 0 28px -2px oklch(0.86 0.15 88 / 0.85);
+    }
+
+    .patron-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: var(--surface-2);
+    }
+
+    /* Initial-letter placeholder when a patron has no photo */
+    .patron-photo--fallback {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: oklch(0.88 0.11 92);
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    /* Respect reduced-motion: hold the ring still, drop the sheen */
+    @media (prefers-reduced-motion: reduce) {
+      .patron-avatar { animation: none; }
+      .sponsor-card { animation: none; }
+      .sponsor-card::before { animation: none; --sponsor-ring-angle: 135deg; }
+      .sponsor-card::after,
+      .sponsor-tier[data-rank="0"] .sponsor-card::after { animation: none; opacity: 0; }
+      a.patron-name:hover::after,
+      .sponsor-card:hover::after { animation: none; }
+    }
+
+    @media (max-width: 900px) {
+      .sponsor-tier-grid.cols-3,
+      .sponsor-tier-grid.cols-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .sponsor-board,
+      .patron-board {
+        margin-top: 36px;
+      }
+      .sponsor-tier-grid.cols-2,
+      .sponsor-tier-grid.cols-3,
+      .sponsor-tier-grid.cols-4 {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Header is hidden for now — hero owns the top of the page.
@@ -1082,6 +1576,7 @@
       justify-content: space-between;
       gap: 24px;
       margin-bottom: 48px;
+      flex-wrap: wrap;
     }
 
     .agenda-tabs {
@@ -1131,11 +1626,15 @@
       gap: 8px;
       margin-left: auto;
       min-height: 78px;
+      flex: 1;
+      min-width: 320px;
     }
 
     .agenda-search {
       display: flex;
-      width: min(360px, 36vw);
+      width: min(520px, 44vw);
+      flex: 1;
+      min-width: 240px;
       border: 1px solid var(--rule-2);
       background: color-mix(in oklab, var(--surface-2) 25%, transparent);
     }
@@ -1201,11 +1700,11 @@
 
     .session {
       display: grid;
-      grid-template-columns: 80px 1fr auto;
+      grid-template-columns: 80px 1fr;
       gap: 24px;
       padding: 24px 0;
       border-bottom: 1px solid var(--rule-2);
-      align-items: baseline;
+      align-items: start;
       cursor: pointer;
       transition: background 180ms cubic-bezier(0.22, 1, 0.36, 1),
                   padding-left 320ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -1224,7 +1723,10 @@
       font-variant-numeric: tabular-nums;
     }
 
-    .session-body { min-width: 0; }
+    .session-body {
+      min-width: 0;
+      grid-column: 2;
+    }
 
     .session-title {
       margin: 0;
@@ -1245,25 +1747,58 @@
 
     .session-meta {
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 8px;
-      padding-right: 14px;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      grid-column: 2;
+      margin-top: 10px;
       font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
       font-size: 11px;
-      white-space: nowrap;
+      white-space: normal;
+    }
+    .session-tags {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .session-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      box-sizing: border-box;
       letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-3);
+      text-transform: none !important;
+      color: #D2FF00;
       border: 1px solid var(--rule-2);
-      padding: 4px 8px;
+      padding: 0 12px;
+      font-size: 11px;
+      white-space: nowrap;
+      writing-mode: horizontal-tb;
+      background: color-mix(in oklab, #D2FF00 10%, transparent);
     }
     .session-tag.is-keynote {
       color: #D2FF00;
       border-color: color-mix(in oklab, #D2FF00 40%, transparent);
+    }
+    .session-tag.is-room {
+      color: #64D2FF;
+      border-color: color-mix(in oklab, #64D2FF 42%, transparent);
+      background: color-mix(in oklab, #64D2FF 11%, transparent);
+    }
+    .session-tag.is-no-photo {
+      color: #fff;
+      border-color: color-mix(in oklab, #ef4444 48%, transparent);
+      background: #ef4444;
+      gap: 6px;
+      letter-spacing: 0.08em;
+      text-transform: none !important;
+    }
+    .session-tag.is-no-photo svg {
+      flex: 0 0 auto;
+      display: block;
     }
     html[data-mode="light"] .session-tag.is-keynote {
       color: var(--accent);
@@ -1271,9 +1806,25 @@
     }
 
     .session-speaker {
-      color: var(--ink-2);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      letter-spacing: 0;
+      text-transform: none !important;
+      font-weight: 500;
+      min-height: 30px;
+      padding: 0 12px;
+      border: 1px solid var(--rule-2);
+      background: color-mix(in oklab, #7dd3fc 10%, transparent);
+    }
+    .session-speaker::before {
+      content: none;
+    }
+    .session-speaker-label {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      color: #7dd3fc;
     }
 
     .session.is-break {
@@ -1339,6 +1890,82 @@
       text-transform: uppercase;
     }
 
+    /* 收合時下午場次的「窺視」區：裁切高度 + 底部強烈模糊漸層，明確暗示還有更多內容 */
+    .agenda-fold-peek {
+      position: relative;
+      max-height: 116px;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .agenda-fold-veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        color-mix(in oklab, var(--bg) 35%, transparent) 30%,
+        color-mix(in oklab, var(--bg) 80%, transparent) 62%,
+        var(--bg) 100%);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 38%);
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 38%);
+    }
+
+    .agenda-fold-toggle {
+      align-self: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0;
+      padding: 14px 26px;
+      background: var(--surface-2);
+      border: 1.5px solid color-mix(in oklab, var(--accent) 38%, var(--rule-2));
+      color: var(--ink);
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+                  background 180ms cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    /* 收合狀態下，按鈕上浮疊在模糊漸層之上，看起來像浮在「更多內容」前方 */
+    .agenda-fold-peek + .agenda-fold-toggle {
+      position: relative;
+      z-index: 2;
+      margin-top: -30px;
+    }
+    .agenda-fold-toggle:hover {
+      border-color: color-mix(in oklab, var(--accent) 75%, transparent);
+      background: color-mix(in oklab, var(--surface-2) 78%, var(--bg));
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 12%, transparent);
+    }
+    .agenda-fold-toggle .fold-count {
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+    .agenda-fold-toggle .fold-chevron {
+      transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .agenda-fold-toggle.is-expanded .fold-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* 展開時下午場次依序淡入上滑 */
+    @keyframes agendaReveal {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .session.is-revealing {
+      animation: agendaReveal 440ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .session.is-revealing { animation: none; }
+      .agenda-fold-toggle .fold-chevron { transition: none; }
+    }
+
     .sr-only {
       position: absolute;
       width: 1px;
@@ -1351,21 +1978,26 @@
       border: 0;
     }
 
-    /* Tags row used inside the agenda modal (multiple tags from data) */
-    .agenda-tag {
-      display: inline-block;
-      padding: 3px 10px;
-      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-3);
-      border: 1px solid var(--rule-2);
+    /* keep modal tags rhythm aligned with list chips */
+    .am-tags .session-tag {
+      height: 30px;
+      box-sizing: border-box;
+      padding: 0 10px;
+      font-size: 10px;
     }
 
     @media (max-width: 720px) {
+      .agenda-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+      }
+      .agenda-tabs .agenda-tab {
+        width: 100%;
+      }
       .agenda-toolbar {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
         align-items: stretch;
         gap: 12px;
       }
@@ -1379,6 +2011,7 @@
       }
 
       .agenda-controls {
+        width: 100%;
         min-height: 52px;
       }
 
@@ -1398,12 +2031,24 @@
       }
       .session:hover { padding-left: 8px; }
       .session-meta {
-        grid-column: 1 / -1;
-        flex-direction: row;
-        align-items: center;
+        grid-column: 2;
+        flex-direction: column;
+        align-items: flex-start;
         gap: 12px;
         margin-top: 4px;
         padding-right: 0;
+      }
+      .session-meta .session-speaker {
+        order: 1;
+      }
+      .session-meta .session-tag {
+        order: 2;
+      }
+      .session-meta .session-tags {
+        order: 2;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
       }
       .session-time { font-size: 15px; }
     }
@@ -1521,7 +2166,7 @@
       font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
       font-size: 12px;
       letter-spacing: 0.14em;
-      text-transform: uppercase;
+      text-transform: none !important;
       color: var(--ink-2);
     }
 
@@ -1553,6 +2198,42 @@
     }
     .am-hackmd:hover { transform: translateY(-1px); }
     html[data-mode="light"] .am-hackmd { color: #fff; }
+    .am-actions {
+      display: flex;
+      justify-content: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .am-actions .am-hackmd {
+      margin-bottom: 0;
+    }
+    .am-actions .am-hackmd,
+    .am-actions .am-watch {
+      min-width: 168px;
+      justify-content: center;
+    }
+    .am-watch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #000;
+      background: #f59e0b;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 6px;
+      border: 1px solid color-mix(in oklab, #f59e0b 42%, transparent);
+      transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .am-watch:hover {
+      transform: translateY(-1px);
+      color: #000;
+    }
 
     .am-social {
       display: flex;
@@ -1700,8 +2381,14 @@
       color: var(--accent);
     }
 
+    .sm-social-btn img {
+      width: 18px;
+      height: 18px;
+      filter: brightness(0) invert(0.5);
+    }
+
     .sm-social-btn:hover img {
-      filter: brightness(0) saturate(100%) invert(40%) sepia(80%) saturate(500%) hue-rotate(190deg);
+      filter: brightness(0) saturate(100%) invert(89%) sepia(100%) saturate(822%) hue-rotate(17deg) brightness(105%) contrast(106%);
     }
 
     .sm-divider {
@@ -2004,6 +2691,20 @@
       flex-direction: column;
       height: 100%;
     }
+    .transport-card--merged {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.75fr);
+      gap: 36px;
+      align-items: start;
+    }
+    .transport-merged-main,
+    .transport-merged-side {
+      min-width: 0;
+    }
+    .transport-merged-side {
+      padding-left: 12px;
+      border-left: 1px solid var(--rule-2);
+    }
 
     .transport-card:hover {
       transform: translateY(-8px);
@@ -2031,13 +2732,14 @@
     .bus-tags {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 9px;
+      gap: 12px;
       margin-top: 0;
       width: 100%;
     }
 
     .bus-tag {
-      padding: 10px 4px;
+      height: 50px;
+      padding: 0 10px;
       border-radius: 6px;
       background: var(--surface-2);
       border: 1px solid var(--rule);
@@ -2048,10 +2750,12 @@
       transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
       text-decoration: none;
       vertical-align: middle;
-      line-height: 1;
+      line-height: 1.2;
       width: 100%;
       text-align: center;
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .bus-tag:hover {
@@ -2069,7 +2773,8 @@
       display: block;
       width: 100%;
       text-align: left;
-      padding: 12px 16px;
+      height: 50px;
+      padding: 0 16px;
       border-radius: 6px;
       background: var(--surface-2);
       border: 1px solid var(--rule);
@@ -2082,6 +2787,11 @@
       margin-bottom: 12px;
       position: relative;
       overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+    }
+    .transport-card--commute #commutePaneMrt .transport-link-btn:last-child {
+      margin-bottom: 0;
     }
 
     .transport-link-btn:hover {
@@ -2189,6 +2899,56 @@
 
     .transport-card p+p {
       margin-top: 12px;
+    }
+    .transport-card--commute .commute-tabs,
+    .commute-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--rule);
+      margin-bottom: 20px;
+      background: color-mix(in oklab, var(--surface-2) 25%, transparent);
+    }
+    .transport-card--commute .commute-tab,
+    .commute-tab {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--ink-2);
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 12px 16px;
+      cursor: pointer;
+      width: 100%;
+      min-height: 56px;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .transport-card--commute .commute-tab + .commute-tab,
+    .commute-tab + .commute-tab { border-left: 1px solid var(--rule); }
+    .transport-card--commute .commute-tab.is-active,
+    .commute-tab.is-active {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .transport-card--commute [data-commute-pane] {
+      padding-top: 4px;
+      min-height: var(--commute-pane-h, auto);
+    }
+    @media (max-width: 980px) {
+      .transport-card--merged {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .transport-merged-side {
+        padding-left: 0;
+        border-left: 0;
+        border-top: 1px solid var(--rule-2);
+        padding-top: 24px;
+      }
     }
 
     /* ============ Tweaks panel ============ */
@@ -2863,8 +3623,10 @@
       min-width: 18px;
     }
 
-    /* Floating "?" button mini-affordance */
+    /* Floating "?" button mini-affordance — hidden */
     .fab-kbd {
+      display: none !important;
+    }
       position: fixed;
       left: max(18px, env(safe-area-inset-left));
       bottom: max(22px, env(safe-area-inset-bottom));
@@ -2973,6 +3735,14 @@
       }
     }
 
+    #agenda,
+    #sponsors,
+    #individual-sponsors,
+    .speaker-role,
+    .staff-role {
+      display: none !important;
+    }
+
     /* ===== Theme + language crossfade via View Transitions API =====
        Browsers without support fall through to instant snap. */
     @media (prefers-reduced-motion: no-preference) {
@@ -3021,7 +3791,7 @@
       padding: 0;
       margin: 0;
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(var(--ticket-columns, 4), minmax(0, 1fr));
       gap: 1px;
       background: var(--rule-2);
       width: 100%;

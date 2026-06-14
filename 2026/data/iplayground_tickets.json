@@ -1,27 +1,12 @@
 {
   "tickets": [
     {
-      "id": "blind-bird",
-      "tier": { "zh": "盲鳥票", "en": "Blind Bird" },
-      "subtitle": { "zh": "限量開賣中", "en": "On sale now" },
-      "price": { "amount": 3600, "displayZh": "NT$3,600", "displayEn": "NT$3,600" },
-      "badge": { "zh": "限量 50 張", "en": "Limit 50" },
-      "perks": {
-        "zh": ["最早入手 · 數量有限", "完整議程通行", "場內網路與茶點"],
-        "en": ["First wave, limited stock", "Full agenda access", "Wi-Fi & refreshments"]
-      },
-      "cta": { "zh": "前往購票", "en": "Buy ticket" },
-      "ctaUrl": "https://iplayground.kktix.cc/events/2026",
-      "highlight": false,
-      "patron": false
-    },
-    {
       "id": "general",
       "tier": { "zh": "一般票種", "en": "General" },
       "subtitle": { "zh": "正式票", "en": "Regular pass" },
       "price": { "amount": 4000, "displayZh": "NT$4,000", "displayEn": "NT$4,000" },
       "perks": {
-        "zh": ["包含盲鳥票所有權益", "完整議程通行", "場內網路與茶點"],
+        "zh": ["完整議程通行", "場內網路與茶點"],
         "en": ["Includes early bird benefits", "Full agenda access", "Wi-Fi & refreshments"]
       },
       "cta": { "zh": "前往購票", "en": "Buy ticket" },
