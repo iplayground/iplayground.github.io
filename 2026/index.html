@@ -44,7 +44,7 @@
   </script>
 
   <link rel="stylesheet" href="css/shared.css?v=20260510-tickets-align5">
-  <link rel="stylesheet" href="css/main.css?v=20260603-sponsor-hover">
+  <link rel="stylesheet" href="css/main.css?v=20260614-tickets-layout">
 </head>
 
 <body>
@@ -1135,7 +1135,7 @@
     let currentLang = "zh";
 
     // ===== Data =====
-    const DATA_VERSION = "20260503-sessiondata-2025";
+    const DATA_VERSION = "20260614-tickets-refresh";
     const NEWS_DATA_URLS = {
       zh: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news.json",
       en: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news_en.json",
@@ -1789,6 +1789,7 @@
       const l = (lang || currentLang || "zh") === "en" ? "en" : "zh";
       const tiers = TICKETS_DATA.tickets || [];
       const escAttr = (s) => String(s).replace(/"/g, "&quot;");
+      mount.style.setProperty("--ticket-columns", String(Math.max(1, Math.min(tiers.length, 4))));
 
       mount.innerHTML = tiers.map(card => {
         const name    = card.tier[l]      || card.tier.zh;

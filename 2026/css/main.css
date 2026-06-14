@@ -3783,7 +3783,7 @@
       padding: 0;
       margin: 0;
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(var(--ticket-columns, 4), minmax(0, 1fr));
       gap: 1px;
       background: var(--rule-2);
       width: 100%;
