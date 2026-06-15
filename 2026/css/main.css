@@ -4028,7 +4028,6 @@
     }
 
     /* Hide full sections per request */
-    #agenda,
-    #staff {
+    #agenda {
       display: none !important;
     }
