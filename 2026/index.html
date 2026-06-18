@@ -3062,7 +3062,7 @@
       }
     }
 
-    grid.innerHTML = staff.map(({ name, role, photo, link }) => {
+    grid.innerHTML = staff.map(({ name, role, photo, url }) => {
       const src = photo || FALLBACK_PHOTO;
       const avatar = `
         <div class="staff-avatar-wrap">
@@ -3072,9 +3072,9 @@
           </div>
         </div>`;
 
-      // 有 link 就包 <a>，沒有就用 <div>
-      const inner = link
-        ? `<a class="staff-card-link" href="${link}" target="_blank" rel="noopener noreferrer">${avatar}</a>`
+      // 有 url 就包 <a>，點擊時明確開新分頁，沒有就用 <div>
+      const inner = url
+        ? `<a class="staff-card-link" href="${url}" target="_blank" rel="noopener noreferrer" onclick="event.preventDefault(); window.open(this.href, '_blank', 'noopener,noreferrer');">${avatar}</a>`
         : avatar;
 
       return `
