@@ -190,10 +190,6 @@
         <p class="lede" data-i18n="hero_lede">為 Apple 開發者準備的兩天，由社群志工策劃。技術分享、深度交流、與一群在乎品質的人。</p>
 
         <div class="cta-stack">
-          <a class="cta cta-signal" id="ctaSubmit" href="#" data-link="cfp_form" target="_blank" rel="noopener">
-            <span data-i18n="cta_submit">投稿議程</span>
-            <span class="cta-arrow" aria-hidden="true">→</span>
-          </a>
           <a class="cta cta-signal" id="ctaSponsor" href="#" data-link="sponsor_referral" target="_blank" rel="noopener">
             <span data-i18n="cta_sponsor">推薦贊助商</span>
             <span class="cta-arrow" aria-hidden="true">→</span>
@@ -206,10 +202,10 @@
       </div>
 
       <div class="countdown-col">
-        <aside class="countdown-panel" aria-label="CFP deadline countdown">
+        <aside class="countdown-panel" aria-label="Event countdown">
           <div class="cd-meta">
-            <span class="cd-mono" data-i18n="cd_meta_label">// 投稿截止</span>
-            <span class="cd-mono cd-zh" data-i18n="cd_meta_zh">投稿截止</span>
+            <span class="cd-mono" data-i18n="cd_meta_label">// 活動倒數</span>
+            <span class="cd-mono cd-zh" data-i18n="cd_meta_zh">活動倒數</span>
           </div>
 
           <div class="cd-grid" id="cdGrid">
@@ -235,7 +231,7 @@
           </div>
 
           <div class="cd-deadline">
-            <span class="cd-mono" data-i18n="cd_deadline_stamp">2026-06-19 · 23:59 UTC+8</span>
+            <span class="cd-mono" data-i18n="cd_deadline_stamp">2026-07-25 · 09:00 UTC+8</span>
             <span class="cd-deadline-meta">
               <span class="cd-mono cd-ms" id="cdMs" aria-hidden="true">.000</span>
               <span class="cd-deadline-arrow" aria-hidden="true">↗</span>
@@ -573,7 +569,6 @@
           <h4 data-i18n="footer_contact">聯絡</h4>
           <ul>
             <li><a href="#" data-link="contact_support" data-i18n="footer_support">一般支援</a></li>
-            <li><a href="#" data-link="contact_cfp" data-i18n="footer_cfp">講者投稿</a></li>
             <li><a href="#" data-link="contact_sponsor" data-i18n="footer_sponsor">贊助合作</a></li>
             <li><a href="#" data-link="coc" target="_blank" rel="noopener"
                 data-i18n="footer_coc">行為準則</a></li>
@@ -1855,8 +1850,8 @@
       container.innerHTML = '<div class="h-timeline">' + items + '</div>';
     }
 
-    // Countdown — to 2026-06-19 23:59:59 UTC+8 (CFP submission close)
-    const CD_TARGET = new Date("2026-06-19T23:59:59+08:00").getTime();
+    // Countdown — to 2026-07-25 09:00:00 UTC+8 (event start)
+    const CD_TARGET = new Date("2026-07-25T09:00:00+08:00").getTime();
     const cdCells = {};
     let cdTickResetTimer = null;
 
@@ -3235,7 +3230,7 @@
       `background:${lime};color:#000;font-family:Michroma,sans-serif;font-size:13px;padding:6px 10px;border-radius:4px;letter-spacing:0.06em;`
     );
     console.log(
-      `%c你好，正在 inspect 的開發者 👋\nHi developer — we see you. Apple-platform conf, run by volunteers.\n\n• CFP: 2026-06-19 · 23:59 UTC+8\n• Site source: https://github.com/iPlayground/iplayground.github.io\n• Like the lime? It's #D2FF00 on #000.\n\nP.S. ${lang() === 'en' ? 'press ?' : '網頁上按 ?'} for keyboard shortcuts.`,
+      `%c你好，正在 inspect 的開發者 👋\nHi developer — we see you. Apple-platform conf, run by volunteers.\n\n• Event: 2026-07-25 · 09:00 UTC+8\n• Site source: https://github.com/iPlayground/iplayground.github.io\n• Like the lime? It's #D2FF00 on #000.\n\nP.S. ${lang() === 'en' ? 'press ?' : '網頁上按 ?'} for keyboard shortcuts.`,
       `background:${surface};color:${ink};font-family:ui-monospace,monospace;font-size:12px;padding:8px 12px;line-height:1.6;border-left:2px solid ${lime};`
     );
   } catch (_) { /* no-op */ }
@@ -3483,8 +3478,8 @@
   });
 
   // ---- 5. Tab-blur title personality ----
-  // CFP deadline 2026-06-19 23:59 UTC+8 — match the visible countdown anchor.
-  const DEADLINE = new Date('2026-06-19T23:59:00+08:00').getTime();
+  // Event start 2026-07-25 09:00 UTC+8 — match the visible countdown anchor.
+  const DEADLINE = new Date('2026-07-25T09:00:00+08:00').getTime();
   const ORIGINAL_TITLE = document.title;
   let focusedAt = Date.now();
   let blurTimer = null;
@@ -3495,11 +3490,11 @@
   function blurTitleString() {
     const n = daysToDeadline();
     if (n > 0) {
-      return t('blur_title', `← 投稿截止剩 ${n} 天 · iPlayground 2026`, `← ${n} days left to submit · iPlayground 2026`)
+      return t('blur_title', `← 活動倒數 ${n} 天 · iPlayground 2026`, `← ${n} days until iPlayground 2026`)
         .replace('{n}', String(n));
     }
     if (n === 0) {
-      return t('blur_title_zero', '← 今天是投稿截止日 · iPlayground 2026', '← CFP closes today · iPlayground 2026');
+      return t('blur_title_zero', '← 今天 iPlayground 2026 開始', '← iPlayground 2026 starts today');
     }
     return t('blur_title_past', '← iPlayground 2026 · 7/25–26 見', '← See you 7/25–26 · iPlayground 2026');
   }
