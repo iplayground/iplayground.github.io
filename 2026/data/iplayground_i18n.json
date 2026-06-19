@@ -27,18 +27,18 @@
   "cta_sponsor":         { "zh": "推薦贊助商",                        "en": "Refer a sponsor" },
   "cta_topics":          { "zh": "看看主題範圍",                      "en": "Browse Topics" },
 
-  "countdown_label":     { "zh": "截止倒數",                          "en": "Deadline Countdown" },
+  "countdown_label":     { "zh": "活動倒數",                          "en": "Event Countdown" },
   "countdown_days":      { "zh": "天",                                "en": "Days" },
   "countdown_hours":     { "zh": "時",                                "en": "Hours" },
   "countdown_minutes":   { "zh": "分",                                "en": "Minutes" },
   "countdown_seconds":   { "zh": "秒",                                "en": "Seconds" },
-  "cd_meta_label":       { "zh": "// 投稿截止",                       "en": "// DEADLINE" },
-  "cd_meta_zh":          { "zh": "投稿截止",                          "en": "Deadline" },
+  "cd_meta_label":       { "zh": "// 活動倒數",                       "en": "// EVENT" },
+  "cd_meta_zh":          { "zh": "活動倒數",                          "en": "Event Countdown" },
   "cd_unit_d":           { "zh": "天",                                "en": "DAYS" },
   "cd_unit_h":           { "zh": "時",                                "en": "HRS" },
   "cd_unit_m":           { "zh": "分",                                "en": "MIN" },
   "cd_unit_s":           { "zh": "秒",                                "en": "SEC" },
-  "cd_deadline_stamp":   { "zh": "2026-06-19 · 23:59 UTC+8",          "en": "2026-06-19 · 23:59 UTC+8" },
+  "cd_deadline_stamp":   { "zh": "2026-07-25 · 09:00 UTC+8",          "en": "2026-07-25 · 09:00 UTC+8" },
 
   "news_eyebrow":        { "zh": "— 最新消息 Latest News",            "en": "— Latest News" },
   "news_heading":        { "zh": "掌握 <span class=\"gradient\">iPlayground</span> <span style=\"white-space:nowrap;\">的第一手動態</span><span class=\"thin\">。</span>", "en": "Stay up to date with <span class=\"gradient\">iPlayground</span><span class=\"thin\">.</span>" },
@@ -156,7 +156,7 @@
   "kbd_fab_label":         { "zh": "鍵盤捷徑",                          "en": "Keyboard Shortcuts" },
 
   "konami_toast":          { "zh": "🎉 你找到了 — Up Up Down Down …",   "en": "🎉 Up Up Down Down — you found it." },
-  "blur_title":            { "zh": "← 投稿截止剩 {n} 天 · iPlayground 2026", "en": "← {n} days left to submit · iPlayground 2026" },
-  "blur_title_zero":       { "zh": "← 今天是投稿截止日 · iPlayground 2026",   "en": "← CFP closes today · iPlayground 2026" },
+  "blur_title":            { "zh": "← 活動倒數 {n} 天 · iPlayground 2026", "en": "← {n} days until iPlayground 2026" },
+  "blur_title_zero":       { "zh": "← 今天 iPlayground 2026 開始",   "en": "← iPlayground 2026 starts today" },
   "blur_title_past":       { "zh": "← iPlayground 2026 · 7/25–26 見",   "en": "← See you 7/25–26 · iPlayground 2026" }
 }
