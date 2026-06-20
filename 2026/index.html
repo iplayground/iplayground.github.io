@@ -307,11 +307,6 @@
           <span class="stat-value" data-i18n="stat_venue_value">CPBAE</span>
           <span class="stat-sub" data-i18n="stat_venue_sub">政大公企中心 · 台北</span>
         </div>
-        <a class="stat stat--link" href="#" data-link="cfp_form" target="_blank" rel="noopener">
-          <span class="stat-label">// SUBMIT</span>
-          <span class="stat-value" data-i18n="stat_cfp_value">徵稿中</span>
-          <span class="stat-sub" data-i18n="stat_cfp_sub">立即投稿 →</span>
-        </a>
         <a class="stat stat--link" href="#tickets">
           <span class="stat-label">// TICKETS</span>
           <span class="stat-value stat-value--on-sale" data-i18n="stat_tickets_value">立即購票</span>
@@ -351,7 +346,7 @@
                 <h3 style="font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em;">
                   交通資訊</h3>
               </div>
-              <div class="commute-tabs" id="commuteTabs" role="tablist" aria-label="交通方式">
+              <div class="commute-tabs" id="commuteTabs" role="tablist" aria-label="交通方式" data-i18n-aria="trans_commute_tabs_label">
                 <button class="commute-tab is-active" type="button" data-commute-tab="mrt" role="tab"
                   aria-selected="true">捷運</button>
                 <button class="commute-tab" type="button" data-commute-tab="bus" role="tab"
@@ -451,10 +446,10 @@
             </button>
           </div>
           <div class="agenda-controls">
-            <label class="agenda-search" aria-label="搜尋議程">
-              <input id="agendaSearchInput" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="搜尋議題或標籤" aria-label="搜尋議程">
+            <label class="agenda-search" aria-label="搜尋議程" data-i18n-aria="agenda_search_label">
+              <input id="agendaSearchInput" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="搜尋議題或標籤" aria-label="搜尋議程" data-i18n-placeholder="agenda_search_placeholder" data-i18n-aria="agenda_search_label">
             </label>
-            <button class="agenda-sort-btn" id="agendaSortBtn" type="button" aria-label="切換議程排序" title="切換議程排序">
+            <button class="agenda-sort-btn" id="agendaSortBtn" type="button" aria-label="切換議程排序" title="切換議程排序" data-i18n-aria="agenda_sort_toggle" data-i18n-title="agenda_sort_toggle">
               <svg class="sort-icon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M7 5v14"></path>
                 <path d="M4 8l3-3 3 3"></path>
@@ -646,7 +641,7 @@
     <div class="modal-content" onclick="event.stopPropagation()">
       <div class="modal-header">
         <h3 id="workshopModalTitle" data-i18n="workshop_modal_title" style="margin: 0; font-size: 22px; font-weight: 800; color: var(--ink);">Workshop 說明</h3>
-        <div class="modal-close-btn" onclick="closeWorkshopModal()" role="button" tabindex="0" aria-label="關閉">
+        <div class="modal-close-btn" onclick="closeWorkshopModal()" role="button" tabindex="0" aria-label="關閉" data-i18n-aria="modal_close">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
@@ -661,7 +656,7 @@
   <!-- Agenda Modal -->
   <div id="agendaModal" class="modal-overlay" onclick="closeAgendaModal()">
     <div class="agenda-modal-content" id="agendaModalContent" data-modal-label="// 議程" onclick="event.stopPropagation()">
-      <button class="agenda-modal-close" onclick="closeAgendaModal()" aria-label="關閉">
+      <button class="agenda-modal-close" onclick="closeAgendaModal()" aria-label="關閉" data-i18n-aria="modal_close">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <path d="M18 6L6 18M6 6l12 12"/>
         </svg>
@@ -685,11 +680,11 @@
       <div class="am-actions">
         <a class="am-hackmd" id="amHackmd" href="#" target="_blank" rel="noopener" style="display:none;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          <span id="amHackmdLabel">HackMD 共筆</span>
+          <span id="amHackmdLabel" data-i18n="agenda_hackmd_label">HackMD 共筆</span>
         </a>
         <a class="am-watch" id="amWatch" href="#" target="_blank" rel="noopener" style="display:none;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-          <span id="amWatchLabel">線上看</span>
+          <span id="amWatchLabel" data-i18n="agenda_watch_label">線上看</span>
         </a>
       </div>
 
@@ -701,7 +696,7 @@
   <!-- Speaker Modal -->
   <div id="speakerModal" class="modal-overlay" onclick="closeSpeakerModal()">
     <div class="speaker-modal-content" onclick="event.stopPropagation()">
-      <button class="agenda-modal-close" onclick="closeSpeakerModal()" aria-label="關閉">
+      <button class="agenda-modal-close" onclick="closeSpeakerModal()" aria-label="關閉" data-i18n-aria="modal_close">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <path d="M18 6L6 18M6 6l12 12"/>
         </svg>
@@ -2141,10 +2136,11 @@
 
     function syncAgendaActionLabels(lang = currentLang) {
       const l = normalizeLang(lang);
+      const dict = getDict(l);
       const hackmdLabel = document.getElementById("amHackmdLabel");
       const watchLabel = document.getElementById("amWatchLabel");
-      if (hackmdLabel) hackmdLabel.textContent = l === "en" ? "HackMD Notes" : "HackMD 共筆";
-      if (watchLabel) watchLabel.textContent = l === "en" ? "Watch Online" : "線上看";
+      if (hackmdLabel) hackmdLabel.textContent = dict.agenda_hackmd_label || (l === "en" ? "HackMD Notes" : "HackMD 共筆");
+      if (watchLabel) watchLabel.textContent = dict.agenda_watch_label || (l === "en" ? "Watch Online" : "線上看");
     }
 
     function syncCountdownUnits(dict) {

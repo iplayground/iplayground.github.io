@@ -58,6 +58,7 @@
   "trans_link":          { "zh": "交通詳細網址",                      "en": "Detailed Traffic Info" },
   "trans_parking_title": { "zh": "停車資訊",                          "en": "Parking" },
   "trans_parking_btn":   { "zh": "尋找附近停車場",                    "en": "Find Nearby Parking" },
+  "trans_commute_tabs_label": { "zh": "交通方式",                     "en": "Transportation options" },
 
   "agenda_eyebrow":      { "zh": "— 議程 Agenda",                    "en": "— Agenda" },
   "agenda_title":        { "zh": "議程",                              "en": "Agenda" },
@@ -66,12 +67,16 @@
   "agenda_day1":         { "zh": "7/25（六）",                        "en": "Jul 25 (Sat)" },
   "agenda_day2":         { "zh": "7/26（日）",                        "en": "Jul 26 (Sun)" },
   "agenda_search_placeholder": { "zh": "搜尋議程名稱或標籤…",          "en": "Search agenda titles or tags..." },
+  "agenda_search_label": { "zh": "搜尋議程",                          "en": "Search agenda" },
   "agenda_search_clear": { "zh": "清除",                              "en": "Clear" },
   "agenda_sort_label":   { "zh": "時間排序",                          "en": "Sort by time" },
+  "agenda_sort_toggle":  { "zh": "切換議程排序",                      "en": "Toggle agenda sort" },
   "agenda_sort_asc":     { "zh": "時間由近到遠",                      "en": "Earliest first" },
   "agenda_sort_desc":    { "zh": "時間由遠到近",                      "en": "Latest first" },
   "agenda_meta":         { "zh": "議程公布後即時更新",                "en": "Updates as sessions confirm" },
   "agenda_speaker_tba":  { "zh": "TBA",                               "en": "TBA" },
+  "agenda_hackmd_label": { "zh": "HackMD 共筆",                       "en": "HackMD Notes" },
+  "agenda_watch_label":  { "zh": "線上看",                            "en": "Watch Online" },
 
   "stat_dates_value":    { "zh": "7.25–26",                           "en": "7.25–26" },
   "stat_dates_sub":      { "zh": "2026 · 週六–週日",                 "en": "2026 · SAT–SUN" },
@@ -81,7 +86,7 @@
   "stat_format_sub":     { "zh": "MULTI-TRACK · IOS / SWIFT / UX",   "en": "MULTI-TRACK · IOS / SWIFT / UX" },
   "stat_cfp_value":      { "zh": "徵稿中",                            "en": "CFP" },
   "stat_cfp_sub":        { "zh": "立即投稿 →",                        "en": "Submit Now →" },
-  "stat_tickets_value":  { "zh": "立即購票",                          "en": "LINK" },
+  "stat_tickets_value":  { "zh": "立即購票",                          "en": "Buy Tickets" },
   "stat_tickets_sub":    { "zh": "",                                "en": "" },
 
   "tickets_title":       { "zh": "票種資訊",                          "en": "Tickets" },
@@ -89,6 +94,7 @@
 
   "workshop_info_trigger": { "zh": "Workshop 說明",                     "en": "About workshops" },
   "workshop_modal_title":  { "zh": "Workshop 說明",                     "en": "About workshops" },
+  "modal_close":           { "zh": "關閉",                              "en": "Close" },
   "workshop_modal_body":   {
     "zh": "<p>Workshop 將採限額報名制。Workshop 包含實作、互動與現場交流，每場席次有限，以維持良好的體驗品質。</p><p>若想參加 Workshop，需於活動前完成事前報名，每人最多可登記兩場。若登記人數超過名額限制，將以亂數抽籤方式決定入場名單，並以 Email 通知結果。</p><p>持有指定票種者可享 Workshop 保證名額，並於可登記場次內免參與抽籤。</p><p>活動當天將於 Workshop 開始前 15 分鐘開放現場候補登記。事前報名中籤者可於開始前 10 分鐘入場；未於開始前 5 分鐘到場者，將視同放棄資格，剩餘名額將依序開放給現場候補者。</p><p>詳細登記時間與方式將於後續公告，請留意官網資訊。</p>",
     "en": "<p>Workshops use a limited-capacity registration system. Each session combines hands-on practice, interaction and live discussion, with limited seats to preserve a high-quality experience.</p><p>To attend a workshop you must pre-register before the event. Each attendee may register for up to two sessions. If demand exceeds capacity, seats are allocated by random draw and results are notified by email.</p><p>Holders of designated ticket tiers receive guaranteed workshop seats and skip the draw for eligible sessions.</p><p>On the event day, on-site standby registration opens 15 minutes before each workshop. Pre-registered winners may enter from 10 minutes before; anyone not present 5 minutes before start time forfeits their seat, and remaining capacity is released to standby attendees in order.</p><p>Detailed registration timing and procedure will be announced later — please watch the official site for updates.</p>"
