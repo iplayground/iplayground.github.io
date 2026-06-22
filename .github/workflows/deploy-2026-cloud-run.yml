@@ -155,3 +155,36 @@ jobs:
               sleep 3
             done
           done
+
+      - name: Notify Discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          PREVIEW_URL: ${{ steps.service_url.outputs.url }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${DISCORD_WEBHOOK_URL:-}" ]; then
+            echo "::warning::Missing DISCORD_WEBHOOK_URL; skipping Discord notification."
+            exit 0
+          fi
+
+          python3 - <<'PY'
+          import json
+          import os
+          import urllib.request
+
+          payload = {
+              "content": f"Feature 2026 有新版本更新\nGCP Preview URL: {os.environ['PREVIEW_URL']}"
+          }
+
+          request = urllib.request.Request(
+              os.environ["DISCORD_WEBHOOK_URL"],
+              data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+              headers={"Content-Type": "application/json"},
+              method="POST",
+          )
+
+          with urllib.request.urlopen(request, timeout=20) as response:
+              if response.status >= 300:
+                  raise SystemExit(f"Discord webhook failed with HTTP {response.status}")
+          PY
