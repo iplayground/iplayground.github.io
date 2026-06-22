@@ -161,6 +161,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           BRANCH_NAME: ${{ github.ref_name }}
           PREVIEW_URL: ${{ steps.service_url.outputs.url }}
+          ACTION_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           set -euo pipefail
 
@@ -170,19 +171,49 @@ jobs:
           fi
 
           COMMIT_MESSAGE="$(git log -1 --pretty=%s)"
+          SHORT_SHA="$(git rev-parse --short HEAD)"
           PREVIEW_URL="${PREVIEW_URL%/}/"
-          export BRANCH_NAME COMMIT_MESSAGE PREVIEW_URL
+          export ACTION_URL BRANCH_NAME COMMIT_MESSAGE PREVIEW_URL SHORT_SHA
 
           payload="$(python3 - <<'PY'
           import json
           import os
 
           print(json.dumps({
-              "content": "\n".join([
-                  f"#{os.environ['BRANCH_NAME']} 有新版本更新",
-                  f"#{os.environ['COMMIT_MESSAGE']}",
-                  f"Preview URL: {os.environ['PREVIEW_URL']}",
-              ])
+              "content": f"**{os.environ['BRANCH_NAME']} 有新版本更新**",
+              "embeds": [
+                  {
+                      "title": "Feature 2026 Preview 已部署",
+                      "url": os.environ["PREVIEW_URL"],
+                      "description": "網站預覽已更新到最新版本。",
+                      "color": 13827840,
+                      "fields": [
+                          {
+                              "name": "Branch",
+                              "value": f"`{os.environ['BRANCH_NAME']}`",
+                              "inline": True,
+                          },
+                          {
+                              "name": "Commit",
+                              "value": f"`{os.environ['SHORT_SHA']}` {os.environ['COMMIT_MESSAGE']}",
+                              "inline": False,
+                          },
+                          {
+                              "name": "Preview URL",
+                              "value": f"[Open preview]({os.environ['PREVIEW_URL']})",
+                              "inline": False,
+                          },
+                          {
+                              "name": "Workflow",
+                              "value": f"[View run]({os.environ['ACTION_URL']})",
+                              "inline": False,
+                          },
+                      ],
+                      "footer": {
+                          "text": "GitHub Actions deploy"
+                      },
+                  }
+              ],
           }, ensure_ascii=False))
           PY
           )"
