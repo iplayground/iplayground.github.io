@@ -168,23 +168,18 @@ jobs:
             exit 0
           fi
 
-          python3 - <<'PY'
+          payload="$(python3 - <<'PY'
           import json
           import os
-          import urllib.request
 
-          payload = {
+          print(json.dumps({
               "content": f"Feature 2026 有新版本更新\nGCP Preview URL: {os.environ['PREVIEW_URL']}"
-          }
-
-          request = urllib.request.Request(
-              os.environ["DISCORD_WEBHOOK_URL"],
-              data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
-              headers={"Content-Type": "application/json"},
-              method="POST",
-          )
-
-          with urllib.request.urlopen(request, timeout=20) as response:
-              if response.status >= 300:
-                  raise SystemExit(f"Discord webhook failed with HTTP {response.status}")
+          }, ensure_ascii=False))
           PY
+          )"
+
+          curl -fsS \
+            -H "Content-Type: application/json" \
+            -H "User-Agent: GitHubActions-iPlayground/1.0" \
+            -d "${payload}" \
+            "${DISCORD_WEBHOOK_URL}"
