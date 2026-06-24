@@ -1,3 +1,3 @@
 window.IPG_ENV = {
-  baseUrl: "https://raw.githubusercontent.com/iplayground/SessionData/develop",
+  baseUrl: "https://raw.githubusercontent.com/iplayground/SessionData/master",
 };

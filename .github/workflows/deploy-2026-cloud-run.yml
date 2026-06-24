@@ -82,6 +82,15 @@ jobs:
         with:
           project_id: ${{ env.GCP_PROJECT_ID }}
 
+      - name: Use 2026/v1 SessionData for preview deploy
+        run: |
+          set -euo pipefail
+          cat > 2026/env.js <<'EOF'
+          window.IPG_ENV = {
+            baseUrl: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1",
+          };
+          EOF
+
       - name: Deploy to Cloud Run from source
         run: |
           set -euo pipefail
