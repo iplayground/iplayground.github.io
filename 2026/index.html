@@ -1255,10 +1255,7 @@
       const speakerMap = new Map((speakers || []).map(speaker => [String(speaker.id), speaker]));
 
       [1, 2].forEach(day => {
-        const zhRows = zhData?.[`day${day}`] || [];
-        const enRows = enData?.[`day${day}`] || [];
-
-        zhRows.forEach((row, index) => {
+        const appendRows = (zhRows, enRows, forcedTrack = "") => zhRows.forEach((row, index) => {
           const enRow = enRows[index] || {};
           const matchedSpeaker = row.speakerID ? speakerMap.get(String(row.speakerID)) : null;
           const speakerName = row.speaker || matchedSpeaker?.name || "";
@@ -1271,7 +1268,7 @@
           normalized.push({
             day,
             time: row.time || "",
-            track: isBreak ? "break" : isSpecial ? "special" : "ios",
+            track: forcedTrack || (isBreak ? "break" : isSpecial ? "special" : "ios"),
             noModal: isBreak,
             title,
             tags,
@@ -1288,6 +1285,13 @@
             isRecording: row.isRecording ?? enRow.isRecording ?? true
           });
         });
+
+        appendRows(zhData?.[`day${day}`] || [], enData?.[`day${day}`] || []);
+        appendRows(
+          zhData?.[`workshop_day${day}`] || [],
+          enData?.[`workshop_day${day}`] || [],
+          "workshop"
+        );
       });
 
       return normalized;
