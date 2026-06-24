@@ -2604,11 +2604,7 @@
       Promise.all([
         fetch(NEWS_DATA_URLS.zh).then(r => r.json()),
         fetch(NEWS_DATA_URLS.en).then(r => r.json()),
-        loadAgendaData().then(agenda => {
-          AGENDA = agenda;
-          renderAgenda(1);
-          return agenda;
-        }),
+        loadAgendaData(),
         fetch("data/iplayground_cfp_steps.json").then(r => r.json()),
         fetch("data/iplayground_config.json").then(r => r.json()),
         fetch("data/iplayground_links.json").then(r => r.json()),
