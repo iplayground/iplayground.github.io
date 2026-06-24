@@ -1248,17 +1248,20 @@
       }
     }
 
-    function normalizeScheduleData(zhData, enData, speakers = []) {
+    function normalizeScheduleData(zhData, enData, speakers = [], speakersEn = []) {
       if (Array.isArray(zhData)) return zhData;
 
       const normalized = [];
       const speakerMap = new Map((speakers || []).map(speaker => [String(speaker.id), speaker]));
+      const speakerEnMap = new Map((speakersEn || []).map(speaker => [String(speaker.id), speaker]));
 
       [1, 2].forEach(day => {
         const appendRows = (zhRows, enRows, forcedTrack = "") => zhRows.forEach((row, index) => {
           const enRow = enRows[index] || {};
           const matchedSpeaker = row.speakerID ? speakerMap.get(String(row.speakerID)) : null;
+          const matchedSpeakerEn = row.speakerID ? speakerEnMap.get(String(row.speakerID)) : null;
           const speakerName = row.speaker || matchedSpeaker?.name || "";
+          const speakerNameEn = enRow.speaker || matchedSpeakerEn?.name || speakerName;
           const title = { zh: row.title || "", en: enRow.title || row.title || "" };
           const description = { zh: row.description || "", en: enRow.description || row.description || "" };
           const tags = { zh: row.tags || [], en: enRow.tags || row.tags || [] };
@@ -1274,8 +1277,8 @@
             tags,
             speaker: speakerName
               ? {
-                  name: { zh: speakerName, en: enRow.speaker || speakerName },
-                  avatar: matchedSpeaker?.photo || "",
+                  name: { zh: speakerName, en: speakerNameEn },
+                  avatar: matchedSpeaker?.photo || matchedSpeakerEn?.photo || "",
                   social: []
                 }
               : null,
@@ -1303,8 +1306,11 @@
           fetchJson(SESSION_DATA_URLS.schedule),
           fetchJson(SESSION_DATA_URLS.scheduleEn).catch(() => null),
         ]);
-        const speakers = await fetchJson(SESSION_DATA_URLS.speakers).catch(() => []);
-        return normalizeScheduleData(scheduleZh, scheduleEn, speakers);
+        const [speakers, speakersEn] = await Promise.all([
+          fetchJson(SESSION_DATA_URLS.speakers).catch(() => []),
+          fetchJson(SESSION_DATA_URLS.speakersEn).catch(() => []),
+        ]);
+        return normalizeScheduleData(scheduleZh, scheduleEn, speakers, speakersEn);
       } catch (error) {
         console.warn("使用本機議程資料 fallback", error);
         return fetchJson(`data/iplayground_agenda.json?v=${DATA_VERSION}`);
@@ -1330,9 +1336,11 @@
       }));
     }
 
-    async function loadSpeakerData() {
+    async function loadSpeakerData(lang = currentLang) {
+      const l = normalizeLang(lang);
+      const url = l === "en" ? SESSION_DATA_URLS.speakersEn : SESSION_DATA_URLS.speakers;
       try {
-        return normalizeSpeakerData(await fetchJson(SESSION_DATA_URLS.speakers));
+        return normalizeSpeakerData(await fetchJson(url));
       } catch (error) {
         console.warn("使用本機講者資料 fallback", error);
         return normalizeSpeakerData(await fetchJson(`data/iplayground_speakers.json?v=${DATA_VERSION}`));
@@ -2137,6 +2145,7 @@
         renderAgenda(agendaCurrentDay);
       }
       renderSpeakers(l);
+      if (typeof renderSpeakerGrid === "function") renderSpeakerGrid(l);
       applyLinksForLang(l);
       applyTweaks(state);
       if (persist) {
@@ -3157,14 +3166,6 @@
     const grid = document.getElementById('speakerGrid');
     if (!grid) return;
 
-    let speakers = [];
-    try {
-      speakers = await loadSpeakerData();
-    } catch (e) {
-      console.warn('無法載入講者資料', e);
-      return;
-    }
-
     const swapToPlaceholder = (img) => {
       const card = img.closest('.speaker-card');
       if (card) card.classList.add('speaker-card--placeholder');
@@ -3175,33 +3176,52 @@
     };
     window.__speakerPhotoFallback = swapToPlaceholder;
 
-    grid.innerHTML = speakers.map((speaker, i) => {
-      const { name, role, photo } = speaker;
-      const isPlaceholder = !photo;
-      const inner = isPlaceholder
-        ? `<div class="speaker-photo-placeholder" aria-hidden="true"></div>`
-        : `<img src="${photo}" alt="" loading="lazy"
-              onerror="window.__speakerPhotoFallback(this);">`;
+    const speakerDataByLang = {};
 
-      return `
-        <article class="speaker-card${isPlaceholder ? ' speaker-card--placeholder' : ''}" data-speaker-idx="${i}">
-          <div class="speaker-photo">
-            ${inner}
-          </div>
-          <div class="speaker-card-meta">
-            <h3 class="speaker-name">${name}</h3>
-            <p class="speaker-role">${role}</p>
-          </div>
-        </article>`;
-    }).join('');
+    async function renderSpeakerGrid(lang = currentLang) {
+      const l = typeof normalizeLang === 'function' ? normalizeLang(lang) : (lang === 'en' ? 'en' : 'zh');
+      let speakers = speakerDataByLang[l];
+      if (!speakers) {
+        try {
+          speakers = await loadSpeakerData(l);
+          speakerDataByLang[l] = speakers;
+        } catch (e) {
+          console.warn('無法載入講者資料', e);
+          return;
+        }
+      }
 
-    // 點擊開啟彈窗
-    grid.querySelectorAll('.speaker-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const idx = parseInt(card.dataset.speakerIdx);
-        if (typeof showSpeakerModal === 'function') showSpeakerModal(speakers[idx]);
+      grid.innerHTML = speakers.map((speaker, i) => {
+        const { name, role, photo } = speaker;
+        const isPlaceholder = !photo;
+        const inner = isPlaceholder
+          ? `<div class="speaker-photo-placeholder" aria-hidden="true"></div>`
+          : `<img src="${photo}" alt="" loading="lazy"
+                onerror="window.__speakerPhotoFallback(this);">`;
+
+        return `
+          <article class="speaker-card${isPlaceholder ? ' speaker-card--placeholder' : ''}" data-speaker-idx="${i}">
+            <div class="speaker-photo">
+              ${inner}
+            </div>
+            <div class="speaker-card-meta">
+              <h3 class="speaker-name">${name}</h3>
+              <p class="speaker-role">${role}</p>
+            </div>
+          </article>`;
+      }).join('');
+
+      // 點擊開啟彈窗
+      grid.querySelectorAll('.speaker-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const idx = parseInt(card.dataset.speakerIdx);
+          if (typeof showSpeakerModal === 'function') showSpeakerModal(speakers[idx]);
+        });
       });
-    });
+    }
+
+    window.renderSpeakerGrid = renderSpeakerGrid;
+    renderSpeakerGrid(currentLang);
   })();
 </script>
 
