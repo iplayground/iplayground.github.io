@@ -1132,11 +1132,11 @@
 
     // ===== Data =====
     const DATA_VERSION = "20260614-hide-ticket-sub";
-    const ORIGINAL_BASE_URL = "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1";
+    const ORIGINAL_BASE_URL = "https://raw.githubusercontent.com/iplayground/SessionData/master";
     const BASE_URL = window.IPG_ENV?.baseUrl || ORIGINAL_BASE_URL;
     const NEWS_DATA_URLS = {
-      zh: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news.json",
-      en: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news_en.json",
+      zh: `${BASE_URL}/news.json`,
+      en: `${BASE_URL}/news_en.json`,
     };
     const SESSION_DATA_URLS = {
       schedule: `${BASE_URL}/schedule.json`,
