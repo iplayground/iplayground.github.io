@@ -14,14 +14,14 @@
           "link": "https://picc.co/"
         },
         {
-          "name": "TSMC",
-          "picture": "https://raw.githubusercontent.com/iplayground/SessionData/develop/images/sponsors/logo_tsmc.png",
-          "link": ""
-        },
-        {
           "name": "RevenueCat",
           "picture": "https://raw.githubusercontent.com/iplayground/SessionData/develop/images/sponsors/logo_revenuecat.png",
           "link": "https://revenuecat.com/"
+        },
+        {
+          "name": "TSMC",
+          "picture": "https://raw.githubusercontent.com/iplayground/SessionData/develop/images/sponsors/logo_tsmc.png",
+          "link": "https://www.tsmc.com/chinese"
         }
       ]
     },
