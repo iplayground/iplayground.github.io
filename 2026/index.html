@@ -2141,6 +2141,7 @@
       }
       renderSpeakers(l);
       if (typeof renderSpeakerGrid === "function") renderSpeakerGrid(l);
+      if (typeof window.renderSponsors === "function") window.renderSponsors(l);
       applyLinksForLang(l);
       applyTweaks(state);
       if (persist) {
@@ -3096,6 +3097,7 @@
     const tierContainer = document.getElementById("sponsorTierList");
     const personalGrid = document.getElementById("individualSponsorGrid");
     if (!tierContainer || !personalGrid) return;
+    let sponsorData = null;
     const escapeHtml = (value) => String(value || "").replace(/[&<>"']/g, (char) => ({
       "&": "&amp;",
       "<": "&lt;",
@@ -3104,16 +3106,14 @@
       "'": "&#39;"
     })[char]);
 
-    try {
-      const res = await fetch(SPONSOR_DATA_URL, { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to fetch sponsors");
-      const data = await res.json();
-
-      const sponsors = Array.isArray(data.sponsors) ? data.sponsors : [];
-      const personal = Array.isArray(data.personal) ? data.personal : [];
+    function renderSponsors(lang = currentLang) {
+      if (!sponsorData) return;
+      const l = normalizeLang(lang);
+      const sponsors = Array.isArray(sponsorData.sponsors) ? sponsorData.sponsors : [];
+      const personal = Array.isArray(sponsorData.personal) ? sponsorData.personal : [];
 
       const tierTitle = (title) =>
-        typeof title === "string" ? title : localized(title, currentLang);
+        typeof title === "string" ? title : localized(title, l);
 
       tierContainer.innerHTML = sponsors.map((tier, index) => {
         const items = Array.isArray(tier.items) ? tier.items : [];
@@ -3148,6 +3148,15 @@
           ? `<a class="${cls}" href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">${body}</a>`
           : `<span class="${cls}">${body}</span>`;
       }).join("") || `<span class="patron-name">TBA</span>`;
+    }
+
+    window.renderSponsors = renderSponsors;
+
+    try {
+      const res = await fetch(SPONSOR_DATA_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error("Failed to fetch sponsors");
+      sponsorData = await res.json();
+      renderSponsors(currentLang);
     } catch (err) {
       tierContainer.innerHTML = `<p style="color:#555;">Sponsor data unavailable.</p>`;
       personalGrid.innerHTML = `<div class="patron-card"><p class="patron-name">TBA</p></div>`;
