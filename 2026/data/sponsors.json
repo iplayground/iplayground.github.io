@@ -4,6 +4,11 @@
       "title": { "zh": "青銅級", "en": "Bronze" },
       "items": [
         {
+          "name": "KKTIX",
+          "picture": "https://raw.githubusercontent.com/iplayground/SessionData/develop/images/sponsors/logo_kktix.png",
+          "link": "https://kktix.com/"
+        },
+        {
           "name": "PicCollage",
           "picture": "https://raw.githubusercontent.com/iplayground/SessionData/develop/images/sponsors/logo_piccollage.png",
           "link": "https://picc.co/"
@@ -16,7 +21,7 @@
         {
           "name": "RevenueCat",
           "picture": "https://raw.githubusercontent.com/iplayground/SessionData/develop/images/sponsors/logo_revenuecat.png",
-          "link": "https://picc.co/"
+          "link": "https://revenuecat.com/"
         }
       ]
     },
@@ -31,7 +36,7 @@
         {
           "name": "豐才管顧 Emerald Talent",
           "picture": "https://raw.githubusercontent.com/iplayground/SessionData/develop/images/sponsors/logo_emerald_talent_white.png",
-          "link": "https://www.flitto.com/"
+          "link": "https://www.emerald-talent.co"
         }
       ]
     }
