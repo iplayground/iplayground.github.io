@@ -90,7 +90,7 @@
   "stat_tickets_sub":    { "zh": "",                                "en": "" },
 
   "tickets_title":       { "zh": "票種資訊",                          "en": "Tickets" },
-  "tickets_meta":        { "zh": "完整議程 · 各票種一次看",           "en": "All four tiers, side by side" },
+  "tickets_meta":        { "zh": "完整議程 · 各票種一次看",           "en": "All three tiers, side by side" },
 
   "workshop_info_trigger": { "zh": "Workshop 說明",                     "en": "About workshops" },
   "workshop_modal_title":  { "zh": "Workshop 說明",                     "en": "About workshops" },
