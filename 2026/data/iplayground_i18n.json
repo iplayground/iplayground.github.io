@@ -111,6 +111,9 @@
   "sponsors_eyebrow":    { "zh": "— 贊助廠商 Sponsors",              "en": "— Sponsors" },
   "sponsors_title":      { "zh": "贊助廠商",                          "en": "Sponsors" },
   "individual_sponsors_title": { "zh": "個人贊助",                    "en": "Individual Sponsors" },
+  "podcasts_platforms_label": { "zh": "Podcast 平台",                  "en": "Podcast platforms" },
+  "podcasts_spotify_label": { "zh": "在 Spotify 收聽",                 "en": "Listen on Spotify" },
+  "podcasts_youtube_label": { "zh": "在 YouTube 觀看",                 "en": "Watch on YouTube" },
   "sponsors_wip":        { "zh": "正在邀請優秀的夥伴加入我們",        "en": "We're inviting great partners to join us" },
   "sponsors_cta":        { "zh": "🔗 徵求贊助廠商 →",                "en": "🔗 Sponsor Us →" },
 
