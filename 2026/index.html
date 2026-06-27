@@ -2677,8 +2677,14 @@
       <svg class="fab-icon fab-icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       <svg class="fab-icon fab-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-    <button class="fab" id="fabLang" aria-label="Toggle language">
-      <span class="fab-lang-label">中</span>
+    <button class="fab fab--lang" id="fabLang" aria-label="Switch language to English" title="Switch language to English">
+      <svg class="fab-lang-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M2 12h20"></path>
+        <path d="M12 2a15.3 15.3 0 0 1 0 20"></path>
+        <path d="M12 2a15.3 15.3 0 0 0 0 20"></path>
+      </svg>
+      <span class="fab-lang-label">English</span>
     </button>
     <button class="fab fab--top" id="fabTop" aria-label="Back to top">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
@@ -2721,8 +2727,12 @@
 
     // Sync fab lang label
     function syncFabLang(lang) {
+      const targetLabel = lang === "zh" ? "English" : "中文";
+      const actionLabel = lang === "zh" ? "Switch language to English" : "Switch language to Chinese";
       const label = fabLang.querySelector(".fab-lang-label");
-      if (label) label.textContent = lang === "zh" ? "中" : "EN";
+      if (label) label.textContent = targetLabel;
+      fabLang.setAttribute("aria-label", actionLabel);
+      fabLang.setAttribute("title", actionLabel);
     }
   </script>
 
