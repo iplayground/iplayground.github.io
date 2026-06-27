@@ -3573,8 +3573,8 @@
       { container: '.about-stats',  child: ':scope > .stat', stagger: 90 },
       { container: '.transport-grid', child: ':scope > .transport-card', stagger: 110 },
       { container: '#newsList',     child: ':scope > .news-row',         stagger: 60 },
-      { container: '#speakerGrid',  child: ':scope > .speaker-card',     stagger: 60 },
-      { container: '#staffGrid',    child: ':scope > .staff-card',       stagger: 50 },
+      { container: '#speakerGrid',  child: ':scope > .speaker-card',     stagger: 28, duration: 360 },
+      { container: '#staffGrid',    child: ':scope > .staff-card',       stagger: 18, duration: 340 },
     ];
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -3604,6 +3604,7 @@
             if (group.soft) el.classList.add('reveal--soft');
             const delay = i * group.stagger;
             if (delay) el.style.setProperty('--reveal-delay', `${delay}ms`);
+            if (group.duration) el.style.setProperty('--reveal-duration', `${group.duration}ms`);
             el.dataset.revealInit = '1';
             // If it's already in viewport (e.g. above-the-fold news section on first paint),
             // reveal it on the next frame so the CSS transition can kick in.
