@@ -33,8 +33,7 @@
     "schedule": {
         "title": "Schedule",
         "apiUrl": "https://raw.githubusercontent.com/iplayground/SessionData/refs/heads/2025/v1/schedule_en.json",
-        "HackMDtitle": "HackMD Collaborative Notes",
-        "youtube": "Youtube Video"
+        "HackMDtitle": "HackMD Collaborative Notes"
     },
     "speakers": {
         "title": "Speakers",

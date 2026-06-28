@@ -1,0 +1,234 @@
+name: Deploy 2026 to Cloud Run
+
+on:
+  push:
+    branches:
+      - feature/2026
+  workflow_dispatch:
+
+env:
+  GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+  GCP_REGION: ${{ vars.GCP_REGION || 'asia-east1' }}
+  CLOUD_RUN_SERVICE: ${{ vars.CLOUD_RUN_SERVICE || 'iplayground-2026' }}
+  CLOUD_RUN_BUILD_SERVICE_ACCOUNT: ${{ vars.CLOUD_RUN_BUILD_SERVICE_ACCOUNT }}
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  validate:
+    name: Validate 2026 site
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: 2026/package-lock.json
+
+      - name: Install dependencies
+        working-directory: 2026
+        run: npm ci
+
+      - name: Validate static site files
+        working-directory: 2026
+        run: |
+          set -euo pipefail
+          test -f index.html
+          test -f news.html
+          test -f docs.html
+          test -f Dockerfile
+          test -f nginx.conf.template
+
+  deploy:
+    name: Deploy Cloud Run
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Validate required config
+        env:
+          GCP_SA_KEY_JSON: ${{ secrets.GCP_SA_KEY_JSON }}
+        run: |
+          set -euo pipefail
+          missing=0
+
+          for key in GCP_PROJECT_ID GCP_REGION CLOUD_RUN_SERVICE GCP_SA_KEY_JSON; do
+            if [ -z "${!key:-}" ]; then
+              echo "::error::Missing required GitHub config: ${key}"
+              missing=1
+            fi
+          done
+
+          if [ "${missing}" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY_JSON }}
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+
+      - name: Use 2026/v1 SessionData for preview deploy
+        run: |
+          set -euo pipefail
+          cat > 2026/env.js <<'EOF'
+          window.IPG_ENV = {
+            baseUrl: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1",
+          };
+          EOF
+
+      - name: Deploy to Cloud Run from source
+        run: |
+          set -euo pipefail
+
+          deploy_args=(
+            "${CLOUD_RUN_SERVICE}"
+            "--project=${GCP_PROJECT_ID}"
+            "--region=${GCP_REGION}"
+            "--source=./2026"
+            "--allow-unauthenticated"
+            "--quiet"
+          )
+
+          if [ -n "${CLOUD_RUN_BUILD_SERVICE_ACCOUNT:-}" ]; then
+            deploy_args+=("--build-service-account=${CLOUD_RUN_BUILD_SERVICE_ACCOUNT}")
+          fi
+
+          gcloud run deploy "${deploy_args[@]}"
+
+      - name: Dump latest failed Cloud Build logs
+        if: failure()
+        run: |
+          set -euo pipefail
+          build_id="$(gcloud builds list \
+            --project="${GCP_PROJECT_ID}" \
+            --filter='status=FAILURE OR status=INTERNAL_ERROR OR status=TIMEOUT OR status=CANCELLED' \
+            --sort-by=~createTime \
+            --limit=1 \
+            --format='value(id)')"
+
+          if [ -z "${build_id}" ]; then
+            echo "No failed build found."
+            exit 0
+          fi
+
+          echo "Latest failed build id: ${build_id}"
+          log_url="$(gcloud builds describe "${build_id}" --project="${GCP_PROJECT_ID}" --format='value(logUrl)' || true)"
+          if [ -n "${log_url}" ]; then
+            echo "Cloud Build log URL: ${log_url}"
+          fi
+          gcloud builds log --project="${GCP_PROJECT_ID}" "${build_id}" || true
+
+      - name: Capture service URL
+        id: service_url
+        run: |
+          set -euo pipefail
+          url="$(gcloud run services describe "${CLOUD_RUN_SERVICE}" \
+            --project="${GCP_PROJECT_ID}" \
+            --region="${GCP_REGION}" \
+            --format='value(status.url)')"
+          echo "url=${url}" >> "${GITHUB_OUTPUT}"
+          echo "Cloud Run URL: ${url}"
+
+      - name: Smoke test static pages
+        run: |
+          set -euo pipefail
+          url="${{ steps.service_url.outputs.url }}"
+
+          for path in "/" "/news.html" "/docs.html"; do
+            for i in 1 2 3 4 5; do
+              if curl -fsS "${url}${path}" >/dev/null; then
+                echo "GET ${path} ok"
+                break
+              fi
+
+              if [ "${i}" -eq 5 ]; then
+                echo "::error::Smoke test failed for ${url}${path}"
+                exit 1
+              fi
+
+              sleep 3
+            done
+          done
+
+      - name: Notify Discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          BRANCH_NAME: ${{ github.ref_name }}
+          PREVIEW_URL: ${{ steps.service_url.outputs.url }}
+          ACTION_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${DISCORD_WEBHOOK_URL:-}" ]; then
+            echo "::warning::Missing DISCORD_WEBHOOK_URL; skipping Discord notification."
+            exit 0
+          fi
+
+          COMMIT_MESSAGE="$(git log -1 --pretty=%s)"
+          SHORT_SHA="$(git rev-parse --short HEAD)"
+          PREVIEW_URL="${PREVIEW_URL%/}/"
+          export ACTION_URL BRANCH_NAME COMMIT_MESSAGE PREVIEW_URL SHORT_SHA
+
+          payload="$(python3 - <<'PY'
+          import json
+          import os
+
+          print(json.dumps({
+              "content": f"**{os.environ['BRANCH_NAME']} 有新版本更新**",
+              "embeds": [
+                  {
+                      "title": "Feature 2026 Preview 已部署",
+                      "url": os.environ["PREVIEW_URL"],
+                      "description": "網站預覽已更新到最新版本。",
+                      "color": 13827840,
+                      "fields": [
+                          {
+                              "name": "Branch",
+                              "value": f"`{os.environ['BRANCH_NAME']}`",
+                              "inline": True,
+                          },
+                          {
+                              "name": "Commit",
+                              "value": f"`{os.environ['SHORT_SHA']}` {os.environ['COMMIT_MESSAGE']}",
+                              "inline": False,
+                          },
+                          {
+                              "name": "Preview URL",
+                              "value": f"[Open preview]({os.environ['PREVIEW_URL']})",
+                              "inline": False,
+                          },
+                          {
+                              "name": "Workflow",
+                              "value": f"[View run]({os.environ['ACTION_URL']})",
+                              "inline": False,
+                          },
+                      ],
+                      "footer": {
+                          "text": "GitHub Actions deploy"
+                      },
+                  }
+              ],
+          }, ensure_ascii=False))
+          PY
+          )"
+
+          curl -fsS \
+            -H "Content-Type: application/json" \
+            -H "User-Agent: GitHubActions-iPlayground/1.0" \
+            -d "${payload}" \
+            "${DISCORD_WEBHOOK_URL}"

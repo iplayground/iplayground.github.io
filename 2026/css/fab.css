@@ -32,6 +32,24 @@
       font-weight: 700;
     }
 
+    .fab--lang {
+      width: auto;
+      min-width: 98px;
+      padding: 0 16px;
+      border-radius: 999px;
+      gap: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .fab-lang-icon {
+      flex: 0 0 auto;
+    }
+
+    .fab-lang-label {
+      line-height: 1;
+      white-space: nowrap;
+    }
+
     .fab:hover {
       background: var(--ios-blue, #D2FF00);
       border-color: rgba(255, 255, 255, 0.24);
@@ -86,5 +104,11 @@
       .fab {
         width: 50px;
         height: 50px;
+      }
+
+      .fab.fab--lang {
+        width: auto;
+        min-width: 96px;
+        padding-inline: 14px;
       }
     }

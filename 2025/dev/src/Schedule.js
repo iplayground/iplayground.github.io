@@ -5,7 +5,6 @@ import LogoStyleTitle from "./LogoStyleTitle";
 import { FaRegClock } from "react-icons/fa6";
 import { RxAvatar } from "react-icons/rx";
 import hackMD_icon from './assets/hackMD_icon.png';
-import youtube_icon from './assets/youtube_icon.png';
 import { SlSocialFacebook } from "react-icons/sl";
 import { FaXTwitter, FaSquareThreads, FaGlobe } from "react-icons/fa6";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
@@ -73,10 +72,6 @@ const Schedule = () => {
             {event.hackMD && <div className="link-row" onClick={() => window.open(event.hackMD, "_blank")}>
               <img src={hackMD_icon} alt="HackMD" />
               <span className="link-text">{t("schedule.HackMDtitle")}</span>
-            </div>}
-            {event.youtube && <div className="link-row" onClick={() => window.open(event.youtube, "_blank")}>
-              <img src={youtube_icon} alt="Youtube" />
-              <span className="link-text">{t("schedule.youtube")}</span>
             </div>}
             {speakerData && <div className="speaker-sns">
                           {speakerData.fb && (

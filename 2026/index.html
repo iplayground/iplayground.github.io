@@ -45,7 +45,7 @@
   </script>
 
   <link rel="stylesheet" href="css/shared.css?v=20260510-tickets-align5">
-  <link rel="stylesheet" href="css/main.css?v=20260614-hide-sections">
+  <link rel="stylesheet" href="css/main.css?v=20260627-about-stats">
 </head>
 
 <body>
@@ -190,10 +190,6 @@
         <p class="lede" data-i18n="hero_lede">為 Apple 開發者準備的兩天，由社群志工策劃。技術分享、深度交流、與一群在乎品質的人。</p>
 
         <div class="cta-stack">
-          <a class="cta cta-signal" id="ctaSponsor" href="#" data-link="sponsor_referral" target="_blank" rel="noopener">
-            <span data-i18n="cta_sponsor">推薦贊助商</span>
-            <span class="cta-arrow" aria-hidden="true">→</span>
-          </a>
           <a class="cta cta-signal" id="ctaTickets" href="https://iplayground.kktix.cc/events/2026" target="_blank" rel="noopener">
             <span data-i18n="stat_tickets_value">立即購票</span>
             <span class="cta-arrow" aria-hidden="true">→</span>
@@ -242,6 +238,14 @@
         <nav class="cd-social-row" id="cdSocialRow" aria-label="Social links">
           <!-- 由 data/iplayground_links.json 動態產生 -->
         </nav>
+        <div class="hero-podcast-buttons" aria-label="Podcast platforms" data-i18n-aria="podcasts_platforms_label">
+          <a class="hero-podcast-button" href="#" data-link="podcast_spotify" target="_blank" rel="noopener" aria-label="Listen on Spotify" data-i18n-aria="podcasts_spotify_label">
+            <img src="img/podcasts/Spotify.svg" alt="" width="160" height="40" loading="lazy" aria-hidden="true">
+          </a>
+          <a class="hero-podcast-button" href="#" data-link="podcast_youtube" target="_blank" rel="noopener" aria-label="Watch on YouTube" data-i18n-aria="podcasts_youtube_label">
+            <img src="img/podcasts/Youtube.svg" alt="" width="161" height="41" loading="lazy" aria-hidden="true">
+          </a>
+        </div>
       </div>
 
     </div>
@@ -558,6 +562,8 @@
             <li><a href="#" data-link="social_youtube" target="_blank" rel="noopener">YouTube</a></li>
             <li><a href="#" data-link="social_threads" target="_blank" rel="noopener">Threads</a></li>
             <li><a href="#" data-link="social_instagram" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="#" data-link="podcast_spotify" target="_blank" rel="noopener">Spotify</a></li>
+            <li><a href="#" data-link="podcast_youtube" target="_blank" rel="noopener">Youtube Podcast</a></li>
           </ul>
         </div>
         <div>
@@ -1129,8 +1135,8 @@
     const DATA_VERSION = "20260503-sessiondata-2025";
     const BASE_URL = "https://raw.githubusercontent.com/iplayground/SessionData/master";
     const NEWS_DATA_URLS = {
-      zh: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news.json",
-      en: "https://raw.githubusercontent.com/iplayground/SessionData/2026/v1/news_en.json",
+      zh: `${BASE_URL}/news.json`,
+      en: `${BASE_URL}/news_en.json`,
     };
     const SESSION_DATA_URLS = {
       schedule: `${BASE_URL}/schedule.json`,
@@ -1242,37 +1248,38 @@
       }
     }
 
-    function normalizeScheduleData(zhData, enData, speakers = []) {
+    function normalizeScheduleData(zhData, enData, speakers = [], speakersEn = []) {
       if (Array.isArray(zhData)) return zhData;
 
       const normalized = [];
       const speakerMap = new Map((speakers || []).map(speaker => [String(speaker.id), speaker]));
+      const speakerEnMap = new Map((speakersEn || []).map(speaker => [String(speaker.id), speaker]));
 
       [1, 2].forEach(day => {
-        const zhRows = zhData?.[`day${day}`] || [];
-        const enRows = enData?.[`day${day}`] || [];
-
-        zhRows.forEach((row, index) => {
+        const appendRows = (zhRows, enRows, forcedTrack = "") => zhRows.forEach((row, index) => {
           const enRow = enRows[index] || {};
           const matchedSpeaker = row.speakerID ? speakerMap.get(String(row.speakerID)) : null;
+          const matchedSpeakerEn = row.speakerID ? speakerEnMap.get(String(row.speakerID)) : null;
           const speakerName = row.speaker || matchedSpeaker?.name || "";
+          const speakerNameEn = enRow.speaker || matchedSpeakerEn?.name || speakerName;
           const title = { zh: row.title || "", en: enRow.title || row.title || "" };
           const description = { zh: row.description || "", en: enRow.description || row.description || "" };
           const tags = { zh: row.tags || [], en: enRow.tags || row.tags || [] };
-          const isBreak = /休息|午餐|break|lunch/i.test(`${row.title || ""} ${enRow.title || ""}`);
+          const isLunch = /午餐/.test(row.title || "");
+          const isBreak = isLunch || /休息|break|lunch/i.test(`${row.title || ""} ${enRow.title || ""}`);
           const isSpecial = !row.speakerID && !row.speaker && !isBreak;
 
           normalized.push({
             day,
             time: row.time || "",
-            track: isBreak ? "break" : isSpecial ? "special" : "ios",
+            track: isLunch ? "lunch" : forcedTrack || (isBreak ? "break" : isSpecial ? "special" : "ios"),
             noModal: isBreak,
             title,
             tags,
             speaker: speakerName
               ? {
-                  name: { zh: speakerName, en: enRow.speaker || speakerName },
-                  avatar: matchedSpeaker?.photo || "",
+                  name: { zh: speakerName, en: speakerNameEn },
+                  avatar: matchedSpeaker?.photo || matchedSpeakerEn?.photo || "",
                   social: []
                 }
               : null,
@@ -1282,6 +1289,13 @@
             isRecording: row.isRecording ?? enRow.isRecording ?? true
           });
         });
+
+        appendRows(zhData?.[`day${day}`] || [], enData?.[`day${day}`] || []);
+        appendRows(
+          zhData?.[`workshop_day${day}`] || [],
+          enData?.[`workshop_day${day}`] || [],
+          "workshop"
+        );
       });
 
       return normalized;
@@ -1293,8 +1307,11 @@
           fetchJson(SESSION_DATA_URLS.schedule),
           fetchJson(SESSION_DATA_URLS.scheduleEn).catch(() => null),
         ]);
-        const speakers = await fetchJson(SESSION_DATA_URLS.speakers).catch(() => []);
-        return normalizeScheduleData(scheduleZh, scheduleEn, speakers);
+        const [speakers, speakersEn] = await Promise.all([
+          fetchJson(SESSION_DATA_URLS.speakers).catch(() => []),
+          fetchJson(SESSION_DATA_URLS.speakersEn).catch(() => []),
+        ]);
+        return normalizeScheduleData(scheduleZh, scheduleEn, speakers, speakersEn);
       } catch (error) {
         console.warn("使用本機議程資料 fallback", error);
         return fetchJson(`data/iplayground_agenda.json?v=${DATA_VERSION}`);
@@ -1320,9 +1337,11 @@
       }));
     }
 
-    async function loadSpeakerData() {
+    async function loadSpeakerData(lang = currentLang) {
+      const l = normalizeLang(lang);
+      const url = l === "en" ? SESSION_DATA_URLS.speakersEn : SESSION_DATA_URLS.speakers;
       try {
-        return normalizeSpeakerData(await fetchJson(SESSION_DATA_URLS.speakers));
+        return normalizeSpeakerData(await fetchJson(url));
       } catch (error) {
         console.warn("使用本機講者資料 fallback", error);
         return normalizeSpeakerData(await fetchJson(`data/iplayground_speakers.json?v=${DATA_VERSION}`));
@@ -1420,7 +1439,6 @@
       const collapsible = !query && morning.length > 0 && afternoon.length > 0;
       const collapsed = collapsible && !agendaExpanded;
 
-      const tbaLabel = currentLang === "en" ? "TBA" : "TBA";
       const speakerPrefix = currentLang === "en" ? "SPEAKER" : "講者";
 
       const renderCard = ({ item: r, sourceIdx }, revealIndex = -1) => {
@@ -1430,17 +1448,18 @@
         const tagHTML = primaryTag
           ? `<span class="session-tag${isKeynote ? " is-keynote" : ""}">${primaryTag.toUpperCase()}</span>`
           : "";
-        const speakerName = localized(r.speaker?.name) || tbaLabel;
+        const speakerName = localized(r.speaker?.name);
+        const hasSpeaker = Boolean(String(speakerName || "").trim());
         const noPhotoTag = r.isRecording === false
           ? `<span class="session-tag is-no-photo"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h4l2-2h4l2 2h4v12H4z"></path><path d="M9.5 9.5 14.5 14.5"></path><path d="M14.5 9.5 9.5 14.5"></path></svg><span>${currentLang === "en" ? "NO PHOTOGRAPHY" : "禁止攝影"}</span></span>`
           : "";
         const startTime = (r.time || "").split(/[–\-]/)[0].trim();
-        const desc = localized(r.description) || "";
-
         const trackType = (r.track || "").toLowerCase();
         const isBreak = trackType === "break";
+        const isLunch = trackType === "lunch";
+        const isBreakLike = isBreak || isLunch;
         const isSpecial = trackType === "special";
-        const cardClass = isBreak ? "session is-break" : isSpecial ? "session is-special" : "session";
+        const cardClass = isLunch ? "session is-break is-lunch" : isBreak ? "session is-break" : isSpecial ? "session is-special" : "session";
         const revealing = revealIndex >= 0;
         const revealAttr = revealing
           ? ` is-revealing" style="animation-delay:${revealIndex * 45}ms`
@@ -1451,10 +1470,9 @@
           <span class="session-time">${startTime}</span>
           <div class="session-body">
             <h3 class="session-title">${localized(r.title)}</h3>
-            ${desc ? `<p class="session-desc">${desc}</p>` : ""}
           </div>
           <div class="session-meta">
-            ${!isBreak ? `<span class="session-speaker"><span class="session-speaker-label">${speakerPrefix}</span><span>${speakerName}</span></span>` : ""}
+            ${!isBreakLike && hasSpeaker ? `<span class="session-speaker"><span class="session-speaker-label">${speakerPrefix}</span><span>${speakerName}</span></span>` : ""}
             ${noPhotoTag}
             ${tagHTML}
           </div>
@@ -2127,6 +2145,8 @@
         renderAgenda(agendaCurrentDay);
       }
       renderSpeakers(l);
+      if (typeof renderSpeakerGrid === "function") renderSpeakerGrid(l);
+      if (typeof window.renderSponsors === "function") window.renderSponsors(l);
       applyLinksForLang(l);
       applyTweaks(state);
       if (persist) {
@@ -2136,11 +2156,10 @@
 
     function syncAgendaActionLabels(lang = currentLang) {
       const l = normalizeLang(lang);
-      const dict = getDict(l);
       const hackmdLabel = document.getElementById("amHackmdLabel");
       const watchLabel = document.getElementById("amWatchLabel");
-      if (hackmdLabel) hackmdLabel.textContent = dict.agenda_hackmd_label || (l === "en" ? "HackMD Notes" : "HackMD 共筆");
-      if (watchLabel) watchLabel.textContent = dict.agenda_watch_label || (l === "en" ? "Watch Online" : "線上看");
+      if (hackmdLabel) hackmdLabel.textContent = l === "en" ? "HackMD Notes" : "HackMD 共筆";
+      if (watchLabel) watchLabel.textContent = l === "en" ? "Watch Online" : "線上看";
     }
 
     function syncCountdownUnits(dict) {
@@ -2663,8 +2682,14 @@
       <svg class="fab-icon fab-icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       <svg class="fab-icon fab-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-    <button class="fab" id="fabLang" aria-label="Toggle language">
-      <span class="fab-lang-label">中</span>
+    <button class="fab fab--lang" id="fabLang" aria-label="Switch language to English" title="Switch language to English">
+      <svg class="fab-lang-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M2 12h20"></path>
+        <path d="M12 2a15.3 15.3 0 0 1 0 20"></path>
+        <path d="M12 2a15.3 15.3 0 0 0 0 20"></path>
+      </svg>
+      <span class="fab-lang-label">English</span>
     </button>
     <button class="fab fab--top" id="fabTop" aria-label="Back to top">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
@@ -2707,8 +2732,12 @@
 
     // Sync fab lang label
     function syncFabLang(lang) {
+      const targetLabel = lang === "zh" ? "English" : "中文";
+      const actionLabel = lang === "zh" ? "Switch language to English" : "Switch language to Chinese";
       const label = fabLang.querySelector(".fab-lang-label");
-      if (label) label.textContent = lang === "zh" ? "中" : "EN";
+      if (label) label.textContent = targetLabel;
+      fabLang.setAttribute("aria-label", actionLabel);
+      fabLang.setAttribute("title", actionLabel);
     }
   </script>
 
@@ -3083,6 +3112,7 @@
     const tierContainer = document.getElementById("sponsorTierList");
     const personalGrid = document.getElementById("individualSponsorGrid");
     if (!tierContainer || !personalGrid) return;
+    let sponsorData = null;
     const escapeHtml = (value) => String(value || "").replace(/[&<>"']/g, (char) => ({
       "&": "&amp;",
       "<": "&lt;",
@@ -3091,16 +3121,14 @@
       "'": "&#39;"
     })[char]);
 
-    try {
-      const res = await fetch(SPONSOR_DATA_URL, { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to fetch sponsors");
-      const data = await res.json();
-
-      const sponsors = Array.isArray(data.sponsors) ? data.sponsors : [];
-      const personal = Array.isArray(data.personal) ? data.personal : [];
+    function renderSponsors(lang = currentLang) {
+      if (!sponsorData) return;
+      const l = normalizeLang(lang);
+      const sponsors = Array.isArray(sponsorData.sponsors) ? sponsorData.sponsors : [];
+      const personal = Array.isArray(sponsorData.personal) ? sponsorData.personal : [];
 
       const tierTitle = (title) =>
-        typeof title === "string" ? title : localized(title, currentLang);
+        typeof title === "string" ? title : localized(title, l);
 
       tierContainer.innerHTML = sponsors.map((tier, index) => {
         const items = Array.isArray(tier.items) ? tier.items : [];
@@ -3135,6 +3163,15 @@
           ? `<a class="${cls}" href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">${body}</a>`
           : `<span class="${cls}">${body}</span>`;
       }).join("") || `<span class="patron-name">TBA</span>`;
+    }
+
+    window.renderSponsors = renderSponsors;
+
+    try {
+      const res = await fetch(SPONSOR_DATA_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error("Failed to fetch sponsors");
+      sponsorData = await res.json();
+      renderSponsors(currentLang);
     } catch (err) {
       tierContainer.innerHTML = `<p style="color:#555;">Sponsor data unavailable.</p>`;
       personalGrid.innerHTML = `<div class="patron-card"><p class="patron-name">TBA</p></div>`;
@@ -3148,14 +3185,6 @@
     const grid = document.getElementById('speakerGrid');
     if (!grid) return;
 
-    let speakers = [];
-    try {
-      speakers = await loadSpeakerData();
-    } catch (e) {
-      console.warn('無法載入講者資料', e);
-      return;
-    }
-
     const swapToPlaceholder = (img) => {
       const card = img.closest('.speaker-card');
       if (card) card.classList.add('speaker-card--placeholder');
@@ -3165,6 +3194,21 @@
       img.replaceWith(ph);
     };
     window.__speakerPhotoFallback = swapToPlaceholder;
+
+    const speakerDataByLang = {};
+
+    async function renderSpeakerGrid(lang = currentLang) {
+      const l = typeof normalizeLang === 'function' ? normalizeLang(lang) : (lang === 'en' ? 'en' : 'zh');
+      let speakers = speakerDataByLang[l];
+      if (!speakers) {
+        try {
+          speakers = await loadSpeakerData(l);
+          speakerDataByLang[l] = speakers;
+        } catch (e) {
+          console.warn('無法載入講者資料', e);
+          return;
+        }
+      }
 
     grid.innerHTML = speakers.map((speaker, i) => {
       const { name, role, photo } = speaker;
@@ -3193,6 +3237,10 @@
         if (typeof showSpeakerModal === 'function') showSpeakerModal(speakers[idx]);
       });
     });
+    }
+
+    window.renderSpeakerGrid = renderSpeakerGrid;
+    renderSpeakerGrid(currentLang);
   })();
 </script>
 
@@ -3524,8 +3572,8 @@
       { container: '.about-stats',  child: ':scope > .stat', stagger: 90 },
       { container: '.transport-grid', child: ':scope > .transport-card', stagger: 110 },
       { container: '#newsList',     child: ':scope > .news-row',         stagger: 60 },
-      { container: '#speakerGrid',  child: ':scope > .speaker-card',     stagger: 60 },
-      { container: '#staffGrid',    child: ':scope > .staff-card',       stagger: 50 },
+      { container: '#speakerGrid',  child: ':scope > .speaker-card',     stagger: 28, duration: 360 },
+      { container: '#staffGrid',    child: ':scope > .staff-card',       stagger: 18, duration: 340 },
     ];
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -3555,6 +3603,7 @@
             if (group.soft) el.classList.add('reveal--soft');
             const delay = i * group.stagger;
             if (delay) el.style.setProperty('--reveal-delay', `${delay}ms`);
+            if (group.duration) el.style.setProperty('--reveal-duration', `${group.duration}ms`);
             el.dataset.revealInit = '1';
             // If it's already in viewport (e.g. above-the-fold news section on first paint),
             // reveal it on the next frame so the CSS transition can kick in.
