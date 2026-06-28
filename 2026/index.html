@@ -1266,13 +1266,14 @@
           const title = { zh: row.title || "", en: enRow.title || row.title || "" };
           const description = { zh: row.description || "", en: enRow.description || row.description || "" };
           const tags = { zh: row.tags || [], en: enRow.tags || row.tags || [] };
-          const isBreak = /休息|午餐|break|lunch/i.test(`${row.title || ""} ${enRow.title || ""}`);
+          const isLunch = /午餐/.test(row.title || "");
+          const isBreak = isLunch || /休息|break|lunch/i.test(`${row.title || ""} ${enRow.title || ""}`);
           const isSpecial = !row.speakerID && !row.speaker && !isBreak;
 
           normalized.push({
             day,
             time: row.time || "",
-            track: forcedTrack || (isBreak ? "break" : isSpecial ? "special" : "ios"),
+            track: isLunch ? "lunch" : forcedTrack || (isBreak ? "break" : isSpecial ? "special" : "ios"),
             noModal: isBreak,
             title,
             tags,
@@ -1458,8 +1459,10 @@
 
         const trackType = (r.track || "").toLowerCase();
         const isBreak = trackType === "break";
+        const isLunch = trackType === "lunch";
+        const isBreakLike = isBreak || isLunch;
         const isSpecial = trackType === "special";
-        const cardClass = isBreak ? "session is-break" : isSpecial ? "session is-special" : "session";
+        const cardClass = isLunch ? "session is-break is-lunch" : isBreak ? "session is-break" : isSpecial ? "session is-special" : "session";
         const revealing = revealIndex >= 0;
         const revealAttr = revealing
           ? ` is-revealing" style="animation-delay:${revealIndex * 45}ms`
@@ -1473,7 +1476,7 @@
             ${desc ? `<p class="session-desc">${desc}</p>` : ""}
           </div>
           <div class="session-meta">
-            ${!isBreak && hasSpeaker ? `<span class="session-speaker"><span class="session-speaker-label">${speakerPrefix}</span><span>${speakerName}</span></span>` : ""}
+            ${!isBreakLike && hasSpeaker ? `<span class="session-speaker"><span class="session-speaker-label">${speakerPrefix}</span><span>${speakerName}</span></span>` : ""}
             ${noPhotoTag}
             ${tagHTML}
           </div>

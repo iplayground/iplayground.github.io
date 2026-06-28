@@ -1908,6 +1908,9 @@
       content: "BREAK";
       color: var(--accent);
     }
+    .session.is-lunch .session-title::before {
+      content: "LUNCH";
+    }
     html[data-lang="en"] .session.is-break .session-title::before,
     html[lang="en"] .session.is-break .session-title::before {
       content: "";
