@@ -1234,6 +1234,20 @@
       return value || "";
     }
 
+    function escapeHtml(value) {
+      return String(value || "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function lineBreaksToHtml(value) {
+      return escapeHtml(value).replace(/\r\n|\r|\n/g, "<br>");
+    }
+
     async function fetchJson(url) {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`${response.status} ${url}`);
@@ -1587,7 +1601,7 @@
       `;
 
       // 說明
-      document.getElementById("amDesc").textContent = localized(item.description);
+      document.getElementById("amDesc").innerHTML = lineBreaksToHtml(localized(item.description));
 
       // HackMD
       const hackmdEl = document.getElementById("amHackmd");
