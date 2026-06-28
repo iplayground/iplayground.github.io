@@ -1245,7 +1245,9 @@
     }
 
     function lineBreaksToHtml(value) {
-      return escapeHtml(value).replace(/\r\n|\r|\n/g, "<br>");
+      return escapeHtml(value)
+        .replace(/&lt;br\s*\/?&gt;/gi, "<br>")
+        .replace(/\r\n|\r|\n/g, "<br>");
     }
 
     async function fetchJson(url) {
