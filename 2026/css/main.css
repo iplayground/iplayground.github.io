@@ -1006,7 +1006,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 22px;
+      padding: 0;
       /* Per-tier knobs (overridden by data-rank below) — default = warm gold / special.
          NOTE: the ring gradient itself lives on ::before per tier, NOT in a var —
          a conic-gradient stored in a custom property won't re-animate the angle. */
@@ -1086,7 +1086,6 @@
     /* Diamond — brightest: prismatic platinum, thickest & fastest ring, coolest glow */
     .sponsor-tier[data-rank="0"] .sponsor-card {
       min-height: 156px;
-      padding: 34px;
       --card-bg: linear-gradient(115deg,
         oklch(0.20 0.006 240), oklch(0.30 0.012 235), oklch(0.18 0.005 250),
         oklch(0.28 0.010 215), oklch(0.20 0.006 240));
@@ -1152,7 +1151,6 @@
     /* Silver — cool brushed steel */
     .sponsor-tier[data-rank="1"] .sponsor-card {
       min-height: 124px;
-      padding: 26px;
       --card-bg: linear-gradient(115deg,
         oklch(0.20 0.004 255), oklch(0.28 0.008 255), oklch(0.18 0.004 255),
         oklch(0.26 0.006 255), oklch(0.20 0.004 255));
@@ -1196,12 +1194,21 @@
     }
 
     .sponsor-card-link {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
       width: 100%;
-      min-height: 56px;
+      height: 100%;
+      padding: 22px;
+      box-sizing: border-box;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: inherit;
     }
+
+    .sponsor-tier[data-rank="0"] .sponsor-card-link { padding: 34px; }
+    .sponsor-tier[data-rank="1"] .sponsor-card-link { padding: 26px; }
 
     .sponsor-card img {
       max-width: 86%;
