@@ -2411,10 +2411,13 @@
 
     .sm-social {
       display: flex;
+      flex-wrap: wrap;
       gap: 8px;
+      max-width: 100%;
     }
 
     .sm-social-btn {
+      flex: 0 0 36px;
       width: 36px;
       height: 36px;
       border-radius: 6px;
@@ -2447,6 +2450,18 @@
 
     .sm-social-btn:hover img {
       filter: brightness(0) saturate(100%) invert(89%) sepia(100%) saturate(822%) hue-rotate(17deg) brightness(105%) contrast(106%);
+    }
+
+    @media (max-width: 560px) {
+      .sm-social {
+        gap: 6px;
+      }
+
+      .sm-social-btn {
+        flex-basis: 34px;
+        width: 34px;
+        height: 34px;
+      }
     }
 
     .sm-divider {
