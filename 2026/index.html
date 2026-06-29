@@ -1486,6 +1486,7 @@
           : "";
         const speakerName = localized(r.speaker?.name);
         const hasSpeaker = Boolean(String(speakerName || "").trim());
+        const speakerAvatar = r.speaker?.avatar || "img/staff/staff_sample.png";
         const noPhotoTag = r.isRecording === false
           ? `<span class="session-tag is-no-photo"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h4l2-2h4l2 2h4v12H4z"></path><path d="M9.5 9.5 14.5 14.5"></path><path d="M14.5 9.5 9.5 14.5"></path></svg><span>${currentLang === "en" ? "NO PHOTOGRAPHY" : "禁止攝影"}</span></span>`
           : "";
@@ -1508,7 +1509,7 @@
             <h3 class="session-title">${localized(r.title)}</h3>
           </div>
           <div class="session-meta">
-            ${!isBreakLike && hasSpeaker ? `<span class="session-speaker"><span class="session-speaker-label">${speakerPrefix}</span><span>${speakerName}</span></span>` : ""}
+            ${!isBreakLike && hasSpeaker ? `<span class="session-speaker"><img class="session-speaker-avatar" src="${speakerAvatar}" alt="" width="22" height="22" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/staff/staff_sample.png'"><span class="session-speaker-label">${speakerPrefix}</span><span>${speakerName}</span></span>` : ""}
             ${noPhotoTag}
             ${tagHTML}
           </div>

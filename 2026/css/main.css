@@ -1869,12 +1869,23 @@
       text-transform: none !important;
       font-weight: 500;
       min-height: 30px;
-      padding: 0 12px;
+      padding: 0 12px 0 4px;
       border: 1px solid var(--rule-2);
       background: color-mix(in oklab, #7dd3fc 10%, transparent);
     }
     .session-speaker::before {
       content: none;
+    }
+    .session-speaker-avatar {
+      width: 22px;
+      height: 22px;
+      max-width: 22px;
+      max-height: 22px;
+      border-radius: 2px;
+      object-fit: cover;
+      object-position: center;
+      border: 1px solid var(--rule-2);
+      flex-shrink: 0;
     }
     .session-speaker-label {
       font-size: 9px;
