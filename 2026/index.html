@@ -1233,6 +1233,22 @@
       return value || "";
     }
 
+    function escapeHtml(value) {
+      return String(value || "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function lineBreaksToHtml(value) {
+      return escapeHtml(value)
+        .replace(/&lt;br\s*\/?&gt;/gi, "<br>")
+        .replace(/\r\n|\r|\n/g, "<br>");
+    }
+
     async function fetchJson(url) {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`${response.status} ${url}`);
@@ -1359,11 +1375,24 @@
       return String(value || "").toLocaleLowerCase().replace(/\s+/g, "");
     }
 
+    function localizedSearchText(value) {
+      if (Array.isArray(value)) return value.map(localizedSearchText).join(" ");
+      if (value && typeof value === "object") {
+        return [value.zh, value.en]
+          .filter(Boolean)
+          .map(localizedSearchText)
+          .join(" ");
+      }
+      return String(value || "");
+    }
+
     function agendaMatchesSearch(item, query) {
       if (!query) return true;
-      const title = localized(item.title);
-      const tags = localized(item.tags || []).join(" ");
-      const haystack = normalizeSearchText(`${title} ${tags}`);
+      const haystack = normalizeSearchText([
+        localizedSearchText(item.title),
+        localizedSearchText(item.tags || []),
+        localizedSearchText(item.speaker?.name)
+      ].join(" "));
       return haystack.includes(query);
     }
 
@@ -1586,7 +1615,7 @@
       `;
 
       // 說明
-      document.getElementById("amDesc").textContent = localized(item.description);
+      document.getElementById("amDesc").innerHTML = lineBreaksToHtml(localized(item.description));
 
       // HackMD
       const hackmdEl = document.getElementById("amHackmd");
