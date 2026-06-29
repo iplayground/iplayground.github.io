@@ -1376,11 +1376,24 @@
       return String(value || "").toLocaleLowerCase().replace(/\s+/g, "");
     }
 
+    function localizedSearchText(value) {
+      if (Array.isArray(value)) return value.map(localizedSearchText).join(" ");
+      if (value && typeof value === "object") {
+        return [value.zh, value.en]
+          .filter(Boolean)
+          .map(localizedSearchText)
+          .join(" ");
+      }
+      return String(value || "");
+    }
+
     function agendaMatchesSearch(item, query) {
       if (!query) return true;
-      const title = localized(item.title);
-      const tags = localized(item.tags || []).join(" ");
-      const haystack = normalizeSearchText(`${title} ${tags}`);
+      const haystack = normalizeSearchText([
+        localizedSearchText(item.title),
+        localizedSearchText(item.tags || []),
+        localizedSearchText(item.speaker?.name)
+      ].join(" "));
       return haystack.includes(query);
     }
 
