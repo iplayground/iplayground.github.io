@@ -3223,7 +3223,23 @@
       ph.setAttribute('aria-hidden', 'true');
       img.replaceWith(ph);
     };
-    window.__speakerPhotoFallback = swapToPlaceholder;
+
+    window.__speakerPhotoFallback = (img) => {
+      if (!img) return;
+      if (img.dataset.retry !== '1') {
+        img.dataset.retry = '1';
+        const originalSrc = img.currentSrc || img.src;
+        try {
+          const retryUrl = new URL(originalSrc, window.location.href);
+          retryUrl.searchParams.set('retry', String(Date.now()));
+          setTimeout(() => { img.src = retryUrl.href; }, 250);
+        } catch (_) {
+          setTimeout(() => { img.src = originalSrc; }, 250);
+        }
+        return;
+      }
+      swapToPlaceholder(img);
+    };
 
     const speakerDataByLang = {};
 
@@ -3245,7 +3261,7 @@
       const isPlaceholder = !photo;
       const inner = isPlaceholder
         ? `<div class="speaker-photo-placeholder" aria-hidden="true"></div>`
-        : `<img src="${photo}" alt="" loading="lazy"
+        : `<img src="${photo}" alt="" loading="lazy" decoding="async"
               onerror="window.__speakerPhotoFallback(this);">`;
 
       return `
