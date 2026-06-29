@@ -1,5 +1,6 @@
 {
   "nav_news":            { "zh": "最新消息",                          "en": "Latest News" },
+  "news_agenda_cta":     { "zh": "議程完整公開！",                    "en": "Full agenda is live!" },
   "nav_tickets":         { "zh": "票種",                              "en": "Tickets" },
   "nav_about":           { "zh": "活動資訊",                          "en": "Event Info" },
   "nav_agenda":          { "zh": "議程",                              "en": "Agenda" },
