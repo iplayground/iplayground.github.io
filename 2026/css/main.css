@@ -1006,7 +1006,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 22px;
+      padding: 0;
       /* Per-tier knobs (overridden by data-rank below) — default = warm gold / special.
          NOTE: the ring gradient itself lives on ::before per tier, NOT in a var —
          a conic-gradient stored in a custom property won't re-animate the angle. */
@@ -1086,7 +1086,6 @@
     /* Diamond — brightest: prismatic platinum, thickest & fastest ring, coolest glow */
     .sponsor-tier[data-rank="0"] .sponsor-card {
       min-height: 156px;
-      padding: 34px;
       --card-bg: linear-gradient(115deg,
         oklch(0.20 0.006 240), oklch(0.30 0.012 235), oklch(0.18 0.005 250),
         oklch(0.28 0.010 215), oklch(0.20 0.006 240));
@@ -1152,7 +1151,6 @@
     /* Silver — cool brushed steel */
     .sponsor-tier[data-rank="1"] .sponsor-card {
       min-height: 124px;
-      padding: 26px;
       --card-bg: linear-gradient(115deg,
         oklch(0.20 0.004 255), oklch(0.28 0.008 255), oklch(0.18 0.004 255),
         oklch(0.26 0.006 255), oklch(0.20 0.004 255));
@@ -1196,12 +1194,21 @@
     }
 
     .sponsor-card-link {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
       width: 100%;
-      min-height: 56px;
+      height: 100%;
+      padding: 22px;
+      box-sizing: border-box;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: inherit;
     }
+
+    .sponsor-tier[data-rank="0"] .sponsor-card-link { padding: 34px; }
+    .sponsor-tier[data-rank="1"] .sponsor-card-link { padding: 26px; }
 
     .sponsor-card img {
       max-width: 86%;
@@ -1862,12 +1869,23 @@
       text-transform: none !important;
       font-weight: 500;
       min-height: 30px;
-      padding: 0 12px;
+      padding: 0 12px 0 4px;
       border: 1px solid var(--rule-2);
       background: color-mix(in oklab, #7dd3fc 10%, transparent);
     }
     .session-speaker::before {
       content: none;
+    }
+    .session-speaker-avatar {
+      width: 22px;
+      height: 22px;
+      max-width: 22px;
+      max-height: 22px;
+      border-radius: 2px;
+      object-fit: cover;
+      object-position: center;
+      border: 1px solid var(--rule-2);
+      flex-shrink: 0;
     }
     .session-speaker-label {
       font-size: 9px;
@@ -2404,10 +2422,13 @@
 
     .sm-social {
       display: flex;
+      flex-wrap: wrap;
       gap: 8px;
+      max-width: 100%;
     }
 
     .sm-social-btn {
+      flex: 0 0 36px;
       width: 36px;
       height: 36px;
       border-radius: 6px;
@@ -2440,6 +2461,18 @@
 
     .sm-social-btn:hover img {
       filter: brightness(0) saturate(100%) invert(89%) sepia(100%) saturate(822%) hue-rotate(17deg) brightness(105%) contrast(106%);
+    }
+
+    @media (max-width: 560px) {
+      .sm-social {
+        gap: 6px;
+      }
+
+      .sm-social-btn {
+        flex-basis: 34px;
+        width: 34px;
+        height: 34px;
+      }
     }
 
     .sm-divider {
@@ -3202,12 +3235,107 @@
       text-transform: uppercase;
       white-space: nowrap;
     }
+
+    /* News title + 「議程完整公開！」live badge */
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 1.6vw, 20px);
+      flex-wrap: nowrap;
+      min-width: 0;
+    }
+    .agenda-live-badge {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-family: 'Geist', 'PingFang TC', 'Noto Sans TC', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--bg);
+      text-decoration: none;
+      white-space: nowrap;
+      background: linear-gradient(135deg, var(--accent-3), var(--accent), var(--accent-2), var(--accent));
+      background-size: 220% 100%;
+      animation: agendaLiveSheen 4s ease-in-out infinite, agendaLiveIn 0.6s ease both;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    /* sweeping glint highlight */
+    .agenda-live-badge::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -60%;
+      width: 42%;
+      background: linear-gradient(100deg, transparent, color-mix(in oklch, white 55%, transparent), transparent);
+      transform: skewX(-18deg);
+      pointer-events: none;
+      animation: agendaLiveGlint 3.6s ease-in-out infinite;
+    }
+    .agenda-live-badge:hover,
+    .agenda-live-badge:focus-visible {
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 4px 18px color-mix(in oklch, var(--accent) 40%, transparent);
+    }
+    .agenda-live-badge:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .agenda-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--bg);
+      box-shadow: 0 0 0 0 color-mix(in oklch, var(--bg) 60%, transparent);
+      animation: agendaLiveDot 1.6s ease-in-out infinite;
+    }
+    .agenda-live-arrow {
+      animation: agendaLiveArrow 1.5s ease-in-out infinite;
+    }
+    @keyframes agendaLiveSheen {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes agendaLiveGlint {
+      0%   { left: -60%; opacity: 0; }
+      18%  { opacity: 1; }
+      55%  { left: 120%; opacity: 0; }
+      100% { left: 120%; opacity: 0; }
+    }
+    @keyframes agendaLiveDot {
+      0%, 100% { opacity: 1;   transform: scale(1);   box-shadow: 0 0 0 0 color-mix(in oklch, var(--bg) 55%, transparent); }
+      50%      { opacity: 0.45; transform: scale(0.6); box-shadow: 0 0 0 3px color-mix(in oklch, var(--bg) 0%, transparent); }
+    }
+    @keyframes agendaLiveArrow {
+      0%, 100% { transform: translateX(0); }
+      50%      { transform: translateX(3px); }
+    }
+    @keyframes agendaLiveIn {
+      0%   { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .agenda-live-badge { animation: none; background-position: 0% 50%; }
+      .agenda-live-badge::before,
+      .agenda-live-dot,
+      .agenda-live-arrow { animation: none; }
+      .agenda-live-badge:hover,
+      .agenda-live-badge:focus-visible { transform: none; }
+    }
+
     @media (max-width: 720px) {
       .section-head {
         grid-template-columns: minmax(88px, auto) minmax(0, 1fr);
         gap: 12px 20px;
       }
       .section-meta { grid-column: 1 / -1; opacity: 0.7; }
+      .agenda-live-badge { font-size: 12px; padding: 5px 10px; }
     }
 
     /* ============ News list (craft port) ============ */

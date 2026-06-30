@@ -257,7 +257,14 @@
     <div class="section-inner">
       <header class="section-head">
         <span class="section-eyebrow" id="newsEyebrow">// 01</span>
-        <h2 class="section-title section-title--zh" data-i18n="nav_news">最新消息</h2>
+        <div class="section-title-row">
+          <h2 class="section-title section-title--zh" data-i18n="nav_news">最新消息</h2>
+          <a href="#agenda" class="agenda-live-badge" aria-label="議程完整公開，前往議程">
+            <span class="agenda-live-dot" aria-hidden="true"></span>
+            <span class="agenda-live-label" data-i18n="news_agenda_cta">議程完整公開！</span>
+            <span class="agenda-live-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
         <span class="section-meta" id="newsMeta"></span>
       </header>
       <ol class="news-list" id="newsList"></ol>
@@ -423,7 +430,6 @@
       <header class="section-head">
         <span class="section-eyebrow">// 04</span>
         <h2 class="section-title section-title--zh" data-i18n="agenda_title">議程</h2>
-        <span class="section-meta" data-i18n="agenda_meta">議程公布後即時更新</span>
       </header>
     </div>
     <div class="wrap">
@@ -1479,6 +1485,7 @@
           : "";
         const speakerName = localized(r.speaker?.name);
         const hasSpeaker = Boolean(String(speakerName || "").trim());
+        const speakerAvatar = r.speaker?.avatar || "img/staff/staff_sample.png";
         const noPhotoTag = r.isRecording === false
           ? `<span class="session-tag is-no-photo"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h4l2-2h4l2 2h4v12H4z"></path><path d="M9.5 9.5 14.5 14.5"></path><path d="M14.5 9.5 9.5 14.5"></path></svg><span>${currentLang === "en" ? "NO PHOTOGRAPHY" : "禁止攝影"}</span></span>`
           : "";
@@ -1501,7 +1508,7 @@
             <h3 class="session-title">${localized(r.title)}</h3>
           </div>
           <div class="session-meta">
-            ${!isBreakLike && hasSpeaker ? `<span class="session-speaker"><span class="session-speaker-label">${speakerPrefix}</span><span>${speakerName}</span></span>` : ""}
+            ${!isBreakLike && hasSpeaker ? `<span class="session-speaker"><img class="session-speaker-avatar" src="${speakerAvatar}" alt="" width="22" height="22" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/staff/staff_sample.png'"><span class="session-speaker-label">${speakerPrefix}</span><span>${speakerName}</span></span>` : ""}
             ${noPhotoTag}
             ${tagHTML}
           </div>
@@ -3222,7 +3229,23 @@
       ph.setAttribute('aria-hidden', 'true');
       img.replaceWith(ph);
     };
-    window.__speakerPhotoFallback = swapToPlaceholder;
+
+    window.__speakerPhotoFallback = (img) => {
+      if (!img) return;
+      if (img.dataset.retry !== '1') {
+        img.dataset.retry = '1';
+        const originalSrc = img.currentSrc || img.src;
+        try {
+          const retryUrl = new URL(originalSrc, window.location.href);
+          retryUrl.searchParams.set('retry', String(Date.now()));
+          setTimeout(() => { img.src = retryUrl.href; }, 250);
+        } catch (_) {
+          setTimeout(() => { img.src = originalSrc; }, 250);
+        }
+        return;
+      }
+      swapToPlaceholder(img);
+    };
 
     const speakerDataByLang = {};
 
@@ -3244,7 +3267,7 @@
       const isPlaceholder = !photo;
       const inner = isPlaceholder
         ? `<div class="speaker-photo-placeholder" aria-hidden="true"></div>`
-        : `<img src="${photo}" alt="" loading="lazy"
+        : `<img src="${photo}" alt="" loading="lazy" decoding="async"
               onerror="window.__speakerPhotoFallback(this);">`;
 
       return `
