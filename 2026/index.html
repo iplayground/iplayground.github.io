@@ -45,7 +45,7 @@
   </script>
 
   <link rel="stylesheet" href="css/shared.css?v=20260510-tickets-align5">
-  <link rel="stylesheet" href="css/main.css?v=20260702-speaker-social-hitarea">
+  <link rel="stylesheet" href="css/main.css?v=20260702-newsletter-form">
 </head>
 
 <body>
@@ -539,6 +539,49 @@
   </section>
 
   <div id="register"></div>
+
+  <section id="newsletter" class="section-newsletter" data-screen-label="09 Newsletter">
+    <div class="wrap">
+      <div class="newsletter-card">
+        <div class="newsletter-brand">
+          <div class="newsletter-copy">
+            <span class="newsletter-kicker">// NEWSLETTER</span>
+            <div class="newsletter-heading-row">
+              <img class="newsletter-logo" src="img/ip26-iconv1.png" alt="iPlayground 2026" width="160" height="160" loading="lazy">
+              <h2 class="newsletter-title" data-i18n="newsletter_title">訂閱電子報</h2>
+            </div>
+            <p class="newsletter-lede" data-i18n="newsletter_meta">以 iOS/Mac 開發為中心的技術研討會，在台北舉辦。</p>
+            <p class="newsletter-subscribers" data-i18n="newsletter_subscribers">超過一千名訂閱者</p>
+          </div>
+        </div>
+        <form
+          class="newsletter-form"
+          action="https://iplayground.substack.com/api/v1/free?nojs=true"
+          method="post"
+          target="_blank">
+          <input type="hidden" name="source" value="embed">
+          <label class="sr-only" for="newsletterEmail" data-i18n="newsletter_email_label">電子郵件</label>
+          <input
+            id="newsletterEmail"
+            class="newsletter-input"
+            type="email"
+            name="email"
+            autocomplete="email"
+            inputmode="email"
+            placeholder="you@example.com"
+            data-i18n-placeholder="newsletter_email_placeholder"
+            required>
+          <button class="newsletter-submit" type="submit" data-i18n="newsletter_submit">訂閱</button>
+        </form>
+        <p class="newsletter-terms">
+          <span data-i18n="newsletter_terms_prefix">訂閱即表示你同意 Substack 的</span>
+          <a href="https://iplayground.substack.com/tos?utm_source=embed_publication" target="_blank" rel="noopener" data-i18n="newsletter_terms">使用條款</a>
+          <span data-i18n="newsletter_terms_and">與</span>
+          <a href="https://iplayground.substack.com/privacy?utm_source=embed_publication" target="_blank" rel="noopener" data-i18n="newsletter_privacy">隱私權政策</a>
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer data-screen-label="09 Footer">
@@ -1140,7 +1183,7 @@
     let currentLang = "zh";
 
     // ===== Data =====
-    const DATA_VERSION = "20260614-hide-ticket-sub";
+    const DATA_VERSION = "20260702-newsletter-form";
     const ORIGINAL_BASE_URL = "https://raw.githubusercontent.com/iplayground/SessionData/master";
     const BASE_URL = window.IPG_ENV?.baseUrl || ORIGINAL_BASE_URL;
     const NEWS_DATA_URLS = {
@@ -3185,9 +3228,12 @@
       tierContainer.innerHTML = sponsors.map((tier, index) => {
         const items = Array.isArray(tier.items) ? tier.items : [];
         const cols = Math.min(Math.max(items.length, 1), 4);
+        const tierHead = index === 0
+          ? ""
+          : `<div class="sponsor-tier-head"><span class="tier-mark" aria-hidden="true"></span><span class="tier-label">${escapeHtml(tierTitle(tier.title))}</span></div>`;
         return `
           <div class="sponsor-tier" data-rank="${index}">
-            <div class="sponsor-tier-head"><span class="tier-mark" aria-hidden="true"></span><span class="tier-label">${escapeHtml(tierTitle(tier.title))}</span></div>
+            ${tierHead}
             <div class="sponsor-tier-grid cols-${cols}">
               ${items.map((item) => `
                 <article class="sponsor-card">
