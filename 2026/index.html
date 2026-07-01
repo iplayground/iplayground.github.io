@@ -1704,7 +1704,7 @@
       document.getElementById("smName").textContent = speaker.name || "";
       document.getElementById("smRole").textContent = speaker.role || "";
       document.getElementById("smCompany").textContent = speaker.company || "";
-      document.getElementById("smBio").textContent = speaker.bio || "";
+      document.getElementById("smBio").innerHTML = lineBreaksToHtml(speaker.bio || "");
 
       const social = speaker.social || {};
       document.getElementById("smSocial").innerHTML = Object.entries(social)
