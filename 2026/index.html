@@ -2682,13 +2682,25 @@
       if (!wall) return;
       const COLS = 5;
       const perCol = Math.ceil(imgs.length / COLS);
+      const staffSection = document.getElementById("staff");
+      const wallWidth = wall.clientWidth || window.innerWidth || 390;
+      const columnGap = 10;
+      const columnWidth = Math.max(72, (wallWidth - columnGap * (COLS - 1) - 20) / COLS);
+      const targetHeight = Math.max(
+        staffSection?.scrollHeight || 0,
+        window.innerHeight || 0,
+        1200
+      );
+      const minItemsPerCol = Math.ceil((targetHeight * 1.45) / (columnWidth + columnGap));
 
       for (let c = 0; c < COLS; c++) {
         const col = document.createElement("div");
         col.className = "pw-col";
-        // Each column gets a slice, then duplicated for seamless loop
+        // Each column gets enough images to cover long mobile staff layouts, then
+        // duplicates that sequence for the seamless vertical loop.
         const slice = [];
-        for (let r = 0; r < perCol + 2; r++) {
+        const itemCount = Math.max(perCol + 2, minItemsPerCol);
+        for (let r = 0; r < itemCount; r++) {
           slice.push(imgs[(c * perCol + r) % imgs.length]);
         }
         // Duplicate for seamless infinite scroll
