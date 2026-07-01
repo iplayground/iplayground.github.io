@@ -2415,15 +2415,16 @@
     .sm-social {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
       max-width: 100%;
+      margin: 0 0 var(--ios-space-5);
     }
 
     .sm-social-btn {
-      flex: 0 0 36px;
-      width: 36px;
-      height: 36px;
-      border-radius: 6px;
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
       background: var(--surface-2);
       border: 1px solid var(--rule-2);
       display: flex;
@@ -2457,13 +2458,13 @@
 
     @media (max-width: 560px) {
       .sm-social {
-        gap: 6px;
+        gap: 8px;
       }
 
       .sm-social-btn {
-        flex-basis: 34px;
-        width: 34px;
-        height: 34px;
+        flex-basis: 44px;
+        width: 44px;
+        height: 44px;
       }
     }
 
