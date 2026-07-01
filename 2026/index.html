@@ -1424,6 +1424,25 @@
       }
     }
 
+    function agendaTagClass(tag, item) {
+      const normalized = String(tag || "").trim();
+      const upper = normalized.toUpperCase();
+      const track = String(item?.track || "").toLowerCase();
+      const classes = ["session-tag"];
+      if (upper === "KEYNOTE" || track === "keynote") classes.push("is-keynote");
+      if (track === "workshop" && /room|教室|場地/i.test(normalized)) classes.push("is-room");
+      return classes.join(" ");
+    }
+
+    function renderAgendaTags(item) {
+      const tags = localized(item?.tags || []).filter(tag => String(tag || "").trim());
+      if (!tags.length) return "";
+      const tagHTML = tags
+        .map(tag => `<span class="${agendaTagClass(tag, item)}">${String(tag).toUpperCase()}</span>`)
+        .join("");
+      return `<span class="session-tags">${tagHTML}</span>`;
+    }
+
     function renderAgenda(day) {
       const list = document.getElementById("agendaList");
       if (!list) return;
@@ -1478,12 +1497,7 @@
       const speakerPrefix = currentLang === "en" ? "SPEAKER" : "講者";
 
       const renderCard = ({ item: r, sourceIdx }, revealIndex = -1) => {
-        const tags = localized(r.tags || []);
-        const primaryTag = tags[0] || "";
-        const isKeynote = primaryTag.toUpperCase() === "KEYNOTE" || (r.track || "").toLowerCase() === "keynote";
-        const tagHTML = primaryTag
-          ? `<span class="session-tag${isKeynote ? " is-keynote" : ""}">${primaryTag.toUpperCase()}</span>`
-          : "";
+        const tagHTML = renderAgendaTags(r);
         const speakerName = localized(r.speaker?.name);
         const hasSpeaker = Boolean(String(speakerName || "").trim());
         const speakerAvatar = r.speaker?.avatar || "img/staff/staff_sample.png";
@@ -1609,8 +1623,7 @@
       document.getElementById("amTitle").textContent = localized(item.title);
 
       // 標籤
-      document.getElementById("amTags").innerHTML = localized(item.tags || [])
-        .map(tag => `<span class="agenda-tag">${tag}</span>`).join("");
+      document.getElementById("amTags").innerHTML = renderAgendaTags(item);
 
       // 講者
       const sp = item.speaker || {};
