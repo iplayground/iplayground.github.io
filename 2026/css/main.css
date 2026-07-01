@@ -2047,14 +2047,6 @@
       border: 0;
     }
 
-    /* keep modal tags rhythm aligned with list chips */
-    .am-tags .session-tag {
-      height: 30px;
-      box-sizing: border-box;
-      padding: 0 10px;
-      font-size: 10px;
-    }
-
     @media (max-width: 720px) {
       .agenda-tabs {
         display: grid;
