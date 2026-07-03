@@ -45,7 +45,7 @@
   </script>
 
   <link rel="stylesheet" href="css/shared.css?v=20260510-tickets-align5">
-  <link rel="stylesheet" href="css/main.css?v=20260627-about-stats">
+  <link rel="stylesheet" href="css/main.css?v=20260702-newsletter-form">
 </head>
 
 <body>
@@ -539,6 +539,49 @@
   </section>
 
   <div id="register"></div>
+
+  <section id="newsletter" class="section-newsletter" data-screen-label="09 Newsletter">
+    <div class="wrap">
+      <div class="newsletter-card">
+        <div class="newsletter-brand">
+          <div class="newsletter-copy">
+            <span class="newsletter-kicker">// NEWSLETTER</span>
+            <div class="newsletter-heading-row">
+              <img class="newsletter-logo" src="img/ip26-iconv1.png" alt="iPlayground 2026" width="160" height="160" loading="lazy">
+              <h2 class="newsletter-title" data-i18n="newsletter_title">訂閱電子報</h2>
+            </div>
+            <p class="newsletter-lede" data-i18n="newsletter_meta">以 iOS/Mac 開發為中心的技術研討會，在台北舉辦。</p>
+            <p class="newsletter-subscribers" data-i18n="newsletter_subscribers">超過一千名訂閱者</p>
+          </div>
+        </div>
+        <form
+          class="newsletter-form"
+          action="https://iplayground.substack.com/api/v1/free?nojs=true"
+          method="post"
+          target="_blank">
+          <input type="hidden" name="source" value="embed">
+          <label class="sr-only" for="newsletterEmail" data-i18n="newsletter_email_label">電子郵件</label>
+          <input
+            id="newsletterEmail"
+            class="newsletter-input"
+            type="email"
+            name="email"
+            autocomplete="email"
+            inputmode="email"
+            placeholder="you@example.com"
+            data-i18n-placeholder="newsletter_email_placeholder"
+            required>
+          <button class="newsletter-submit" type="submit" data-i18n="newsletter_submit">訂閱</button>
+        </form>
+        <p class="newsletter-terms">
+          <span data-i18n="newsletter_terms_prefix">訂閱即表示你同意 Substack 的</span>
+          <a href="https://iplayground.substack.com/tos?utm_source=embed_publication" target="_blank" rel="noopener" data-i18n="newsletter_terms">使用條款</a>
+          <span data-i18n="newsletter_terms_and">與</span>
+          <a href="https://iplayground.substack.com/privacy?utm_source=embed_publication" target="_blank" rel="noopener" data-i18n="newsletter_privacy">隱私權政策</a>
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer data-screen-label="09 Footer">
@@ -1423,6 +1466,25 @@
       }
     }
 
+    function agendaTagClass(tag, item) {
+      const normalized = String(tag || "").trim();
+      const upper = normalized.toUpperCase();
+      const track = String(item?.track || "").toLowerCase();
+      const classes = ["session-tag"];
+      if (upper === "KEYNOTE" || track === "keynote") classes.push("is-keynote");
+      if (track === "workshop" && /room|教室|場地/i.test(normalized)) classes.push("is-room");
+      return classes.join(" ");
+    }
+
+    function renderAgendaTags(item) {
+      const tags = localized(item?.tags || []).filter(tag => String(tag || "").trim());
+      if (!tags.length) return "";
+      const tagHTML = tags
+        .map(tag => `<span class="${agendaTagClass(tag, item)}">${String(tag).toUpperCase()}</span>`)
+        .join("");
+      return `<span class="session-tags">${tagHTML}</span>`;
+    }
+
     function renderAgenda(day) {
       const list = document.getElementById("agendaList");
       if (!list) return;
@@ -1477,12 +1539,7 @@
       const speakerPrefix = currentLang === "en" ? "SPEAKER" : "講者";
 
       const renderCard = ({ item: r, sourceIdx }, revealIndex = -1) => {
-        const tags = localized(r.tags || []);
-        const primaryTag = tags[0] || "";
-        const isKeynote = primaryTag.toUpperCase() === "KEYNOTE" || (r.track || "").toLowerCase() === "keynote";
-        const tagHTML = primaryTag
-          ? `<span class="session-tag${isKeynote ? " is-keynote" : ""}">${primaryTag.toUpperCase()}</span>`
-          : "";
+        const tagHTML = renderAgendaTags(r);
         const speakerName = localized(r.speaker?.name);
         const hasSpeaker = Boolean(String(speakerName || "").trim());
         const speakerAvatar = r.speaker?.avatar || "img/staff/staff_sample.png";
@@ -1608,8 +1665,7 @@
       document.getElementById("amTitle").textContent = localized(item.title);
 
       // 標籤
-      document.getElementById("amTags").innerHTML = localized(item.tags || [])
-        .map(tag => `<span class="agenda-tag">${tag}</span>`).join("");
+      document.getElementById("amTags").innerHTML = renderAgendaTags(item);
 
       // 講者
       const sp = item.speaker || {};
@@ -1703,7 +1759,7 @@
       document.getElementById("smName").textContent = speaker.name || "";
       document.getElementById("smRole").textContent = speaker.role || "";
       document.getElementById("smCompany").textContent = speaker.company || "";
-      document.getElementById("smBio").textContent = speaker.bio || "";
+      document.getElementById("smBio").innerHTML = lineBreaksToHtml(speaker.bio || "");
 
       const social = speaker.social || {};
       document.getElementById("smSocial").innerHTML = Object.entries(social)
@@ -2623,13 +2679,25 @@
       if (!wall) return;
       const COLS = 5;
       const perCol = Math.ceil(imgs.length / COLS);
+      const staffSection = document.getElementById("staff");
+      const wallWidth = wall.clientWidth || window.innerWidth || 390;
+      const columnGap = 10;
+      const columnWidth = Math.max(72, (wallWidth - columnGap * (COLS - 1) - 20) / COLS);
+      const targetHeight = Math.max(
+        staffSection?.scrollHeight || 0,
+        window.innerHeight || 0,
+        1200
+      );
+      const minItemsPerCol = Math.ceil((targetHeight * 1.45) / (columnWidth + columnGap));
 
       for (let c = 0; c < COLS; c++) {
         const col = document.createElement("div");
         col.className = "pw-col";
-        // Each column gets a slice, then duplicated for seamless loop
+        // Each column gets enough images to cover long mobile staff layouts, then
+        // duplicates that sequence for the seamless vertical loop.
         const slice = [];
-        for (let r = 0; r < perCol + 2; r++) {
+        const itemCount = Math.max(perCol + 2, minItemsPerCol);
+        for (let r = 0; r < itemCount; r++) {
           slice.push(imgs[(c * perCol + r) % imgs.length]);
         }
         // Duplicate for seamless infinite scroll
@@ -3169,9 +3237,12 @@
       tierContainer.innerHTML = sponsors.map((tier, index) => {
         const items = Array.isArray(tier.items) ? tier.items : [];
         const cols = Math.min(Math.max(items.length, 1), 4);
+        const tierHead = index === 0
+          ? ""
+          : `<div class="sponsor-tier-head"><span class="tier-mark" aria-hidden="true"></span><span class="tier-label">${escapeHtml(tierTitle(tier.title))}</span></div>`;
         return `
           <div class="sponsor-tier" data-rank="${index}">
-            <div class="sponsor-tier-head"><span class="tier-mark" aria-hidden="true"></span><span class="tier-label">${escapeHtml(tierTitle(tier.title))}</span></div>
+            ${tierHead}
             <div class="sponsor-tier-grid cols-${cols}">
               ${items.map((item) => `
                 <article class="sponsor-card">
