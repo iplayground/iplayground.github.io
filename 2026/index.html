@@ -3022,7 +3022,7 @@
     let lastUpdate = 0;
     function tickMs(now) {
       if (now - lastUpdate >= 33) {
-        const ms = Date.now() % 1000;
+        const ms = Math.max(0, CD_TARGET - Date.now()) % 1000;
         cdMs.textContent = '.' + String(ms).padStart(3, '0');
         lastUpdate = now;
       }
