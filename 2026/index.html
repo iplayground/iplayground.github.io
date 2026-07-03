@@ -3021,8 +3021,13 @@
     if (reduceMotion) { cdMs.textContent = '.000'; return; }
     let lastUpdate = 0;
     function tickMs(now) {
+      const remaining = CD_TARGET - Date.now();
+      if (remaining <= 0) {
+        cdMs.textContent = '.000';
+        return;
+      }
       if (now - lastUpdate >= 33) {
-        const ms = Math.max(0, CD_TARGET - Date.now()) % 1000;
+        const ms = remaining % 1000;
         cdMs.textContent = '.' + String(ms).padStart(3, '0');
         lastUpdate = now;
       }
