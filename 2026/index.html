@@ -1326,7 +1326,7 @@
           const enRow = enRows[index] || {};
           const matchedSpeaker = row.speakerID ? speakerMap.get(String(row.speakerID)) : null;
           const matchedSpeakerEn = row.speakerID ? speakerEnMap.get(String(row.speakerID)) : null;
-          const speakerName = row.speaker || matchedSpeaker?.name || "";
+          const speakerName = matchedSpeaker?.name || row.speaker || "";
           const speakerNameEn = enRow.speaker || matchedSpeakerEn?.name || speakerName;
           const title = { zh: row.title || "", en: enRow.title || row.title || "" };
           const description = { zh: row.description || "", en: enRow.description || row.description || "" };
