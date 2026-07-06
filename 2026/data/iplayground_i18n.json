@@ -59,6 +59,9 @@
   "trans_link":          { "zh": "交通詳細網址",                      "en": "Detailed Traffic Info" },
   "trans_parking_title": { "zh": "停車資訊",                          "en": "Parking" },
   "trans_parking_btn":   { "zh": "尋找附近停車場",                    "en": "Find Nearby Parking" },
+  "trans_commute_title": { "zh": "交通資訊",                          "en": "Transportation Info" },
+  "trans_commute_mrt_tab": { "zh": "捷運",                            "en": "MRT" },
+  "trans_commute_bus_tab": { "zh": "公車",                            "en": "Bus" },
   "trans_commute_tabs_label": { "zh": "交通方式",                     "en": "Transportation options" },
 
   "agenda_eyebrow":      { "zh": "— 議程 Agenda",                    "en": "— Agenda" },
