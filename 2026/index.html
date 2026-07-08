@@ -45,7 +45,7 @@
   </script>
 
   <link rel="stylesheet" href="css/shared.css?v=20260510-tickets-align5">
-  <link rel="stylesheet" href="css/main.css?v=20260702-newsletter-form">
+  <link rel="stylesheet" href="css/main.css?v=20260708-podcast-playlist">
 </head>
 
 <body>
@@ -493,6 +493,32 @@
         <!-- 由 data/iplayground_speakers.json 動態產生 -->
       </div>
 
+    </div>
+  </section>
+
+  <!-- Podcast Playlist -->
+  <section class="section section-podcast-playlist" id="podcast-playlist" data-screen-label="05.5 Podcast Playlist">
+    <div class="wrap center">
+      <header class="section-head">
+        <span class="section-eyebrow" data-i18n="podcast_playlist_eyebrow">— Podcast Playlist</span>
+        <h2 class="section-title section-title--zh" data-i18n="podcast_playlist_title">Podcast</h2>
+        <span class="section-meta"></span>
+      </header>
+
+      <p class="podcast-playlist-desc" data-i18n="podcast_playlist_desc">收看 iPlayground Podcast 的 YouTube 播放清單，和社群一起延續 Apple 平台開發的交流。</p>
+
+      <div class="podcast-playlist-embed">
+        <iframe
+          id="podcastPlaylistFrame"
+          data-youtube-playlist="podcast_youtube"
+          src="https://www.youtube-nocookie.com/embed/videoseries?list=PLJN8Q2M8xEClcMjIhNGA075-KwTOcFadF"
+          title="iPlayground YouTube 播放清單"
+          data-i18n-title="podcast_playlist_iframe_title"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
     </div>
   </section>
 
@@ -1811,7 +1837,26 @@
       // social links（個別 id）
       (links.social || []).forEach(s => { _linksMap[`social_${s.id}`] = s.url; });
 
+      applyYoutubePlaylistEmbeds();
       applyLinksForLang(currentLang);
+    }
+
+    // 將 [data-youtube-playlist] iframe 的 src 換成對應播放清單的 youtube-nocookie embed 網址
+    function applyYoutubePlaylistEmbeds() {
+      document.querySelectorAll("[data-youtube-playlist]").forEach(iframe => {
+        const key = iframe.dataset.youtubePlaylist;
+        const val = _linksMap[key];
+        const url = (val && typeof val === "object") ? (val.zh || val.en) : val;
+        if (!url) return;
+        let playlistId = "";
+        try {
+          playlistId = new URL(url).searchParams.get("list");
+        } catch (e) {
+          console.warn("Invalid YouTube playlist URL", url, e);
+        }
+        if (!playlistId) return;
+        iframe.src = `https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(playlistId)}`;
+      });
     }
 
     function applyLinksForLang(lang) {
@@ -2761,6 +2806,10 @@
         });
       }).catch(e => {
         console.warn("資料載入失敗，使用空資料初始化", e);
+        fetch("data/iplayground_links.json")
+          .then(r => r.json())
+          .then(applyLinks)
+          .catch(linkError => console.warn("連結資料載入失敗", linkError));
         renderNews(savedLang);
         renderAgenda(1);
         renderSpeakers();

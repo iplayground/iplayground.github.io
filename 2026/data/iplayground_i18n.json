@@ -108,6 +108,11 @@
   "speakers_title":      { "zh": "講者群",                            "en": "Speakers" },
   "speakers_wip":        { "zh": "講者陣容確認後即將公布，敬請期待",  "en": "Speaker lineup will be announced once confirmed — stay tuned" },
 
+  "podcast_playlist_eyebrow": { "zh": "— Podcast Playlist",            "en": "— Podcast Playlist" },
+  "podcast_playlist_title":   { "zh": "Podcast",                       "en": "Podcast" },
+  "podcast_playlist_desc":    { "zh": "收看 iPlayground Podcast 的 YouTube 播放清單，和社群一起延續 Apple 平台開發的交流。", "en": "Watch the iPlayground Podcast YouTube playlist and keep the Apple platform developer conversation going with the community." },
+  "podcast_playlist_iframe_title": { "zh": "iPlayground YouTube 播放清單", "en": "iPlayground YouTube playlist" },
+
   "staff_eyebrow":       { "zh": "— 工作人員 Staff",                  "en": "— Staff" },
   "staff_title":         { "zh": "工作人員",                          "en": "Staff" },
   "staff_wip":           { "zh": "每一位背後的無名英雄",              "en": "The unsung heroes behind the scenes" },
