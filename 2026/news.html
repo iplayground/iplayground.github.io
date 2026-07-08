@@ -87,6 +87,10 @@
           <img src="img/svg/logo_header_light.svg" alt="iPlayground" class="footer-logo footer-logo--dark" style="height:32px;width:auto;">
         </div>
         <p class="footer-tagline" id="footerTagline"></p>
+        <a class="footer-cta-link" href="#" data-link="linkedin_event" target="_blank" rel="noopener">
+          <img src="img/svg/media/linkedin.svg" alt="" aria-hidden="true" width="16" height="16">
+          <span data-i18n="footer_join_linkedin">Join on LinkedIn</span>
+        </a>
       </div>
       <div class="footer-event-links">
         <h4 data-i18n="footer_event">活動</h4>
@@ -104,6 +108,7 @@
           <li><a href="#" data-link="social_twitter" target="_blank" rel="noopener">Twitter / X</a></li>
           <li><a href="#" data-link="social_youtube" target="_blank" rel="noopener">YouTube</a></li>
           <li><a href="#" data-link="social_instagram" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#" data-link="social_linkedin" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="#" data-link="podcast_spotify" target="_blank" rel="noopener">Spotify</a></li>
           <li><a href="#" data-link="podcast_youtube" target="_blank" rel="noopener">Youtube Podcast</a></li>
           <li><a href="#" data-link="podcast_apple" target="_blank" rel="noopener">Apple Podcasts</a></li>
@@ -260,6 +265,8 @@ function applyLinks(links) {
   if (!map.podcast_apple) map.podcast_apple = "https://podcasts.apple.com/tw/podcast/iplayground-2026/id6786981157";
   if (!map.iplayground_2025) map.iplayground_2025 = "https://iplayground.io/2025";
   if (!map.iplayground_2024) map.iplayground_2024 = "https://iplayground.io/2024";
+  if (!map.social_linkedin) map.social_linkedin = "https://www.linkedin.com/company/iplayground/?viewAsMember=true";
+  if (!map.linkedin_event) map.linkedin_event = "https://www.linkedin.com/events/7480204153466667008/?viewAsMember=true";
 
   document.querySelectorAll("[data-link]").forEach(el => {
     const url = map[el.dataset.link];
