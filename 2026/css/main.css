@@ -924,6 +924,42 @@
       background: #14160F;
     }
 
+    /* ============ Podcast Playlist ============ */
+    .podcast-playlist-desc {
+      max-width: 640px;
+      margin: 16px auto 0;
+      color: var(--ink-2);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .podcast-playlist-embed {
+      position: relative;
+      width: min(100%, 960px);
+      margin: 48px auto 0;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--rule-2);
+      background: var(--surface-2);
+      box-shadow: 0 24px 72px rgba(0, 0, 0, 0.24);
+    }
+
+    .podcast-playlist-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: 640px) {
+      .podcast-playlist-embed {
+        margin-top: 32px;
+        border-radius: 8px;
+      }
+    }
+
     .section-newsletter {
       padding: clamp(72px, 9vh, 120px) 0;
       border-top-color: rgba(255, 255, 255, 0.16);

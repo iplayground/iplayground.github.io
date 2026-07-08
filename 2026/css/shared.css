@@ -539,6 +539,39 @@
       line-height: 1.65;
     }
 
+    .footer-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--bg) 35%, transparent);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--bg);
+      opacity: 0.85;
+      text-decoration: none;
+      transition: opacity .2s, border-color .2s, transform .2s;
+    }
+
+    .footer-cta-link:hover {
+      opacity: 1;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .footer-cta-link img {
+      width: 16px;
+      height: 16px;
+      display: block;
+      filter: invert(1);
+    }
+
+    html[data-mode="dark"] .footer-cta-link img {
+      filter: none;
+    }
+
 
     footer ul {
       list-style: none;

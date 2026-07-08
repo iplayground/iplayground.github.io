@@ -35,6 +35,12 @@
       "label": "Instagram",
       "url": "https://www.instagram.com/iplayground.tw/",
       "icon": "img/ig.png"
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/company/iplayground/?viewAsMember=true",
+      "icon": "img/svg/media/linkedin.svg"
     }
   ],
   "important": {
@@ -47,7 +53,8 @@
     "podcast_youtube": "https://www.youtube.com/playlist?list=PLJN8Q2M8xEClcMjIhNGA075-KwTOcFadF",
     "podcast_apple": "https://podcasts.apple.com/tw/podcast/iplayground-2026/id6786981157",
     "iplayground_2024": "https://iplayground.io/2024",
-    "iplayground_2025": "https://iplayground.io/2025"
+    "iplayground_2025": "https://iplayground.io/2025",
+    "linkedin_event": "https://www.linkedin.com/events/7480204153466667008/?viewAsMember=true"
   },
   "contact": {
     "support": "mailto:support@iplayground.io",
