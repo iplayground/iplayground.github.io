@@ -281,6 +281,9 @@
     .hero .hero-grid {
       position: relative;
       z-index: 1;
+      width: 100%;
+      max-width: var(--maxw);
+      margin-inline: auto;
       flex: 1;
       display: grid;
       grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
@@ -298,6 +301,9 @@
     .hero .wordmark-banner {
       position: relative;
       z-index: 1;
+      width: 100%;
+      max-width: var(--maxw);
+      margin-inline: auto;
       isolation: isolate;
       display: flex;
       flex-direction: column;
