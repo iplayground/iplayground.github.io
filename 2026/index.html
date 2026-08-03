@@ -1593,7 +1593,7 @@
             <h3 class="session-title">${localized(r.title)}</h3>
           </div>
           <div class="session-meta">
-            ${!isBreakLike && hasSpeaker ? `<span class="session-speaker"><img class="session-speaker-avatar" src="${speakerAvatar}" alt="" width="22" height="22" loading="lazy" decoding="async" style="object-position:center top;" onerror="this.onerror=null;this.src='img/staff/staff_sample.png'"><span class="session-speaker-label">${speakerPrefix}</span><span>${speakerName}</span></span>` : ""}
+            ${!isBreakLike && hasSpeaker ? `<span class="session-speaker"><img class="session-speaker-avatar" src="${speakerAvatar}" alt="" width="28" height="35" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/staff/staff_sample.png'"><span class="session-speaker-label">${speakerPrefix}</span><span>${speakerName}</span></span>` : ""}
             ${noPhotoTag}
             ${tagHTML}
           </div>
@@ -1664,7 +1664,7 @@
       const avatarSrc = sp.avatar || "img/staff/staff_sample.png";
       const speakerName = localized(sp.name);
       document.getElementById("amSpeaker").innerHTML = `
-        <img class="am-speaker-avatar" src="${avatarSrc}" alt="${speakerName}" style="object-position:center top;"
+        <img class="am-speaker-avatar" src="${avatarSrc}" alt="${speakerName}" width="48" height="60" decoding="async"
           onerror="this.onerror=null;this.src='img/staff/staff_sample.png'">
         <span class="am-speaker-name">${speakerName}</span>
       `;
