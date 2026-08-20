@@ -93,6 +93,7 @@
   "stat_tickets_value":  { "zh": "立即購票",                          "en": "Buy Tickets" },
   "stat_recap1_value":  { "zh": "活動回顧 Day1",                          "en": "Recap Day1" },
   "stat_recap2_value":  { "zh": "活動回顧 Day2",                          "en": "Recap Day2" },
+  "stat_staff_recruitment_value": { "zh": "2027 工作人員招募",             "en": "Join the 2027 Team" },
   "stat_tickets_sub":    { "zh": "",                                "en": "" },
 
   "tickets_title":       { "zh": "票種資訊",                          "en": "Tickets" },
